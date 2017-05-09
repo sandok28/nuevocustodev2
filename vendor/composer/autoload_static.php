@@ -62,6 +62,10 @@ class ComposerStaticInit2d850ed464469b45a77aadc885f3f9b5
             'Psr\\Log\\' => 8,
             'PhpParser\\' => 10,
         ),
+        'O' => 
+        array (
+            'OwenIt\\Auditing\\' => 16,
+        ),
         'M' => 
         array (
             'Monolog\\' => 8,
@@ -187,6 +191,10 @@ class ComposerStaticInit2d850ed464469b45a77aadc885f3f9b5
         'PhpParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
+        ),
+        'OwenIt\\Auditing\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/owen-it/laravel-auditing/src',
         ),
         'Monolog\\' => 
         array (
@@ -320,7 +328,7 @@ class ComposerStaticInit2d850ed464469b45a77aadc885f3f9b5
         'Collective\\Html\\HtmlBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlBuilder.php',
         'Collective\\Html\\HtmlFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlFacade.php',
         'Collective\\Html\\HtmlServiceProvider' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlServiceProvider.php',
-        'CreateAuditsTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_17_202805_create_audits_table.php',
+        'CreateAuditsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_09_012430_create_audits_table.php',
         'CreateCargosTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_210304_create_cargos_table.php',
         'CreateFuncionariosTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_210813_create_funcionarios_table.php',
         'CreateHorariosEspecialsTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_213332_create_horarios_especials_table.php',
@@ -1763,6 +1771,22 @@ class ComposerStaticInit2d850ed464469b45a77aadc885f3f9b5
         'Monolog\\Processor\\UidProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/UidProcessor.php',
         'Monolog\\Processor\\WebProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/WebProcessor.php',
         'Monolog\\Registry' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Registry.php',
+        'OwenIt\\Auditing\\Auditable' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Auditable.php',
+        'OwenIt\\Auditing\\AuditableObserver' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/AuditableObserver.php',
+        'OwenIt\\Auditing\\AuditingServiceProvider' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/AuditingServiceProvider.php',
+        'OwenIt\\Auditing\\Auditor' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Auditor.php',
+        'OwenIt\\Auditing\\Console\\AuditDriverMakeCommand' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Console/AuditDriverMakeCommand.php',
+        'OwenIt\\Auditing\\Console\\AuditTableCommand' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Console/AuditTableCommand.php',
+        'OwenIt\\Auditing\\Console\\InstallCommand' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Console/InstallCommand.php',
+        'OwenIt\\Auditing\\Contracts\\AuditDriver' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Contracts/AuditDriver.php',
+        'OwenIt\\Auditing\\Contracts\\Auditable' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Contracts/Auditable.php',
+        'OwenIt\\Auditing\\Contracts\\Auditor' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Contracts/Auditor.php',
+        'OwenIt\\Auditing\\Contracts\\UserResolver' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Contracts/UserResolver.php',
+        'OwenIt\\Auditing\\Drivers\\Database' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Drivers/Database.php',
+        'OwenIt\\Auditing\\Events\\Audited' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Events/Audited.php',
+        'OwenIt\\Auditing\\Events\\Auditing' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Events/Auditing.php',
+        'OwenIt\\Auditing\\Facades\\Auditor' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Facades/Auditor.php',
+        'OwenIt\\Auditing\\Models\\Audit' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Models/Audit.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/Assert.php',
         'PHPUnit\\Framework\\BaseTestListener' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/BaseTestListener.php',
         'PHPUnit\\Framework\\TestCase' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/TestCase.php',
