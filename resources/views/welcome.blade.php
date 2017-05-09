@@ -1,95 +1,57 @@
-<!doctype html>
-<html lang="{{ config('app.locale') }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.principal')
 
-        <title>Laravel</title>
+@section('content')
+    <div>
+        <p>CREAR USUARIO</p>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
+    </div>
+    <div>
+        <<<<<<< HEAD:resources/views/usuario/create.blade.php
+        {!!Form::open(['route'=>'usuario.store', 'method'=>'POST'])!!}
+        @include('usuario.forms.formulario')
+        {!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
+        =======
+        {!!Form::open(['route'=>'Usuario', 'method'=>'POST'])!!}
+        <div class="form-group">
+            {!!Form::label('nombre','Nombre:')!!}
+            {!!Form::text('name',null,['class'=>'form-control','placeholder'=>'Usuario'])!!}
         </div>
-    </body>
-</html>
+        <div class="form-group">
+            {!!Form::label('email','Correo:')!!}
+            {!!Form::text('email',null,['class'=>'form-control','placeholder'=>'Ingresa el Nombre del usuario'])!!}
+        </div>
+        <div class="form-group">
+            {!!Form::label('password','Contraseña:')!!}
+            {!!Form::password('password',['class'=>'form-control','placeholder'=>'Usuario'])!!}
+        </div>
+        {!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
+        >>>>>>> f04bfb53d812dedc983393a488e3cb8c690e8fd6:resources/views/Usuario/create.blade.php
+        {!!Form::close()!!}
+
+    </div>
+    <div>
+        <table class="table">
+            <thead>
+            <th>Nombre</th>
+            <th>Creado</th>
+            <th>Actualizado</th>
+            <th>editar</th>
+            <th>estatus</th>
+            </thead>
+            @foreach($permisos as $permiso)
+                <tbody>
+                <td>{{$permiso->nombre}}</td>
+                <td>{{$permiso->created_at}}</td>
+                <td>{{$permiso->updated_at}}</td>
+                @if(($permiso->estatus) == 1)
+                    <th>activo</th>
+                @else
+                    <th>inactivo</th>
+                @endif
+                <th>{!!link_to_route('permiso.edit', $title = 'Editar', $parameters = $permiso, $attributes = ['class'=>'btn btn-primary'])!!}</th>
+                </tbody>
+            @endforeach
+        </table>
+    </div>
+
+@endsection
