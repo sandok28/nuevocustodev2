@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('/index','FuncionariosController');
+Route::resource('/index/create','FuncionariosController');
+Route::resource('/index/update','FuncionariosController');

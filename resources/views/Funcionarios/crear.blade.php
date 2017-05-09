@@ -22,12 +22,8 @@
     <link rel="stylesheet" href="assets/css/animate.css">
     <!-- Custom styles for this theme -->
     <link rel="stylesheet" href="assets/css/main.css">
-    <!-- Vector Map  -->
-    <link rel="stylesheet" href="assets/plugins/jvectormap/css/jquery-jvectormap-1.2.2.css">
-    <!-- ToDos  -->
-    <link rel="stylesheet" href="assets/plugins/todo/css/todos.css">
-    <!-- Morris  -->
-    <link rel="stylesheet" href="assets/plugins/morris/css/morris.css">
+    <!-- iCheck-->
+    <link rel="stylesheet" href="assets/plugins/icheck/css/_all.css">
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -45,7 +41,7 @@
     <header id="header">
         <!--logo start-->
         <div class="brand">
-            <a href="index.html" class="logo"><span>CUSTO</span>DE</a>
+            <a href="index.html" class="logo"><span>Space</span>Lab</a>
         </div>
         <!--logo end-->
         <div class="toggle-navigation toggle-left">
@@ -165,11 +161,11 @@
             </ul>
         </div>
     </header>
-    <!--sidebar left start-->
+    <!--sidebar start-->
     <aside class="sidebar">
         <div id="leftside-navigation" class="nano">
             <ul class="nano-content">
-                <li class="active">
+                <li>
                     <a href="index.html"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
                 </li>
                 <li class="sub-menu">
@@ -201,16 +197,17 @@
                     <ul>
                         <li><a href="tables-basic.html">Basic Tables</a>
                         </li>
+
                         <li><a href="tables-data.html">Data Tables</a>
                         </li>
                     </ul>
                 </li>
-                <li class="sub-menu">
+                <li class="sub-menu active">
                     <a href="javascript:void(0);"><i class="fa fa fa-tasks"></i><span>Forms</span><i class="arrow fa fa-angle-right pull-right"></i></a>
                     <ul>
                         <li><a href="forms-components.html">Components</a>
                         </li>
-                        <li><a href="forms-validation.html">Validation</a>
+                        <li class="active"><a href="forms-validation.html">Validation</a>
                         </li>
                         <li><a href="forms-mask.html">Mask</a>
                         </li>
@@ -276,246 +273,130 @@
         </div>
 
     </aside>
-    <!--sidebar left end-->
+    <!--sidebar end-->
     <!--main content start-->
     <section class="main-content-wrapper">
         <section id="main-content">
-            <!--tiles start-->
             <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <div class="dashboard-tile detail tile-red">
-                        <div class="content">
-                            <h1 class="text-left timer" data-from="0" data-to="180" data-speed="2500"> </h1>
-                            <p>New Users</p>
-                        </div>
-                        <div class="icon"><i class="fa fa-users"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="dashboard-tile detail tile-turquoise">
-                        <div class="content">
-                            <h1 class="text-left timer" data-from="0" data-to="56" data-speed="2500"> </h1>
-                            <p>New Comments</p>
-                        </div>
-                        <div class="icon"><i class="fa fa-comments"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="dashboard-tile detail tile-blue">
-                        <div class="content">
-                            <h1 class="text-left timer" data-from="0" data-to="32" data-speed="2500"> </h1>
-                            <p>New Messages</p>
-                        </div>
-                        <div class="icon"><i class="fa fa fa-envelope"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="dashboard-tile detail tile-purple">
-                        <div class="content">
-                            <h1 class="text-left timer" data-to="105" data-speed="2500"> </h1>
-                            <p>New Sales</p>
-                        </div>
-                        <div class="icon"><i class="fa fa-bar-chart-o"></i>
-                        </div>
-                    </div>
+                <div class="col-md-12">
+                    <!--breadcrumbs start -->
+                    <ul class="breadcrumb">
+                        <li><a href="#">Dashboard</a>
+                        </li>
+                        <li>Forms</li>
+                        <li class="active">Form Validation</li>
+                    </ul>
+                    <!--breadcrumbs end -->
+                    <h1 class="h1">Form Validation</h1>
                 </div>
             </div>
-            <!--tiles end-->
-            <!--dashboard charts and map start-->
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Sales for 2014</h3>
+                            <h3 class="panel-title">Form Validations</h3>
                             <div class="actions pull-right">
                                 <i class="fa fa-chevron-down"></i>
                                 <i class="fa fa-times"></i>
                             </div>
                         </div>
                         <div class="panel-body">
-                            <div id="sales-chart" style="height: 250px;"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Office locations</h3>
-                            <div class="actions pull-right">
-                                <i class="fa fa-chevron-down"></i>
-                                <i class="fa fa-times"></i>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <div class="map" id="map" style="height: 250px;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--dashboard charts and map end-->
-            <!--ToDo start-->
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">To do list</h3>
-                            <div class="actions pull-right">
-                                <i class="fa fa-chevron-down"></i>
-                                <i class="fa fa-times"></i>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input id="new-todo" type="text" class="form-control" placeholder="What needs to be done?">
-                                        <section id='main'>
-                                            <ul id='todo-list'></ul>
-                                        </section>
-                                    </div>
-                                    <div class="form-group">
-                                        <button id="todo-enter" class="btn btn-primary pull-right">Submit</button>
-                                        <div id='todo-count'></div>
+
+                            <form class="form-horizontal form-border" id="form">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Required</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" name="input1" id="input1" required="" placeholder="Required input">
                                     </div>
                                 </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Server Status</h3>
-                                    <div class="actions pull-right">
-                                        <i class="fa fa-chevron-down"></i>
-                                        <i class="fa fa-times"></i>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Min Length</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" name="input2" id="input2" required="" placeholder="Min 5 chars.">
                                     </div>
                                 </div>
-                                <div class="panel-body">
-
-                                    <span class="sublabel">Memory Usage</span>
-                                    <div class="progress progress-striped">
-                                        <div class="progress-bar progress-bar-info" style="width: 20%">20%</div>
-                                    </div><!-- progress -->
-
-                                    <span class="sublabel">CPU Usage </span>
-                                    <div class="progress progress-striped">
-                                        <div class="progress-bar progress-bar-default" style="width: 60%">60%</div>
-                                    </div><!-- progress -->
-
-                                    <span class="sublabel">Disk Usage </span>
-                                    <div class="progress progress-striped">
-                                        <div class="progress-bar progress-bar-primary" style="width: 80%">80%</div>
-                                    </div><!-- progress -->
-
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="panel panel-solid-info">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Weather</h3>
-                            <div class="actions pull-right">
-                                <i class="fa fa-chevron-down"></i>
-                                <i class="fa fa-times"></i>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h3 class="text-center small-thin uppercase">Today</h3>
-                                    <div class="text-center">
-                                        <canvas id="clear-day" width="110" height="110"></canvas>
-                                        <h4>62°C</h4>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Max Length</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" required="" name="input3" id="input3" placeholder="Max 5 chars.">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <h3 class="text-center small-thin uppercase">Tonight</h3>
-                                    <div class="text-center">
-                                        <canvas id="partly-cloudy-night" width="110" height="110"></canvas>
-                                        <h4>44°C</h4>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Range Length</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" required="" name="input4" id="input4" placeholder="Text between 4 - 8 chars length">
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="panel-footer">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <h6 class="text-center small-thin uppercase">Mon</h6>
-                                    <div class="text-center">
-                                        <canvas id="partly-cloudy-day" width="32" height="32"></canvas>
-                                        <span>48°C</span>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Min Value</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" required="" name="input5" id="input5" placeholder="Min value is 5">
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Range Value</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control " required="" name="input6" id="input6" placeholder="Number between 5 - 50">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Equal To</label>
+                                    <div class="col-sm-3">
+                                        <input type="password" class="form-control " name="input7" id="input7" required="" placeholder="Password">
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input type="password" class="form-control " required="" name="input8" id="input8" placeholder="Re-Type Password">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">E-Mail</label>
+                                    <div class="col-sm-6">
+                                        <input type="email" class="form-control " required="" name="input9" id="input9" placeholder="Enter a valid e-mail">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">URL</label>
+                                    <div class="col-sm-6">
+                                        <input type="url" class="form-control " name="input10" id="input10" required="" placeholder="URL">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Number</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control " name="input11" id="input11" required="" placeholder="Enter only numbers">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Phone</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" name="input12" id="input12" required="" placeholder="(XXX) XXXX XXX">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Textarea</label>
+                                    <div class="col-sm-6">
+                                        <textarea class="form-control" name="input13" id="input13" placeholder="Min 5 chars."></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-8 col-sm-10">
+                                        <button type="submit" class="btn btn-primary">Validate</button>
+                                    </div>
+                                </div>
+                            </form>
 
-                                <div class="col-md-2">
-                                    <h6 class="text-center small-thin uppercase">Mon</h6>
-                                    <div class="text-center">
-                                        <canvas id="rain" width="32" height="32"></canvas>
-                                        <span>39°C</span>
-                                    </div>
-                                </div>
 
-                                <div class="col-md-2">
-                                    <h6 class="text-center small-thin uppercase">Tue</h6>
-                                    <div class="text-center">
-                                        <canvas id="sleet" width="32" height="32"></canvas>
-                                        <span>32°C</span>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-2">
-                                    <h6 class="text-center small-thin uppercase">Wed</h6>
-                                    <div class="text-center">
-                                        <canvas id="snow" width="32" height="32"></canvas>
-                                        <span>28°C</span>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-2">
-                                    <h6 class="text-center small-thin uppercase">Thu</h6>
-                                    <div class="text-center">
-                                        <canvas id="wind" width="32" height="32"></canvas>
-                                        <span>40°C</span>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-2">
-                                    <h6 class="text-center small-thin uppercase">Fri</h6>
-                                    <div class="text-center">
-                                        <canvas id="fog" width="32" height="32"></canvas>
-                                        <span>42°C</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <h4>Browser Summary</h4>
-                            <div id="donut-example"></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!--ToDo end-->
         </section>
     </section>
     <!--main content end-->
     <!--sidebar right start-->
     <aside class="sidebarRight">
-        <div id="rightside-navigation ">
+        <div id="rightside-navigation">
             <div class="sidebar-heading"><i class="fa fa-user"></i> Contacts</div>
             <div class="sidebar-title">online</div>
             <div class="list-contacts">
@@ -598,47 +479,81 @@
     </aside>
     <!--sidebar right end-->
 </section>
-<!--Global JS-->
 <script src="assets/js/jquery-1.10.2.min.js"></script>
 <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/plugins/waypoints/waypoints.min.js"></script>
 <script src="assets/js/application.js"></script>
 <!--Page Level JS-->
-<script src="assets/plugins/countTo/jquery.countTo.js"></script>
-<script src="assets/plugins/weather/js/skycons.js"></script>
-<!-- FlotCharts  -->
-<script src="assets/plugins/flot/js/jquery.flot.min.js"></script>
-<script src="assets/plugins/flot/js/jquery.flot.resize.min.js"></script>
-<script src="assets/plugins/flot/js/jquery.flot.canvas.min.js"></script>
-<script src="assets/plugins/flot/js/jquery.flot.image.min.js"></script>
-<script src="assets/plugins/flot/js/jquery.flot.categories.min.js"></script>
-<script src="assets/plugins/flot/js/jquery.flot.crosshair.min.js"></script>
-<script src="assets/plugins/flot/js/jquery.flot.errorbars.min.js"></script>
-<script src="assets/plugins/flot/js/jquery.flot.fillbetween.min.js"></script>
-<script src="assets/plugins/flot/js/jquery.flot.navigate.min.js"></script>
-<script src="assets/plugins/flot/js/jquery.flot.pie.min.js"></script>
-<script src="assets/plugins/flot/js/jquery.flot.selection.min.js"></script>
-<script src="assets/plugins/flot/js/jquery.flot.stack.min.js"></script>
-<script src="assets/plugins/flot/js/jquery.flot.symbol.min.js"></script>
-<script src="assets/plugins/flot/js/jquery.flot.threshold.min.js"></script>
-<script src="assets/plugins/flot/js/jquery.colorhelpers.min.js"></script>
-<script src="assets/plugins/flot/js/jquery.flot.time.min.js"></script>
-<script src="assets/plugins/flot/js/jquery.flot.example.js"></script>
-<!-- Morris  -->
-<script src="assets/plugins/morris/js/morris.min.js"></script>
-<script src="assets/plugins/morris/js/raphael.2.1.0.min.js"></script>
-<!-- Vector Map  -->
-<script src="assets/plugins/jvectormap/js/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="assets/plugins/jvectormap/js/jquery-jvectormap-world-mill-en.js"></script>
-<!-- ToDo List  -->
-<script src="assets/plugins/todo/js/todos.js"></script>
-<!--Load these page level functions-->
+<script src="assets/plugins/icheck/js/icheck.min.js"></script>
+<script src="assets/plugins/validation/js/jquery.validate.min.js"></script>
+<script src="assets/plugins/validation/js/jquery.validate.min.js"></script>
 <script>
     $(document).ready(function() {
-        app.timer();
-        app.map();
-        app.weather();
-        app.morrisPie();
+        $('#form').validate({
+            rules: {
+                input1: {
+                    required: true
+                },
+                input2: {
+                    minlength: 5,
+                    required: true
+                },
+                input3: {
+                    maxlength: 5,
+                    required: true
+                },
+                input4: {
+                    required: true,
+                    minlength: 4,
+                    maxlength: 8
+                },
+                input5: {
+                    required: true,
+                    min: 5
+                },
+                input6: {
+                    required: true,
+                    range: [5, 50]
+                },
+                input7: {
+                    minlength: 5
+                },
+                input8: {
+                    required: true,
+                    minlength: 5,
+                    equalTo: "#input7"
+                },
+                input9: {
+                    required: true,
+                    email: true
+                },
+                input10: {
+                    required: true,
+                    url: true
+                },
+                input11: {
+                    required: true,
+                    digits: true
+                },
+                input12: {
+                    required: true,
+                    phoneUS: true
+                },
+                input13: {
+                    required: true,
+                    minlength: 5
+                }
+            },
+            highlight: function(element) {
+                $(element).closest('.form-group').removeClass('success').addClass('error');
+            },
+            success: function(element) {
+                element.text('OK!').addClass('valid')
+                    .closest('.form-group').removeClass('error').addClass('success');
+            }
+        });
+
+
     });
 </script>
 <script>
@@ -651,7 +566,14 @@
     ga('send', 'pageview');
 
 </script>
-
 </body>
 
 </html>
+<?php
+/**
+ * Created by PhpStorm.
+ * User: andre
+ * Date: 9/05/2017
+ * Time: 9:34 AM
+ */
+?>
