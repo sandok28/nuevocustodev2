@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\User;
+use Session;
+use Redirect;
+use Illuminate\Database\Eloquent;
+use Illuminate\Support\Collection;
 
-class FuncionariosController extends Controller
+class UsuariosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +18,10 @@ class FuncionariosController extends Controller
      */
     public function index()
     {
-        //
-        return view('Funcionarios.index');
+        $usuarios = User::all();
+
+        return view('usuarios.index',compact('usuarios'));
+
     }
 
     /**
@@ -25,8 +31,8 @@ class FuncionariosController extends Controller
      */
     public function create()
     {
-        //
-        return view('Funcionarios.crear');
+
+        return view('usuarios.create');
     }
 
     /**
@@ -37,7 +43,16 @@ class FuncionariosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create([
+            'name'=> $request['name'],
+            'email'=> $request['name'],
+            'password'=> bcrypt($request['password']),
+            'estatus'=> '1',
+        ]);
+
+
+        return redirect('/usuarios')->with('message','El Usuario se ha registrado correctamente');
+
     }
 
     /**
@@ -59,7 +74,9 @@ class FuncionariosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $usuario = User::find($id);
+
+        return view('usuarios.edit',['usuario'=>$usuario]);
     }
 
     /**
@@ -71,16 +88,19 @@ class FuncionariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        return view('Funcionarios.actualizar');
+        $variablesAdaptadas = [
+            'name' => $request->all()['name'],
+            'email'=> $request->all()['name'],
+            'password'=> bcrypt($request->all()['password']),
+            'estatus'=> $request->all()['estatus']
+        ];
+        $usuario = User::find($id);
+        $usuario->fill($variablesAdaptadas);
+        $usuario->save();
+        Session::flash('message','Usuario Actualizado Correctamente');
+        return Redirect::to('/usuarios');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

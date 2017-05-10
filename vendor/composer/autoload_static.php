@@ -15,6 +15,7 @@ class ComposerStaticInit2d850ed464469b45a77aadc885f3f9b5
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -61,6 +62,10 @@ class ComposerStaticInit2d850ed464469b45a77aadc885f3f9b5
             'Psr\\Log\\' => 8,
             'PhpParser\\' => 10,
         ),
+        'O' => 
+        array (
+            'OwenIt\\Auditing\\' => 16,
+        ),
         'M' => 
         array (
             'Monolog\\' => 8,
@@ -87,6 +92,7 @@ class ComposerStaticInit2d850ed464469b45a77aadc885f3f9b5
         'C' => 
         array (
             'Cron\\' => 5,
+            'Collective\\Html\\' => 16,
             'Carbon\\' => 7,
         ),
         'A' => 
@@ -186,6 +192,10 @@ class ComposerStaticInit2d850ed464469b45a77aadc885f3f9b5
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
         ),
+        'OwenIt\\Auditing\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/owen-it/laravel-auditing/src',
+        ),
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
@@ -221,6 +231,10 @@ class ComposerStaticInit2d850ed464469b45a77aadc885f3f9b5
         'Cron\\' => 
         array (
             0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron',
+        ),
+        'Collective\\Html\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravelcollective/html/src',
         ),
         'Carbon\\' => 
         array (
@@ -272,29 +286,64 @@ class ComposerStaticInit2d850ed464469b45a77aadc885f3f9b5
     );
 
     public static $classMap = array (
+        'App\\Cargo' => __DIR__ . '/../..' . '/app/Cargo.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Funcionario' => __DIR__ . '/../..' . '/app/Funcionario.php',
+        'App\\HorariosEspecial' => __DIR__ . '/../..' . '/app/HorariosEspecial.php',
+        'App\\HorariosInvitado' => __DIR__ . '/../..' . '/app/HorariosInvitado.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Ingreso' => __DIR__ . '/../..' . '/app/Ingreso.php',
+        'App\\Invitado' => __DIR__ . '/../..' . '/app/Invitado.php',
+        'App\\Licencia' => __DIR__ . '/../..' . '/app/Licencia.php',
+        'App\\Permiso' => __DIR__ . '/../..' . '/app/Permiso.php',
+        'App\\PermisosUsuario' => __DIR__ . '/../..' . '/app/PermisosUsuario.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\Puerta' => __DIR__ . '/../..' . '/app/Puerta.php',
+        'App\\Seccion' => __DIR__ . '/../..' . '/app/Seccion.php',
+        'App\\SeccionesPuerta' => __DIR__ . '/../..' . '/app/SeccionesPuerta.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'App\\Usuario' => __DIR__ . '/../..' . '/app/Usuario.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
         'Carbon\\Exceptions\\InvalidDateException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',
+        'Collective\\Html\\Componentable' => __DIR__ . '/..' . '/laravelcollective/html/src/Componentable.php',
+        'Collective\\Html\\Eloquent\\FormAccessible' => __DIR__ . '/..' . '/laravelcollective/html/src/Eloquent/FormAccessible.php',
+        'Collective\\Html\\FormBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/FormBuilder.php',
+        'Collective\\Html\\FormFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/FormFacade.php',
+        'Collective\\Html\\HtmlBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlBuilder.php',
+        'Collective\\Html\\HtmlFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlFacade.php',
+        'Collective\\Html\\HtmlServiceProvider' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlServiceProvider.php',
+        'CreateAuditsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_09_012430_create_audits_table.php',
+        'CreateCargosTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_210304_create_cargos_table.php',
+        'CreateFuncionariosTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_210813_create_funcionarios_table.php',
+        'CreateHorariosEspecialsTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_213332_create_horarios_especials_table.php',
+        'CreateHorariosInvitadosTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_213524_create_horarios_invitados_table.php',
+        'CreateIngresosTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_212549_create_ingresos_table.php',
+        'CreateInvitadosTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_205755_create_invitados_table.php',
+        'CreateLicenciasTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_211644_create_licencias_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+        'CreatePermisosTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_213838_create_permisos_table.php',
+        'CreatePermisosUsuariosTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_213924_create_permisos_usuarios_table.php',
+        'CreatePuertasTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_205147_create_puertas_table.php',
+        'CreateSeccionesPuertasTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_212113_create_secciones_puertas_table.php',
+        'CreateSeccionsTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_201647_create_seccions_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
+        'CreateUsuariosTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_210055_create_usuarios_table.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/CronExpression.php',
         'Cron\\DayOfMonthField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/DayOfMonthField.php',
@@ -1722,6 +1771,22 @@ class ComposerStaticInit2d850ed464469b45a77aadc885f3f9b5
         'Monolog\\Processor\\UidProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/UidProcessor.php',
         'Monolog\\Processor\\WebProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/WebProcessor.php',
         'Monolog\\Registry' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Registry.php',
+        'OwenIt\\Auditing\\Auditable' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Auditable.php',
+        'OwenIt\\Auditing\\AuditableObserver' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/AuditableObserver.php',
+        'OwenIt\\Auditing\\AuditingServiceProvider' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/AuditingServiceProvider.php',
+        'OwenIt\\Auditing\\Auditor' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Auditor.php',
+        'OwenIt\\Auditing\\Console\\AuditDriverMakeCommand' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Console/AuditDriverMakeCommand.php',
+        'OwenIt\\Auditing\\Console\\AuditTableCommand' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Console/AuditTableCommand.php',
+        'OwenIt\\Auditing\\Console\\InstallCommand' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Console/InstallCommand.php',
+        'OwenIt\\Auditing\\Contracts\\AuditDriver' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Contracts/AuditDriver.php',
+        'OwenIt\\Auditing\\Contracts\\Auditable' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Contracts/Auditable.php',
+        'OwenIt\\Auditing\\Contracts\\Auditor' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Contracts/Auditor.php',
+        'OwenIt\\Auditing\\Contracts\\UserResolver' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Contracts/UserResolver.php',
+        'OwenIt\\Auditing\\Drivers\\Database' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Drivers/Database.php',
+        'OwenIt\\Auditing\\Events\\Audited' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Events/Audited.php',
+        'OwenIt\\Auditing\\Events\\Auditing' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Events/Auditing.php',
+        'OwenIt\\Auditing\\Facades\\Auditor' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Facades/Auditor.php',
+        'OwenIt\\Auditing\\Models\\Audit' => __DIR__ . '/..' . '/owen-it/laravel-auditing/src/Models/Audit.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/Assert.php',
         'PHPUnit\\Framework\\BaseTestListener' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/BaseTestListener.php',
         'PHPUnit\\Framework\\TestCase' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/TestCase.php',
