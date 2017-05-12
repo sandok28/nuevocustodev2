@@ -169,7 +169,7 @@
                 <div id="leftside-navigation" class="nano">
                     <ul class="nano-content">
                         <li class="active">
-                            <a href="index.html"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
+                            <a href="funcionarios"><i class="fa fa-users"></i><span>FUNCIONARIOS</span></a>
                         </li>
                         <li class="sub-menu">
                             <a href="javascript:void(0);"><i class="fa fa-cogs"></i><span>UI Elements</span><i class="arrow fa fa-angle-right pull-right"></i></a>
@@ -273,50 +273,8 @@
                         </li>
                     </ul>
                 </div>
-
-
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav navbar-right">
-                        <a class="navbar-brand" href="#"></a>
-                        <li style="width: 50px; height: 50px; border: 3px solid white;"></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                        <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-                    </ul>
-                </div>
-                </div>
                 </nav>
 
-                <div class="container-fluid text-left">
-                    <div class="row content">
-                        <div class="col-sm-2 sidenav">
-                            <p><a href="/Funcionarios">Funcionarios</a></p>
-                            <p><a href="#">Secciones y Cargos</a></p>
-                            <p><a href="#">Invitados</a></p>
-                            <p><a href="#">Usuario</a></p>
-                            <p><a href="#">Horarios</a></p>
-                            <p><a href="#">Licencias</a></p>
-                            <p><a href="#">Gestion de Areas</a></p>
-                            <p><a href="#">Control de Areas</a></p>
-                            <p><a href="#">Estadisticas</a></p>
-                            <p><a href="#">Auditoria</a></p>
-                            <p><a href="#">Reportes</a></p>
-                            <p><a href="#">Ahorro de Energia</a></p>
-                            <p><a href="#"></a></p>
-                        </div>
-                        <div class="col-sm-8 text-left">
-
-
-                        </div>
-
-                    </div>
-                </div>
-                <!-- Pie de pagina toca quitarlo o pegarlo al fondo mas rato
-                <footer class="container-fluid text-center">
-                  esto es un comentario <p>CUSTODE</p>
-                </footer>
-                -->
-                =======
             </aside>
             <!--sidebar left end-->
             <!--main content start-->
