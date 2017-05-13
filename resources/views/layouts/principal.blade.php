@@ -241,7 +241,7 @@
                         <div class="col-md-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">TITULO</h3>
+                                    @yield('titulo-tarjeta')
                                     <div class="actions pull-right">
                                         <i class="fa fa-chevron-down"></i>
                                         <i class="fa fa-times"></i>

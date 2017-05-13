@@ -2,115 +2,102 @@
     <section id="main-content">
         <div class="row">
             <div class="col-md-12">
-                <ul class="breadcrumb">
-                    <li><a href="#">Dashboard</a>
-                    </li>
-                    <li>Forms</li>
-                    <li class="active">Form Validation</li>
-                </ul>
-                <!--breadcrumbs end -->
-                <h1 class="h1">Form Validation</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Form Validations</h3>
-                        <div class="actions pull-right">
-                            <i class="fa fa-chevron-down"></i>
-                            <i class="fa fa-times"></i>
-                        </div>
-                    </div>
                     <div class="panel-body">
-
-                        <form class="form-horizontal form-border" id="form">
+                             <div class="form-group">
+                                 {!!Form::submit('TOMAR FOTO',['class'=>'btn btn-primary'])!!}
+                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Required</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="input1" id="input1" required="" placeholder="Required input">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Min Length</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="input2" id="input2" required="" placeholder="Min 5 chars.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Max Length</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" required="" name="input3" id="input3" placeholder="Max 5 chars.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Range Length</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" required="" name="input4" id="input4" placeholder="Text between 4 - 8 chars length">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Min Value</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" required="" name="input5" id="input5" placeholder="Min value is 5">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Range Value</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control " required="" name="input6" id="input6" placeholder="Number between 5 - 50">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Equal To</label>
                                 <div class="col-sm-3">
-                                    <input type="password" class="form-control " name="input7" id="input7" required="" placeholder="Password">
+                                {!!Form::label('name','NOMBRE:')!!}
                                 </div>
+                                <div class="col-sm-9">
+                                {!!Form::text('name',null,['class'=>'form-control','placeholder'=>'Ingresa el Nombre del usuario'])!!}
+                                </div>
+                            </div>
+                            <br><br>
+                            <div class="form-group">
                                 <div class="col-sm-3">
-                                    <input type="password" class="form-control " required="" name="input8" id="input8" placeholder="Re-Type Password">
+                                   {!!Form::label('apellido','APELLIDO:')!!}
+                                </div>
+                                <div class="col-sm-9">
+                                    {!!Form::text('apellido',null,['class'=>'form-control','placeholder'=>'Ingresa el Apellido del usuario'])!!}
                                 </div>
                             </div>
+                            <br><br>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">E-Mail</label>
+                               <div class="col-sm-3">
+                                   {!!Form::label('cedula','CEDULA:')!!}
+                               </div>
+                               <div class="col-sm-9">
+                                   {!!Form::number('cedula',null,['class'=>'form-control','placeholder'=>'Ingresa el Cedula del usuario'])!!}
+                               </div>
+                            </div>
+                        <br><br>
+                            <div class="form-group">
+                                <div class="col-sm-3">
+                                    {!!Form::label('celular','CELULAR:')!!}
+                                </div>
+                                <div class="col-sm-9">
+                                    {!!Form::number('celular',null,['class'=>'form-control','placeholder'=>'Ingresa el Numero de Celular del usuario'])!!}
+                                </div>
+                                </div>
+                        <br><br>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">FECHA DE NACIMIENTO:</label>
+                                        <div class="col-sm-6">
+                                        <input type="text" class="form-control" name="input1" id="input1" required="" placeholder="DD/MM/YYYY">
+                                        </div>
+                                </div>
+                                <br><br>
+                                <div class="form-group">
+                                <div class="col-sm-3">
+                                    {!!Form::label('email','E-MAIL:')!!}
+                                </div>
+                                <div class="col-sm-9">
+                                {!!Form::text('email',null,['class'=>'form-control','placeholder'=>'Ingresa el E-mail del usuario'])!!}
+                                </div>
+                                </div>
+                        <br><br>
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                {!!Form::label('rfid','RFID:')!!}
+                            </div>
+                            <div class="col-sm-9">
+                                {!!Form::number('rfid',null,['class'=>'form-control','placeholder'=>'Ingresa el Numero de RFID del usuario'])!!}
+                            </div>
+                        </div>
+                        <br><br>
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                {!!Form::label('cargo','CARGO:')!!}
+                            </div>
+                            <div class="col-sm-9">
+                                {!!Form::select('CARGO',[
+                                    'Cats' => ['leopard' => 'Leopard'],
+                                    'Dogs' => ['spaniel' => 'Spaniel'],
+                                ],null,['class'=>'form-control','placeholder'=>'Ingresa el Cargo del usuario'])!!}
+                            </div>
+                        </div>
+                        <br><br>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"></label>
                                 <div class="col-sm-6">
-                                    <input type="email" class="form-control " required="" name="input9" id="input9" placeholder="Enter a valid e-mail">
+                                    <div class="radio">
+                                        {{ Form::radio('R1', 0, false)}}<label>Asignar Horario Asignado al Cargo</label>
+                                    </div>
+                                    <div class="radio">
+                                        {{ Form::radio('R2', 0,false)}}<label>Asignar Horario Especial</label>
+                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">URL</label>
-                                <div class="col-sm-6">
-                                    <input type="url" class="form-control " name="input10" id="input10" required="" placeholder="URL">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Number</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control " name="input11" id="input11" required="" placeholder="Enter only numbers">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Phone</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="input12" id="input12" required="" placeholder="(XXX) XXXX XXX">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Textarea</label>
-                                <div class="col-sm-6">
-                                    <textarea class="form-control" name="input13" id="input13" placeholder="Min 5 chars."></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-8 col-sm-10">
-                                    <button type="submit" class="btn btn-primary">Validate</button>
-                                </div>
-                            </div>
-                        </form>
-
-
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <!--Page Level JS-->
+    <script src="assets/plugins/icheck/js/icheck.min.js"></script>
+    <script src="assets/plugins/validation/js/jquery.validate.min.js"></script>
 </div>
+
