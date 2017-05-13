@@ -38,7 +38,7 @@
 
     <body>
 
-            @yield('content')
+        @yield('content')
 
         {{--Global JS--}}
         {!! Html::script('assets/js/jquery-1.10.2.min.js') !!}

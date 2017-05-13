@@ -20,6 +20,8 @@ Route::get('iniciosession','HomeController@iniciosession');
 Route::post('login','HomeController@login')->name('home.login');
 Route::get('logout','HomeController@logout')->name('home.logout');
 
+
+
 Route::resource('usuarios','UsuariosController');
 Route::resource('funcionarios','FuncionariosController');
 
