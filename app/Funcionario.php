@@ -11,7 +11,19 @@ class Funcionario extends Model implements AuditableContract
     use Auditable;
 
     protected $fillable = [
-        'nombre', 'apellido', 'cedula','cargo_id','dado_de_baja','created_at','updated_at',
+        'nombre',
+        'apelido',
+        'cedula',
+        'fecha_nacimiento',
+        'correo',
+        'tarjeta_rfid',
+        'cargos_id',
+        'foto',
+        'celular',
+        'hoario_normal',
+        'licencia',
+        'estatus',
+        'dado_de_baja',
     ];
 
 }

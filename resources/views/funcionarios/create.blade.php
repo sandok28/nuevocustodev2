@@ -6,7 +6,7 @@
         <p>CREAR FUNCIONARIO</p>
     </div>
     <div>
-        {!!Form::open(['route'=>'usuarios.store', 'method'=>'POST'])!!}
+        {!!Form::open(['route'=>'funcionarios.store', 'method'=>'POST'])!!}
             @include('funcionarios.forms.formulario')
             {!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
         {!!Form::close()!!}

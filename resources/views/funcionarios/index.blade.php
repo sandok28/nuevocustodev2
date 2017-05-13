@@ -1,7 +1,7 @@
 @extends('layouts.principal')
 
 @section('title')
-    Index Usuarios
+    Index Funcionarios
 @endsection
 
 @section('cargarcss')
@@ -14,29 +14,10 @@
     <section id="main-content">
         <div class="row">
             <div class="col-md-12">
-                <!--breadcrumbs start -->
-                <ul class="breadcrumb">
-                    <li><a href="#">Dashboard</a></li>
-                    <li>UI Elements</li>
-                    <li class="active">Date Tables</li>
-                </ul>
-                <!--breadcrumbs end -->
-                <h1 class="h1">Usuarios</h1>
+                <h1 class="h1">FUNCIONARIOS</h1>
             </div>
-
         </div>
-
         <div class="row">
-            <div class="col-md-12">
-                <div class="panel-heading row">
-                    <div class="col-md-6">
-                        {!!link_to_route('funcionarios.create', 'Agregar funcionarios', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
-                    </div>
-                    <div class="col-md-6">
-                        <button class="btn btn-primary btn-block btn-3d" onclick="history.back();">Volver</button>
-                    </div>
-                </div>
-            </div>
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -53,25 +34,41 @@
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
-                                    <th>Creado</th>
-                                    <th>Actualizado</th>
-                                    <th>estatus</th>
-                                    <th>editar</th>
+                                    <th>Apellido</th>
+                                    <th>Cedula</th>
+                                    <th>Correo</th>
+                                    <th>Tarjeta RFID</th>
                                  </tr>
                             </thead>
                             <tbody>
-
+                            @foreach($funcionarios as $funcionario)
+                                <tr>
+                                    <th>{{$funcionario->nombre}}</th>
+                                    <th>{{$funcionario->apelido}}</th>
+                                    <th>{{$funcionario->cedula}}</th>
+                                    <th>{{$funcionario->correo}}</th>
+                                    <th>{{$funcionario->tarjeta_rfid}}</th>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
-
                     </div>
                 </div>
             </div>
 
         </div>
+        <div class="col-md-12">
+            <div class="panel-heading row">
+                <div class="col-md-6">
+                    {!!link_to_route('funcionarios.create', 'Agregar funcionarios', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-primary btn-block btn-3d" onclick="history.back();">Volver</button>
+                </div>
+            </div>
+        </div>
     </section>
 @endsection
-
 @section('cargarjs')
     <!--Page Leve JS -->
     {!! Html::script('assets/plugins/dataTables/js/jquery.dataTables.js') !!}
@@ -80,8 +77,5 @@
         $(document).ready(function() {
             $('#example').dataTable();
         });
-    </script>
-    <script>
-
     </script>
 @endsection
