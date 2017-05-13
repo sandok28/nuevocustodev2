@@ -10,5 +10,12 @@ class Seccion extends Model implements AuditableContract
 {
     use Auditable;
 
-    //
+    protected $fillable = [
+        'nombre','estatus',
+    ];
+
+    public function cargos()
+    {
+        return $this->hasMany('App\Cargo', 'secciones_id');
+    }
 }

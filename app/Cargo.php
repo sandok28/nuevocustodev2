@@ -10,4 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cargo extends Model implements AuditableContract
 {
     use Auditable;
+    protected $fillable = [
+        'nombre', 'estatus','secciones_id'
+    ];
 }

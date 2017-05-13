@@ -23,24 +23,13 @@ class UsuariosController extends Controller
         return view('usuarios.index',compact('usuarios'));
 
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
 
         return view('usuarios.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         User::create([
@@ -55,23 +44,7 @@ class UsuariosController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $usuario = User::find($id);
@@ -79,13 +52,7 @@ class UsuariosController extends Controller
         return view('usuarios.edit',['usuario'=>$usuario]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         $variablesAdaptadas = [
@@ -101,8 +68,4 @@ class UsuariosController extends Controller
         return Redirect::to('/usuarios');
     }
 
-    public function destroy($id)
-    {
-        //
-    }
 }

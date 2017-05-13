@@ -4,9 +4,9 @@
     Create Usuarios
 @endsection
 @section('content')
-    {!!Form::model($usuario,['route'=>['usuarios.update',$usuario],'method'=>'PUT'])!!}
-    @include('usuarios.forms.formulario')
-    @if(($usuario->estatus) == 1)
+    {!!Form::model($seccion,['route'=>['secciones.update',$seccion],'method'=>'PUT'])!!}
+    @include('secciones.forms.formulario')
+    @if(($seccion->estatus) == 1)
         <div class="form-group">
             {{ Form::checkbox('estatus', '0',false),['class'=>'form-control'] }}
             {{ Form::label('dar de baja') }}
@@ -22,4 +22,10 @@
         {!!Form::submit('Actualizar',['class'=>'btn btn-primary'])!!}
     </div>
     {!!Form::close()!!}
+
+    <div class="row">
+        <div class="col-md-12">
+            @include('cargos.index')
+        </div>
+    </div>
 @endsection
