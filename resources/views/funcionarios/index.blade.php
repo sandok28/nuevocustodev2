@@ -38,6 +38,7 @@
                                     <th>Cedula</th>
                                     <th>Correo</th>
                                     <th>Tarjeta RFID</th>
+                                    <th>Editar</th>
                                  </tr>
                             </thead>
                             <tbody>
@@ -48,6 +49,7 @@
                                     <th>{{$funcionario->cedula}}</th>
                                     <th>{{$funcionario->correo}}</th>
                                     <th>{{$funcionario->tarjeta_rfid}}</th>
+                                    <th>{!!link_to_route('funcionarios.edit', $title = 'Editar', $parameters = $funcionario, $attributes = ['class'=>'btn btn-primary'])!!}</th>
                                 </tr>
                             @endforeach
                             </tbody>
