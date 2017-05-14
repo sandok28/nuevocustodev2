@@ -179,7 +179,7 @@
                             <a href="funcionarios"><i class="fa fa-users"></i><span>INVITADOS</span></a>
                         </li>
                         <li class="active">
-                            <a href="funcionarios"><i class="fa fa-users"></i><span>USUARIOS</span></a>
+                            <a href="usuarios"><i class="fa fa-users"></i><span>USUARIOS</span></a>
                         </li>
                         <li class="active">
                             <a href="funcionarios"><i class="fa fa-clock-o"></i><span>HORARIOS</span></a>

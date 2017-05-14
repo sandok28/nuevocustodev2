@@ -26,6 +26,9 @@
     <!--Page Leve JS -->
     {!! Html::script('assets/plugins/icheck/js/icheck.min.js') !!}
     {!! Html::script('assets/plugins/validation/js/jquery.validate.min.js') !!}
+    <!--Page Level JS-->
+    {!! Html::script("assets/plugins/icheck/js/icheck.min.js") !!}
+    {!! Html::script("assets/plugins/validation/js/jquery.validate.min.js") !!}
     <script>
         $(document).ready(function() {
             $('#form').validate({

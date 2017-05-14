@@ -5,14 +5,17 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                              <div class="form-group">
-                                 {!!Form::submit('TOMAR FOTO',['class'=>'btn btn-primary'])!!}
+                                 {!! Form::open(['url' => 'foo/bar']) !!}
+                                 {!!Form::submit('TOMAR_FOTO',['class'=>'btn btn-primary'])!!}
+                                 {!! Form::close() !!}
                              </div>
+                            <br><br>
                             <div class="form-group">
                                 <div class="col-sm-3">
-                                {!!Form::label('name','NOMBRE:')!!}
+                                {!!Form::label('nombre','NOMBRE:')!!}
                                 </div>
                                 <div class="col-sm-9">
-                                {!!Form::text('name',null,['class'=>'form-control','placeholder'=>'Ingresa el Nombre del usuario'])!!}
+                                {!!Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Ingresa el Nombre del usuario'])!!}
                                 </div>
                             </div>
                             <br><br>
@@ -63,8 +66,13 @@
                             <div class="col-sm-3">
                                 {!!Form::label('rfid','RFID:')!!}
                             </div>
-                            <div class="col-sm-9">
+                            <div class="col-sm-6">
                                 {!!Form::number('rfid',null,['class'=>'form-control','placeholder'=>'Ingresa el Numero de RFID del usuario'])!!}
+                            </div>
+                            <div class="col-sm-3">
+                                {!! Form::open(['url' => 'foo/bar']) !!}
+                                {!!Form::submit('GENERAR',['class'=>'btn btn-primary'])!!}
+                                {!! Form::close() !!}
                             </div>
                         </div>
                         <br><br>
@@ -73,10 +81,11 @@
                                 {!!Form::label('cargo','CARGO:')!!}
                             </div>
                             <div class="col-sm-9">
+                                @foreach ($cargos as $cargo)
                                 {!!Form::select('CARGO',[
-                                    'Cats' => ['leopard' => 'Leopard'],
-                                    'Dogs' => ['spaniel' => 'Spaniel'],
-                                ],null,['class'=>'form-control','placeholder'=>'Ingresa el Cargo del usuario'])!!}
+                                    'cargo' => [$cargo->nombre],
+                                 ],null,['class'=>'form-control','placeholder'=>'Ingresa el Cargo del usuario'])!!}
+                                @endforeach
                             </div>
                         </div>
                         <br><br>
@@ -84,10 +93,10 @@
                                 <label class="col-sm-3 control-label"></label>
                                 <div class="col-sm-6">
                                     <div class="radio">
-                                        {{ Form::radio('R1', 0, false)}}<label>Asignar Horario Asignado al Cargo</label>
+                                        {{ Form::radio('asignar_horario_nomal', 0, false)}}<label>Asignar Horario Asignado al Cargo</label>
                                     </div>
                                     <div class="radio">
-                                        {{ Form::radio('R2', 0,false)}}<label>Asignar Horario Especial</label>
+                                        {{ Form::radio('asignar_horario_especial', 0,false)}}<label>Asignar Horario Especial</label>
                                      </div>
                                 </div>
                             </div>
@@ -96,8 +105,6 @@
             </div>
         </div>
     </section>
-    <!--Page Level JS-->
-    <script src="assets/plugins/icheck/js/icheck.min.js"></script>
-    <script src="assets/plugins/validation/js/jquery.validate.min.js"></script>
+
 </div>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cargo;
 use App\Funcionario;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -27,7 +28,8 @@ class FuncionariosController extends Controller
     public function create()
     {
         //
-        return view('funcionarios.create');
+        $cargos = Cargo::all();
+        return view('funcionarios.create',compact('cargos'));
     }
 
     /**
@@ -39,19 +41,18 @@ class FuncionariosController extends Controller
     public function store(Request $request)
     {
             Funcionario::create([
-                'nombre'=>'nombre',
-                'apelido'=>'apelido',
-                'cedula'=>'1234',
-
-                'correo'=>'correo',
-                'tarjeta_rfid'=>'1234',
+                'nombre'=>$request['nombre'],
+                'apelido'=>$request['apellido'],
+                'cedula'=>$request['cedula'],
+                'correo'=>$request['email'],
+                'tarjeta_rfid'=>$request['rfid'],
                 'cargos_id'=>'1',
                 'foto'=>'ljljkjl',
-                'celular'=>'3333',
-                'hoario_normal'=>'11',
+                'celular'=>$request['celular'],
+                'hoario_normal'=>$request['asignar_horario_nomal'],
                 'licencia'=>'1',
                 'estatus'=>'0',
-                'dado_de_baja'=>'1',
+                'dado_de_baja'=>'0',
             ]);
 
         return redirect('/funcionarios')->with('message','El Usuario se ha registrado correctamente');
@@ -76,7 +77,9 @@ class FuncionariosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cargo = Cargo::find($id);
+        $funcionario = Funcionario::find($id);
+        return view('funcionarios.edit',['funcionario'=>$funcionario,'cargo'=>$cargo]);
     }
 
     /**
