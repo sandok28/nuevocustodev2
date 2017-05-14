@@ -191,7 +191,7 @@
                             <a href="javascript:void(0);"><i class="fa fa-list"></i><span>GESTIOS DE AREAS</span><i class="arrow fa fa-angle-right pull-right"></i></a>
                             <ul>
 
-                                <li><a href="ui-alerts-notifications.html">Alerts &amp; Notifications</a>
+                                <li><a href="puertas">Puertas</a>
                                 </li>
                                 <li><a href="ui-panels.html">Panels</a>
                                 </li>

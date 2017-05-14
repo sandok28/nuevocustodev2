@@ -1,8 +1,8 @@
 @extends('layouts.principal')
 
 @section('content')
-    {!!Form::model($funcionario,['route'=>['funcionarios.update',$funcionario],'method'=>'PUT'])!!}
-    @include('funcionarios.forms.formulario')
+    {!!Form::model($puerta,['route'=>['puertas.update',$puerta],'method'=>'PUT'])!!}
+    @include('GestionAreas.forms.formulario')
     <div class="form-group">
         {!!Form::submit('Actualizar',['class'=>'btn btn-primary'])!!}
     </div>

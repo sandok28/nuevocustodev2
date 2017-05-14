@@ -22,5 +22,6 @@ Route::get('logout','HomeController@logout')->name('home.logout');
 
 Route::resource('usuarios','UsuariosController');
 Route::resource('funcionarios','FuncionariosController');
+Route::resource('puertas','PuertasController');
 
 Route::get('errores','ErroresController@error404')->name('errores.error404');

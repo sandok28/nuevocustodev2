@@ -11,6 +11,12 @@ class Puerta extends Model implements AuditableContract
     use Auditable;
     //
     protected $fillable = [
-        'puerta_especial', 'nombre', 'llave_rfid', 'ip','created_at','updated_at',
+        'puerta_especial',
+        'nombre',
+        'llave_rfid',
+        'ip',
+        'estatus',
+        'created_at',
+        'updated_at',
     ];
 }
