@@ -54,22 +54,15 @@ class SeccionesController extends Controller
     {
         $seccion = Seccion::find($id);
         $puertasEspeciales = Seccion::find($id)->puertas()->where('puerta_especial',1)->get();
-        //dd($puertasEspeciales);
-        //dd($puertasEspeciales);
-        //dd($seccion->puertas);
         $puertasNormales = Seccion::find($id)->puertas()->where('puerta_especial',0)->get();
         return view('secciones.edit',['seccion'=>$seccion,'puertasEspeciales'=>$puertasEspeciales,'puertasNormales'=>$puertasNormales]);
     }
 
-
     public function update(Request $request, $id)
     {
-
         $seccion = Seccion::find($id);
-
         $todasPuertas = Puerta::all();
         foreach($todasPuertas as $puerta){
-
             //dd($request);
             if($request[$puerta->id]!=null){
                 SeccionesPuerta::where('seccion_id', $seccion->id)

@@ -20,8 +20,5 @@ class Usuario extends Model implements AuditableContract
             $this->attributes['contrasena'] = \Hash::make($contrasena);
         }
     }
-    public function scopeBuscarNombre($query, $nombre)
-    {
-        return $query->where('nombre',$nombre);
-    }
+
 }

@@ -37,13 +37,15 @@ class User extends Authenticatable implements AuditableContract
     ];
 
 
+
+
     public function permisos()
     {
-        return $this->belongsToMany('App\Permiso','permisos_usuarios','permisos_id');
+        return $this->belongsToMany('App\Permiso','permisos_usuarios','usuario_id','permiso_id')->withPivot('estatus_permiso');
     }
 
     public function puertas()
     {
-        return $this->belongsToMany('App\Puerta','puerta_user','user_id', 'puerta_id');
+        return $this->belongsToMany('App\Puerta','puerta_user','user_id', 'puerta_id')->withPivot('estatus_permiso');
     }
 }

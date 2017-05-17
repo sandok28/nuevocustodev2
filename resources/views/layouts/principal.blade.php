@@ -173,13 +173,13 @@
                     <a href="funcionarios"><i class="fa fa-users"></i><span>FUNCIONARIOS</span></a>
                 </li>
                 <li class="active">
-                    <a href="funcionarios"><i class="fa  fa-list"></i><span>SECCIONES Y CARGOS</span></a>
+                    <a href="/secciones"><i class="fa  fa-list"></i><span>SECCIONES Y CARGOS</span></a>
                 </li>
                 <li class="active">
                     <a href="funcionarios"><i class="fa fa-users"></i><span>INVITADOS</span></a>
                 </li>
                 <li class="active">
-                    <a href="funcionarios"><i class="fa fa-users"></i><span>USUARIOS</span></a>
+                    <a href="/usuarios"><i class="fa fa-users"></i><span>USUARIOS</span></a>
                 </li>
                 <li class="active">
                     <a href="funcionarios"><i class="fa fa-clock-o"></i><span>HORARIOS</span></a>

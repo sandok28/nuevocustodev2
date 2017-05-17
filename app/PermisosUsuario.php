@@ -10,10 +10,10 @@ class PermisosUsuario extends Model implements AuditableContract
 {
     use Auditable;
 
-    protected $table = 'PermisosUsuarios';
+
 
     protected $fillable = [
-        'permisos_id', 'usuarios_id',
+        'permiso_id', 'usuario_id','estatus_permiso',
     ];
 
     //

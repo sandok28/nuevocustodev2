@@ -15,7 +15,7 @@ class Puerta extends Model implements AuditableContract
     ];
     public function usuarios()
     {
-        return $this->belongsToMany('App\User','puerta_user','puerta_id','user_id');
+        return $this->belongsToMany('App\User','puerta_user','puerta_id','user_id')->withPivot('estatus_permiso');;
     }
     public function secciones()
     {

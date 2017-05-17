@@ -15,6 +15,7 @@ class CreateUsuariosPuertasTable extends Migration
     {
         Schema::create('puerta_user', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('estatus_permiso');
             $table->timestamps();
             $table->integer('puerta_id')->unsigned();
             $table->foreign('puerta_id')->references('id')->on('puertas');

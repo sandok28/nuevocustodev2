@@ -2178,6 +2178,8 @@ class ComposerStaticInit2d850ed464469b45a77aadc885f3f9b5
         'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'Parsedown' => __DIR__ . '/..' . '/erusev/parsedown/Parsedown.php',
         'ParsedownTest' => __DIR__ . '/..' . '/erusev/parsedown/test/ParsedownTest.php',
+        'PermisosTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PermisosTableSeeder.php',
+        'PermisosUserTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PermisosUserTableSeeder.php',
         'PhpParser\\Autoloader' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Autoloader.php',
         'PhpParser\\Builder' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Builder.php',
         'PhpParser\\BuilderAbstract' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/BuilderAbstract.php',
