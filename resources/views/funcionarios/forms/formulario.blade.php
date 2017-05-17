@@ -101,6 +101,10 @@
                                 </div>
                             </div>
                     </div>
+                    <br><br>
+                    <div>
+                        {!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
+                    </div>
                 </div>
             </div>
         </div>

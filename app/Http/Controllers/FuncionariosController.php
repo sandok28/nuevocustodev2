@@ -77,9 +77,8 @@ class FuncionariosController extends Controller
      */
     public function edit($id)
     {
-        $cargo = Cargo::find($id);
         $funcionario = Funcionario::find($id);
-        return view('funcionarios.edit',['funcionario'=>$funcionario,'cargo'=>$cargo]);
+        return view('funcionarios.edit',['funcionario'=>$funcionario]);
     }
 
     /**

@@ -14,31 +14,24 @@
     <section id="main-content">
         <div class="row">
             <div class="col-md-12">
-                    <h1 class="h1">GESTION DE AREAS</h1>
+                <h1 class="h1">GESTION DE AREAS</h1>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Tabla funcionarios </h3>
-
-                        <div class="actions pull-right">
-                            <i class="fa fa-chevron-down"></i>
-                            <i class="fa fa-times"></i>
-                        </div>
-                    </div>
                     <div class="panel-body">
                         <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
 
                             <thead>
-                                <tr>
-                                    <th>Modulo</th>
-                                    <th>Llave</th>
-                                    <th>Ip</th>
-                                    <th>Editar</th>
-                                    <th>Dado de Baja</th>
-                                 </tr>
+                            <tr>
+                                <th>Modulo</th>
+                                <th>Llave</th>
+                                <th>Ip</th>
+                                <th>Editar</th>
+                                <th>Dado de Baja</th>
+                                <th>Puerta Especial</th>
+                            </tr>
                             </thead>
                             <tbody>
                             @foreach($puertas as $puerta)
@@ -48,9 +41,14 @@
                                     <th>{{$puerta->ip}}</th>
                                     <th>{!!link_to_route('puertas.edit', $title = 'Editar', $parameters = $puerta, $attributes = ['class'=>'btn btn-primary'])!!}</th>
                                     @if(($puerta->estatus)==1)
-                                    <th>Activo</th>
+                                        <th>Activo</th>
                                     @else
-                                    <th>Inactivo</th>
+                                        <th>Inactivo</th>
+                                    @endif
+                                    @if(($puerta->puerta_especial)==1)
+                                        <th>PUERTA ESPECIAL</th>
+                                    @else
+                                        <th>PUERTA NORMAL</th>
                                     @endif
                                 </tr>
                             @endforeach

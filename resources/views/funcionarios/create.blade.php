@@ -14,8 +14,7 @@
 @section('content')
     <div>
         {!!Form::open(['route'=>'funcionarios.store', 'method'=>'POST'])!!}
-            @include('funcionarios.forms.formulario')
-            {!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
+        @include('funcionarios.forms.formulario')
         {!!Form::close()!!}
     </div>
 
