@@ -40,12 +40,13 @@ class PuertasController extends Controller
     public function store(Request $request)
     {
         //
+
         Puerta::create([
-            'puerta_especial'=>$request['puerta_especial'],
-            'nombre'=>$request['nombre'],
-            'llave_rfid'=>$request['llave'],
-            'estatus'=>$request['1'],
-            'ip'=>$request['ip'],
+            'puerta_especial' => $request['puerta_especial'],
+            'nombre' => $request['nombre'],
+            'llave_rfid' => $request['llave'],
+            'estatus' => '1',
+            'ip' => $request['ip'],
         ]);
     }
 
@@ -68,8 +69,8 @@ class PuertasController extends Controller
      */
     public function edit($id)
     {
-        //
-        return view('GestionAreas.edit');
+        $puerta = Puerta::fin($id);
+        return view('GestionAreas.edit',['puerta'=>$puerta]);
     }
 
     /**
@@ -78,19 +79,18 @@ class PuertasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     * Preguntar a Sandoval si Actualiza????
      */
     public function update(Request $request, $id)
     {
         //
             $variablesAdaptadas = [
-                'puerta_especial' => $request->all()['puerta_especial'],
                 'nombre'=> $request->all()['nombre'],
                 'llave_rfid'=>$request->all()['llave'],
                 'ip'=>$request->all()['ip'],
-                'estatus'=> $request->all()['0']
+                'puerta_especial' => $request->all()['puerta_especial'],
+
             ];
-            $puerta = User::find($id);
+            $puerta = Puerta::find($id);
             $puerta->fill($variablesAdaptadas);
             $puerta->save();
             Session::flash('message','Puerta Actualizado Correctamente');
