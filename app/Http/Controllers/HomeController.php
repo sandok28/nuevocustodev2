@@ -22,10 +22,10 @@ class HomeController extends Controller
     function login(LoginRequest $request){
 
         if(Auth::attempt(['email'=>$request['email'], 'password'=> $request['password']])){
-            return Redirect::to('/');
+            return Redirect::to('/home');
         }
         Session::flash('message-error','Datos son incorrectos');
-        return Redirect::to('/iniciosession');
+        return Redirect::to('/');
 
 
 
@@ -40,6 +40,6 @@ class HomeController extends Controller
     public function logout(LoginRequest $request)
     {
         Auth::logout();
-        return Redirect::to('/iniciosession');
+        return Redirect::to('/');
     }
 }

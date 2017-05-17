@@ -15,14 +15,14 @@ class CreateSeccionesPuertasTable extends Migration
     {
         Schema::create('secciones_puertas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('estatus');
+            $table->integer('estatus_permiso');
             $table->timestamps();
 
-            $table->integer('seccions_id')->unsigned();
-            $table->foreign('seccions_id')->references('id')->on('seccions');
+            $table->integer('seccion_id')->unsigned();
+            $table->foreign('seccion_id')->references('id')->on('seccions');
 
-            $table->integer('puertas_id')->unsigned();
-            $table->foreign('puertas_id')->references('id')->on('Puertas');
+            $table->integer('puerta_id')->unsigned();
+            $table->foreign('puerta_id')->references('id')->on('Puertas');
         });
     }
 

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class SeccionsTableSeeder extends Seeder
+class PuertasTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,13 +12,15 @@ class SeccionsTableSeeder extends Seeder
     public function run()
     {
         for ($i = 0; $i<10; $i++){
-            DB::table('seccions')->insert([
-                'nombre' => 's'.$i,
+            DB::table('puertas')->insert([
+                'puerta_especial' => 1,
+                'nombre' => 'puerta '.$i,
+                'llave_rfid' => 123456,
+                'ip' => '192.168.0.'.$i,
                 'estatus' => 1,
             ]);
         }
 
     }
 }
-
 

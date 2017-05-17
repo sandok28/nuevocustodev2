@@ -18,4 +18,8 @@ class Seccion extends Model implements AuditableContract
     {
         return $this->hasMany('App\Cargo', 'secciones_id');
     }
+    public function puertas()
+    {
+        return $this->belongsToMany('App\Puerta','secciones_puertas','seccion_id','puerta_id')->withPivot('estatus_permiso');
+    }
 }

@@ -41,4 +41,9 @@ class User extends Authenticatable implements AuditableContract
     {
         return $this->belongsToMany('App\Permiso','permisos_usuarios','permisos_id');
     }
+
+    public function puertas()
+    {
+        return $this->belongsToMany('App\Puerta','puerta_user','user_id', 'puerta_id');
+    }
 }

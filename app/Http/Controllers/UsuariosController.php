@@ -48,7 +48,7 @@ class UsuariosController extends Controller
     public function edit($id)
     {
         $usuario = User::find($id);
-
+        dd($usuario->puertas);
         return view('usuarios.edit',['usuario'=>$usuario]);
     }
 

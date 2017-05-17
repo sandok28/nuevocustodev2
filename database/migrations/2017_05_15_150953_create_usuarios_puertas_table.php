@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCargosTable extends Migration
+class CreateUsuariosPuertasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateCargosTable extends Migration
      */
     public function up()
     {
-        Schema::create('cargos', function (Blueprint $table) {
+        Schema::create('puerta_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->String('nombre');
-            $table->integer('estatus');
             $table->timestamps();
+            $table->integer('puerta_id')->unsigned();
+            $table->foreign('puerta_id')->references('id')->on('puertas');
 
-            $table->integer('secciones_id')->unsigned();//llave foranea
-            $table->foreign('secciones_id')->references('id')->on('seccions');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateCargosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cargos');
+        Schema::dropIfExists('puerta_user');
     }
 }
