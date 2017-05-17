@@ -82,9 +82,9 @@
                             </div>
                             <div class="col-sm-9">
                                 @foreach ($cargos as $cargo)
-                                {!!Form::select('CARGO',[
+                                {!!Form::select('Cargo',[
                                     'cargo' => [$cargo->nombre],
-                                 ],null,['class'=>'form-control','placeholder'=>'Ingresa el Cargo del usuario'])!!}
+                                 ],null,['class'=>'form-control'])!!}
                                 @endforeach
                             </div>
                         </div>
@@ -100,10 +100,6 @@
                                      </div>
                                 </div>
                             </div>
-                    </div>
-                    <br><br>
-                    <div>
-                        {!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
                     </div>
                 </div>
             </div>
