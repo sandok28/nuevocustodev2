@@ -6,10 +6,16 @@ use App\Cargo;
 use App\Funcionario;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 
 class FuncionariosController extends Controller
 {
     //TODA ESTA CLASE LA TIENE QUE COMENTAR JARA
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $funcionarios=Funcionario::all();
@@ -29,6 +35,9 @@ class FuncionariosController extends Controller
     }
 
     /**
+     * Recibe los parametros de la vista create del formulario en funcionarios
+     * por medio de request y los almacena en la base de datos por medio del modelo
+     * Funcionario con la funciona create.
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -36,6 +45,7 @@ class FuncionariosController extends Controller
      */
     public function store(Request $request)
     {
+
             Funcionario::create([
                 'nombre'=>$request['nombre'],
                 'apelido'=>$request['apellido'],
@@ -43,7 +53,7 @@ class FuncionariosController extends Controller
                 'correo'=>$request['email'],
                 'tarjeta_rfid'=>$request['rfid'],
                 'cargos_id'=>'1',
-                'foto'=>'ljljkjl',
+                'foto'=>'0',
                 'celular'=>$request['celular'],
                 'hoario_normal'=>$request['asignar_horario_nomal'],
                 'licencia'=>'1',
@@ -66,9 +76,10 @@ class FuncionariosController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Edita un funcionario especifico que envia desde el index de funcionario.
      *
-     * @param  int  $id
+     * Genera dos variables cargos y funcionarios para enviar a la vista editar
+     * y tener todos los datos correspondientes al id a editar.
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -118,6 +129,14 @@ class FuncionariosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
+    {
+        //
+    }
+    /**
+     * Me genera el control para abrir puertas segun el usuario
+     * que este log en la aplicacion
+     */
+    public function controlpuertas()
     {
         //
     }

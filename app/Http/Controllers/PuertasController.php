@@ -9,9 +9,9 @@ use App\Http\Controllers\Controller;
 class PuertasController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Llama la vista index de GestionAreas y genera la variable puertas
+     * que contiene los datos que son tomados del modelo Puertas
+     * y se pasa por meido de la funcion compact a la vista.
      */
     public function index()
     {

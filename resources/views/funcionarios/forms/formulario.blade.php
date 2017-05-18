@@ -5,10 +5,8 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                              <div class="form-group">
-                                 {!! Form::open(['url' => 'foo/bar']) !!}
-                                 {!!Form::submit('TOMAR_FOTO',['class'=>'btn btn-primary'])!!}
-                                 {!! Form::close() !!}
-                             </div>
+                                 {!!Form::button('TOMAR_FOTO',['class'=>'btn btn-primary'])!!}
+                              </div>
                             <br><br>
                             <div class="form-group">
                                 <div class="col-sm-3">
@@ -24,7 +22,7 @@
                                    {!!Form::label('apellido','APELLIDO:')!!}
                                 </div>
                                 <div class="col-sm-9">
-                                    {!!Form::text('apellido',null,['class'=>'form-control','placeholder'=>'Ingresa el Apellido del usuario'])!!}
+                                    {!!Form::text('apelido',null,['class'=>'form-control','placeholder'=>'Ingresa el Apellido del usuario'])!!}
                                 </div>
                             </div>
                             <br><br>
@@ -70,9 +68,9 @@
                                 {!!Form::number('rfid',null,['class'=>'form-control','placeholder'=>'Ingresa el Numero de RFID del usuario'])!!}
                             </div>
                             <div class="col-sm-3">
-                                {!! Form::open(['url' => 'foo/bar']) !!}
+
                                 {!!Form::submit('GENERAR',['class'=>'btn btn-primary'])!!}
-                                {!! Form::close() !!}
+
                             </div>
                         </div>
                         <br><br>
