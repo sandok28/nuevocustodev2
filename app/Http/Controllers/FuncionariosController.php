@@ -6,13 +6,14 @@ use App\Cargo;
 use App\Funcionario;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 
 class FuncionariosController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     *Llama la vista index de funcionarios y se pasa
+     * por parametro los datos en la variable funcionarios
+     * por medio de la funcion compact a la vista.
      */
     public function index()
     {
@@ -33,13 +34,13 @@ class FuncionariosController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Recibe los parametros de la vista create del formulario en funcionarios
+     * por medio de request y los almacena en la base de datos por medio del modelo
+     * Funcionario con la funciona create.
      */
     public function store(Request $request)
     {
+
             Funcionario::create([
                 'nombre'=>$request['nombre'],
                 'apelido'=>$request['apellido'],
@@ -47,7 +48,7 @@ class FuncionariosController extends Controller
                 'correo'=>$request['email'],
                 'tarjeta_rfid'=>$request['rfid'],
                 'cargos_id'=>'1',
-                'foto'=>'ljljkjl',
+                'foto'=>'0',
                 'celular'=>$request['celular'],
                 'hoario_normal'=>$request['asignar_horario_nomal'],
                 'licencia'=>'1',
@@ -70,9 +71,10 @@ class FuncionariosController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Edita un funcionario especifico que envia desde el index de funcionario.
      *
-     * @param  int  $id
+     * Genera dos variables cargos y funcionarios para enviar a la vista editar
+     * y tener todos los datos correspondientes al id a editar.
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -83,7 +85,7 @@ class FuncionariosController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza un registro especifico en la base de datos.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -92,27 +94,9 @@ class FuncionariosController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $variablesAdaptadas = [
-            'nombre' => $request->all()['nombre'],
-            'apelido'=> $request->all()['apellido'],
-            'cedula'=> $request->all()['cedula'],
-            'celular'=> $request->all()['celular'],
-            'correo'=> $request->all()['email'],
-            'tarjeta_rfid'=> $request->all()['rfid'],
-            'cargos_id'=> $request->all()['Cargo'],
-            'hoario_normal'=> $request->all()['asignar_horario_nomal'],
-            //'fecha_nacimiento' => $request->all()[''],
-            'foto'=> $request->all()['0'],
-            'licencia'=> $request->all()[0],
-            'estatus'=> $request->all()[1],
-            'dado_de_baja'=> $request->all()[0],
-
-        ];
         $funcionario = Funcionario::find($id);
-        $funcionario->fill($variablesAdaptadas);
+        $funcionario->fill($request->all());
         $funcionario->save();
-        Session::flash('message','Funcionario Actualizado Correctamente');
-        return Redirect::to('/Funcionarios');
     }
 
     /**
@@ -122,6 +106,14 @@ class FuncionariosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
+    {
+        //
+    }
+    /**
+     * Me genera el control para abrir puertas segun el usuario
+     * que este log en la aplicacion
+     */
+    public function controlpuertas()
     {
         //
     }
