@@ -9,14 +9,15 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class User extends Authenticatable implements AuditableContract
 {
-    use Auditable;
     use Notifiable;
+
+    //indico que la tabla se debe auditar
+    use Auditable;
+
+    //indico la tabla a la que hace referencia el modelo
     protected $table = 'users';
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+
+    //indico los atributos de la tabla que se pueden modificar desde la vista
     protected $fillable = [
         'name', 'email', 'password','estatus',
     ];
@@ -27,23 +28,18 @@ class User extends Authenticatable implements AuditableContract
         }
     }
      */
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
 
 
 
-
+    //metodo para obtener los datos de la relacion user-permiso
     public function permisos()
     {
         return $this->belongsToMany('App\Permiso','permisos_usuarios','usuario_id','permiso_id')->withPivot('estatus_permiso');
     }
-
+    //metodo para obtener los datos de la relacion user-puerta
     public function puertas()
     {
         return $this->belongsToMany('App\Puerta','puerta_user','user_id', 'puerta_id')->withPivot('estatus_permiso');

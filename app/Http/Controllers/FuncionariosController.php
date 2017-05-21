@@ -8,11 +8,7 @@ use App\Http\Controllers\Controller;
 
 class FuncionariosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //TODA ESTA CLASE LA TIENE QUE COMENTAR JARA
     public function index()
     {
         $funcionarios=Funcionario::all();

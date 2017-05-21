@@ -27,6 +27,4 @@ Route::resource('cargos','CargosController',['except' => ['create', 'store', 'in
 Route::get('cargos/create/{seccion_id}', 'CargosController@newcargo')->name('cargos.new');
 Route::post('cargos/{seccion_id}', 'CargosController@store')->name('cargos.store');
 
-
-
 Route::get('errores','ErroresController@error404')->name('errores.error404');

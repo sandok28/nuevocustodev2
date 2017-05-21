@@ -12,10 +12,10 @@
                 <div class="col-xs-12">
                     <h1>Control Pertas</h1>
                 </div>
-                @foreach($usuario->puertas as $puertaNormal)
+                @foreach($usuario->puertas as $puertasPermisos)
                     <div class="col-xs-8">
-                        {!! Form::checkbox($puertaNormal->id, $puertaNormal->id,$puertaNormal->pivot->estatus_permiso) !!}
-                        {!! Form::label($puertaNormal->nombre) !!}
+                        {!! Form::checkbox($puertasPermisos->id, $puertasPermisos->id,$puertasPermisos->pivot->estatus_permiso) !!}
+                        {!! Form::label($puertasPermisos->nombre) !!}
                     </div>
                 @endforeach
             </div>
@@ -23,11 +23,10 @@
                 <div class="col-xs-12">
                     <h1>Permisos de ROL</h1>
                 </div>
-
-                @foreach($usuario->permisos as $puertaEspecial)
+                @foreach($usuario->permisos as $permisosUsuario)
                     <div class="col-xs-8">
-                        {!! Form::checkbox($puertaEspecial->id, $puertaEspecial->id, $puertaEspecial->pivot->estatus_permiso) !!}
-                        {!! Form::label($puertaEspecial->nombre) !!}
+                        {!! Form::checkbox($permisosUsuario->id, $permisosUsuario->id, $permisosUsuario->pivot->estatus_permiso) !!}
+                        {!! Form::label($permisosUsuario->nombre) !!}
                     </div>
                 @endforeach
             </div>
