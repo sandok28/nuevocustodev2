@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSeccionesPuertasTable extends Migration
+class CreateUsuariosPuertasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateSeccionesPuertasTable extends Migration
      */
     public function up()
     {
-        Schema::create('secciones_puertas', function (Blueprint $table) {
+        Schema::create('puerta_user', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('estatus_permiso');
             $table->timestamps();
-
-            $table->integer('seccion_id')->unsigned();
-            $table->foreign('seccion_id')->references('id')->on('seccions');
-
             $table->integer('puerta_id')->unsigned();
-            $table->foreign('puerta_id')->references('id')->on('Puertas');
+            $table->foreign('puerta_id')->references('id')->on('puertas');
+
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -33,6 +32,6 @@ class CreateSeccionesPuertasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('secciones_puertas');
+        Schema::dropIfExists('puerta_user');
     }
 }

@@ -8,12 +8,12 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class PermisosUsuario extends Model implements AuditableContract
 {
+    //indico que la tabla se debe auditar
     use Auditable;
 
-    protected $table = 'PermisosUsuarios';
-
+    //indico los atributos de la tabla que se pueden modificar desde la vista
     protected $fillable = [
-        'permisos_id', 'usuarios_id',
+        'permiso_id', 'usuario_id','estatus_permiso',
     ];
 
     //

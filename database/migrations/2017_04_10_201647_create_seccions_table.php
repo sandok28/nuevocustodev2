@@ -15,7 +15,8 @@ class CreateSeccionsTable extends Migration
     {
         Schema::create('seccions', function (Blueprint $table) {
             $table->increments('id');
-            $table->String('Nombre');
+            $table->String('nombre');
+            $table->integer('estatus');
             $table->timestamps();
         });
     }
