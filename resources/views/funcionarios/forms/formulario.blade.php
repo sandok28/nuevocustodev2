@@ -79,8 +79,8 @@
                             <div class="col-sm-9">
                                 @foreach ($cargos as $cargo)
                                 {!!Form::select('Cargo',[
-                                    'cargo' => [$cargo->nombre],
-                                 ],null,['class'=>'form-control'])!!}
+                                'cargo' => [$cargo->nombre],
+                                ],null,['class'=>'form-control'])!!}
                                 @endforeach
                             </div>
                         </div>
