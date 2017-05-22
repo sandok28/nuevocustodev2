@@ -56,7 +56,7 @@
                                     {!!Form::label('email','E-MAIL:')!!}
                                 </div>
                                 <div class="col-sm-9">
-                                {!!Form::text('email',null,['class'=>'form-control','placeholder'=>'Ingresa el E-mail del usuario'])!!}
+                                {!!Form::text('correo',null,['class'=>'form-control','placeholder'=>'Ingresa el E-mail del usuario'])!!}
                                 </div>
                                 </div>
                         <br><br>
@@ -65,7 +65,7 @@
                                 {!!Form::label('rfid','RFID:')!!}
                             </div>
                             <div class="col-sm-6">
-                                {!!Form::number('rfid',null,['class'=>'form-control','placeholder'=>'Ingresa el Numero de RFID del usuario'])!!}
+                                {!!Form::text('tarjeta_rfid',null,['class'=>'form-control','placeholder'=>'Ingresa el Numero de RFID del usuario'])!!}
                             </div>
                             <div class="col-sm-3">
 

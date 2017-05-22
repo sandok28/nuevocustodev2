@@ -18,7 +18,10 @@
                                 {!!Form::label('Llave','LLAVE:')!!}
                             </div>
                             <div class="col-sm-6">
-                                {!!Form::number('llave',null,['class'=>'form-control','placeholder'=>'Genere Llave de Area'])!!}
+                                {!!Form::number('llave_rfid',null,['class'=>'form-control','placeholder'=>'Genere Llave de Area'])!!}
+                            </div>
+                            <div class="col-sm-3">
+                                {!!Form::submit('GENERAR',['class'=>'btn btn-primary'])!!}
                             </div>
                         </div>
                         <br><br>
@@ -35,9 +38,9 @@
                             <label class="col-sm-3 control-label"></label>
                             <div class="col-sm-6">
                                 <div class="checkbox">
-                                    {{ Form::checkbox('puerta_especial',1)}}<label>Puerta Especila</label>
+                                    {{ Form::radio('puerta_especial',1)}}<label>Puerta Especila</label>
                                     <br><br>
-                                    {{ Form::checkbox('puerta_especial',0,true)}}<label>Puerta Normal</label>
+                                    {{ Form::radio('puerta_especial',0,true)}}<label>Puerta Normal</label>
                                 </div>
                             </div>
                         </div>

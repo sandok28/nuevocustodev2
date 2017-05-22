@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Puerta;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Session;
+use Redirect;
 
 class PuertasController extends Controller
 {
@@ -69,7 +71,7 @@ class PuertasController extends Controller
      */
     public function edit($id)
     {
-        $puerta = Puerta::fin($id);
+        $puerta = Puerta::find($id);
         return view('GestionAreas.edit',['puerta'=>$puerta]);
     }
 
@@ -85,7 +87,7 @@ class PuertasController extends Controller
         //
             $variablesAdaptadas = [
                 'nombre'=> $request->all()['nombre'],
-                'llave_rfid'=>$request->all()['llave'],
+                'llave_rfid'=>$request->all()['llave_rfid'],
                 'ip'=>$request->all()['ip'],
                 'puerta_especial' => $request->all()['puerta_especial'],
 
