@@ -23,8 +23,9 @@ class PuertasController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
+     * Muestra el recurso de create que es una vista dentro de la
+     * carpeta GestionAreas.create que es un create.blade
+     * que a su ves carga una vista de formularios.
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -34,7 +35,8 @@ class PuertasController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Almacena un nuevo item en la base de datos por medio de
+     * la Funcion create con el modelo Puerta.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -54,7 +56,7 @@ class PuertasController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     * No se usa para el proyecto.
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -64,7 +66,8 @@ class PuertasController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra la puerta a editar llamada por medio de la funcion find
+     * del modelo de Puerta.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -76,8 +79,10 @@ class PuertasController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
+     * Actualiza un registro de la base de datos correspodiende al id
+     * que le llega por parametro y los datos que llegan por parametro
+     * en la variable $request
+     * devolviendo un mensaje de Puerta actualizada correctamente.
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -102,7 +107,7 @@ class PuertasController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
+     * No se usa para la aplicacion.
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

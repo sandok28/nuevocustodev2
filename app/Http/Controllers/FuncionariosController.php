@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+/**
+ *Librerias necesarias para ejecutar las funciones
+ *que la aplicacion va a necesitar.
+ * */
 use App\Cargo;
 use App\Funcionario;
 use Illuminate\Http\Request;
@@ -14,7 +17,8 @@ class FuncionariosController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * por medio de la funcion compact a la vista asi permitiendo usar los
+     * datos del modelo que se encuentran el la base de datos.
      */
     public function index()
     {
@@ -23,8 +27,9 @@ class FuncionariosController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
+     * La funcion crear me genera la variable $cargo con los datos
+     * del modelo Cargo que se encuentra en la base de datos devolviendo una vista
+     * de crear.blade.php con los datos del modelo.
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -35,9 +40,9 @@ class FuncionariosController extends Controller
     }
 
     /**
-     * Recibe los parametros de la vista create del formulario en funcionarios
+     * Recibe los parametros de la vista create.blade del formulario en funcionarios
      * por medio de request y los almacena en la base de datos por medio del modelo
-     * Funcionario con la funciona create.
+     * Funcionario con la funcion create.
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -66,7 +71,7 @@ class FuncionariosController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     *El recurso no es utilizado para este proyecto
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -91,7 +96,7 @@ class FuncionariosController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     * Modificando y Guardando la ultima configuracion que genera
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -124,7 +129,7 @@ class FuncionariosController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
+     * No se usa para el proyecto.
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -132,12 +137,5 @@ class FuncionariosController extends Controller
     {
         //
     }
-    /**
-     * Me genera el control para abrir puertas segun el usuario
-     * que este log en la aplicacion
-     */
-    public function controlpuertas()
-    {
-        //
-    }
+
 }

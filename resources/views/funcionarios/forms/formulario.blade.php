@@ -68,9 +68,7 @@
                                 {!!Form::text('tarjeta_rfid',null,['class'=>'form-control','placeholder'=>'Ingresa el Numero de RFID del usuario'])!!}
                             </div>
                             <div class="col-sm-3">
-
                                 {!!Form::submit('GENERAR',['class'=>'btn btn-primary'])!!}
-
                             </div>
                         </div>
                         <br><br>
