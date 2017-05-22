@@ -13,7 +13,13 @@ class Puerta extends Model implements AuditableContract
 
     //indico los atributos de la tabla que se pueden modificar desde la vista
     protected $fillable = [
-        'puerta_especial', 'nombre', 'llave_rfid', 'ip','created_at','updated_at',
+        'puerta_especial',
+        'nombre',
+        'llave_rfid',
+        'ip',
+        'estatus',
+        'created_at',
+        'updated_at',
     ];
 
     //metodo para obtener los datos de la relacion puerta-user

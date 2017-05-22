@@ -7,9 +7,11 @@
 
     </div>
     <div>
-         {!!Form::open(['route'=>'usuarios.store', 'method'=>'POST'])!!}
-            @include('usuarios.forms.formulario')
+         {!!Form::open(['route'=>'puertas.store', 'method'=>'POST'])!!}
+            @include('GestionAreas.forms.formulario')
+        <div>
             {!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
+        </div>
         {!!Form::close()!!}
     </div>
 

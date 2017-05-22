@@ -20,6 +20,8 @@ Route::get('logout','HomeController@logout')->name('home.logout');
 Route::resource('usuarios','UsuariosController');
 
 Route::resource('funcionarios','FuncionariosController');
+Route::resource('puertas','PuertasController');
+Route::resource('controlareas','ControllerControlAreas');
 
 Route::resource('secciones','SeccionesController');
 Route::resource('cargos','CargosController',['except' => ['create', 'store', 'index' ]]);

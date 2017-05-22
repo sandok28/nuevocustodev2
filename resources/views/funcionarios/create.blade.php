@@ -14,8 +14,8 @@
 @section('content')
     <div>
         {!!Form::open(['route'=>'funcionarios.store', 'method'=>'POST'])!!}
-            @include('funcionarios.forms.formulario')
-            {!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
+        @include('funcionarios.forms.formulario')
+        {!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
         {!!Form::close()!!}
     </div>
 
@@ -26,6 +26,9 @@
     <!--Page Leve JS -->
     {!! Html::script('assets/plugins/icheck/js/icheck.min.js') !!}
     {!! Html::script('assets/plugins/validation/js/jquery.validate.min.js') !!}
+    <!--Page Level JS-->
+    {!! Html::script("assets/plugins/icheck/js/icheck.min.js") !!}
+    {!! Html::script("assets/plugins/validation/js/jquery.validate.min.js") !!}
     <script>
         $(document).ready(function() {
             $('#form').validate({

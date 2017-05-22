@@ -14,7 +14,7 @@
     <section id="main-content">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="h1">FUNCIONARIOS</h1>
+                <h1 class="h1">GESTION DE AREAS</h1>
             </div>
         </div>
         <div class="row">
@@ -24,24 +24,32 @@
                         <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
 
                             <thead>
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>Apellido</th>
-                                    <th>Cedula</th>
-                                    <th>Correo</th>
-                                    <th>Tarjeta RFID</th>
-                                    <th>Editar</th>
-                                 </tr>
+                            <tr>
+                                <th>Modulo</th>
+                                <th>Llave</th>
+                                <th>Ip</th>
+                                <th>Editar</th>
+                                <th>Dado de Baja</th>
+                                <th>Puerta Especial</th>
+                            </tr>
                             </thead>
                             <tbody>
-                            @foreach($funcionarios as $funcionario)
+                            @foreach($puertas as $puerta)
                                 <tr>
-                                    <th>{{$funcionario->nombre}}</th>
-                                    <th>{{$funcionario->apelido}}</th>
-                                    <th>{{$funcionario->cedula}}</th>
-                                    <th>{{$funcionario->correo}}</th>
-                                    <th>{{$funcionario->tarjeta_rfid}}</th>
-                                    <th>{!!link_to_route('funcionarios.edit', $title = 'Editar', $parameters = $funcionario, $attributes = ['class'=>'btn btn-primary'])!!}</th>
+                                    <th>{{$puerta->nombre}}</th>
+                                    <th>{{$puerta->llave_rfid}}</th>
+                                    <th>{{$puerta->ip}}</th>
+                                    <th>{!!link_to_route('puertas.edit', $title = 'Editar', $parameters = $puerta, $attributes = ['class'=>'btn btn-primary'])!!}</th>
+                                    @if(($puerta->estatus)==1)
+                                        <th>Activo</th>
+                                    @else
+                                        <th>Inactivo</th>
+                                    @endif
+                                    @if(($puerta->puerta_especial)==1)
+                                        <th>PUERTA ESPECIAL</th>
+                                    @else
+                                        <th>PUERTA NORMAL</th>
+                                    @endif
                                 </tr>
                             @endforeach
                             </tbody>
@@ -54,7 +62,7 @@
         <div class="col-md-12">
             <div class="panel-heading row">
                 <div class="col-md-6">
-                    {!!link_to_route('funcionarios.create', 'Agregar funcionarios', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
+                    {!!link_to_route('puertas.create', 'Agregar Puertas', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
                 </div>
                 <div class="col-md-6">
                     <button class="btn btn-primary btn-block btn-3d" onclick="history.back();">Volver</button>
