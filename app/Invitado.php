@@ -13,4 +13,7 @@ class Invitado extends Model implements AuditableContract
 
     //indico los atributos de la tabla que se pueden modificar desde la vista
     //
+
+
+
 }

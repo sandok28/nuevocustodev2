@@ -57,11 +57,6 @@
             @include('cargos.index')
         </div>
     </div>
-    <div class="col-xs-4">
-        @foreach($seccion->puertas as $puerta)
 
-            <p>{{$puerta->nombre}}</p>
-        @endforeach
-    </div>
 
 @endsection

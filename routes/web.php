@@ -17,16 +17,19 @@ Route::get('/','HomeController@iniciosession');
 Route::post('login','HomeController@login')->name('home.login');
 Route::get('logout','HomeController@logout')->name('home.logout');
 
-Route::resource('usuarios','UsuariosController');
+Route::resource('usuarios','UsuariosController',['except' => ['show','destroy']]);
 
 Route::resource('funcionarios','FuncionariosController');
 Route::resource('puertas','PuertasController');
 Route::resource('controlareas','ControllerControlAreas');
 
-Route::resource('secciones','SeccionesController');
-Route::resource('cargos','CargosController',['except' => ['create', 'store', 'index' ]]);
+Route::resource('secciones','SeccionesController',['except' => ['show','destroy']]);
 
-Route::get('cargos/create/{seccion_id}', 'CargosController@newcargo')->name('cargos.new');
+Route::resource('invitados','InvitadosController',['except' => ['show','destroy']]);
+Route::get('invitados/foto','InvitadosController@foto')->name('invitados.foto');
+
+Route::resource('cargos','CargosController',['only' => ['update','edit']]);
+Route::get('cargos/create/{seccion_id}', 'CargosController@create')->name('cargos.create');
 Route::post('cargos/{seccion_id}', 'CargosController@store')->name('cargos.store');
 
 Route::get('errores','ErroresController@error404')->name('errores.error404');
