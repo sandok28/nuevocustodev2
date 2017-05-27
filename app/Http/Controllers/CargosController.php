@@ -12,7 +12,7 @@ class CargosController extends Controller
 
 
     //Recibe el id de la seccion al que va pertenecer el cargo
-    public function newcargo($seccion_id)
+    public function create($seccion_id)
     {
         //devuelve la vista new de los cargos y le paso el id la seccion al que va pertenecer
         return view('cargos.new',['seccion_id'=>$seccion_id]);
