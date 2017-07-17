@@ -53,10 +53,11 @@ class FuncionariosController extends Controller
 
             Funcionario::create([
                 'nombre'=>$request['nombre'],
-                'apelido'=>$request['apellido'],
+                'apelido'=>$request['apelido'],
                 'cedula'=>$request['cedula'],
                 'correo'=>$request['correo'],
                 'tarjeta_rfid'=>$request['tarjeta_rfid'],
+                'fecha_nacimiento'=>$request['fecha_nacimiento'],
                 'cargos_id'=>'1',
                 'foto'=>'0',
                 'celular'=>$request['celular'],
