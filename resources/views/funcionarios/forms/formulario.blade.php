@@ -47,7 +47,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">FECHA DE NACIMIENTO:</label>
                                         <div class="col-sm-6">
-                                        <input type="text" class="form-control" name="input1" id="input1" required="" placeholder="DD/MM/YYYY">
+                                        <input type="text" class="form-control" name="fecha_nacimiento" required="" placeholder="DD/MM/YYYY">
                                         </div>
                                 </div>
                                 <br><br>
@@ -77,11 +77,12 @@
                                 {!!Form::label('cargo','CARGO:')!!}
                             </div>
                             <div class="col-sm-9">
-                                @foreach ($cargos as $cargo)
-                                {!!Form::select('Cargo',[
-                                'cargo' => [$cargo->nombre],
-                                ],null,['class'=>'form-control'])!!}
-                                @endforeach
+                                <select class="form-control">
+                                    @foreach($cargos as $cargo)
+                                        <option>{{$cargo->nombre}}</option>
+                                    @endforeach
+                                </select>
+
                             </div>
                         </div>
                         <br><br>
