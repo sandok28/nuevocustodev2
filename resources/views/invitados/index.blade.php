@@ -1,7 +1,10 @@
 @extends('layouts.principal')
 
-@section('title')
-    Index invitados
+@section('titel')
+    index invitados
+@endsection
+@section('titulo-tarjeta')
+    index invitados
 @endsection
 
 @section('cargarcss')
@@ -10,11 +13,16 @@
 @endsection
 
 @section('content')
-    {!! Html::style('assets/plugins/dataTables/css/dataTables.css') !!}
     <section id="main-content">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="h1">INVITADOS</h1>
+
+        <div class="col-md-12">
+            <div class="panel-heading row">
+                <div class="col-md-6">
+                    {!!link_to_route('invitados.create', 'Agregar invitados', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-primary btn-block btn-3d" onclick="history.back();">Volver</button>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -33,21 +41,21 @@
 
                             <thead>
                                 <tr>
-                                    <th>Nombre</th>
-                                    <th>Apellido</th>
+                                    <th>Nombres y Apellidos </th>
                                     <th>Cedula</th>
+                                    <th>Celular</th>
                                     <th>Correo</th>
-                                    <th>Tarjeta RFID</th>
+                                    <th>Editar</th>
                                  </tr>
                             </thead>
                             <tbody>
                             @foreach($invitados as $invitado)
                                 <tr>
-                                    <th>{{$invitado->nombre}}</th>
-                                    <th>{{$invitado->apelido}}</th>
+                                    <th>{{$invitado->nombre." ".$invitado->apellido}}</th>
                                     <th>{{$invitado->cedula}}</th>
+                                    <th>{{$invitado->celular}}</th>
                                     <th>{{$invitado->correo}}</th>
-                                    <th>{{$invitado->tarjeta_rfid}}</th>
+                                    <th>{!!link_to_route('invitados.edit', $title = 'Editar', $parameters = $invitado, $attributes = ['class'=>'btn btn-primary'])!!}</th>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -57,16 +65,7 @@
             </div>
 
         </div>
-        <div class="col-md-12">
-            <div class="panel-heading row">
-                <div class="col-md-6">
-                    {!!link_to_route('invitados.create', 'Agregar invitados', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
-                </div>
-                <div class="col-md-6">
-                    <button class="btn btn-primary btn-block btn-3d" onclick="history.back();">Volver</button>
-                </div>
-            </div>
-        </div>
+
     </section>
 @endsection
 @section('cargarjs')

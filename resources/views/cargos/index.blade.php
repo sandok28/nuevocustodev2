@@ -1,4 +1,3 @@
-
 @section('cargarcss')
     {{-- DataTables--}}
     {!! Html::style('assets/plugins/dataTables/css/dataTables.css') !!}
@@ -6,7 +5,6 @@
 
 <section id="main-content">
     <div class="row">
-
         <div class="col-md-12">
             <div class="row panel panel-default">
                 <div class="panel-heading">
@@ -17,8 +15,6 @@
                         <i class="fa fa-times"></i>
                     </div>
                 </div>
-
-
                 <div class="panel-body">
                     <div class="col-md-12 row center-xs panel-heading ">
                         <div class="col-xs-12">
@@ -49,14 +45,11 @@
                             @endforeach
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
-
     </div>
 </section>
-
 @section('cargarjs')
     <!--Page Leve JS -->
     {!! Html::script('assets/plugins/dataTables/js/jquery.dataTables.js') !!}
@@ -65,8 +58,5 @@
         $(document).ready(function() {
             $('#example').dataTable();
         });
-    </script>
-    <script>
-
     </script>
 @endsection

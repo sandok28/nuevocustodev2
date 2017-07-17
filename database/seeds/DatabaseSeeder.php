@@ -20,6 +20,11 @@ class DatabaseSeeder extends Seeder
         $this->call(PermisosTableSeeder::class);
         $this->call(PermisosUserTableSeeder::class);
         $this->call(FuncionariosTableSeeder::class);
-        $this->call(PuertaTableSeeder::class);
+        $this->call(InvitadosTableSeeder::class);
+        $this->call(IntervalosTableSeeder::class);
+        $this->call(IntervaloPuertasTableSeeder::class);
+        $this->call(LicenciasTableSeeder::class);
+
+
     }
 }

@@ -21,6 +21,7 @@ class UsersTableSeeder extends Seeder
                 'password' => bcrypt('s'.$i),
                 'estatus' => 1,
                 'created_at' => $carbon->now(),
+                'updated_at' => $carbon->now(),
             ]);
         }
 

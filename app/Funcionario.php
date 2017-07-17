@@ -28,4 +28,27 @@ class Funcionario extends Model implements AuditableContract
         'dado_de_baja',
     ];
 
+    /**
+     * Obtiene las licecias relacionadas al funcionario
+     *
+     * @author Edwin Sandoval
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany  Coleccion con las licecias relacionadas al funcionario
+     */
+    public function licencias()
+    {
+        return $this->hasMany('App\Licencia', 'funcionario_id');
+    }
+
+
+    /**
+     * Obtiene  el cargo relacionado al funcionario
+     *
+     * @author Edwin Sandoval
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Objeto del Cargo relacionado al funcionario
+     */
+    public function cargo()
+    {
+        return $this->belongsTo('App\Cargo','cargos_id');
+    }
+
 }

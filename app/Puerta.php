@@ -22,14 +22,36 @@ class Puerta extends Model implements AuditableContract
         'updated_at',
     ];
 
-    //metodo para obtener los datos de la relacion puerta-user
+    /**
+     * Obtiene los usuarios relacionados a la puerta
+     *
+     * @author Edwin Sandoval
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany Coleccion con los usuarios relacionados a la puerta
+     */
     public function usuarios()
     {
         return $this->belongsToMany('App\User','puerta_user','puerta_id','user_id')->withPivot('estatus_permiso');;
     }
-    //metodo para obtener los datos de la relacion puerta-seccion
+
+    /**
+     * Obtiene las secciones relacionadas a la puerta
+     *
+     * @author Edwin Sandoval
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany Coleccion con las secciones relacionadas a la puerta
+     */
     public function secciones()
     {
         return $this->belongsToMany('App\Seccion','secciones_puertas','puerta_id','seccion_id')->withPivot('estatus_permiso');
+    }
+
+    /**
+     * Obtiene los intervalos relacionados a la puerta
+     *
+     * @author Edwin Sandoval
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany Coleccion con los intervalos relacionados a la puerta
+     */
+    public function intervalos()
+    {
+        return $this->belongsToMany('App\Intervalo','intervalo_puertas', 'puerta_id', 'intervalo_id');
     }
 }

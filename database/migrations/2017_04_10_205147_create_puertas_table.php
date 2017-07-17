@@ -13,7 +13,7 @@ class CreatePuertasTable extends Migration
      */
     public function up()
     {
-        Schema::create('Puertas', function (Blueprint $table) {
+        Schema::create('puertas', function (Blueprint $table) {
             $table->increments('id');
             $table->boolean('puerta_especial');
             $table->string('nombre');

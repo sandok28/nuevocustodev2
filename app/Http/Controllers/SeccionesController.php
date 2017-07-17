@@ -12,21 +12,41 @@ use Redirect;
 class SeccionesController extends Controller
 {
 
+    /**
+     * Llama a la vista index donde se listan todos las secciones
+     *
+     *
+     * @author Edwin Sandoval
+     * @return \Illuminate\Http\Response devuelve la vista index de secciones
+     * y le paso
+     * $secciones coleccion con todas las $secciones
+     */
     public function index()
     {
         $secciones = Seccion::all();
-        //devuelve la vista index de secciones y le paso una coleccion con todas las secciones
         return view('secciones.index',compact('secciones'));
     }
 
+    /**
+     * No hace nada en concreto solo llama a la vista create de secciones
+     *
+     * @author Edwin Sandoval
+     * @return \Illuminate\Http\Response devuelve la vista create de secciones
+     */
     public function create()
     {
-        //devuelve la vista create de secciones
         return view('secciones.create');
     }
 
-
-    //Recibe $request con los datos del formulario de secciones
+    /**
+     * Crea una nueva seccion con los datos que recibe del formulario
+     * por defecto asigna el estatus de la nueva seccion en 1 indicando que esta activa
+     * Relaciono la seccion que se acabo de crear con todas las puertas existentes
+     *
+     * @author Edwin Sandoval
+     * @return \Illuminate\Http\Response Redirecciona a la vista edit de secciones de la seccion que se creo
+     * @param Request $request con los datos del formulario de secciones
+     */
     public function store(Request $request)
     {
         Seccion::create([
@@ -46,17 +66,28 @@ class SeccionesController extends Controller
                 'estatus_permiso' => 0
             ]);
         }
-        //Redirecciono a la vista edit de la seccion que se acabo de crear
+
         return redirect('/secciones/'.$seccion->id.'/edit')->with('message','La seccion se ha registrado correctamente');
 
     }
 
-    //Recibe el id de la seccion
+    /**
+     * llama a la vista edit de secciones
+     * la cual tiene el formulario de secciones
+     *
+     * @author Edwin Sandoval
+     * @return \Illuminate\Http\Response devuelve la vista edit de secciones
+     * y le paso
+     * $seccion objeto de la seccion asociada al $id que llega por parametro.
+     * $puertasEspeciales coleccion con todas las puertas especiales relacionas a la seccion
+     * $puertasNormales coleccion con todas las puestas normales relacionas a la seccion
+     * @param integer $id id de la licencia a editar
+     */
     public function edit($id)
     {
         //obtengo la seccion relacionada al id que llego
         $seccion = Seccion::find($id);
-        //creo una coleccion con todas las puestas especiales relacionas a la seccion
+        //creo una coleccion con todas las puertas especiales relacionas a la seccion
         $puertasEspeciales = Seccion::find($id)->puertas()->where('puerta_especial',1)->get();
         //creo una coleccion con todas las puestas normal relacionas a la seccion
         $puertasNormales = Seccion::find($id)->puertas()->where('puerta_especial',0)->get();
@@ -65,7 +96,17 @@ class SeccionesController extends Controller
         return view('secciones.edit',['seccion'=>$seccion,'puertasEspeciales'=>$puertasEspeciales,'puertasNormales'=>$puertasNormales]);
     }
 
-    //Recibe $request con los datos del formulario y el id de la seccion
+
+    /**
+     * Actualiza la seccion asociada al $id con los datos que trae el $request
+     * Tambien relaciona la seccion que se crea con todas las puertas selecionadas
+     * en el formulario
+     *
+     * @author Edwin Sandoval.
+     * @return \Illuminate\Http\Response Redirecciono a la vita index de secciones
+     * @param Request $request con los datos del formulario.
+     * @param integer $id id de la seccion que se quiere actualizar.
+     */
     public function update(Request $request, $id)
     {
         //obtengo la seccion relacionada al id que llego
@@ -96,7 +137,6 @@ class SeccionesController extends Controller
         $seccion->save();
         Session::flash('message','Seccion Actualizada Correctamente');
 
-        //Redirecciono a la vita index de secciones
         return Redirect::to('/secciones');
     }
 }

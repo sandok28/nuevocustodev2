@@ -176,7 +176,7 @@
                     <a href="/secciones"><i class="fa  fa-list"></i><span>SECCIONES Y CARGOS</span></a>
                 </li>
                 <li class="active">
-                    <a href="funcionarios"><i class="fa fa-users"></i><span>INVITADOS</span></a>
+                    <a href="/invitados"><i class="fa fa-users"></i><span>INVITADOS</span></a>
                 </li>
                 <li class="active">
                     <a href="/usuarios"><i class="fa fa-users"></i><span>USUARIOS</span></a>
@@ -185,7 +185,7 @@
                     <a href="funcionarios"><i class="fa fa-clock-o"></i><span>HORARIOS</span></a>
                 </li>
                 <li class="active">
-                    <a href="funcionarios"><i class="fa  fa-files-o"></i><span>LICENCIAS</span></a>
+                    <a href="licencias"><i class="fa  fa-files-o"></i><span>LICENCIAS</span></a>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:void(0);"><i class="fa fa-list"></i><span>GESTIOS DE AREAS</span><i class="arrow fa fa-angle-right pull-right"></i></a>

@@ -15,12 +15,24 @@ class Seccion extends Model implements AuditableContract
     protected $fillable = [
         'nombre','estatus',
     ];
-    //metodo para obtener los datos de la relacion cargo-seccion
+
+
+    /**
+     * Obtiene los cargos relacionados a la seccion
+     *
+     * @author Edwin Sandoval
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Coleccion con los cargos relacionados a la seccion
+     */
     public function cargos()
     {
         return $this->hasMany('App\Cargo', 'secciones_id');
     }
-    //metodo para obtener los datos de la relacion cargo-puerta
+    /**
+     * Obtiene los puertas relacionados a la seccion
+     *
+     * @author Edwin Sandoval
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany Coleccion con los cargos relacionados a la seccion
+     */
     public function puertas()
     {
         return $this->belongsToMany('App\Puerta','secciones_puertas','seccion_id','puerta_id')->withPivot('estatus_permiso');

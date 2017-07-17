@@ -1,22 +1,21 @@
 @extends('layouts.principal')
-
+@section('titel')
+    editar invitado
+@endsection
+@section('titulo-tarjeta')
+    editar invitado
+@endsection
 @section('content')
-    {!!Form::model($funcionario,['route'=>['funcionarios.update',$funcionario],'method'=>'PUT'])!!}
-    @include('funcionarios.forms.formulario')
-    @if(($usuario->estatus) == 1)
+    {!!Form::model($invitado,['route'=>['invitados.update',$invitado],'method'=>'PUT'])!!}
+        @include('invitados.forms.formulario')
         <div class="form-group">
-            {{ Form::checkbox('estatus', '0',false),['class'=>'form-control'] }}
-            {{ Form::label('dar de baja') }}
+            {!!Form::submit('Actualizar',['class'=>'btn btn-primary'])!!}
         </div>
-    @else
-        <div class="form-group">
-            {{ Form::checkbox('estatus', '1',false),['class'=>'form-control'] }}
-            {{ Form::label('Reactivar') }}
-        </div>
-    @endif
-
-    <div class="form-group">
-        {!!Form::submit('Actualizar',['class'=>'btn btn-primary'])!!}
-    </div>
     {!!Form::close()!!}
+
+    <div class="row">
+        <div class="col-md-12">
+            @include('intervalos.index')
+        </div>
+    </div>
 @endsection
