@@ -20,6 +20,7 @@ Route::get('logout','HomeController@logout')->name('home.logout');
 Route::resource('usuarios','UsuariosController',['except' => ['show','destroy']]);
 
 Route::resource('funcionarios','FuncionariosController');
+Route::resource('funcionarios/horario/{$funcionario_id}','FuncionariosController@horario')->name('funcionarios.horario');
 Route::resource('puertas','PuertasController');
 Route::resource('controlareas','ControllerControlAreas');
 
