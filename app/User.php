@@ -22,6 +22,7 @@ class User extends Authenticatable implements AuditableContract
         'name', 'email', 'password','estatus',
     ];
     /**
+    Por Decidir si usar esta forma para encriptar
     public function setPasswordAttribute($password){
         if(!empty($password)){
             $this->attributes['password'] = \Hash::make($password);
@@ -34,12 +35,23 @@ class User extends Authenticatable implements AuditableContract
 
 
 
-    //metodo para obtener los datos de la relacion user-permiso
+    /**
+     * Obtiene los permisos relacionados al usuario
+     *
+     * @author Edwin Sandoval
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany Coleccion con los permisos relacionados al usuario
+     */
     public function permisos()
     {
         return $this->belongsToMany('App\Permiso','permisos_usuarios','usuario_id','permiso_id')->withPivot('estatus_permiso');
     }
-    //metodo para obtener los datos de la relacion user-puerta
+
+    /**
+     * Obtiene las puertas relacionados al usuario
+     *
+     * @author Edwin Sandoval
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany Coleccion con las puertas relacionados al usuario
+     */
     public function puertas()
     {
         return $this->belongsToMany('App\Puerta','puerta_user','user_id', 'puerta_id')->withPivot('estatus_permiso');

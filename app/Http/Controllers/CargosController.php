@@ -11,14 +11,27 @@ class CargosController extends Controller
 {
 
 
-    //Recibe el id de la seccion al que va pertenecer el cargo
-    public function newcargo($seccion_id)
+    /**
+     * No hace nada en concreto solo llama a la vista create
+     *
+     * @author Edwin Sandoval
+     * @return \Illuminate\Http\Response devuelve la vista create de cargos y le paso el id la seccion al que va pertenecer
+     * @param integer $seccion_id id de la seccion al que va pertenecer el cargo
+     */
+    public function create($seccion_id)
     {
-        //devuelve la vista new de los cargos y le paso el id la seccion al que va pertenecer
-        return view('cargos.new',['seccion_id'=>$seccion_id]);
-
+        return view('cargos.create',['seccion_id'=>$seccion_id]);
     }
-    //Recibe $request con los datos del formulario y el id de la seccion al que va pertenecer el cargo
+
+    /**
+     * Crea un nuevo cargo con los datos que recibe del formulario
+     * por defecto asigna el estatus del nuevo cargo en 1 indicando que esta activo
+     *
+     * @author Edwin Sandoval
+     * @return \Illuminate\Http\Response Redirecciona a la vista edit de la seccion a la que pertenece el cargo
+     * @param Request $request con los datos del formulario
+     * @param integer $seccion_id  id de la seccion al que va pertenecer el cargo
+     */
     public function store(Request $request,$seccion_id)
     {
         Cargo::create([
@@ -26,18 +39,31 @@ class CargosController extends Controller
             'estatus'=> '1',
             'secciones_id' =>$seccion_id,
         ]);
-        //Redirecciona a la vista edit de la seccion a la que pertenece el cargo
+
         return redirect('/secciones/'.$seccion_id.'/edit')->with('message','El cargo se ha registrado correctamente');
     }
-    //Recibe el id del cargo
+
+    /**
+     * Busca el cargo asociado al $id y lo guarda en la variable $cargo
+     * luego llama a la vista edit
+     * @author Edwin Sandoval
+     * @return \Illuminate\Http\Response devuelve la vista edit de cargos y le paso la variable $cargo
+     * @param integer $id  id del cargo que se quiere editar
+     */
     public function edit($id)
     {
         $cargo = Cargo::find($id);
-        //devuelve la vista edit de los cargos
+
         return view('cargos.edit',['cargo'=>$cargo]);
     }
 
-    //Recibe $request con los datos del formulario y el id de la seccion al que pertenece el cargo
+    /**
+     * Busca el cargo asociado al $id y actualiza los datos de este
+     * @author Edwin Sandoval
+     * @return \Illuminate\Http\Response Redirecciona a la vista edit de la seccion a la que pertenece el cargo
+     * @param Request $request con los datos del formulario
+     * @param integer $id id del cargo que se quiere actualizar
+     */
     public function update(Request $request, $id)
     {
         $cargo = Cargo::find($id);
@@ -45,7 +71,6 @@ class CargosController extends Controller
         $cargo->save();
         Session::flash('message','Cargo Actualizado Correctamente');
 
-        //Redirecciona a la vista edit de la seccion a la que pertenece el cargo
         return Redirect::to('/secciones/'.$cargo->secciones_id.'/edit');
 
     }

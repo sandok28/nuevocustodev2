@@ -1,7 +1,11 @@
 @extends('layouts.principal')
 
-@section('title')
-    Index Usuarios
+@section('titel')
+    index secciones
+@endsection
+
+@section('titulo-tarjeta')
+    index secciones
 @endsection
 
 @section('cargarcss')
@@ -10,22 +14,7 @@
 @endsection
 
 @section('content')
-    {!! Html::style('assets/plugins/dataTables/css/dataTables.css') !!}
     <section id="main-content">
-        <div class="row">
-            <div class="col-md-12">
-                <!--breadcrumbs start -->
-                <ul class="breadcrumb">
-                    <li><a href="#">Dashboard</a></li>
-                    <li>UI Elements</li>
-                    <li class="active">Date Tables</li>
-                </ul>
-                <!--breadcrumbs end -->
-                <h1 class="h1">Secciones</h1>
-            </div>
-
-        </div>
-
         <div class="row">
             <div class="col-md-12">
                 <div class="panel-heading row">

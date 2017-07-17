@@ -17,11 +17,14 @@ class Permiso extends Model implements AuditableContract
     ];
 
 
-    //metodo para obtener los datos de la relacion permiso-user
+    /**
+     * Obtiene los usuarios relacionadas al permiso
+     *
+     * @author Edwin Sandoval
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany Coleccion con los usuarios relacionadas al permiso
+     */
     public function users()
     {
-
         return $this->belongsToMany('App\User','permisos_usuarios','usuarios_id');
-
     }
 }

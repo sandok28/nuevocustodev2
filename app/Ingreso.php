@@ -11,7 +11,4 @@ class Ingreso extends Model implements AuditableContract
     //indico que la tabla se debe auditar
     use Auditable;
 
-    //indico los atributos de la tabla que se pueden modificar desde la vista
-
-    //
 }

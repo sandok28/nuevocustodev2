@@ -22,7 +22,6 @@ class CreateInvitadosTable extends Migration
             $table->String('correo');
             $table->String('fecha_nacimiento');
             $table->String('foto');
-            $table->String('tarjeta_rfid');
             $table->timestamps();
         });
     }

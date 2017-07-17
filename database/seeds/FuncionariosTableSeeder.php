@@ -15,12 +15,12 @@ class FuncionariosTableSeeder extends Seeder
         for ($i = 0; $i<10; $i++){
             DB::table('funcionarios')->insert([
                 'cedula' => $i,
-                'nombre' => 's'.$i,
-                'foto'=>'s'.$i,
+                'nombre' => 'N'.$i,
+                'foto'=>'F'.$i,
                 'fecha_nacimiento' => '2017-05-22 16:15:10',
-                'apelido' => 's'.$i,
+                'apelido' => 'A'.$i,
                 'celular' => $i,
-                'correo' => 's'.$i,
+                'correo' => 'C'.$i,
                 'hoario_normal' => 1,
                 'dado_de_baja' => 0,
                 'licencia' => 0,

@@ -1,8 +1,13 @@
 @extends('layouts.principal')
 
-@section('title')
-    Editar Cargos
+@section('titel')
+    editar cargo
 @endsection
+
+@section('titulo-tarjeta')
+    editar cargo
+@endsection
+
 @section('content')
     {!!Form::model($cargo,['route'=>['cargos.update',$cargo],'method'=>'PUT'])!!}
     @include('cargos.forms.formulario')
@@ -22,6 +27,4 @@
         {!!Form::submit('Actualizar',['class'=>'btn btn-primary'])!!}
     </div>
     {!!Form::close()!!}
-
-
 @endsection

@@ -1,12 +1,14 @@
 @extends('layouts.principal')
-
+@section('titel')
+    agregar seccion
+@endsection
+@section('titulo-tarjeta')
+    agregar seccion
+@endsection
 @section('content')
     <div class="row">
 
         <div class="col-md-12">
-            <div>
-                <p>CREAR SECCION</p>
-            </div>
             <div class="row">
                 {!!Form::open(['route'=>'secciones.store', 'method'=>'POST'])!!}
                 <div class="col-md-6">
@@ -25,4 +27,7 @@
             </div>
         </div>
     </div>
+
+
+
 @endsection

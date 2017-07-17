@@ -12,38 +12,56 @@ use App\Http\Requests\LoginRequest;
 
 class HomeController extends Controller
 {
-
     //ESTA CLASE SE ENCARGA DE TODAS LAS VISTAS GENERALES QUE NO PERTENECEN AUN MODULO EN PARTICULAR
 
-
+    /**
+     * No hace nada en concreto solo llama a la vista Home
+     * esta vista es la vista principal del programa
+     *
+     * @author Edwin_Sandoval
+     * @return \Illuminate\Http\Response devuelve la vista index de home la cual es la vita general del software
+     */
     function index(){
-        //devuelve la vista index de home la cual es la vita general del software
         return view('home.index');
     }
 
+    /**
+     * No hace nada en concreto solo llama a la vista Login
+     * actulemnte esta vita es la raiz "/" en las rutas
+     *
+     * @author Edwin Sandoval
+     * @return \Illuminate\Http\Response devuelve la vista login de home la cual es la vita donde lo usuarios pueden logear
+     */
     function iniciosession(){
-        //actulemnte esta vita es la raiz "/" en las rutas
-        //devuelve la vista login de home la cual es la vita donde lo usuarios pueden logear
         return view('home.login');
     }
-    //Recibe $request con los datos del formulario del login nombre de usuario y contraseña
-    function login(LoginRequest $request){
-        //nombre de usuario lo recibimos como email para poder usar las librerias que nos brinda laravel
 
+    /**
+     * Verifica los datos del usuriario e inicia sesion con la ayuda de la libreria Auth
+     *
+     * @author Edwin Sandoval
+     * @return \Illuminate\Http\Response Redireccina a la vista Home si los datos del usuario son correctos
+     * en caso contrario redirecciona a la vista de Login de nuevo
+     * @param LoginRequest $request con los datos del formulario de login nombre y contraseña
+     */
+    function login(LoginRequest $request){
         if(Auth::attempt(['email'=>$request['email'], 'password'=> $request['password']])){
-            //si los datos son correctos redireccionamos a la vista index de home del software
             return Redirect::to('/home');
         }
         Session::flash('message-error','Datos son incorrectos');
-        //si los datos no son correctos redireccionamos a la rails es decir a la vista login de home
         return Redirect::to('/');
-
     }
-    //Recibe $request con los datos del usuario que se encuentra logeado y cierra la sesion
+
+    /**
+     * Cierra sesion con la ayuda de la libreria Auth
+     *
+     * @author Edwin Sandoval
+     * @return \Illuminate\Http\Response Redirecciona a la vista de login de home
+     * @param LoginRequest $request con los datos del formulario de login nombre y token
+     */
     public function logout(LoginRequest $request)
     {
-        Auth::logout();//cuerra la session
-        //redireccionamos a la rails es decir a la vista login de home
+        Auth::logout();
         return Redirect::to('/');
     }
 }

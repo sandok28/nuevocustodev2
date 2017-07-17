@@ -1,7 +1,9 @@
 @extends('layouts.principal')
-
-@section('title')
-    Create Usuarios
+@section('titel')
+    editar usuario
+@endsection
+@section('titulo-tarjeta')
+    editar usuario
 @endsection
 @section('content')
     {!!Form::model($usuario,['route'=>['usuarios.update',$usuario],'method'=>'PUT'])!!}
@@ -25,7 +27,7 @@
                 </div>
                 @foreach($usuario->permisos as $permisosUsuario)
                     <div class="col-xs-8">
-                        {!! Form::checkbox($permisosUsuario->id, $permisosUsuario->id, $permisosUsuario->pivot->estatus_permiso) !!}
+                        {!! Form::checkbox($permisosUsuario->id +10000, $permisosUsuario->id, $permisosUsuario->pivot->estatus_permiso) !!}
                         {!! Form::label($permisosUsuario->nombre) !!}
                     </div>
                 @endforeach
