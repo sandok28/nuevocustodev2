@@ -9,7 +9,7 @@
                                  {{ Form::textarea('notes') }}
                              </div>
                              <div class="form-group">
-                                 {!!Form::button('TOMAR FOTO',['class'=>'btn btn-primary','onclick' =>'tomarfoto()'])!!}
+                                 {!!Form::button('TOMAR FOTO',['class'=>'btn btn-primary btn-lg','data-toggle'=>'modal','data-target'=>'#basicModal'])!!}
                               </div>
                             <br><br>
                             <div class="form-group">
@@ -72,7 +72,7 @@
                                 {!!Form::text('tarjeta_rfid',null,['class'=>'form-control','placeholder'=>'Ingresa el Numero de RFID del usuario'])!!}
                             </div>
                             <div class="col-sm-3">
-                                {!!Form::submit('GENERAR',['class'=>'btn btn-primary','onclick'=>'alert("generar RFID")'])!!}
+                                {!!Form::button('GENERAR',['class'=>'btn btn-primary','onclick'=>'alert("generar RFID")'])!!}
                             </div>
                         </div>
                         <br><br>
@@ -104,6 +104,25 @@
             </div>
         </div>
     </section>
+    <!-- Basic Modal -->
+    <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">CAPTURAR FOTO</h4>
+                </div>
+                <div class="modal-body">
+                    {{ Form::textarea('notes') }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">CERRAR</button>
+                    <button type="button" class="btn btn-primary">GUARDAR</button>
+                    <button type="button" class="btn btn-primary">CAPTURAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 
