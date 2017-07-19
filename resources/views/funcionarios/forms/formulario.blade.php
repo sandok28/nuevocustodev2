@@ -4,8 +4,12 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
+                            //poner imagen en la pantalla
+                             <div>
+                                 {{ Form::textarea('notes') }}
+                             </div>
                              <div class="form-group">
-                                 {!!Form::button('TOMAR_FOTO',['class'=>'btn btn-primary'])!!}
+                                 {!!Form::button('TOMAR FOTO',['class'=>'btn btn-primary','onclick' =>'tomarfoto()'])!!}
                               </div>
                             <br><br>
                             <div class="form-group">
@@ -68,7 +72,7 @@
                                 {!!Form::text('tarjeta_rfid',null,['class'=>'form-control','placeholder'=>'Ingresa el Numero de RFID del usuario'])!!}
                             </div>
                             <div class="col-sm-3">
-                                {!!Form::submit('GENERAR',['class'=>'btn btn-primary'])!!}
+                                {!!Form::submit('GENERAR',['class'=>'btn btn-primary','onclick'=>'alert("generar RFID")'])!!}
                             </div>
                         </div>
                         <br><br>
@@ -90,11 +94,9 @@
                                 <label class="col-sm-3 control-label"></label>
                                 <div class="col-sm-6">
                                     <div class="radio">
-                                        {{ Form::radio('asignar_horario_nomal', 0, false)}}<label>Asignar Horario Asignado al Cargo</label>
+                                        {{ Form::radio('horario', 0, false,['class'=>'iradio_flat-grey checked','style'=>'position: relative'])}}<label>  Asignar Horario Asignado al Cargo</label><br><br>
+                                        {{ Form::radio('horario', 0,false,['class'=>'iradio_flat-grey checked','style'=>'position: relative'])}}<label>   Asignar Horario Especial</label>
                                     </div>
-                                    <div class="radio">
-                                        {{ Form::radio('asignar_horario_especial', 0,false)}}<label>Asignar Horario Especial</label>
-                                     </div>
                                 </div>
                             </div>
                     </div>
@@ -104,4 +106,5 @@
     </section>
 
 </div>
+
 

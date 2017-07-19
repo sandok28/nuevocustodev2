@@ -297,7 +297,7 @@ class ComposerStaticInit2d850ed464469b45a77aadc885f3f9b5
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\CargosController' => __DIR__ . '/../..' . '/app/Http/Controllers/CargosController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
-        'App\\Http\\Controllers\\ControllerControlAreas' => __DIR__ . '/../..' . '/app/Http/Controllers/ControllerControlAreas.php',
+        'App\\Http\\Controllers\\ControllerControlAreas' => __DIR__ . '/../..',
         'App\\Http\\Controllers\\ErroresController' => __DIR__ . '/../..' . '/app/Http/Controllers/ErroresController.php',
         'App\\Http\\Controllers\\FuncionariosController' => __DIR__ . '/../..' . '/app/Http/Controllers/FuncionariosController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',

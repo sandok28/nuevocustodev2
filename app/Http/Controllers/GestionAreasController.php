@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Puerta;
+use App\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class ControllerControlAreas extends Controller
+class GestionAreasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +16,9 @@ class ControllerControlAreas extends Controller
      */
     public function index()
     {
-        //
+
+        $puertas = Puerta::all();
+        return view('GestionAreas.index',compact('puertas'));
     }
 
     /**
@@ -80,5 +85,14 @@ class ControllerControlAreas extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function controlareas($id)
+    {
+        $puertasNormales = User::find($id)->puertas()->where('puerta_especial',0)->get();
+        $puertasEspeciales = User::find($id)->puertas()->where('puerta_especial',1)->get();
+        //devuelve la vista edit de los intervalos
+        return view('ControlAreas.index',['puertasEspeciales'=>$puertasEspeciales,'puertasNormales'=>$puertasNormales]);
+
     }
 }
