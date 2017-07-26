@@ -170,7 +170,7 @@
         <div id="leftside-navigation" class="nano">
             <ul class="nano-content">
                 <li class="active">
-                    <a href="funcionarios"><i class="fa fa-users"></i><span>FUNCIONARIOS</span></a>
+                    <a href="/funcionarios"><i class="fa fa-users"></i><span>FUNCIONARIOS</span></a>
                 </li>
                 <li class="active">
                     <a href="/secciones"><i class="fa  fa-list"></i><span>SECCIONES Y CARGOS</span></a>
@@ -185,7 +185,7 @@
                     <a href="funcionarios"><i class="fa fa-clock-o"></i><span>HORARIOS</span></a>
                 </li>
                 <li class="active">
-                    <a href="licencias"><i class="fa  fa-files-o"></i><span>LICENCIAS</span></a>
+                    <a href="/licencias"><i class="fa  fa-files-o"></i><span>LICENCIAS</span></a>
                 </li>
                 <li class="active">
                     <a href="/GestionAreas"><i class="fa fa-list"></i><span>GESTION DE AREAS</span></a>
@@ -194,7 +194,7 @@
                     <a href="area/1"><i class="fa fa-list"></i><span>CONTROL DE AREAS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/home"><i class="fa fa-list"></i><span>ESTADISTICAS</span></a>
+                    <a href="/Estadisticas"><i class="fa fa-list"></i><span>ESTADISTICAS</span></a>
                 </li>
                 <li class="active">
                     <a href="/home"><i class="fa fa-list"></i><span>AUDITORIAS</span></a>

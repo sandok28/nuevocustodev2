@@ -49,3 +49,5 @@ Route::get('errores','ErroresController@error404')->name('errores.error404');
 
 Route::resource('GestionAreas','GestionAreasController');
 Route::get('area/{user_id}','GestionAreasController@controlareas');
+
+Route::get('Estadisticas','EstadisticasController@index');

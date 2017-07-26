@@ -6,7 +6,7 @@
                     <div class="panel-body">
                             //poner imagen en la pantalla
                              <div>
-                                 {{ Form::textarea('notes') }}
+                                 <div id="results"></div>
                              </div>
                              <div class="form-group">
                                  {!!Form::button('TOMAR FOTO',['class'=>'btn btn-primary btn-lg','data-toggle'=>'modal','data-target'=>'#basicModal'])!!}
@@ -113,17 +113,42 @@
                     <h4 class="modal-title" id="myModalLabel">CAPTURAR FOTO</h4>
                 </div>
                 <div class="modal-body">
-                    {{ Form::textarea('notes') }}
+                    <div id="webcam"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">CERRAR</button>
-                    <button type="button" class="btn btn-primary">GUARDAR</button>
-                    <button type="button" class="btn btn-primary">CAPTURAR</button>
+                    <button type="button" class="btn btn-primary" onclick="capturar()">CAPTURAR</button>
+                    <button type="button" class="btn btn-primary"  onclick="">GUARDAR</button>
                 </div>
             </div>
         </div>
     </div>
 
 </div>
+<script>
+    function capturar()
+    {
+        var sayCheese = new SayCheese('#webcam', { snapshots: true });
+
+        sayCheese.on('start', function() {
+            // do something when started
+            this.takeSnapshot();
+        });
+
+        sayCheese.on('error', function(error) {
+            // handle errors, such as when a user denies the request to use the webcam,
+            // or when the getUserMedia API isn't supported
+        });
+
+        sayCheese.on('snapshot', function(snapshot) {
+            // do something with a snapshot canvas element, when taken
+        });
+
+        sayCheese.start();
+
+    }
+    </script>
+
+
 
 

@@ -1,24 +1,22 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: andres
+ * Date: 26/07/2017
+ * Time: 9:25 AM
+ */
+?>
+
 @extends('layouts.principal')
 @section('titel')
-    Crear Funcionarios
+        Generar Estadisticas
 @endsection
-@section('titulo-tarjeta')
-    <h1>CREAR FUNCIONARIOS</h1>
-@endsection
-@section('cargarcss')
-    {{-- DataTables--}}
-    {!! Html::style('assets/plugins/dataTables/css/dataTables.css') !!}
-    <!-- iCheck-->
-    {!! Html::style("assets/plugins/icheck/css/_all.css") !!}
-@endsection
-@section('content')
-    <div>
-        {!!Form::open(['route'=>'funcionarios.store', 'method'=>'POST'])!!}
-        @include('funcionarios.forms.formulario')
-        {!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
-        {!!Form::close()!!}
-    </div>
 
+@section('content')
+    {!! Form::open() !!}
+    @include('Reportes.forms.formulario')
+    {!! Form::submit('Generar Estadistica',['class'=>'btn btn-primary']) !!}
+    {!! Form::close() !!}
 
 @endsection
 
@@ -105,12 +103,11 @@
     </script>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
         ga('create', 'UA-46627904-1', 'authenticgoods.co');
         ga('send', 'pageview');
-
     </script>
 @endsection
