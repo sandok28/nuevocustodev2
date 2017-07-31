@@ -1,23 +1,47 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: andres
+ * Date: 26/07/2017
+ * Time: 9:25 AM
+ */
+?>
+
 @extends('layouts.principal')
 @section('titel')
-    Crear Funcionarios
+        Generar Estadisticas
 @endsection
-@section('titulo-tarjeta')
-    <h1>CREAR FUNCIONARIOS</h1>
-@endsection
-@section('cargarcss')
-    {{-- DataTables--}}
-    {!! Html::style('assets/plugins/dataTables/css/dataTables.css') !!}
-    <!-- iCheck-->
-    {!! Html::style("assets/plugins/icheck/css/_all.css") !!}
-@endsection
+
 @section('content')
-    <div>
-        {!!Form::open(['route'=>'funcionarios.store', 'method'=>'POST'])!!}
-        @include('funcionarios.forms.formulario')
-        {!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
-        {!!Form::close()!!}
+    {!! Form::open() !!}
+    @include('Estadisticas.forms.formulario')
+    {!! Form::button('Generar Estadistica',['class'=>'btn btn-primary','onclick'=>'dibujar()']) !!}
+    {!! Form::close() !!}
+
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Sales for 2014</h3>
+                <div class="actions pull-right">
+                    <i class="fa fa-chevron-down"></i>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div id="sales-chart" style="height: 250px;"></div>
+            </div>
+        </div>
     </div>
+
+
+    <script>
+        $(document).ready(function() {
+            app.timer();
+            app.map();
+            app.weather();
+            app.morrisPie();
+        });
+    </script>
 
 
 @endsection
@@ -33,6 +57,32 @@
     {!! Html::script("assets/js/webcam.min.js") !!}
     {!! Html::script("assets/js/say-cheese.js")!!}
     {!! Html::script("https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquey.main.js")!!}
+    {!! Html::script("assets/plugins/morris/css/morris.css") !!}
+
+
+
+    <!-- FlotCharts  -->
+    {!! Html::script("assets/plugins/flot/js/jquery.flot.min.js") !!}
+    {!! Html::script("assets/plugins/flot/js/jquery.flot.resize.min.js") !!}
+    {!! Html::script("assets/plugins/flot/js/jquery.flot.canvas.min.js") !!}
+    {!! Html::script("assets/plugins/flot/js/jquery.flot.image.min.js") !!}
+    {!! Html::script("assets/plugins/flot/js/jquery.flot.categories.min.js") !!}
+    {!! Html::script("assets/plugins/flot/js/jquery.flot.crosshair.min.js") !!}
+    {!! Html::script("assets/plugins/flot/js/jquery.flot.errorbars.min.js") !!}
+    {!! Html::script("assets/plugins/flot/js/jquery.flot.fillbetween.min.js") !!}
+    {!! Html::script("assets/plugins/flot/js/jquery.flot.navigate.min.js") !!}
+    {!! Html::script("assets/plugins/flot/js/jquery.flot.pie.min.js") !!}
+    {!! Html::script("assets/plugins/flot/js/jquery.flot.selection.min.js") !!}
+    {!! Html::script("assets/plugins/flot/js/jquery.flot.stack.min.js") !!}
+    {!! Html::script("assets/plugins/flot/js/jquery.flot.symbol.min.js") !!}
+    {!! Html::script("assets/plugins/flot/js/jquery.flot.threshold.min.js") !!}
+    {!! Html::script("assets/plugins/flot/js/jquery.colorhelpers.min.js") !!}
+    {!! Html::script("assets/plugins/flot/js/jquery.flot.time.min.js") !!}
+    {!! Html::script("assets/plugins/flot/js/jquery.flot.example.js") !!}
+    {!! Html::script("assets/plugins/morris/js/morris.min.js") !!}
+
+
+
 
     <script>
         $(document).ready(function() {
@@ -105,12 +155,11 @@
     </script>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
         ga('create', 'UA-46627904-1', 'authenticgoods.co');
         ga('send', 'pageview');
-
     </script>
 @endsection

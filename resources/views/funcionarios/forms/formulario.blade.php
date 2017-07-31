@@ -4,8 +4,14 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
+                            //poner imagen en la pantalla
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img src="{{url('assets/img/favicon.ico')}}" alt class="img-responsive  form-inline">
+                                </div>
+                            </div>
                              <div class="form-group">
-                                 {!!Form::button('TOMAR_FOTO',['class'=>'btn btn-primary'])!!}
+                                 {!!Form::button('TOMAR FOTO',['class'=>'btn btn-primary btn-lg','data-toggle'=>'modal','data-target'=>'#basicModal'])!!}
                               </div>
                             <br><br>
                             <div class="form-group">
@@ -68,7 +74,7 @@
                                 {!!Form::text('tarjeta_rfid',null,['class'=>'form-control','placeholder'=>'Ingresa el Numero de RFID del usuario'])!!}
                             </div>
                             <div class="col-sm-3">
-                                {!!Form::submit('GENERAR',['class'=>'btn btn-primary'])!!}
+                                {!!Form::button('GENERAR',['class'=>'btn btn-primary','onclick'=>'alert("generar RFID")'])!!}
                             </div>
                         </div>
                         <br><br>
@@ -90,11 +96,9 @@
                                 <label class="col-sm-3 control-label"></label>
                                 <div class="col-sm-6">
                                     <div class="radio">
-                                        {{ Form::radio('asignar_horario_nomal', 0, false)}}<label>Asignar Horario Asignado al Cargo</label>
+                                        {{ Form::radio('horario', 0, false,['class'=>'iradio_flat-grey checked','style'=>'position: relative'])}}<label>  Asignar Horario Asignado al Cargo</label><br><br>
+                                        {{ Form::radio('horario', 0,false,['class'=>'iradio_flat-grey checked','style'=>'position: relative'])}}<label>   Asignar Horario Especial</label>
                                     </div>
-                                    <div class="radio">
-                                        {{ Form::radio('asignar_horario_especial', 0,false)}}<label>Asignar Horario Especial</label>
-                                     </div>
                                 </div>
                             </div>
                     </div>
@@ -102,6 +106,51 @@
             </div>
         </div>
     </section>
+    <!-- Basic Modal -->
+    <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">CAPTURAR FOTO</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="webcam"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">CERRAR</button>
+                    <button type="button" class="btn btn-primary" onclick="capturar()">CAPTURAR</button>
+                    <button type="button" class="btn btn-primary"  onclick="">GUARDAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
+<script>
+    function capturar()
+    {
+        var sayCheese = new SayCheese('#webcam', { snapshots: true });
+
+        sayCheese.on('start', function() {
+            // do something when started
+            this.takeSnapshot();
+        });
+
+        sayCheese.on('error', function(error) {
+            // handle errors, such as when a user denies the request to use the webcam,
+            // or when the getUserMedia API isn't supported
+        });
+
+        sayCheese.on('snapshot', function(snapshot) {
+            // do something with a snapshot canvas element, when taken
+        });
+
+        sayCheese.start();
+
+    }
+    </script>
+
+
+
 

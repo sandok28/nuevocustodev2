@@ -17,6 +17,8 @@ Route::get('/','HomeController@iniciosession');
 Route::post('login','HomeController@login')->name('home.login');
 Route::get('logout','HomeController@logout')->name('home.logout');
 
+Route::Get('/tomarFoto','FuncionariosController@tomarfoto');
+
 Route::resource('usuarios','UsuariosController',['except' => ['show','destroy']]);
 
 Route::resource('funcionarios','FuncionariosController');
@@ -44,3 +46,10 @@ Route::post('intervalos/{invitado_id}', 'IntervalosController@store')->name('int
 
 
 Route::get('errores','ErroresController@error404')->name('errores.error404');
+
+Route::resource('GestionAreas','GestionAreasController');
+Route::get('area/{user_id}','GestionAreasController@controlareas');
+
+Route::get('Estadisticas','EstadisticasController@index');
+
+Route::get('Reportes','ReportesController@index');

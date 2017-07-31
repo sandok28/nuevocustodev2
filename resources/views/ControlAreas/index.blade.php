@@ -14,60 +14,51 @@
     <section id="main-content">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="h1">GESTION DE AREAS</h1>
+                <h1 class="h1">CONTROL DE PUERTAS</h1>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                       <div class="form-group">
+                           <div class="row">
+                               <div class="col-xs-12">
+                                   <h1>Puertas normales</h1>
+                               </div>
 
-                            <thead>
-                            <tr>
-                                <th>Modulo</th>
-                                <th>Llave</th>
-                                <th>Ip</th>
-                                <th>Editar</th>
-                                <th>Dado de Baja</th>
-                                <th>Puerta Especial</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($puertas as $puerta)
-                                <tr>
-                                    <th>{{$puerta->nombre}}</th>
-                                    <th>{{$puerta->llave_rfid}}</th>
-                                    <th>{{$puerta->ip}}</th>
-                                    <th>{!!link_to_route('puertas.edit', $title = 'Editar', $parameters = $puerta, $attributes = ['class'=>'btn btn-primary'])!!}</th>
-                                    @if(($puerta->estatus)==1)
-                                        <th>Activo</th>
-                                    @else
-                                        <th>Inactivo</th>
-                                    @endif
-                                    @if(($puerta->puerta_especial)==1)
-                                        <th>PUERTA ESPECIAL</th>
-                                    @else
-                                        <th>PUERTA NORMAL</th>
-                                    @endif
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                               <!--info puerta nomal-->
+                               <div class="row">
+                                   @foreach($puertasNormales as $puertaNormal)
+                                       <div class="col-md-3">
+                                           {{$puertaNormal->nombre}}
+                                           <img src="{{url('assets/img/puerta.gif')}}" alt class="img-responsive  form-inline">
+                                           {!! Form::submit('Abrir Puerta',['class'=>'btn btn-primary','onclick'=>'abrirpuerta()']) !!}<br>
+                                       </div>
+                                       @endforeach
+                               </div>
+
+                               <div class="row">
+                                   <div class="col-xs-12 row">
+                                       <h1>Puertas especiales</h1>
+                                   </div>
+                                   <!--info puerta especial-->
+                                   @foreach($puertasEspeciales as $puertaEspecial)
+                                       <div class="col-md-3">
+                                       {{$puertaEspecial->nombre}}<br>
+                                       <img src="{{url('assets/img/puerta.gif')}}" alt class="img-responsive img-rounded form-inline"><br>
+                                       {!! Form::submit('Abrir Puerta',['class'=>'btn btn-primary','onclick'=>'abrirpuerta()']) !!}
+                                       </div>
+                                   @endforeach
+                               </div>
+
+
+                           </div>
+                       </div>
                     </div>
                 </div>
             </div>
 
-        </div>
-        <div class="col-md-12">
-            <div class="panel-heading row">
-                <div class="col-md-6">
-                    {!!link_to_route('puertas.create', 'Agregar Puertas', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
-                </div>
-                <div class="col-md-6">
-                    <button class="btn btn-primary btn-block btn-3d" onclick="history.back();">Volver</button>
-                </div>
-            </div>
         </div>
     </section>
 @endsection
@@ -75,6 +66,7 @@
     <!--Page Leve JS -->
     {!! Html::script('assets/plugins/dataTables/js/jquery.dataTables.js') !!}
     {!! Html::script('assets/plugins/dataTables/js/dataTables.bootstrap.js') !!}
+    {!! Html::script('js/abrirpuerta.js') !!}
     <script>
         $(document).ready(function() {
             $('#example').dataTable();

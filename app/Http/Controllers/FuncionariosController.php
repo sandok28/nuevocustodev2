@@ -13,13 +13,18 @@ use Illuminate\Support\Facades\Redirect;
 
 class FuncionariosController extends Controller
 {
-    //TODA ESTA CLASE LA TIENE QUE COMENTAR JARA
+
     /**
      * Display a listing of the resource.
      *
      * por medio de la funcion compact a la vista asi permitiendo usar los
      * datos del modelo que se encuentran el la base de datos.
      */
+
+    public  function tomarfoto()
+    {
+        return view('funcionarios.tomarfoto');
+    }
     public function index()
     {
         $funcionarios=Funcionario::all();
@@ -107,14 +112,14 @@ class FuncionariosController extends Controller
         //
         $variablesAdaptadas = [
             'nombre' => $request->all()['nombre'],
-            'apelido'=> $request->all()['apellido'],
+            'apelido'=> $request->all()['apelido'],
             'cedula'=> $request->all()['cedula'],
             'celular'=> $request->all()['celular'],
             'correo'=> $request->all()['email'],
             'tarjeta_rfid'=> $request->all()['rfid'],
             'cargos_id'=> $request->all()['Cargo'],
             'hoario_normal'=> $request->all()['asignar_horario_nomal'],
-            //'fecha_nacimiento' => $request->all()[''],
+            'fecha_nacimiento'=>$request->all()['fecha_nacimiento'],
             'foto'=> $request->all()['0'],
             'licencia'=> $request->all()[0],
             'estatus'=> $request->all()[1],
