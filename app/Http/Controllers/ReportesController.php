@@ -7,9 +7,13 @@ use App\Http\Controllers\Controller;
 
 class ReportesController extends Controller
 {
+    /**
+     * Genera la vista de Reporte
+    *
+    * @return vista Reportes.GenerarReporte
+    **/
     public function index()
     {
-       // return 'Hola soy la vista de Reportes';
         return view('Reportes.GenerarReporte');
     }
 }
