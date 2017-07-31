@@ -21,33 +21,40 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                       <div class="row form-group">
-                            <div class="col-xs-12 ">
-                                <div class="col-xs-12 row form-inline">
-                                    <div class="col-xs-12">
-                                        <h1>Puertas normales</h1>
-                                    </div>
-                                        <!--info puerta nomal-->
-                                        @foreach($puertasNormales as $puertaNormal)
-                                                {{$puertaNormal->nombre}}
-                                                <img src="{{url('assets/img/puerta.gif')}}" alt class="img-responsive  form-inline">
-                                                {!! Form::submit('Abrir Puerta',['class'=>'btn btn-primary','onclick'=>'abrirpuerta()']) !!}<br>
-                                        @endforeach
+                       <div class="form-group">
+                           <div class="row">
+                               <div class="col-xs-12">
+                                   <h1>Puertas normales</h1>
+                               </div>
 
-                                </div>
-                                    <div class="col-xs-6">
-                                        <div class="col-xs-12 row form-inline">
-                                            <h1>Puertas especiales</h1>
-                                        </div>
-                                        <!--info puerta especial-->
-                                        @foreach($puertasEspeciales as $puertaEspecial)
-                                            {{$puertaEspecial->nombre}}<br>
-                                            <img src="{{url('assets/img/puerta.gif')}}" alt class="img-responsive img-rounded form-inline"><br>
-                                            {!! Form::submit('Abrir Puerta',['class'=>'btn btn-primary','onclick'=>'abrirpuerta()']) !!}
-                                        @endforeach
-                                    </div>
-                            </div>
-                        </div>
+                               <!--info puerta nomal-->
+                               <div class="row">
+                                   @foreach($puertasNormales as $puertaNormal)
+                                       <div class="col-md-3">
+                                           {{$puertaNormal->nombre}}
+                                           <img src="{{url('assets/img/puerta.gif')}}" alt class="img-responsive  form-inline">
+                                           {!! Form::submit('Abrir Puerta',['class'=>'btn btn-primary','onclick'=>'abrirpuerta()']) !!}<br>
+                                       </div>
+                                       @endforeach
+                               </div>
+
+                               <div class="row">
+                                   <div class="col-xs-12 row">
+                                       <h1>Puertas especiales</h1>
+                                   </div>
+                                   <!--info puerta especial-->
+                                   @foreach($puertasEspeciales as $puertaEspecial)
+                                       <div class="col-md-3">
+                                       {{$puertaEspecial->nombre}}<br>
+                                       <img src="{{url('assets/img/puerta.gif')}}" alt class="img-responsive img-rounded form-inline"><br>
+                                       {!! Form::submit('Abrir Puerta',['class'=>'btn btn-primary','onclick'=>'abrirpuerta()']) !!}
+                                       </div>
+                                   @endforeach
+                               </div>
+
+
+                           </div>
+                       </div>
                     </div>
                 </div>
             </div>

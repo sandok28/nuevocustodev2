@@ -5,9 +5,11 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                             //poner imagen en la pantalla
-                             <div>
-                                 <div id="results"></div>
-                             </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img src="{{url('assets/img/favicon.ico')}}" alt class="img-responsive  form-inline">
+                                </div>
+                            </div>
                              <div class="form-group">
                                  {!!Form::button('TOMAR FOTO',['class'=>'btn btn-primary btn-lg','data-toggle'=>'modal','data-target'=>'#basicModal'])!!}
                               </div>

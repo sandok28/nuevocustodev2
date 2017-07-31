@@ -191,7 +191,7 @@
                     <a href="/GestionAreas"><i class="fa fa-list"></i><span>GESTION DE AREAS</span></a>
                 </li>
                  <li class="active">
-                    <a href="area/1"><i class="fa fa-list"></i><span>CONTROL DE AREAS</span></a>
+                    <a href="/area/1"><i class="fa fa-list"></i><span>CONTROL DE AREAS</span></a>
                 </li>
                 <li class="active">
                     <a href="/Estadisticas"><i class="fa fa-list"></i><span>ESTADISTICAS</span></a>
@@ -200,7 +200,10 @@
                     <a href="/home"><i class="fa fa-list"></i><span>AUDITORIAS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/home"><i class="fa fa-files-o"></i><span>REPORTES</span></a>
+                    <a href="/Reportes"><i class="fa fa-files-o"></i><span>REPORTES</span></a>
+                </li>
+                <li class="active">
+                    <a href="/home"><i class="fa fa-gears"></i><span>CONFIGUARION INICIAL</span></a>
                 </li>
             </ul>
         </div>

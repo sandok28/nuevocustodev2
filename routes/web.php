@@ -51,3 +51,5 @@ Route::resource('GestionAreas','GestionAreasController');
 Route::get('area/{user_id}','GestionAreasController@controlareas');
 
 Route::get('Estadisticas','EstadisticasController@index');
+
+Route::get('Reportes','ReportesController@index');

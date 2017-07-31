@@ -12,6 +12,6 @@ class EstadisticasController extends Controller
     **/
     public function index()
     {
-        return view('Reportes.Generar');
+        return view('Estadisticas.Generar');
     }
 }
