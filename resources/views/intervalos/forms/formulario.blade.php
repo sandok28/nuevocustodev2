@@ -1,5 +1,5 @@
 <div class="form-group">
-    {!!Form::label('desde','Dede:')!!}
+    {!!Form::label('desde','Desde:')!!}
 </div>
 <div class="form-group">
     {!!Form::text('desde',null,['class'=>'form-control','placeholder'=>'hh:mm:ss'])!!}

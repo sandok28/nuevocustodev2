@@ -13,7 +13,7 @@ class CreateInvitadosTable extends Migration
      */
     public function up()
     {
-        Schema::create('invitados', function (Blueprint $table) {
+        Schema::create('Invitados', function (Blueprint $table) {
             $table->increments('id');
             $table->String('nombre');
             $table->String('apellido');
@@ -33,6 +33,6 @@ class CreateInvitadosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invitados');
+        Schema::dropIfExists('Invitados');
     }
 }

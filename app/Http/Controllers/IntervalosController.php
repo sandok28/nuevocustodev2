@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Intervalo;
+use App\Intervaloinvitado;
 use App\Puerta;
-use App\IntervaloPuerta;
+use App\IntervaloInvitadoPuerta;
 use Illuminate\Http\Request;
 use Session;
 use Redirect;
@@ -16,7 +16,7 @@ class IntervalosController extends Controller
      * No hace nada en concreto solo llama a la vista create
      *
      * @author Edwin Sandoval
-     * @return \Illuminate\Http\Response devuelve la vista create de cargos
+     * @return \Illuminate\Http\Response devuelve la vista create de intervalos
      * y le paso
      * $invitado_id id del invitado al que pertenece
      * $puertasNormales una coleccion con todas las puestas normales
@@ -41,11 +41,11 @@ class IntervalosController extends Controller
      * @author Edwin Sandoval
      * @return \Illuminate\Http\Response redirecciona a la vista edit del invitado a la que pertenece el intervalo
      * @param Request $request con los datos del formulario
-     * @param integer $invitado_id id del invitado al que va pertenecer el cargo
+     * @param integer $invitado_id id del invitado al que va pertenecer el intervalo
      */
     public function store(Request $request,$invitado_id)
     {
-        Intervalo::create([
+        Intervaloinvitado::create([
             'desde'=> $request['desde'],
             'hasta'=> $request['hasta'],
             'targeta_rfid' => $request['targeta_rfid'],
@@ -53,7 +53,7 @@ class IntervalosController extends Controller
         ]);
 
         //obtengo la ultima seccion que se creo es decir la que acabamos de crear
-        $intervalo = Intervalo::orderBy('created_at', 'desc')->first();
+        $intervalo = Intervaloinvitado::orderBy('created_at', 'desc')->first();
 
         //Relaciono el intervalo que se acabo de crear con todas las puertas selecionadas
         $todasPuertas = Puerta::all();
@@ -61,7 +61,7 @@ class IntervalosController extends Controller
             //Si la puerta fue seclecionada en el check se guarda en la relacion secionn-puerta con un 1
             // indicando que esta seccion tiene permiso sobre ella
             if($request[$puerta->id]!=null) {
-                IntervaloPuerta::create([
+                IntervaloInvitadoPuerta::create([
                     'intervalo_id' => $intervalo->id,
                     'puerta_id' => $puerta->id,
                 ]);
@@ -83,9 +83,9 @@ class IntervalosController extends Controller
      */
     public function show($id)
     {
-        $intervalo = Intervalo::find($id);
-        $puertasNormales = Intervalo::find($id)->puertas()->where('puerta_especial',0)->get();
-        $puertasEspeciales = Intervalo::find($id)->puertas()->where('puerta_especial',1)->get();
+        $intervalo = Intervaloinvitado::find($id);
+        $puertasNormales = Intervaloinvitado::find($id)->puertas()->where('puerta_especial',0)->get();
+        $puertasEspeciales = Intervaloinvitado::find($id)->puertas()->where('puerta_especial',1)->get();
         //devuelve la vista edit de los intervalos
         return view('intervalos.show',['intervalo'=>$intervalo,'puertasEspeciales'=>$puertasEspeciales,'puertasNormales'=>$puertasNormales]);
     }
@@ -93,7 +93,7 @@ class IntervalosController extends Controller
 
     /**
      *  Elimina un intervalo asociado al $id que llega como parametro
-     * Tambien eliman todas las interrelaciones entre las pertas y dicho intervalo
+     * Tambien elimina todas las interrelaciones entre las puertas y dicho intervalo
      *
      * @author Edwin Sandoval
      * @return \Illuminate\Http\Response devuelve la vista edit de los invitados
@@ -101,14 +101,13 @@ class IntervalosController extends Controller
      */
     public function destroy($id)
     {
-
-        $invitado_id = Intervalo::find($id)->invitado_id;
-        $puertasIntervalo = IntervaloPuerta::all()->where('intervalo_id',$invitado_id);
+        $puertasIntervalo = IntervaloInvitadoPuerta::all()->where('intervalo_id',$id);
 
         foreach($puertasIntervalo as $puerta){
             $puerta->delete();
         }
-        Intervalo::destroy($id);
+        $invitado_id = Intervaloinvitado::find($id)->invitado_id;
+        Intervaloinvitado::destroy($id);
         //devuelve la vista edit de los intervalos
         return redirect('/invitados/'.$invitado_id.'/edit');
     }

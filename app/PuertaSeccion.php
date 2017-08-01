@@ -6,8 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class SeccionesPuerta extends Model implements AuditableContract
+class PuertaSeccion extends Model implements AuditableContract
 {
+
+    //Tabla a la que referencia el modelo
+    protected $table = 'Puertas_Secciones';
+
     //indico que la tabla se debe auditar
     use Auditable;
 

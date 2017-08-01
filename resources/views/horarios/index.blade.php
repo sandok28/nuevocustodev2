@@ -8,7 +8,7 @@
         <div class="col-md-12">
             <div class="row panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Intervalos que del invitado {{$invitado->nombre}} </h3>
+                    <h3 class="panel-title">Intervalos que del funcionario {{$funcionario->nombre}} </h3>
 
                     <div class="actions pull-right">
                         <i class="fa fa-chevron-down"></i>
@@ -18,29 +18,43 @@
                 <div class="panel-body">
                     <div class="col-md-12 row center-xs panel-heading ">
                         <div class="col-xs-12">
-                            {!!link_to_route('intervalos.create', 'Intervaloinvitado', $invitado->id,['class'=>'btn btn-info btn-block btn-3d'])!!}
+                            {!!link_to_route('horariosespeciales.create', 'Agregar intervalo en el horario', $funcionario->id,['class'=>'btn btn-info btn-block btn-3d'])!!}
                         </div>
                     </div>
                     <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
 
                         <thead>
                             <tr>
-                                <th>targeta_rfid</th>
+                                <th>dia</th>
                                 <th>desde</th>
                                 <th>hasta</th>
-                                <th>Puertas</th>
-                                <th>eliminar</th>
+                                <th>ver</th>
+                                <th>Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($invitado->intervalos as $intervalo)
+                            @foreach($horariosEspeciales as $horarioEspecial)
                                 <tr>
-                                    <td>{{$intervalo->targeta_rfid}}</td>
-                                    <td>{{$intervalo->desde}}</td>
-                                    <td>{{$intervalo->hasta}}</td>
-                                    <th>{!!link_to_route('intervalos.show', $title = 'ver', $parameters = $intervalo, $attributes = ['class'=>'btn btn-primary'])!!}</th>
+                                    @if($horarioEspecial->dia == 1)
+                                        <td>Lunes</td>
+                                    @elseif($horarioEspecial->dia == 2)
+                                        <td>Martes</td>
+                                    @elseif($horarioEspecial->dia == 3)
+                                        <td>Miercoles</td>
+                                    @elseif($horarioEspecial->dia == 4)
+                                        <td>Jueves</td>
+                                    @elseif($horarioEspecial->dia == 5)
+                                        <td>Viernes</td>
+                                    @elseif($horarioEspecial->dia == 6)
+                                        <td>Sabado</td>
+                                    @elseif($horarioEspecial->dia == 7)
+                                        <td>Domingo</td>
+                                    @endif
+                                    <td>{{$horarioEspecial->desde}}</td>
+                                    <td>{{$horarioEspecial->hasta}}</td>
+                                    <th>{!!link_to_route('horariosespeciales.show', $title = 'ver', $parameters = $horarioEspecial->id, $attributes = ['class'=>'btn btn-primary'])!!}</th>
                                     <th>
-                                        {!!Form::open(['route'=>['intervalos.destroy',$intervalo], 'method'=>'DELETE'])!!}
+                                        {!!Form::open(['route'=>['horariosespeciales.destroy',$horarioEspecial], 'method'=>'DELETE'])!!}
                                         {!!Form::submit('Eliminar',['class'=>'btn btn-danger'])!!}
                                         {!!Form::close()!!}
                                     </th>

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class IntervaloPuertasTableSeeder extends Seeder
+class PuertasSeccionesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,11 +11,11 @@ class IntervaloPuertasTableSeeder extends Seeder
      */
     public function run()
     {
-        $carbon = new \Carbon\Carbon();
-        for ($i = 0; $i<10; $i++){
-            DB::table('intervalo_puertas')->insert([
-                'intervalo_id' => '1',
+        for ($i = 0; $i<9; $i++){
+            DB::table('Puertas_Secciones')->insert([
+                'seccion_id' => 1,
                 'puerta_id' => $i+1,
+                'estatus_permiso' => 0,
             ]);
         }
     }

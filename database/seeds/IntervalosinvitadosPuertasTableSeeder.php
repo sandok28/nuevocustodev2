@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class IntervalosTableSeeder extends Seeder
+class IntervalosinvitadosPuertasTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,11 +13,9 @@ class IntervalosTableSeeder extends Seeder
     {
         $carbon = new \Carbon\Carbon();
         for ($i = 0; $i<10; $i++){
-            DB::table('intervalos')->insert([
-                'targeta_rfid' => $i*123,
-                'desde' => $carbon->now(),
-                'hasta'=> $carbon->now(),
-                'invitado_id' => '1',
+            DB::table('IntervalosInvitados_Puertas')->insert([
+                'intervalo_invitado_id' => '1',
+                'puerta_id' => $i+1,
             ]);
         }
     }

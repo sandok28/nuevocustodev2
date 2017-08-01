@@ -41,7 +41,7 @@ class LicenciasController extends Controller
             $licenciaActiva->vigencia = $desde->diffInDays($hasta);
 
             $hoyArray = explode("-", $carbon->now()->toDateString());
-            //dd($hoyArray);
+            
             $hoy = \Carbon\Carbon::createFromDate($hoyArray[0],$hoyArray[1],$hoyArray[2]);
             $licenciaActiva->restante = $hoy->diffInDays($hasta);
 

@@ -6,8 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class IntervaloPuerta extends Model  implements AuditableContract
+class IntervaloInvitadoPuerta extends Model  implements AuditableContract
 {
+
+    //Tabla a la que referencia el modelo
+    protected $table = 'IntervalosInvitados_Puertas';
+
     //indico que la tabla se debe auditar
     use Auditable;
 

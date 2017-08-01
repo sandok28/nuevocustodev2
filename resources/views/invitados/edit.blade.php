@@ -12,7 +12,6 @@
             {!!Form::submit('Actualizar',['class'=>'btn btn-primary'])!!}
         </div>
     {!!Form::close()!!}
-
     <div class="row">
         <div class="col-md-12">
             @include('intervalos.index')

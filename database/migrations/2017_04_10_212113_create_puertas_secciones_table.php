@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSeccionesPuertasTable extends Migration
+class CreatePuertasSeccionesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateSeccionesPuertasTable extends Migration
      */
     public function up()
     {
-        Schema::create('secciones_puertas', function (Blueprint $table) {
+        Schema::create('Puertas_Secciones', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('estatus_permiso');
             $table->timestamps();
 
             $table->integer('seccion_id')->unsigned();
-            $table->foreign('seccion_id')->references('id')->on('seccions');
+            $table->foreign('seccion_id')->references('id')->on('Secciones');
 
             $table->integer('puerta_id')->unsigned();
             $table->foreign('puerta_id')->references('id')->on('Puertas');
@@ -33,6 +33,6 @@ class CreateSeccionesPuertasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('secciones_puertas');
+        Schema::dropIfExists('Puertas_Secciones');
     }
 }

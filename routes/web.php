@@ -20,7 +20,7 @@ Route::get('logout','HomeController@logout')->name('home.logout');
 Route::resource('usuarios','UsuariosController',['except' => ['show','destroy']]);
 
 Route::resource('funcionarios','FuncionariosController');
-Route::resource('funcionarios/horario/{$funcionario_id}','FuncionariosController@horario')->name('funcionarios.horario');
+Route::get('funcionarios/horario/{funcionario_id}','FuncionariosController@horario')->name('funcionarios.horario');
 Route::resource('puertas','PuertasController');
 Route::resource('controlareas','ControllerControlAreas');
 
@@ -43,5 +43,8 @@ Route::resource('intervalos','IntervalosController',['only' => ['show','destroy'
 Route::get('intervalos/create/{invitado_id}', 'IntervalosController@create')->name('intervalos.create');
 Route::post('intervalos/{invitado_id}', 'IntervalosController@store')->name('intervalos.store');
 
+Route::resource('horariosespeciales','HorariosEspecialesController',['only' => ['show','destroy']]);
+Route::get('horariosespeciales/create/{funcionario_id}', 'HorariosEspecialesController@create')->name('horariosespeciales.create');
+Route::post('horariosespeciales/{funcionario_id}', 'HorariosEspecialesController@store')->name('horariosespeciales.store');
 
 Route::get('errores','ErroresController@error404')->name('errores.error404');

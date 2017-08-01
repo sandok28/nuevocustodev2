@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Seccion;
 use App\Cargo;
 use App\Puerta;
-use App\SeccionesPuerta;
+use App\PuertaSeccion;
 use Session;
 use Redirect;
 class SeccionesController extends Controller
@@ -60,7 +60,7 @@ class SeccionesController extends Controller
         //Relaciono la seccion que se acabo de crear con todas las puertas existentes
         $todasPuertas = Puerta::all();
         foreach($todasPuertas as $puerta){
-            SeccionesPuerta::create([
+            PuertaSeccion::create([
                 'seccion_id' => $seccion->id,
                 'puerta_id' => $puerta->id,
                 'estatus_permiso' => 0
@@ -85,15 +85,24 @@ class SeccionesController extends Controller
      */
     public function edit($id)
     {
+
+
         //obtengo la seccion relacionada al id que llego
         $seccion = Seccion::find($id);
+
         //creo una coleccion con todas las puertas especiales relacionas a la seccion
         $puertasEspeciales = Seccion::find($id)->puertas()->where('puerta_especial',1)->get();
+
         //creo una coleccion con todas las puestas normal relacionas a la seccion
         $puertasNormales = Seccion::find($id)->puertas()->where('puerta_especial',0)->get();
 
+
+
+        $funcionario = $seccion;
+
+
         //Devuelvo la vista edit de secciones y le paso la $seccion, $puertasEspeciales y $puertasNormales.
-        return view('secciones.edit',['seccion'=>$seccion,'puertasEspeciales'=>$puertasEspeciales,'puertasNormales'=>$puertasNormales]);
+        return view('secciones.edit',['seccion'=>$seccion,'puertasEspeciales'=>$puertasEspeciales,'puertasNormales'=>$puertasNormales,'funcionario'=>$funcionario]);
     }
 
 

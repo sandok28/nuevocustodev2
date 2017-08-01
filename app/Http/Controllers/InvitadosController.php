@@ -72,7 +72,6 @@ class InvitadosController extends Controller
     public function edit($id)
     {
         $invitado = Invitado::find($id);
-        //Devuelvo la vista edit de usuarios y le paso la $usuario.
         return view('invitados.edit',['invitado'=>$invitado]);
     }
 

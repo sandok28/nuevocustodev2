@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cargo extends Model implements AuditableContract
 {
+    //Tabla a la que referencia el modelo
+    protected $table = 'Cargos';
+
     //indico que la tabla se debe auditar
     use Auditable;
 

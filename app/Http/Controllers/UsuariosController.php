@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\UsuariosPuerta;
-use App\PermisosUsuario;
+use App\PermisoUser;
 use App\Puerta;
 use App\Permiso;
 use Session;
@@ -77,7 +77,7 @@ class UsuariosController extends Controller
         //Relaciono le usuario que se acabo de crear con todos los permisos existentes
         $todosPermisos = Permiso::all();
         foreach($todosPermisos as $permiso){
-            PermisosUsuario::create([
+            PermisoUser::create([
                 'usuario_id' => $usuario->id,
                 'permiso_id' => $permiso->id,
                 'estatus_permiso' => 0
@@ -157,7 +157,7 @@ class UsuariosController extends Controller
 
                 //Si el permiso fue seclecionada en el check se guarda en la relacion usuario-permiso con un 1
                 // indicando que este usuario tiene ese permiso.
-                PermisosUsuario::where('usuario_id', $usuario->id)
+                PermisoUser::where('usuario_id', $usuario->id)
                     ->where('permiso_id', $request[$permiso->id+10000])
                     ->update(['estatus_permiso' => 1]);
             }
@@ -165,7 +165,7 @@ class UsuariosController extends Controller
 
                 //Si el permiso no fue seclecionada en el check se guarda en la relacion usuario-permiso con un 0
                 // indicando que este usuario no tiene ese permiso.
-                PermisosUsuario::where('usuario_id', $usuario->id)
+                PermisoUser::where('usuario_id', $usuario->id)
                     ->where('permiso_id', $permiso->id)
                     ->update(['estatus_permiso' => 0]);
             }

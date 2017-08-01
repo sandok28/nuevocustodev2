@@ -8,6 +8,9 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class Invitado extends Model implements AuditableContract
 {
+    //Tabla a la que referencia el modelo
+    protected $table = 'Invitados';
+
     //indico que la tabla se debe auditar
     use Auditable;
 
@@ -35,6 +38,6 @@ class Invitado extends Model implements AuditableContract
      */
     public function intervalos()
     {
-        return $this->hasMany('App\Intervalo', 'invitado_id');
+        return $this->hasMany('App\Intervaloinvitado', 'invitado_id');
     }
 }

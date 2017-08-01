@@ -8,6 +8,10 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class Permiso extends Model implements AuditableContract
 {
+
+    //Tabla a la que referencia el modelo
+    protected $table = 'Permisos';
+
     //indico que la tabla se debe auditar
     use Auditable;
 

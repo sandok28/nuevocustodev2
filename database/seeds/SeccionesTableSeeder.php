@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class SeccionsTableSeeder extends Seeder
+class SeccionesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,7 +12,7 @@ class SeccionsTableSeeder extends Seeder
     public function run()
     {
         for ($i = 0; $i<10; $i++){
-            DB::table('seccions')->insert([
+            DB::table('Secciones')->insert([
                 'nombre' => 's'.$i,
                 'estatus' => 1,
             ]);

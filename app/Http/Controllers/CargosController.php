@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cargo;
-use App\Seccion;
 use Session;
 use Redirect;
 class CargosController extends Controller

@@ -8,6 +8,10 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class Puerta extends Model implements AuditableContract
 {
+
+    //Tabla a la que referencia el modelo
+    protected $table = 'Puertas';
+
     //indico que la tabla se debe auditar
     use Auditable;
 
@@ -52,6 +56,7 @@ class Puerta extends Model implements AuditableContract
      */
     public function intervalos()
     {
-        return $this->belongsToMany('App\Intervalo','intervalo_puertas', 'puerta_id', 'intervalo_id');
+        return $this->belongsToMany('App\Intervaloinvitado','intervalo_puertas', 'puerta_id', 'intervalo_id');
     }
+
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHorariosEspecialsTable extends Migration
+class CreateIntervalosfuncionariosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,16 @@ class CreateHorariosEspecialsTable extends Migration
      */
     public function up()
     {
-        Schema::create('horarios_especials', function (Blueprint $table) {
+        Schema::create('IntervalosFuncionarios', function (Blueprint $table) {
             $table->increments('id');
-            $table->dateTime('hora_desde');
-            $table->dateTime('hora_hasta');
+            $table->time('desde');
+            $table->time('hasta');
+            $table->integer('dia');
             $table->timestamps();
 
-
-
             $table->integer('funcionario_id')->unsigned();
-            $table->foreign('funcionario_id')->references('id')->on('funcionarios');
+            $table->foreign('funcionario_id')->references('id')->on('Funcionarios');
 
-            $table->integer('puertas_id')->unsigned();
-            $table->foreign('puertas_id')->references('id')->on('Puertas');
         });
     }
 
@@ -36,6 +33,6 @@ class CreateHorariosEspecialsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('horarios_especials');
+        Schema::dropIfExists('IntervalosFuncionarios');
     }
 }

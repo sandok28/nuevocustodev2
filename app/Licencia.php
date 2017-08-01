@@ -8,6 +8,10 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class Licencia extends Model implements AuditableContract
 {
+
+    //Tabla a la que referencia el modelo
+    protected $table = 'Licencias';
+
     //indico que la tabla se debe auditar
     use Auditable;
 

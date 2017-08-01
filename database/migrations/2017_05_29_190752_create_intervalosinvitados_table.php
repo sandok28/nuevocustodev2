@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIntervalosTable extends Migration
+class CreateIntervalosinvitadosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateIntervalosTable extends Migration
      */
     public function up()
     {
-        Schema::create('intervalos', function (Blueprint $table) {
+        Schema::create('IntervalosInvitados', function (Blueprint $table) {
             $table->increments('id');
             $table->String('targeta_rfid');
             $table->time('desde');
             $table->time('hasta');
 
             $table->integer('invitado_id')->unsigned();//llave foranea
-            $table->foreign('invitado_id')->references('id')->on('invitados');
+            $table->foreign('invitado_id')->references('id')->on('Invitados');
 
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ class CreateIntervalosTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('intervalos');
+        Schema::dropIfExists('IntervalosInvitados');
     }
 }
