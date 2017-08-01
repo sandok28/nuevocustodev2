@@ -8,3 +8,7 @@
     </div>
     {!!Form::close()!!}
 @endsection
+@section('cargarjs')
+    <!--Page Leve JS -->
+    {!! Html::script('js/generarllave.js') !!}
+@endsection

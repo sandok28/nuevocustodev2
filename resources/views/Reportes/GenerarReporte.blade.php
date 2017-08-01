@@ -1,24 +1,21 @@
-@extends('layouts.principal')
-@section('titel')
-    Crear Funcionarios
-@endsection
-@section('titulo-tarjeta')
-    <h1>CREAR FUNCIONARIOS</h1>
-@endsection
-@section('cargarcss')
-    {{-- DataTables--}}
-    {!! Html::style('assets/plugins/dataTables/css/dataTables.css') !!}
-    <!-- iCheck-->
-    {!! Html::style("assets/plugins/icheck/css/_all.css") !!}
-@endsection
-@section('content')
-    <div>
-        {!!Form::open(['route'=>'funcionarios.store', 'method'=>'POST'])!!}
-        @include('funcionarios.forms.formulario')
-        {!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
-        {!!Form::close()!!}
-    </div>
+<?php
+/**
+ * Created by PhpStorm.
+ * User: andre
+ * Date: 31/07/2017
+ * Time: 12:07 PM
+ */?>
 
+@extends('layouts.principal')
+@section('title')
+    Generar Reportes
+@endsection
+
+@section('content')
+    {!! Form::open() !!}
+    @include('Reportes.forms.formulario')
+    {!! Form::button('Volver',['class'=>'btn btn-primary']) !!}
+    {!! Form::close() !!}
 
 @endsection
 
@@ -33,6 +30,8 @@
     {!! Html::script("assets/js/webcam.min.js") !!}
     {!! Html::script("assets/js/say-cheese.js")!!}
     {!! Html::script("https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquey.main.js")!!}
+    {!! Html::script("assets/plugins/morris/css/morris.css") !!}
+
 
     <script>
         $(document).ready(function() {
@@ -102,15 +101,5 @@
 
 
         });
-    </script>
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-46627904-1', 'authenticgoods.co');
-        ga('send', 'pageview');
-
     </script>
 @endsection

@@ -43,7 +43,7 @@ sales_chart =
          tickLength: 0,
       tickDecimals: 0,
       min:1,
-      ticks: [[1,"JAN"], [2, "FEB"], [3, "MAR"], [4, "APR"], [5, "MAY"], [6, "JUN"], [7, "JUL"], [8, "AUG"], [9, "SEP"], [10, "OCT"], [11, "NOV"], [12, "DEC"]]
+      ticks: [[1,"ENE"], [2, "FEB"], [3, "MAR"], [4, "ABR"], [5, "MAY"], [6, "JUN"], [7, "JUL"], [8, "AGO"], [9, "SEP"], [10, "OCT"], [11, "NOV"], [12, "DIC"]]
       },
       yaxis: {
         tickSize: 500,
@@ -73,7 +73,7 @@ sales_chart =
 
       if (this.plot == null)
       {
-        this.data.d1 = [ [1, 200], [2, 320], [3, 640], [4, 820], [5, 980], [6, 1000], [7, 1200], [8, 1600], [9, 1900], [10, 2100], [11, 2300], [12, 2500]];
+        this.data.d1 = [ [1, 5000], [2, 320], [3, 640], [4, 820], [5, 980], [6, 1000], [7, 1200], [8, 1600], [9, 1900], [10, 2100], [11, 2300], [12, 2500]];
 
       }
         var months = ["January", "February", "March", "April", "May", "Juny", "July", "August", "September", "October", "November", "December"];

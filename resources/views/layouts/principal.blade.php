@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     {{-- Favicon --}}
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" src="{{url('assets/img/favicon.ico')}}" type="image/x-icon">
     {{-- Bootstrap core CSS --}}
     {!! Html::style('assets/plugins/bootstrap/css/bootstrap.min.css') !!}
     {{-- Fonts from Font Awsome --}}
@@ -44,7 +44,7 @@
     <header id="header">
         <!--logo start-->
         <div class="brand">
-            <a href="/" class="logo"><span>CUSTO</span>DE</a>
+            <a href="/home" class="logo"><span>CUSTODE</span></a>
         </div>
         <!--logo end-->
         <div class="toggle-navigation toggle-left">
@@ -66,7 +66,7 @@
                         <li>
                             <a href="#">
                                 <div class="profile-photo">
-                                    <img src="assets/img/avatar.gif" alt="" class="img-circle">
+                                    <img src="{{url('assets/img/avatar.gif')}}" alt="" class="img-circle">
                                 </div>
                                 <div class="message-info">
                                     <span class="sender">James Bagian</span>
@@ -185,43 +185,25 @@
                     <a href="funcionarios"><i class="fa fa-clock-o"></i><span>HORARIOS</span></a>
                 </li>
                 <li class="active">
-                    <a href="licencias"><i class="fa  fa-files-o"></i><span>LICENCIAS</span></a>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:void(0);"><i class="fa fa-list"></i><span>GESTIOS DE AREAS</span><i class="arrow fa fa-angle-right pull-right"></i></a>
-                    <ul>
-
-                        <li><a href="ui-alerts-notifications.html">Alerts &amp; Notifications</a>
-                        </li>
-                        <li><a href="ui-panels.html">Panels</a>
-                        </li>
-                        <li><a href="ui-buttons.html">Buttons</a>
-                        </li>
-                        <li><a href="ui-slider-progress.html">Sliders &amp; Progress</a>
-                        </li>
-                        <li><a href="ui-modals-popups.html">Modals &amp; Popups</a>
-                        </li>
-                        <li><a href="ui-icons.html">Icons</a>
-                        </li>
-                        <li><a href="ui-grid.html">Grid</a>
-                        </li>
-                        <li><a href="ui-tabs-accordions.html">Tabs &amp; Accordions</a>
-                        </li>
-                        <li><a href="ui-nestable-list.html">Nestable Lists</a>
-                        </li>
-                    </ul>
+                    <a href="/licencias"><i class="fa  fa-files-o"></i><span>LICENCIAS</span></a>
                 </li>
                 <li class="active">
-                    <a href="funcionarios"><i class="fa fa-list"></i><span>CONTROL DE AREAS</span></a>
+                    <a href="/GestionAreas"><i class="fa fa-list"></i><span>GESTION DE AREAS</span></a>
+                </li>
+                 <li class="active">
+                    <a href="/area/1"><i class="fa fa-list"></i><span>CONTROL DE AREAS</span></a>
                 </li>
                 <li class="active">
-                    <a href="funcionarios"><i class="fa fa-list"></i><span>ESTADISTICAS</span></a>
+                    <a href="/Estadisticas"><i class="fa fa-list"></i><span>ESTADISTICAS</span></a>
                 </li>
                 <li class="active">
-                    <a href="funcionarios"><i class="fa fa-list"></i><span>AUDITORIAS</span></a>
+                    <a href="/home"><i class="fa fa-list"></i><span>AUDITORIAS</span></a>
                 </li>
                 <li class="active">
-                    <a href="funcionarios"><i class="fa fa-files-o"></i><span>REPORTES</span></a>
+                    <a href="/Reportes"><i class="fa fa-files-o"></i><span>REPORTES</span></a>
+                </li>
+                <li class="active">
+                    <a href="/home"><i class="fa fa-gears"></i><span>CONFIGUARION INICIAL</span></a>
                 </li>
             </ul>
         </div>
