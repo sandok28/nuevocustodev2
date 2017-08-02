@@ -120,9 +120,6 @@ sales_chart =
       previousPoint = null;
     }
   });
-
-
-   sales_chart.init();
-
+    sales_chart.init();
 
 })(jQuery);

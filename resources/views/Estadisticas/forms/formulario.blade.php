@@ -18,7 +18,7 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                {!! Form::select('TIPO DE REPORTES', ['tipo 1' => 'opcion1', 'tipo2' => 'opcion2'],null,['class'=>'form-control']) !!}
+                                {!! Form::select('TIPO DE REPORTES', ['tipo 1' => 'opcion1', 'tipo2' => 'opcion2'],null,['class'=>'form-control','id'=>'tipo']) !!}
                             </div>
                         </div><br><br>
                         <div class="row">
@@ -27,7 +27,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="col-md-6">
-                                    {!! Form::date('Fecha_Inicio', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+                                    {!! Form::date('Fecha_Inicio', \Carbon\Carbon::now(),['class'=>'form-control','id'=>'Fecha_Inicio']) !!}
                                 </div>
                             </div>
                         </div><br><br>
@@ -37,7 +37,7 @@
                              </div>
                              <div class="col-md-6">
                                  <div class="col-md-6">
-                                     {!! Form::date('Fecha_Fin', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+                                     {!! Form::date('Fecha_Fin', \Carbon\Carbon::now(),['class'=>'form-control','id'=>'Fecha_Fin']) !!}
                                  </div>
                              </div>
                          </div><br><br>
@@ -49,13 +49,13 @@
                             {!! Form::label('Horas', null, ['class' => 'control-label']) !!}
                             </div>
                             <div class="col-md-2">
-                            {!! Form::selectRange('horas', 0, 23,null,['class' => 'form-control']) !!}
+                            {!! Form::selectRange('horasinicio', 0, 23,null,['class' => 'form-control','id'=>'horasinicio']) !!}
                             </div>
                             <div class="col-md-1">
                             {!! Form::label('Minutos', null, ['class' => 'control-label']) !!}
                             </div>
                             <div class="col-md-2">
-                            {!! Form::selectRange('minutos', 0, 59,null,['class' => 'form-control']) !!}
+                            {!! Form::selectRange('minutosinicio', 0, 59,null,['class' => 'form-control','id'=>'minutosinicio']) !!}
                             </div><br><br>
                          </div>
                         <div class="row">
@@ -66,13 +66,13 @@
                             {!! Form::label('Horas', null, ['class' => 'control-label']) !!}
                             </div>
                             <div class="col-md-2">
-                            {!! Form::selectRange('horas', 0, 23,null,['class' => 'form-control']) !!}
+                            {!! Form::selectRange('horasfin', 0, 23,null,['class' => 'form-control','id'=>'horasfin']) !!}
                             </div>
                             <div class="col-md-1">
                             {!! Form::label('Minutos', null, ['class' => 'control-label']) !!}
                             </div>
                             <div class="col-md-2">
-                            {!! Form::selectRange('minutos', 0, 59,null,['class' => 'form-control']) !!}
+                            {!! Form::selectRange('minutosfin', 0, 59,null,['class' => 'form-control','id'=>'minutosfin']) !!}
                             </div>
                         </div>
                     </div>
