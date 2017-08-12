@@ -6,12 +6,11 @@ use Illuminate\Http\Request;
 use App\Seccion;
 use App\Cargo;
 use App\Puerta;
-use App\SeccionesPuerta;
+use App\PuertaSeccion;
 use Session;
 use Redirect;
 class SeccionesController extends Controller
 {
-
     /**
      * Llama a la vista index donde se listan todos las secciones
      *
@@ -60,7 +59,7 @@ class SeccionesController extends Controller
         //Relaciono la seccion que se acabo de crear con todas las puertas existentes
         $todasPuertas = Puerta::all();
         foreach($todasPuertas as $puerta){
-            SeccionesPuerta::create([
+            PuertaSeccion::create([
                 'seccion_id' => $seccion->id,
                 'puerta_id' => $puerta->id,
                 'estatus_permiso' => 0
@@ -85,15 +84,24 @@ class SeccionesController extends Controller
      */
     public function edit($id)
     {
+
+
         //obtengo la seccion relacionada al id que llego
         $seccion = Seccion::find($id);
+
         //creo una coleccion con todas las puertas especiales relacionas a la seccion
         $puertasEspeciales = Seccion::find($id)->puertas()->where('puerta_especial',1)->get();
+
         //creo una coleccion con todas las puestas normal relacionas a la seccion
         $puertasNormales = Seccion::find($id)->puertas()->where('puerta_especial',0)->get();
 
+
+
+        $funcionario = $seccion;
+
+
         //Devuelvo la vista edit de secciones y le paso la $seccion, $puertasEspeciales y $puertasNormales.
-        return view('secciones.edit',['seccion'=>$seccion,'puertasEspeciales'=>$puertasEspeciales,'puertasNormales'=>$puertasNormales]);
+        return view('secciones.edit',['seccion'=>$seccion,'puertasEspeciales'=>$puertasEspeciales,'puertasNormales'=>$puertasNormales,'funcionario'=>$funcionario]);
     }
 
 
@@ -120,14 +128,14 @@ class SeccionesController extends Controller
             //Si la puerta fue seclecionada en el check se guarda en la relacion secionn-puerta con un 1
             // indicando que esta seccion tiene permiso sobre ella
             if($request[$puerta->id]!=null){
-                SeccionesPuerta::where('seccion_id', $seccion->id)
+                PuertaSeccion::where('seccion_id', $seccion->id)
                     ->where('puerta_id', $request[$puerta->id])
                     ->update(['estatus_permiso' => 1]);
             }
             else{
                 //Si la puerta no fue seclecionada en el check se guarda en la relacion secionn-puerta con un 0
                 // indicando que esta seccion no tiene permiso sobre ella
-                SeccionesPuerta::where('seccion_id', $seccion->id)
+                PuertaSeccion::where('seccion_id', $seccion->id)
                     ->where('puerta_id', $puerta->id)
                     ->update(['estatus_permiso' => 0]);
             }

@@ -22,6 +22,7 @@ Route::Get('/tomarFoto','FuncionariosController@tomarfoto');
 Route::resource('usuarios','UsuariosController',['except' => ['show','destroy']]);
 
 Route::resource('funcionarios','FuncionariosController');
+Route::get('funcionarios/horario/{funcionario_id}','FuncionariosController@horario')->name('funcionarios.horario');
 Route::resource('puertas','PuertasController');
 Route::resource('controlareas','ControllerControlAreas');
 
@@ -40,10 +41,13 @@ Route::get('licencias/create/{funcionario_id}','LicenciasController@create')->na
 Route::post('licencias/{funcionario_id}','LicenciasController@store')->name('licencias.store');
 
 
-Route::resource('intervalos','IntervalosController',['only' => ['show','destroy']]);
-Route::get('intervalos/create/{invitado_id}', 'IntervalosController@create')->name('intervalos.create');
-Route::post('intervalos/{invitado_id}', 'IntervalosController@store')->name('intervalos.store');
+Route::resource('IntervalosInvitados','IntervalosInvitadosController',['only' => ['show','destroy']]);
+Route::get('IntervalosInvitados/create/{invitado_id}', 'IntervalosInvitadosController@create')->name('IntervalosInvitados.create');
+Route::post('IntervalosInvitados/{invitado_id}', 'IntervalosInvitadosController@store')->name('IntervalosInvitados.store');
 
+Route::resource('IntervalosFuncionarios','IntervalosFuncionariosController',['only' => ['show','destroy']]);
+Route::get('IntervalosFuncionarios/create/{funcionario_id}', 'IntervalosFuncionariosController@create')->name('IntervalosFuncionarios.create');
+Route::post('IntervalosFuncionarios/{funcionario_id}', 'IntervalosFuncionariosController@store')->name('IntervalosFuncionarios.store');
 
 Route::get('errores','ErroresController@error404')->name('errores.error404');
 
@@ -53,3 +57,5 @@ Route::get('area/{user_id}','GestionAreasController@controlareas');
 Route::get('Estadisticas','EstadisticasController@index');
 
 Route::get('Reportes','ReportesController@index');
+
+Route::resource('horariogeneral','HorariosGeneralesController',['only' => ['index']]);

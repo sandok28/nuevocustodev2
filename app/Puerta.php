@@ -8,6 +8,10 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class Puerta extends Model implements AuditableContract
 {
+
+    //Tabla a la que referencia el modelo
+    protected $table = 'Puertas';
+
     //indico que la tabla se debe auditar
     use Auditable;
 
@@ -45,13 +49,14 @@ class Puerta extends Model implements AuditableContract
     }
 
     /**
-     * Obtiene los intervalos relacionados a la puerta
+     * Obtiene los intervalos_invitados relacionados a la puerta
      *
      * @author Edwin Sandoval
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany Coleccion con los intervalos relacionados a la puerta
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany Coleccion con los intervalos_invitados relacionados a la puerta
      */
     public function intervalos()
     {
-        return $this->belongsToMany('App\Intervalo','intervalo_puertas', 'puerta_id', 'intervalo_id');
+        return $this->belongsToMany('App\Intervaloinvitado','intervalo_puertas', 'puerta_id', 'intervalo_id');
     }
+
 }

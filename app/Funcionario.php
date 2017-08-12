@@ -8,6 +8,10 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class Funcionario extends Model implements AuditableContract
 {
+
+    //Tabla a la que referencia el modelo
+    protected $table = 'Funcionarios';
+
     //indico que la tabla se debe auditar
     use Auditable;
 
@@ -48,7 +52,18 @@ class Funcionario extends Model implements AuditableContract
      */
     public function cargo()
     {
-        return $this->belongsTo('App\Cargo','cargos_id');
+        return $this->belongsTo('App\Cargo','cargo_id');
+    }
+
+    /**
+     * Obtiene los intervalos_funcionarios especiales relacionadas al funcionario
+     *
+     * @author Edwin Sandoval
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany  Coleccion con los intervalos_funcionarios especiales relacionadas al funcionario
+     */
+    public function horariosEspeciales()
+    {
+        return $this->hasMany('App\Intervalofuncionario', 'funcionario_id');
     }
 
 }

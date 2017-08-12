@@ -13,7 +13,7 @@ class CreateLicenciasTable extends Migration
      */
     public function up()
     {
-        Schema::create('licencias', function (Blueprint $table) {
+        Schema::create('Licencias', function (Blueprint $table) {
             $table->increments('id');
             $table->date('desde');
             $table->date('hasta');
@@ -21,7 +21,7 @@ class CreateLicenciasTable extends Migration
             $table->timestamps();
 
             $table->integer('funcionario_id')->unsigned();
-            $table->foreign('funcionario_id')->references('id')->on('funcionarios');
+            $table->foreign('funcionario_id')->references('id')->on('Funcionarios');
         });
     }
 
@@ -32,6 +32,6 @@ class CreateLicenciasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('licencias');
+        Schema::dropIfExists('Licencias');
     }
 }

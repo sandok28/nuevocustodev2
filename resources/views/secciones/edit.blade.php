@@ -16,6 +16,7 @@
                         <h1>Puertas normales</h1>
                     </div>
                     @foreach($puertasNormales as $puertaNormal)
+
                         <div class="col-xs-4">
                             {!! Form::checkbox($puertaNormal->id, $puertaNormal->id,$puertaNormal->pivot->estatus_permiso) !!}
                             {!! Form::label($puertaNormal->nombre) !!}
@@ -29,8 +30,6 @@
 
                     @foreach($puertasEspeciales as $puertaEspecial)
                         <div class="col-xs-4">
-
-
                             {!! Form::checkbox($puertaEspecial->id, $puertaEspecial->id, $puertaEspecial->pivot->estatus_permiso) !!}
                             {!! Form::label($puertaEspecial->nombre) !!}
                         </div>
@@ -54,12 +53,14 @@
             {!!Form::submit('Actualizar',['class'=>'btn btn-primary'])!!}
         </div>
     {!!Form::close()!!}
-
     <div class="row">
         <div class="col-md-12">
             @include('cargos.index')
         </div>
     </div>
-
-
+    <div class="row">
+        <div class="col-md-12">
+            //aqui va lo del horario especial
+        </div>
+    </div>
 @endsection

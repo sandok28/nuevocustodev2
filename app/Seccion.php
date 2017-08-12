@@ -8,6 +8,9 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class Seccion extends Model implements AuditableContract
 {
+
+    //Tabla a la que referencia el modelo
+    protected $table = 'Secciones';
     //indico que la tabla se debe auditar
     use Auditable;
 
@@ -35,6 +38,17 @@ class Seccion extends Model implements AuditableContract
      */
     public function puertas()
     {
-        return $this->belongsToMany('App\Puerta','secciones_puertas','seccion_id','puerta_id')->withPivot('estatus_permiso');
+        return $this->belongsToMany('App\Puerta','Puertas_Secciones','seccion_id','puerta_id')->withPivot('estatus_permiso');
+    }
+
+    /**
+     * Obtiene los cargos relacionados a la seccion
+     *
+     * @author Edwin Sandoval
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Coleccion con los cargos relacionados a la seccion
+     */
+    public function intervalosEspeciales()
+    {
+        return $this->hasMany('App\IntervaloSeccion', 'seccion_id');
     }
 }

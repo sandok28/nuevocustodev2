@@ -13,13 +13,13 @@ class CreateFuncionariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('funcionarios', function (Blueprint $table) {
+        Schema::create('Funcionarios', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('cedula');
             $table->String('nombre');
             $table->String('foto');
-            $table->dateTime('fecha_nacimiento');
-            $table->String('apelido');
+            $table->date('fecha_nacimiento');
+            $table->String('apellido');
             $table->integer('celular');
             $table->String('correo');
             $table->boolean('hoario_normal');
@@ -29,8 +29,8 @@ class CreateFuncionariosTable extends Migration
             $table->integer('estatus');
             $table->timestamps();
 
-            $table->integer('cargos_id')->unsigned();
-            $table->foreign('cargos_id')->references('id')->on('cargos');
+            $table->integer('cargo_id')->unsigned();
+            $table->foreign('cargo_id')->references('id')->on('Cargos');
         });
     }
 
@@ -41,6 +41,6 @@ class CreateFuncionariosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('funcionarios');
+        Schema::dropIfExists('Funcionarios');
     }
 }
