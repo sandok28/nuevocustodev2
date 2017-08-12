@@ -15,7 +15,7 @@ class EstadisticasController extends Controller
     {
         $nombre= Funcionario::pluck('nombre');
         $horario=Funcionario::pluck('hoario_normal');
-        //dd($funcionarios);
-        return view('Estadisticas.Generar', compact($nombre,$horario));
+        //dd($nombre,$horario);
+        return view('Estadisticas.Generar', compact('nombre','hoario_normal'));
     }
 }

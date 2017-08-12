@@ -19,6 +19,7 @@
     {!! Form::submit('Guardar Estadistica',['class'=>'btn btn-primary']) !!}
     {!! Form::close() !!}
 
+
     <!--inicio de charts.js-->
 
     <canvas id = "myChart"  > </canvas>
@@ -27,15 +28,17 @@
         function dibujar() {
             var ctx = document.getElementById('myChart').getContext('2d');
             var titulo = String(document.getElementById('tipo').value);
-            var label;
-            var datos;
 
 
             var chart = new Chart(ctx, {
                 type: 'bar',
 
                 data: {
-                    labels: [],
+                    labels: [
+                        @forEach($nombre as nombre)
+
+                        @endforeach
+                    ],
                     datasets: [{
                         label: titulo,
                         backgroundColor: 'rgb(0, 0, 0)',

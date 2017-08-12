@@ -75,6 +75,7 @@
                             {!! Form::selectRange('minutosfin', 0, 59,null,['class' => 'form-control','id'=>'minutosfin']) !!}
                             </div>
                         </div>
+
                     </div>
                     </div>
                 </div>
