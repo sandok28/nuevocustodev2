@@ -19,7 +19,6 @@
     {!! Form::submit('Guardar Estadistica',['class'=>'btn btn-primary']) !!}
     {!! Form::close() !!}
 
-
     <!--inicio de charts.js-->
 
     <canvas id = "myChart"  > </canvas>
@@ -28,23 +27,20 @@
         function dibujar() {
             var ctx = document.getElementById('myChart').getContext('2d');
             var titulo = String(document.getElementById('tipo').value);
-            var fechainicio = document.getElementById('Fecha_Inicio').value.toString();
-            var fechafin = document.getElementById('Fecha_Fin').value.toString();
-            var horainicio = document.getElementById('horasinicio').value.toString().concat(document.getElementById('minutosinicio').value.toString());
-            var horafin = document.getElementById('horasfin').value.toString().concat(document.getElementById('minutosfin').value.toString());
-            alert(horainicio,horafin);
+            var label;
+            var datos;
+
+
             var chart = new Chart(ctx, {
-                // The type of chart we want to create
                 type: 'bar',
 
-                // The data for our dataset
                 data: {
-                    labels: [fechainicio,fechafin,horainicio,horafin],
+                    labels: [],
                     datasets: [{
                         label: titulo,
                         backgroundColor: 'rgb(0, 0, 0)',
                         borderColor: 'rgb(255, 255, 255)',
-                        data: [horainicio,horafin],
+                        data: [],
                     }]
                 },
 

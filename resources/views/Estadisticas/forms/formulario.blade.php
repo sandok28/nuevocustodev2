@@ -18,7 +18,7 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                {!! Form::select('TIPO DE REPORTES', ['tipo 1' => 'opcion1', 'tipo2' => 'opcion2'],null,['class'=>'form-control','id'=>'tipo']) !!}
+                                {!! Form::select('TIPO DE REPORTES', ['PuertasFuncionarios' => 'Puertas por Funcionarios', 'HorarioFuncionarios' => 'Tipos de Horarios por Funcionarios'],null,['class'=>'form-control','id'=>'tipo']) !!}
                             </div>
                         </div><br><br>
                         <div class="row">

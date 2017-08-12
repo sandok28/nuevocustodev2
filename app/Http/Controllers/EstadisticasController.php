@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Funcionario;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -12,6 +13,9 @@ class EstadisticasController extends Controller
     **/
     public function index()
     {
-        return view('Estadisticas.Generar');
+        $nombre= Funcionario::pluck('nombre');
+        $horario=Funcionario::pluck('hoario_normal');
+        //dd($funcionarios);
+        return view('Estadisticas.Generar', compact($nombre,$horario));
     }
 }
