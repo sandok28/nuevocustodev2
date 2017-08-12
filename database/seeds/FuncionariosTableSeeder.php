@@ -13,12 +13,12 @@ class FuncionariosTableSeeder extends Seeder
     {
         //
         for ($i = 0; $i<10; $i++){
-            DB::table('funcionarios')->insert([
+            DB::table('Funcionarios')->insert([
                 'cedula' => $i,
                 'nombre' => 'N'.$i,
                 'foto'=>'F'.$i,
                 'fecha_nacimiento' => '2017-05-22 16:15:10',
-                'apelido' => 'A'.$i,
+                'apellido' => 'A'.$i,
                 'celular' => $i,
                 'correo' => 'C'.$i,
                 'hoario_normal' => 1,
@@ -26,7 +26,7 @@ class FuncionariosTableSeeder extends Seeder
                 'licencia' => 0,
                 'tarjeta_rfid' => '0'.$i,
                 'estatus' => 1,
-                'cargos_id'=>1,
+                'cargo_id'=>1,
             ]);
         }
     }

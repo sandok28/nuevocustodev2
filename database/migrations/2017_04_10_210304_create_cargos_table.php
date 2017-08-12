@@ -13,14 +13,14 @@ class CreateCargosTable extends Migration
      */
     public function up()
     {
-        Schema::create('cargos', function (Blueprint $table) {
+        Schema::create('Cargos', function (Blueprint $table) {
             $table->increments('id');
             $table->String('nombre');
             $table->integer('estatus');
             $table->timestamps();
 
             $table->integer('secciones_id')->unsigned();//llave foranea
-            $table->foreign('secciones_id')->references('id')->on('seccions');
+            $table->foreign('secciones_id')->references('id')->on('Secciones');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateCargosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cargos');
+        Schema::dropIfExists('Cargos');
     }
 }

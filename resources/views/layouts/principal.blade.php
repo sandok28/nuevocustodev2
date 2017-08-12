@@ -219,7 +219,26 @@
             <!--aca primer corte-->
             <!--tiles end-->
             <!--dashboard charts and map start-->
+
             <div class="row">
+                <div class="col-md-12">
+
+
+                @if(Session::get('tipo') == 'error')
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        {{Session::get('message')}}
+                    </div>
+                @endif
+
+                @if(Session::get('tipo') == 'message')
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        {{Session::get('message')}}
+                    </div>
+                @endif
+                </div>
+
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -230,6 +249,7 @@
                             </div>
                         </div>
                         <div class="panel-body">
+
                             @yield('content')
                         </div>
                     </div>

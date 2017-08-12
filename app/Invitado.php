@@ -8,6 +8,9 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 class Invitado extends Model implements AuditableContract
 {
+    //Tabla a la que referencia el modelo
+    protected $table = 'Invitados';
+
     //indico que la tabla se debe auditar
     use Auditable;
 
@@ -28,13 +31,13 @@ class Invitado extends Model implements AuditableContract
     }
 
     /**
-     * Obtiene los intervalos relacionados al invitado
+     * Obtiene los intervalos_invitados relacionados al invitado
      *
      * @author Edwin Sandoval
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany Coleccion con los intervalos relacionados al invitado
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Coleccion con los intervalos_invitados relacionados al invitado
      */
     public function intervalos()
     {
-        return $this->hasMany('App\Intervalo', 'invitado_id');
+        return $this->hasMany('App\Intervaloinvitado', 'invitado_id');
     }
 }

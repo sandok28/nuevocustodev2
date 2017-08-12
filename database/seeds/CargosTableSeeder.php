@@ -12,7 +12,7 @@ class CargosTableSeeder extends Seeder
     public function run()
     {
         for ($i = 0; $i<10; $i++){
-            DB::table('cargos')->insert([
+            DB::table('Cargos')->insert([
                 'nombre' => 'cargo'.$i,
                 'estatus' => 1,
                 'secciones_id'=>1,

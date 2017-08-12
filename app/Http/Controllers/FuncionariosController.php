@@ -8,7 +8,6 @@ namespace App\Http\Controllers;
 use App\Cargo;
 use App\Funcionario;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 
 class FuncionariosController extends Controller
@@ -83,7 +82,9 @@ class FuncionariosController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $funcionario = Funcionario::find($id);
+        return view('funcionarios.edit',['funcionario'=>$funcionario]);
     }
 
     /**
@@ -144,4 +145,14 @@ class FuncionariosController extends Controller
         //
     }
 
+    public function horario($id)
+    {
+
+
+        $funcionario = Funcionario::find($id);
+
+        $horariosEspeciales = $funcionario->horariosEspeciales;
+
+        return view('funcionarios.horario',['funcionario'=>$funcionario,'horariosEspeciales'=>$horariosEspeciales]);
+    }
 }
