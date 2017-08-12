@@ -56,16 +56,14 @@ class Funcionario extends Model implements AuditableContract
     }
 
     /**
-     * Obtiene los horarios especiales relacionadas al funcionario
+     * Obtiene los intervalos_funcionarios especiales relacionadas al funcionario
      *
      * @author Edwin Sandoval
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany  Coleccion con los horarios especiales relacionadas al funcionario
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany  Coleccion con los intervalos_funcionarios especiales relacionadas al funcionario
      */
     public function horariosEspeciales()
     {
-
         return $this->hasMany('App\Intervalofuncionario', 'funcionario_id');
     }
-
 
 }

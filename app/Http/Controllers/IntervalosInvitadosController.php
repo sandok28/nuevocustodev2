@@ -9,14 +9,14 @@ use Illuminate\Http\Request;
 use Session;
 use Redirect;
 
-class IntervalosController extends Controller
+class IntervalosInvitadosController extends Controller
 {
 
     /**
      * No hace nada en concreto solo llama a la vista create
      *
      * @author Edwin Sandoval
-     * @return \Illuminate\Http\Response devuelve la vista create de intervalos
+     * @return \Illuminate\Http\Response devuelve la vista create de intervalos_invitados
      * y le paso
      * $invitado_id id del invitado al que pertenece
      * $puertasNormales una coleccion con todas las puestas normales
@@ -30,7 +30,7 @@ class IntervalosController extends Controller
         //creo una coleccion con todas las puestas normales
         $puertasNormales = Puerta::All()->where('puerta_especial',0);
 
-        return view('intervalos.create',['invitado_id'=>$invitado_id,'puertasNormales'=>$puertasNormales,'puertasEspeciales'=>$puertasEspeciales]);
+        return view('intervalos_invitados.create',['invitado_id'=>$invitado_id,'puertasNormales'=>$puertasNormales,'puertasEspeciales'=>$puertasEspeciales]);
     }
 
     /**
@@ -62,7 +62,7 @@ class IntervalosController extends Controller
             // indicando que esta seccion tiene permiso sobre ella
             if($request[$puerta->id]!=null) {
                 IntervaloInvitadoPuerta::create([
-                    'intervalo_id' => $intervalo->id,
+                    'intervalo_invitado_id' => $intervalo->id,
                     'puerta_id' => $puerta->id,
                 ]);
             }
@@ -71,10 +71,10 @@ class IntervalosController extends Controller
     }
 
     /**
-     *  llama a la vista show de intervalos la cual muestra la informacion relacionada a un intervalo
+     *  llama a la vista show de intervalos_invitados la cual muestra la informacion relacionada a un intervalo
      *
      * @author Edwin Sandoval
-     * @return \Illuminate\Http\Response devuelve la vista edit de los intervalos
+     * @return \Illuminate\Http\Response devuelve la vista edit de los intervalos_invitados
      * y le paso
      * $intervalo objeto del intervalo que se quiere mostrar
      * $puertasNormales una coleccion con todas las puestas normales asociadas al intervalo
@@ -86,8 +86,8 @@ class IntervalosController extends Controller
         $intervalo = Intervaloinvitado::find($id);
         $puertasNormales = Intervaloinvitado::find($id)->puertas()->where('puerta_especial',0)->get();
         $puertasEspeciales = Intervaloinvitado::find($id)->puertas()->where('puerta_especial',1)->get();
-        //devuelve la vista edit de los intervalos
-        return view('intervalos.show',['intervalo'=>$intervalo,'puertasEspeciales'=>$puertasEspeciales,'puertasNormales'=>$puertasNormales]);
+        //devuelve la vista edit de los intervalos_invitados
+        return view('intervalos_invitados.show',['intervalo'=>$intervalo,'puertasEspeciales'=>$puertasEspeciales,'puertasNormales'=>$puertasNormales]);
     }
 
 
@@ -108,7 +108,7 @@ class IntervalosController extends Controller
         }
         $invitado_id = Intervaloinvitado::find($id)->invitado_id;
         Intervaloinvitado::destroy($id);
-        //devuelve la vista edit de los intervalos
+        //devuelve la vista edit de los intervalos_invitados
         return redirect('/invitados/'.$invitado_id.'/edit');
     }
 }

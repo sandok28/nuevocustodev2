@@ -52,7 +52,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            @include('horarios.index')
+            @include('intervalos_funcionarios.index')
         </div>
     </div>
 @endsection

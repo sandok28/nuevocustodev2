@@ -10,7 +10,7 @@
 @section('content')
     <div>
         {!!Form::open(['route'=>['intervalos.store',$invitado_id], 'method'=>'POST'])!!}
-            @include('intervalos.forms.formulario')
+            @include('intervalos_invitados.forms.formulario')
             {!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
             <div class="row form-group">
                 <div class="col-xs-12 row">

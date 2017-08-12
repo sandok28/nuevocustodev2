@@ -41,13 +41,13 @@ Route::get('licencias/create/{funcionario_id}','LicenciasController@create')->na
 Route::post('licencias/{funcionario_id}','LicenciasController@store')->name('licencias.store');
 
 
-Route::resource('intervalos','IntervalosController',['only' => ['show','destroy']]);
-Route::get('intervalos/create/{invitado_id}', 'IntervalosController@create')->name('intervalos.create');
-Route::post('intervalos/{invitado_id}', 'IntervalosController@store')->name('intervalos.store');
+Route::resource('IntervalosInvitados','IntervalosInvitadosController',['only' => ['show','destroy']]);
+Route::get('IntervalosInvitados/create/{invitado_id}', 'IntervalosInvitadosController@create')->name('IntervalosInvitados.create');
+Route::post('IntervalosInvitados/{invitado_id}', 'IntervalosInvitadosController@store')->name('IntervalosInvitados.store');
 
-Route::resource('horariosespeciales','HorariosEspecialesController',['only' => ['show','destroy']]);
-Route::get('horariosespeciales/create/{funcionario_id}', 'HorariosEspecialesController@create')->name('horariosespeciales.create');
-Route::post('horariosespeciales/{funcionario_id}', 'HorariosEspecialesController@store')->name('horariosespeciales.store');
+Route::resource('IntervalosFuncionarios','IntervalosFuncionariosController',['only' => ['show','destroy']]);
+Route::get('IntervalosFuncionarios/create/{funcionario_id}', 'IntervalosFuncionariosController@create')->name('IntervalosFuncionarios.create');
+Route::post('IntervalosFuncionarios/{funcionario_id}', 'IntervalosFuncionariosController@store')->name('IntervalosFuncionarios.store');
 
 Route::get('errores','ErroresController@error404')->name('errores.error404');
 
@@ -57,3 +57,5 @@ Route::get('area/{user_id}','GestionAreasController@controlareas');
 Route::get('Estadisticas','EstadisticasController@index');
 
 Route::get('Reportes','ReportesController@index');
+
+Route::resource('horariogeneral','HorariosGeneralesController',['only' => ['index']]);

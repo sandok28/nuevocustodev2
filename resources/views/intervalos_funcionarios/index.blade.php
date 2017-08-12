@@ -18,7 +18,7 @@
                 <div class="panel-body">
                     <div class="col-md-12 row center-xs panel-heading ">
                         <div class="col-xs-12">
-                            {!!link_to_route('horariosespeciales.create', 'Agregar intervalo en el horario', $funcionario->id,['class'=>'btn btn-info btn-block btn-3d'])!!}
+                            {!!link_to_route('IntervalosFuncionarios.create', 'Agregar intervalo en el horario', $funcionario->id,['class'=>'btn btn-info btn-block btn-3d'])!!}
                         </div>
                     </div>
                     <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -52,9 +52,9 @@
                                     @endif
                                     <td>{{$horarioEspecial->desde}}</td>
                                     <td>{{$horarioEspecial->hasta}}</td>
-                                    <th>{!!link_to_route('horariosespeciales.show', $title = 'ver', $parameters = $horarioEspecial->id, $attributes = ['class'=>'btn btn-primary'])!!}</th>
+                                    <th>{!!link_to_route('IntervalosFuncionarios.show', $title = 'ver', $parameters = $horarioEspecial->id, $attributes = ['class'=>'btn btn-primary'])!!}</th>
                                     <th>
-                                        {!!Form::open(['route'=>['horariosespeciales.destroy',$horarioEspecial], 'method'=>'DELETE'])!!}
+                                        {!!Form::open(['route'=>['IntervalosFuncionarios.destroy',$horarioEspecial], 'method'=>'DELETE'])!!}
                                         {!!Form::submit('Eliminar',['class'=>'btn btn-danger'])!!}
                                         {!!Form::close()!!}
                                     </th>

@@ -18,7 +18,7 @@
                 <div class="panel-body">
                     <div class="col-md-12 row center-xs panel-heading ">
                         <div class="col-xs-12">
-                            {!!link_to_route('intervalos.create', 'Intervaloinvitado', $invitado->id,['class'=>'btn btn-info btn-block btn-3d'])!!}
+                            {!!link_to_route('IntervalosInvitados.create', 'Agregar nuevo intervalo', $invitado->id,['class'=>'btn btn-info btn-block btn-3d'])!!}
                         </div>
                     </div>
                     <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -38,9 +38,9 @@
                                     <td>{{$intervalo->targeta_rfid}}</td>
                                     <td>{{$intervalo->desde}}</td>
                                     <td>{{$intervalo->hasta}}</td>
-                                    <th>{!!link_to_route('intervalos.show', $title = 'ver', $parameters = $intervalo, $attributes = ['class'=>'btn btn-primary'])!!}</th>
+                                    <th>{!!link_to_route('IntervalosInvitados.show', $title = 'ver', $parameters = $intervalo, $attributes = ['class'=>'btn btn-primary'])!!}</th>
                                     <th>
-                                        {!!Form::open(['route'=>['intervalos.destroy',$intervalo], 'method'=>'DELETE'])!!}
+                                        {!!Form::open(['route'=>['IntervalosInvitados.destroy',$intervalo], 'method'=>'DELETE'])!!}
                                         {!!Form::submit('Eliminar',['class'=>'btn btn-danger'])!!}
                                         {!!Form::close()!!}
                                     </th>

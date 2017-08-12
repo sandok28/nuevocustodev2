@@ -49,10 +49,10 @@ class Puerta extends Model implements AuditableContract
     }
 
     /**
-     * Obtiene los intervalos relacionados a la puerta
+     * Obtiene los intervalos_invitados relacionados a la puerta
      *
      * @author Edwin Sandoval
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany Coleccion con los intervalos relacionados a la puerta
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany Coleccion con los intervalos_invitados relacionados a la puerta
      */
     public function intervalos()
     {

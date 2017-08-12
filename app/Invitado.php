@@ -31,10 +31,10 @@ class Invitado extends Model implements AuditableContract
     }
 
     /**
-     * Obtiene los intervalos relacionados al invitado
+     * Obtiene los intervalos_invitados relacionados al invitado
      *
      * @author Edwin Sandoval
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany Coleccion con los intervalos relacionados al invitado
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Coleccion con los intervalos_invitados relacionados al invitado
      */
     public function intervalos()
     {

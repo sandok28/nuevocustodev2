@@ -9,8 +9,8 @@
 @endsection
 @section('content')
     <div>
-        {!!Form::open(['route'=>['horariosespeciales.store',$funcionario_id], 'method'=>'POST'])!!}
-            @include('horarios.forms.formulario')
+        {!!Form::open(['route'=>['IntervalosFuncionarios.store',$funcionario_id], 'method'=>'POST'])!!}
+            @include('intervalos_funcionarios.forms.formulario')
 
             <div class="row form-group">
                 <div class="col-xs-12 row">

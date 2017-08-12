@@ -11,7 +11,6 @@ use Session;
 use Redirect;
 class SeccionesController extends Controller
 {
-
     /**
      * Llama a la vista index donde se listan todos las secciones
      *
@@ -129,14 +128,14 @@ class SeccionesController extends Controller
             //Si la puerta fue seclecionada en el check se guarda en la relacion secionn-puerta con un 1
             // indicando que esta seccion tiene permiso sobre ella
             if($request[$puerta->id]!=null){
-                SeccionesPuerta::where('seccion_id', $seccion->id)
+                PuertaSeccion::where('seccion_id', $seccion->id)
                     ->where('puerta_id', $request[$puerta->id])
                     ->update(['estatus_permiso' => 1]);
             }
             else{
                 //Si la puerta no fue seclecionada en el check se guarda en la relacion secionn-puerta con un 0
                 // indicando que esta seccion no tiene permiso sobre ella
-                SeccionesPuerta::where('seccion_id', $seccion->id)
+                PuertaSeccion::where('seccion_id', $seccion->id)
                     ->where('puerta_id', $puerta->id)
                     ->update(['estatus_permiso' => 0]);
             }

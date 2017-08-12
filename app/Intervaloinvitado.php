@@ -26,6 +26,6 @@ class Intervaloinvitado extends Model implements AuditableContract
      */
     public function puertas()
     {
-        return $this->belongsToMany('App\Puerta','intervalo_puertas', 'intervalo_id', 'puerta_id');
+        return $this->belongsToMany('App\Puerta','IntervalosInvitados_Puertas', 'intervalo_invitado_id', 'puerta_id');
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\UsuariosPuerta;
+use App\UserPuerta;
 use App\PermisoUser;
 use App\Puerta;
 use App\Permiso;
@@ -68,7 +68,7 @@ class UsuariosController extends Controller
         //Relaciono el usuario que se acabo de crear con todas las puertas existentes
         $todasPuertas = Puerta::all();
         foreach($todasPuertas as $puerta){
-            UsuariosPuerta::create([
+            UserPuerta::create([
                 'user_id' => $usuario->id,
                 'puerta_id' => $puerta->id,
                 'estatus_permiso' => 0
@@ -134,14 +134,14 @@ class UsuariosController extends Controller
             if($request[$puerta->id]!=null){
                 //Si la puerta fue seclecionada en el check se guarda en la relacion usuario-puerta con un 1
                 // indicando que este usuario tiene permiso sobre ella
-                UsuariosPuerta::where('user_id', $usuario->id)
+                UserPuerta::where('user_id', $usuario->id)
                     ->where('puerta_id', $request[$puerta->id])
                     ->update(['estatus_permiso' => 1]);
             }
             else{
                 //Si la puerta no fue seclecionada en el check se guarda en la relacion usuario-puerta con un 0
                 // indicando que este usuario no tiene permiso sobre ella
-                UsuariosPuerta::where('user_id', $usuario->id)
+                UserPuerta::where('user_id', $usuario->id)
                     ->where('puerta_id', $puerta->id)
                     ->update(['estatus_permiso' => 0]);
             }

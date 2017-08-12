@@ -42,8 +42,6 @@
         @endif
 
     </div>
-
-
     <div class="row form-group">
         <div class="col-xs-12 row">
             <div class="row col-xs-6">

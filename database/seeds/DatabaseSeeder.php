@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(IntervalosFuncionariosTableSeeder::class);
         $this->call(IntervalosfuncionariosPuertasTableSeeder::class);
         $this->call(IntervalosseccionesTableSeeder::class);
+        $this->call(HorariogeneralTableSeeder::class);
 
     }
 }
