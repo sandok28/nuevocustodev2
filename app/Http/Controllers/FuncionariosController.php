@@ -9,6 +9,7 @@ use App\Cargo;
 use App\Funcionario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class FuncionariosController extends Controller
 {
@@ -57,15 +58,15 @@ class FuncionariosController extends Controller
 
             Funcionario::create([
                 'nombre'=>$request['nombre'],
-                'apelido'=>$request['apelido'],
+                'apellido'=>$request['apellido'],
                 'cedula'=>$request['cedula'],
                 'correo'=>$request['correo'],
                 'tarjeta_rfid'=>$request['tarjeta_rfid'],
                 'fecha_nacimiento'=>$request['fecha_nacimiento'],
-                'cargos_id'=>'1',
+                'cargo_id'=>'1',
                 'foto'=>'0',
                 'celular'=>$request['celular'],
-                'hoario_normal'=>$request['asignar_horario_nomal'],
+                'hoario_normal'=>$request['horario'],
                 'licencia'=>'1',
                 'estatus'=>'0',
                 'dado_de_baja'=>'0',
@@ -98,6 +99,7 @@ class FuncionariosController extends Controller
     {
         $cargos = Cargo::all();
         $funcionario = Funcionario::find($id);
+        //dd($funcionario);
         return view('funcionarios.edit',['funcionario'=>$funcionario,'cargos'=>$cargos]);
     }
 
@@ -110,28 +112,12 @@ class FuncionariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        $variablesAdaptadas = [
-            'nombre' => $request->all()['nombre'],
-            'apelido'=> $request->all()['apelido'],
-            'cedula'=> $request->all()['cedula'],
-            'celular'=> $request->all()['celular'],
-            'correo'=> $request->all()['email'],
-            'tarjeta_rfid'=> $request->all()['rfid'],
-            'cargos_id'=> $request->all()['Cargo'],
-            'hoario_normal'=> $request->all()['asignar_horario_nomal'],
-            'fecha_nacimiento'=>$request->all()['fecha_nacimiento'],
-            'foto'=> $request->all()['0'],
-            'licencia'=> $request->all()[0],
-            'estatus'=> $request->all()[1],
-            'dado_de_baja'=> $request->all()[0],
 
-        ];
         $funcionario = Funcionario::find($id);
-        $funcionario->fill($variablesAdaptadas);
+        $funcionario->fill($request->all());
         $funcionario->save();
-        Session::flash('message','Funcionario Actualizado Correctamente');
-        return Redirect::to('/Funcionarios');
+        //Session::flash('message','Funcionario Actualizado Correctamente');
+        return Redirect::to('/funcionarios');
     }
 
     /**

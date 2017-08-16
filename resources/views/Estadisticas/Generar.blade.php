@@ -35,19 +35,18 @@
 
                 data: {
                     labels: [
-                        @forEach($nombre as nombre)
-
-                        @endforeach
-                    ],
+                        1
+                            ],
                     datasets: [{
                         label: titulo,
                         backgroundColor: 'rgb(0, 0, 0)',
                         borderColor: 'rgb(255, 255, 255)',
-                        data: [],
+                        data: [
+                            1
+                        ],
                     }]
                 },
 
-                // Configuration options go here
                 options: {}
             });
         }

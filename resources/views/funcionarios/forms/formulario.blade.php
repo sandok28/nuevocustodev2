@@ -28,7 +28,7 @@
                                    {!!Form::label('apellido','APELLIDO:')!!}
                                 </div>
                                 <div class="col-sm-9">
-                                    {!!Form::text('apelido',null,['class'=>'form-control','placeholder'=>'Ingresa el Apellido del usuario'])!!}
+                                    {!!Form::text('apellido',null,['class'=>'form-control','placeholder'=>'Ingresa el Apellido del usuario'])!!}
                                 </div>
                             </div>
                             <br><br>
@@ -53,7 +53,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">FECHA DE NACIMIENTO:</label>
                                         <div class="col-sm-6">
-                                        <input type="text" class="form-control" name="fecha_nacimiento" required="" placeholder="DD/MM/YYYY">
+                                        <input type="text" class="form-control" name="fecha_nacimiento" id="fecha_nacimiento" required="" placeholder="DD/MM/YYYY">
                                         </div>
                                 </div>
                                 <br><br>
@@ -83,7 +83,7 @@
                                 {!!Form::label('cargo','CARGO:')!!}
                             </div>
                             <div class="col-sm-9">
-                                <select class="form-control">
+                                <select class="form-control" name="cargo">
                                     @foreach($cargos as $cargo)
                                         <option>{{$cargo->nombre}}</option>
                                     @endforeach
