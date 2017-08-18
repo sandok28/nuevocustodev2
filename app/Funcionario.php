@@ -66,4 +66,5 @@ class Funcionario extends Model implements AuditableContract
         return $this->hasMany('App\Intervalofuncionario', 'funcionario_id');
     }
 
+
 }

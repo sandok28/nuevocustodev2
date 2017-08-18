@@ -9,9 +9,9 @@
 @endsection
 @section('content')
     <div>
-        {!!Form::open(['route'=>['intervalos.store',$invitado_id], 'method'=>'POST'])!!}
+        {!!Form::open(['route'=>['IntervalosInvitados.store',$invitado_id], 'method'=>'POST'])!!}
             @include('intervalos_invitados.forms.formulario')
-            {!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
+
             <div class="row form-group">
                 <div class="col-xs-12 row">
                     <div class="col-xs-6">
@@ -38,9 +38,9 @@
                     </div>
                 </div>
             </div>
-
-
-
+            <div class="col-md-12 row form-group">
+                {!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
+            </div>
         {!!Form::close()!!}
     </div>
 

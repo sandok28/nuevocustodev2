@@ -45,29 +45,18 @@ class IntervalosInvitadosController extends Controller
      */
     public function store(Request $request,$invitado_id)
     {
-        Intervaloinvitado::create([
-            'desde'=> $request['desde'],
-            'hasta'=> $request['hasta'],
-            'targeta_rfid' => $request['targeta_rfid'],
-            'invitado_id'=> $invitado_id,
-        ]);
 
-        //obtengo la ultima seccion que se creo es decir la que acabamos de crear
-        $intervalo = Intervaloinvitado::orderBy('created_at', 'desc')->first();
+        if ($request->hasta_hora > $request->desde_hora) {
 
-        //Relaciono el intervalo que se acabo de crear con todas las puertas selecionadas
-        $todasPuertas = Puerta::all();
-        foreach($todasPuertas as $puerta){
-            //Si la puerta fue seclecionada en el check se guarda en la relacion secionn-puerta con un 1
-            // indicando que esta seccion tiene permiso sobre ella
-            if($request[$puerta->id]!=null) {
-                IntervaloInvitadoPuerta::create([
-                    'intervalo_invitado_id' => $intervalo->id,
-                    'puerta_id' => $puerta->id,
-                ]);
-            }
+            $this->crearIntevaloInvitado($request,$invitado_id);
         }
-        return redirect('/invitados/'.$invitado_id.'/edit')->with('message','El intervalo se ha registrado correctamente');
+        else if($request->hasta_hora == $request->desde_hora && $request->hasta_minuto > $request->desde_minuto){
+            $this->crearIntevaloInvitado($request,$invitado_id);
+        } else{
+            return redirect('IntervalosInvitados/create/'.$invitado_id)->with(['message'=>'Intervalo de tiempo invalido','tipo'=>'error']);
+        }
+
+        return redirect('/invitados/'.$invitado_id.'/edit')->with(['message'=>'El intervalo se ha registrado correctamente','tipo'=>'message']);
     }
 
     /**
@@ -110,5 +99,42 @@ class IntervalosInvitadosController extends Controller
         Intervaloinvitado::destroy($id);
         //devuelve la vista edit de los intervalos_invitados
         return redirect('/invitados/'.$invitado_id.'/edit');
+    }
+
+    /**
+     *  Crea un nuevo intervalo de tiempo al invitado y lo relaciona con las puertas
+     * seleccionadas en el formulario.
+     *
+     * @author Edwin Sandoval
+     * @return void
+     * @param Request $request con los datos del formulario
+     * @param integer $invitado_id id del invitado al que va pertenecer el intervalo
+     */
+
+    private function crearIntevaloInvitado(Request $request,$invitado_id)
+    {
+        Intervaloinvitado::create([
+
+            'desde'=> $request->desde_hora.":".$request->desde_minuto.":0",
+            'hasta'=> $request->hasta_hora.":".$request->hasta_minuto.":0",
+            'targeta_rfid' => $request->targeta_rfid,
+            'invitado_id'=> $invitado_id,
+        ]);
+
+        //obtengo el ultimo intervalo que se creo es decir la que acabamos de crear
+        $intervalo = Intervaloinvitado::orderBy('created_at', 'desc')->first();
+
+        //Relaciono el intervalo que se acabo de crear con todas las puertas selecionadas
+        $todasPuertas = Puerta::all();
+        foreach($todasPuertas as $puerta){
+            //Si la puerta fue seclecionada en el check se guarda en la relacion secionn-puerta con un 1
+            // indicando que esta seccion tiene permiso sobre ella
+            if($request[$puerta->id]!=null) {
+                IntervaloInvitadoPuerta::create([
+                    'intervalo_invitado_id' => $intervalo->id,
+                    'puerta_id' => $puerta->id,
+                ]);
+            }
+        }
     }
 }

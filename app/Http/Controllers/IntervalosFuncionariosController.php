@@ -50,15 +50,19 @@ class IntervalosFuncionariosController extends Controller
 
         $cont_dias = 0;
         if ($request->hasta_hora > $request->desde_hora) {
+
             $cont_dias = $this->crearSeccion($request,$funcionario_id);
+
         }
+
         else if($request->hasta_hora == $request->desde_hora && $request->hasta_minuto > $request->desde_minuto){
             $cont_dias = $this->crearSeccion($request,$funcionario_id);
         } else{
-            return redirect('horariosespeciales/create/'.$funcionario_id)->with(['message'=>'Intervaloinvitado de tiempo invalido','tipo'=>'error']);
+            return redirect('IntervalosFuncionarios/create/'.$funcionario_id)->with(['message'=>'Intervalo de tiempo invalido','tipo'=>'error']);
         }
+
         if( $cont_dias == 0 ){
-            return redirect('horariosespeciales/create/'.$funcionario_id)->with(['message'=>'seleccione al menos un dia','tipo'=>'error']);
+            return redirect('IntervalosFuncionarios/create/'.$funcionario_id)->with(['message'=>'seleccione al menos un dia','tipo'=>'error']);
         }
             else{
         }
@@ -107,6 +111,15 @@ class IntervalosFuncionariosController extends Controller
         return redirect('/funcionarios/horario/'.$funcionario_id);
     }
 
+    /**
+     *  Crea un nuevo intervalo de tiempo al funcionario y lo relaciona con las puertas y dias
+     * seleccionados en el formulario.
+     *
+     * @author Edwin Sandoval
+     * @return Integer $cont_dias variable que nos conto el numero de dias que fueron seleccionado en el formulario
+     * @param Request $request con los datos del formulario
+     * @param integer $funcionario_id id del invitado al que va pertenecer el intervalo
+     */
     private function crearSeccion(Request $request,$funcionario_id){
 
         $todasPuertas = Puerta::all();
