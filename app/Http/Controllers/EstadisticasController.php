@@ -13,8 +13,8 @@ class EstadisticasController extends Controller
     **/
     public function index()
     {
-        $nombres= Funcionario::pluck('nombre');
-        $horarios=Funcionario::pluck('hoario_normal');
+        $nombres= Funcionario::all();
+        $horarios=Funcionario::all();
         //dd($nombres,$horarios);
         return view('Estadisticas.Generar',['nombres'=>$nombres,'horarios'=>$horarios]);
     }

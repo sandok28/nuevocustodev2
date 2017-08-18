@@ -17,6 +17,16 @@
                 <h1 class="h1">FUNCIONARIOS</h1>
             </div>
         </div>
+        <div class="col-md-12">
+            <div class="panel-heading row">
+                <div class="col-md-6">
+                    {!!link_to_route('funcionarios.create', 'Agregar funcionarios', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-primary btn-block btn-3d" onclick="history.back();">Volver</button>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
@@ -59,16 +69,7 @@
             </div>
 
         </div>
-        <div class="col-md-12">
-            <div class="panel-heading row">
-                <div class="col-md-6">
-                    {!!link_to_route('funcionarios.create', 'Agregar funcionarios', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
-                </div>
-                <div class="col-md-6">
-                    <button class="btn btn-primary btn-block btn-3d" onclick="history.back();">Volver</button>
-                </div>
-            </div>
-        </div>
+
     </section>
 @endsection
 @section('cargarjs')

@@ -20,6 +20,7 @@
     {!! Form::close() !!}
 
 
+
     <!--inicio de charts.js-->
 
     <canvas id = "myChart"  > </canvas>
@@ -31,18 +32,22 @@
 
 
             var chart = new Chart(ctx, {
-                type: 'bar',
+                type: 'radar',
 
                 data: {
                     labels: [
-                        1
+                        @forEach($nombres as $nombre)
+                        '{{$nombre->nombre}}',
+                        @endforeach
                             ],
                     datasets: [{
                         label: titulo,
                         backgroundColor: 'rgb(0, 0, 0)',
                         borderColor: 'rgb(255, 255, 255)',
                         data: [
-                            1
+                            @forEach($horarios as $horario)
+                                {{$horario->hoario_normal}},
+                            @endforeach
                         ],
                     }]
                 },
