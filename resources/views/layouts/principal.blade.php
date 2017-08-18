@@ -182,7 +182,7 @@
                     <a href="/usuarios"><i class="fa fa-users"></i><span>USUARIOS</span></a>
                 </li>
                 <li class="active">
-                    <a href="funcionarios"><i class="fa fa-clock-o"></i><span>HORARIOS</span></a>
+                    <a href="/home"><i class="fa fa-clock-o"></i><span>HORARIOS</span></a>
                 </li>
                 <li class="active">
                     <a href="/licencias"><i class="fa  fa-files-o"></i><span>LICENCIAS</span></a>
