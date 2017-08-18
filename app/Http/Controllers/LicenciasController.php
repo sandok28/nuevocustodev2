@@ -75,6 +75,7 @@ class LicenciasController extends Controller
      */
     public function create($funcionario_id)
     {
+        dd("hola");
         $funcionario = Funcionario::find($funcionario_id);
         return view('licencias.create',compact('funcionario'));
     }

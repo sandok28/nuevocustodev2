@@ -58,4 +58,4 @@ Route::get('Estadisticas','EstadisticasController@index');
 
 Route::get('Reportes','ReportesController@index');
 
-Route::resource('horariogeneral','HorariosGeneralesController',['only' => ['index']]);
+Route::resource('horariogeneral','HorariosGeneralesController',['only' => ['index','create','store','destroy']]);

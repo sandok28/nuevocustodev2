@@ -27,6 +27,7 @@ class FuncionariosController extends Controller
     public function index()
     {
         $funcionarios=Funcionario::all();
+
         return view('funcionarios.index',compact('funcionarios'));
     }
 
@@ -145,6 +146,12 @@ class FuncionariosController extends Controller
         //
     }
 
+    /**
+     * Remove the specified resource from storage.
+     * No se usa para el proyecto.
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function horario($id)
     {
 
