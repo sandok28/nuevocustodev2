@@ -113,12 +113,14 @@ class IntervalosInvitadosController extends Controller
 
     private function crearIntevaloInvitado(Request $request,$invitado_id)
     {
+        $carbon = new \Carbon\Carbon();
         Intervaloinvitado::create([
 
             'desde'=> $request->desde_hora.":".$request->desde_minuto.":0",
             'hasta'=> $request->hasta_hora.":".$request->hasta_minuto.":0",
             'targeta_rfid' => $request->targeta_rfid,
             'invitado_id'=> $invitado_id,
+            'fecha' => $carbon->now(),
         ]);
 
         //obtengo el ultimo intervalo que se creo es decir la que acabamos de crear

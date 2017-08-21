@@ -5,7 +5,7 @@ $.extend( true, $.fn.dataTable.defaults, {
 		"t"+
 		"<'row'<'col-xs-6'i><'col-xs-6'p>>",
 	"oLanguage": {
-		"sLengthMenu": "_MENU_ records per page"
+		"sLengthMenu": "_MENU_ Numero de Registros "
 	}
 } );
 
@@ -148,7 +148,7 @@ else {
 				$(nPaging).append(
 					'<ul class="pagination">'+
 						'<li class="prev disabled"><a href="#">&larr; '+oLang.sPrevious+'</a></li>'+
-						'<li class="next disabled"><a href="#">'+oLang.sNext+' &rarr; </a></li>'+
+						'<li class="nextaaa disabled"><a href="#">'+oLang.sNext+' &rarr; </a></li>'+
 					'</ul>'
 				);
 				var els = $('a', nPaging);

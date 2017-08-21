@@ -16,6 +16,7 @@ class IntervalosinvitadosPuertasTableSeeder extends Seeder
             DB::table('IntervalosInvitados_Puertas')->insert([
                 'intervalo_invitado_id' => '1',
                 'puerta_id' => $i+1,
+
             ]);
         }
     }

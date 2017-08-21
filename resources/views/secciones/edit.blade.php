@@ -55,7 +55,7 @@
     {!!Form::close()!!}
     <div class="row">
         <div class="col-md-12">
-            @include('cargos.index')
+            @include('cargos.index_seccion')
         </div>
     </div>
     <div class="row">

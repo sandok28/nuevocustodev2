@@ -39,7 +39,7 @@
                             @foreach($funcionarios as $funcionario)
                                 <tr>
                                     <th>{{$funcionario->nombre}}</th>
-                                    <th>{{$funcionario->apelido}}</th>
+                                    <th>{{$funcionario->apellido}}</th>
                                     <th>{{$funcionario->cedula}}</th>
                                     <th>{{$funcionario->correo}}</th>
                                     <th>{{$funcionario->tarjeta_rfid}}</th>

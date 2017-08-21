@@ -28,7 +28,7 @@
                                    {!!Form::label('apellido','APELLIDO:')!!}
                                 </div>
                                 <div class="col-sm-9">
-                                    {!!Form::text('apelido',null,['class'=>'form-control','placeholder'=>'Ingresa el Apellido del usuario'])!!}
+                                    {!!Form::text('apellido',null,['class'=>'form-control','placeholder'=>'Ingresa el Apellido del usuario'])!!}
                                 </div>
                             </div>
                             <br><br>

@@ -16,7 +16,7 @@ class Intervaloinvitado extends Model implements AuditableContract
 
     //indico los atributos de la tabla que se pueden modificar desde la vista
     protected $fillable = [
-        'desde', 'hasta', 'targeta_rfid','invitado_id'
+        'desde', 'hasta', 'targeta_rfid','invitado_id','fecha'
     ];
     /**
      * Obtiene las puertas relacionadas al intervalo

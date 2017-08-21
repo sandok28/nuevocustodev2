@@ -28,7 +28,9 @@ Route::resource('controlareas','ControllerControlAreas');
 
 Route::resource('secciones','SeccionesController',['except' => ['show','destroy']]);
 
-Route::resource('cargos','CargosController',['only' => ['update','edit']]);
+Route::resource('intervalossecciones','SeccionesController',['except' => ['show','destroy']]);
+
+Route::resource('cargos','CargosController',['only' => ['update','edit','index']]);
 Route::get('cargos/create/{seccion_id}', 'CargosController@create')->name('cargos.create');
 Route::post('cargos/{seccion_id}', 'CargosController@store')->name('cargos.store');
 

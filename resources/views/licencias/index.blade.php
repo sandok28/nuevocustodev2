@@ -13,6 +13,9 @@
 @endsection
 
 @section('content')
+
+    <input type="text" class="form-control">
+
     <section id="main-content">
         <div class="col-md-12">
             <div class="panel-heading row">
@@ -124,5 +127,8 @@
         $(document).ready(function() {
             $('#example').dataTable();
         });
+        $('#sandbox-container input').datepicker({
+        });
     </script>
+
 @endsection

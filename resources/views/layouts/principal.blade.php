@@ -173,7 +173,10 @@
                     <a href="/funcionarios"><i class="fa fa-users"></i><span>FUNCIONARIOS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/secciones"><i class="fa  fa-list"></i><span>SECCIONES Y CARGOS</span></a>
+                    <a href="/secciones"><i class="fa  fa-list"></i><span>SECCIONES</span></a>
+                </li>
+                <li class="active">
+                    <a href="/cargos/create/1"><i class="fa  fa-list"></i><span>CARGOS</span></a>
                 </li>
                 <li class="active">
                     <a href="/invitados"><i class="fa fa-users"></i><span>INVITADOS</span></a>

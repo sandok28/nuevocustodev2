@@ -19,7 +19,7 @@
         {!!Form::label('Apellido','Apellido:')!!}
     </div>
     <div class="form-group">
-        {!!Form::label($funcionario->apelido,null,['class'=>'form-control','placeholder'=>'hh:mm:ss'])!!}
+        {!!Form::label($funcionario->apellido,null,['class'=>'form-control','placeholder'=>'hh:mm:ss'])!!}
     </div>
     <div class="form-group">
         {!!Form::label('Cedula','Cedula:')!!}

@@ -26,16 +26,18 @@
 
                         <thead>
                             <tr>
-                                <th>targeta_rfid</th>
-                                <th>desde</th>
-                                <th>hasta</th>
+                                <th>Fecha</th>
+                                <th>Targeta_rfid</th>
+                                <th>Desde</th>
+                                <th>Hasta</th>
                                 <th>Puertas</th>
-                                <th>eliminar</th>
+                                <th>Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($invitado->intervalos as $intervalo)
                                 <tr>
+                                    <td>{{$intervalo->fecha}}</td>
                                     <td>{{$intervalo->targeta_rfid}}</td>
                                     <td>{{$intervalo->desde}}</td>
                                     <td>{{$intervalo->hasta}}</td>

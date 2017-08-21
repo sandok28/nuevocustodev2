@@ -10,6 +10,13 @@ class CargosController extends Controller
 {
 
 
+
+    public function index()
+    {
+        $cargos = Cargo::all();
+        return view('cargos.index',['cargos'=>$cargos]);
+    }
+
     /**
      * No hace nada en concreto solo llama a la vista create
      *

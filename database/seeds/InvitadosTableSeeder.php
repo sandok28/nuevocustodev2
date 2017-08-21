@@ -12,7 +12,6 @@ class InvitadosTableSeeder extends Seeder
     public function run()
     {
         $carbon = new \Carbon\Carbon();
-
         for ($i = 0; $i<10; $i++){
             DB::table('invitados')->insert([
 

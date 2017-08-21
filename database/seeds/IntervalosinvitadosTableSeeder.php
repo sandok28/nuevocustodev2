@@ -18,6 +18,7 @@ class IntervalosinvitadosTableSeeder extends Seeder
                 'desde' => $carbon->now(),
                 'hasta'=> $carbon->now(),
                 'invitado_id' => '1',
+                'fecha' => $carbon->now(),
             ]);
         }
     }

@@ -8,6 +8,13 @@
 @section('content')
     {!!Form::model($usuario,['route'=>['usuarios.update',$usuario],'method'=>'PUT'])!!}
     @include('usuarios.forms.formulario')
+
+    @if($usuario->nombre != 'a1')
+        hola
+        {!! Form::label($puertasPermisos->nombre) !!}
+
+    @endif
+    dasadsadadsadasdas
     <div class="row form-group">
         <div class="col-xs-12 row">
             <div class="col-xs-4">
@@ -32,6 +39,7 @@
                     </div>
                 @endforeach
             </div>
+
         </div>
     </div>
     @if(($usuario->estatus) == 1)

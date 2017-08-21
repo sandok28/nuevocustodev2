@@ -41,6 +41,7 @@
 
                             <thead>
                                 <tr>
+
                                     <th>Nombres y Apellidos </th>
                                     <th>Cedula</th>
                                     <th>Celular</th>
