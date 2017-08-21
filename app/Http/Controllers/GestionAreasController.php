@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Puerta;
 use App\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class GestionAreasController extends Controller
 {
@@ -89,8 +89,11 @@ class GestionAreasController extends Controller
 
     public function controlareas($id)
     {
-        $puertasNormales = User::find($id)->puertas()->where('puerta_especial',0)->get();
-        $puertasEspeciales = User::find($id)->puertas()->where('puerta_especial',1)->get();
+        $puertasNormales = Auth::User()->puertas->where('puerta_especial',0);
+        $puertasEspeciales = Auth::User()->puertas->where('puerta_especial',1);
+        //dd('hola putos');
+        //dd($puertasEspeciales,$puertasNormales);
+
         //devuelve la vista edit de los intervalos
         return view('ControlAreas.index',['puertasEspeciales'=>$puertasEspeciales,'puertasNormales'=>$puertasNormales]);
 

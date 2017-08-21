@@ -18,12 +18,12 @@ class Funcionario extends Model implements AuditableContract
     //indico los atributos de la tabla que se pueden modificar desde la vista
     protected $fillable = [
         'nombre',
-        'apelido',
+        'apellido',
         'cedula',
         'fecha_nacimiento',
         'correo',
         'tarjeta_rfid',
-        'cargos_id',
+        'cargo_id',
         'foto',
         'celular',
         'hoario_normal',

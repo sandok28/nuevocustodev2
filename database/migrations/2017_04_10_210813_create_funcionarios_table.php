@@ -20,7 +20,7 @@ class CreateFuncionariosTable extends Migration
             $table->String('foto');
             $table->date('fecha_nacimiento');
             $table->String('apellido');
-            $table->integer('celular');
+            $table->String('celular');
             $table->String('correo');
             $table->boolean('hoario_normal');
             $table->boolean('dado_de_baja');
