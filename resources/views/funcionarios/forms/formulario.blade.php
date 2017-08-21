@@ -55,27 +55,25 @@
                                         <div class="col-sm-4">
                                             {!! Form::date('fecha_nacimiento', \Carbon\Carbon::now(),['class'=>'form-control','id'=>'fecha_nacimiento']) !!}
                                         </div>
-                                </div>
-                                <br><br>
-                                <div class="form-group">
-                                <div class="col-sm-3">
-                                    {!!Form::label('email','E-MAIL:')!!}
-                                </div>
-                                <div class="col-sm-9">
-                                {!!Form::text('correo',null,['class'=>'form-control','placeholder'=>'Ingresa el E-mail del usuario'])!!}
-                                </div>
+                                        </div>
+                                        <br><br>
+                                        <div class="form-group">
+                                        <div class="col-sm-3">
+                                            {!!Form::label('email','E-MAIL:')!!}
+                                        </div>
+                                        <div class="col-sm-9">
+                                        {!!Form::text('correo',null,['class'=>'form-control','placeholder'=>'Ingresa el E-mail del usuario'])!!}
+                                        </div>
                                 </div>
                         <br><br>
                         <div class="form-group">
                             <div class="col-sm-3">
                                 {!!Form::label('rfid','RFID:')!!}
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 {!!Form::text('tarjeta_rfid',null,['class'=>'form-control','placeholder'=>'Ingresa el Numero de RFID del usuario'])!!}
                             </div>
-                            <div class="col-sm-3">
-                                {!!Form::button('GENERAR',['class'=>'btn btn-primary','onclick'=>'alert("generar RFID")'])!!}
-                            </div>
+
                         </div>
                         <br><br>
                         <div class="form-group">

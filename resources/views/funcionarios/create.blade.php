@@ -10,9 +10,16 @@
     {!! Html::style('assets/plugins/dataTables/css/dataTables.css') !!}
     <!-- iCheck-->
     {!! Html::style("assets/plugins/icheck/css/_all.css") !!}
+    {!! Html::style("bootstrap-datepicker-1.6.4-dist/css/bootstrap-datepicker.css") !!}
+    {!! Html::style("bootstrap-datepicker-1.6.4-dist/css/bootstrap-datepicker.standalone.css") !!}
+    {!! Html::style("bootstrap-datepicker-1.6.4-dist/css/bootstrap-datepicker3.css") !!}
+    {!! Html::style("bootstrap-datepicker-1.6.4-dist/css/bootstrap-datepicker3.standalone.css") !!}
+
+
 @endsection
 @section('content')
     <div>
+        @include('alertas.alertas')
         {!!Form::open(['route'=>'funcionarios.store', 'method'=>'POST'])!!}
         @include('funcionarios.forms.formulario')
         {!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
@@ -30,9 +37,9 @@
     {!! Html::script("assets/plugins/icheck/js/icheck.min.js") !!}
     {!! Html::script("assets/plugins/validation/js/jquery.validate.min.js") !!}
     {!! Html::script("assets/js/jquery-2.1.4.min.js") !!}
-    {!! Html::script("assets/js/webcam.min.js") !!}
-    {!! Html::script("assets/js/say-cheese.js")!!}
     {!! Html::script("https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquey.main.js")!!}
+    {!! Html::script("bootstrap-datepicker-1.6.4-dist/js/bootstrap-datepicker.js") !!}
+
 
     <script>
         $(document).ready(function() {

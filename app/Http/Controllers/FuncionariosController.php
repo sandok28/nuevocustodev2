@@ -7,9 +7,9 @@ namespace App\Http\Controllers;
  * */
 use App\Cargo;
 use App\Funcionario;
+use App\Http\Requests\FuncionariosActualizarRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Session;
 
 class FuncionariosController extends Controller
 {
@@ -54,7 +54,9 @@ class FuncionariosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+
+    public function store(\App\Http\Requests\FuncionariosCrearRequest $request)
     {
 
             Funcionario::create([
@@ -111,7 +113,7 @@ class FuncionariosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FuncionariosActualizarRequest $request, $id)
     {
 
         $funcionario = Funcionario::find($id);
