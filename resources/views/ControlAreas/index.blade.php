@@ -30,11 +30,13 @@
                                <!--info puerta nomal-->
                                <div class="row">
                                    @foreach($puertasNormales as $puertaNormal)
+                                       @if($puertaNormal->pivot->estatus_permiso == 1)
                                        <div class="col-md-3">
                                            {{$puertaNormal->nombre}}
                                            <img src="{{url('assets/img/puerta.gif')}}" alt class="img-responsive  form-inline">
                                            {!! Form::submit('Abrir Puerta',['class'=>'btn btn-primary','onclick'=>'abrirpuerta()']) !!}<br>
                                        </div>
+                                       @endif
                                        @endforeach
                                </div>
 
@@ -44,11 +46,13 @@
                                    </div>
                                    <!--info puerta especial-->
                                    @foreach($puertasEspeciales as $puertaEspecial)
+                                       @if($puertaEspecial->pivot->estatus_permiso == 1)
                                        <div class="col-md-3">
                                        {{$puertaEspecial->nombre}}<br>
                                        <img src="{{url('assets/img/puerta.gif')}}" alt class="img-responsive img-rounded form-inline"><br>
                                        {!! Form::submit('Abrir Puerta',['class'=>'btn btn-primary','onclick'=>'abrirpuerta()']) !!}
                                        </div>
+                                       @endif
                                    @endforeach
                                </div>
 

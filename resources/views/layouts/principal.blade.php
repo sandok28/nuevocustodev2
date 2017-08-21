@@ -349,6 +349,7 @@
 {!! Html::script('assets/plugins/bootstrap/js/bootstrap.min.js') !!}
 {!! Html::script('assets/plugins/waypoints/waypoints.min.js') !!}
 {!! Html::script('assets/js/application.js') !!}
+{!! Html::script("assets/plugins/chartjs/Chart.js") !!}
 {{--Java Scrip de cada seccion--}}
 @yield('cargarjs')
 

@@ -49,10 +49,13 @@ class PuertasController extends Controller
         Puerta::create([
             'puerta_especial' => $request['puerta_especial'],
             'nombre' => $request['nombre'],
-            'llave_rfid' => $request['llave'],
+            'llave_rfid' => $request['llave_rfid'],
             'estatus' => '1',
             'ip' => $request['ip'],
         ]);
+        $puertas=Puerta::all();
+        return view('GestionAreas.index',compact('puertas'));
+
     }
 
     /**

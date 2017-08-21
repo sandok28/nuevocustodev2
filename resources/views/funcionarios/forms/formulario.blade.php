@@ -28,7 +28,7 @@
                                    {!!Form::label('apellido','APELLIDO:')!!}
                                 </div>
                                 <div class="col-sm-9">
-                                    {!!Form::text('apelido',null,['class'=>'form-control','placeholder'=>'Ingresa el Apellido del usuario'])!!}
+                                    {!!Form::text('apellido',null,['class'=>'form-control','placeholder'=>'Ingresa el Apellido del usuario'])!!}
                                 </div>
                             </div>
                             <br><br>
@@ -52,30 +52,28 @@
                         <br><br>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">FECHA DE NACIMIENTO:</label>
-                                        <div class="col-sm-6">
-                                        <input type="text" class="form-control" name="fecha_nacimiento" required="" placeholder="DD/MM/YYYY">
+                                        <div class="col-sm-4">
+                                            {!! Form::date('fecha_nacimiento', \Carbon\Carbon::now(),['class'=>'form-control','id'=>'fecha_nacimiento']) !!}
                                         </div>
-                                </div>
-                                <br><br>
-                                <div class="form-group">
-                                <div class="col-sm-3">
-                                    {!!Form::label('email','E-MAIL:')!!}
-                                </div>
-                                <div class="col-sm-9">
-                                {!!Form::text('correo',null,['class'=>'form-control','placeholder'=>'Ingresa el E-mail del usuario'])!!}
-                                </div>
+                                        </div>
+                                        <br><br>
+                                        <div class="form-group">
+                                        <div class="col-sm-3">
+                                            {!!Form::label('email','E-MAIL:')!!}
+                                        </div>
+                                        <div class="col-sm-9">
+                                        {!!Form::text('correo',null,['class'=>'form-control','placeholder'=>'Ingresa el E-mail del usuario'])!!}
+                                        </div>
                                 </div>
                         <br><br>
                         <div class="form-group">
                             <div class="col-sm-3">
                                 {!!Form::label('rfid','RFID:')!!}
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 {!!Form::text('tarjeta_rfid',null,['class'=>'form-control','placeholder'=>'Ingresa el Numero de RFID del usuario'])!!}
                             </div>
-                            <div class="col-sm-3">
-                                {!!Form::button('GENERAR',['class'=>'btn btn-primary','onclick'=>'alert("generar RFID")'])!!}
-                            </div>
+
                         </div>
                         <br><br>
                         <div class="form-group">
@@ -83,7 +81,7 @@
                                 {!!Form::label('cargo','CARGO:')!!}
                             </div>
                             <div class="col-sm-9">
-                                <select class="form-control">
+                                <select class="form-control" name="cargo">
                                     @foreach($cargos as $cargo)
                                         <option>{{$cargo->nombre}}</option>
                                     @endforeach
@@ -127,27 +125,11 @@
     </div>
 
 </div>
+<script src="js/say-cheese.js"></script>
 <script>
     function capturar()
     {
-        var sayCheese = new SayCheese('#webcam', { snapshots: true });
-
-        sayCheese.on('start', function() {
-            // do something when started
-            this.takeSnapshot();
-        });
-
-        sayCheese.on('error', function(error) {
-            // handle errors, such as when a user denies the request to use the webcam,
-            // or when the getUserMedia API isn't supported
-        });
-
-        sayCheese.on('snapshot', function(snapshot) {
-            // do something with a snapshot canvas element, when taken
-        });
-
-        sayCheese.start();
-
+        alert('deiby envia el codigo para analizarlo he implementarlo');
     }
     </script>
 
