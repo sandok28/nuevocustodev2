@@ -190,7 +190,7 @@
                 <li class="active">
                     <a href="/GestionAreas"><i class="fa fa-list"></i><span>GESTION DE AREAS</span></a>
                 </li>
-                 <li class="active">
+                <li class="active">
                     <a href="/area/1"><i class="fa fa-list"></i><span>CONTROL DE AREAS</span></a>
                 </li>
                 <li class="active">
@@ -224,19 +224,19 @@
                 <div class="col-md-12">
 
 
-                @if(Session::get('tipo') == 'error')
-                    <div class="alert alert-danger alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        {{Session::get('message')}}
-                    </div>
-                @endif
+                    @if(Session::get('tipo') == 'error')
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            {{Session::get('message')}}
+                        </div>
+                    @endif
 
-                @if(Session::get('tipo') == 'message')
-                    <div class="alert alert-success alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        {{Session::get('message')}}
-                    </div>
-                @endif
+                    @if(Session::get('tipo') == 'message')
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            {{Session::get('message')}}
+                        </div>
+                    @endif
                 </div>
 
                 <div class="col-md-12">

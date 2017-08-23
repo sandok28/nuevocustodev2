@@ -32,8 +32,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-
-                            <thead>
+                             <thead>
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Apellido</th>
@@ -63,6 +62,7 @@
                                 </tr>
                             @endforeach
                             </tbody>
+                            {!! $funcionarios->render() !!}
                         </table>
                     </div>
                 </div>
@@ -76,9 +76,4 @@
     <!--Page Leve JS -->
     {!! Html::script('assets/plugins/dataTables/js/jquery.dataTables.js') !!}
     {!! Html::script('assets/plugins/dataTables/js/dataTables.bootstrap.js') !!}
-    <script>
-        $(document).ready(function() {
-            $('#example').dataTable();
-        });
-    </script>
 @endsection

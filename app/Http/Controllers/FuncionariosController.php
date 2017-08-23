@@ -27,7 +27,8 @@ class FuncionariosController extends Controller
     }
     public function index()
     {
-        $funcionarios=Funcionario::all();
+        $funcionarios=Funcionario::paginate(10);
+
 
         return view('funcionarios.index',compact('funcionarios'));
     }
@@ -70,7 +71,7 @@ class FuncionariosController extends Controller
                 'foto'=>'0',
                 'celular'=>$request['celular'],
                 'hoario_normal'=>$request['horario'],
-                'licencia'=>'1',
+                'licencia'=>'0',
                 'estatus'=>'0',
                 'dado_de_baja'=>'0',
             ]);

@@ -53,7 +53,10 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">FECHA DE NACIMIENTO:</label>
                                         <div class="col-sm-4">
-                                            {!! Form::date('fecha_nacimiento', \Carbon\Carbon::now(),['class'=>'form-control','id'=>'fecha_nacimiento']) !!}
+                                           <div class="input-group date form-control">
+                                               <input type="text" class="pruebas form-control" id="fecha_nacimiento" name="fecha_nacimiento"></div>
+                                            </div>
+                                        </div>
                                         </div>
                                         </div>
                                         <br><br>
@@ -117,7 +120,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">CERRAR</button>
-                    <button type="button" class="btn btn-primary" onclick="capturar()">CAPTURAR</button>
+                    <button type="button" class="btn btn-primary" onclick="alert('implementar')">CAPTURAR</button>
                     <button type="button" class="btn btn-primary"  onclick="">GUARDAR</button>
                 </div>
             </div>
@@ -125,13 +128,7 @@
     </div>
 
 </div>
-<script src="js/say-cheese.js"></script>
-<script>
-    function capturar()
-    {
-        alert('deiby envia el codigo para analizarlo he implementarlo');
-    }
-    </script>
+
 
 
 
