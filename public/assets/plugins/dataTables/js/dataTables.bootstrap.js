@@ -19,6 +19,7 @@ $.extend( $.fn.dataTableExt.oStdClasses, {
 
 // In 1.10 we use the pagination renderers to draw the Bootstrap paging,
 // rather than  custom plug-in
+
 if ( $.fn.dataTable.Api ) {
 	$.fn.dataTable.defaults.renderer = 'bootstrap';
 	$.fn.dataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, buttons, page, pages ) {

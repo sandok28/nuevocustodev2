@@ -10,6 +10,8 @@ use App\Funcionario;
 use App\Http\Requests\FuncionariosActualizarRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests;
+use Yajra\Datatables\Datatables;
 
 class FuncionariosController extends Controller
 {
@@ -151,4 +153,5 @@ class FuncionariosController extends Controller
 
         return view('funcionarios.horario',['funcionario'=>$funcionario,'horariosEspeciales'=>$horariosEspeciales]);
     }
+
 }

@@ -1,37 +1,18 @@
-/* Inicialización en español para la extensión 'UI date picker' para jQuery. */
-/* Traducido por Vester (xvester@gmail.com). */
-( function( factory ) {
-    if ( typeof define === "function" && define.amd ) {
-
-        // AMD. Register as an anonymous module.
-        define( [ "../widgets/datepicker" ], factory );
-    } else {
-
-        // Browser globals
-        factory( jQuery.datepicker );
-    }
-}( function( datepicker ) {
-
-    datepicker.regional.es = {
-        closeText: "Cerrar",
-        prevText: "&#x3C;Ant",
-        nextText: "Sig&#x3E;",
-        currentText: "Hoy",
-        monthNames: [ "enero","febrero","marzo","abril","mayo","junio",
-            "julio","agosto","septiembre","octubre","noviembre","diciembre" ],
-        monthNamesShort: [ "ene","feb","mar","abr","may","jun",
-            "jul","ago","sep","oct","nov","dic" ],
-        dayNames: [ "domingo","lunes","martes","miércoles","jueves","viernes","sábado" ],
-        dayNamesShort: [ "dom","lun","mar","mié","jue","vie","sáb" ],
-        dayNamesMin: [ "D","L","M","X","J","V","S" ],
-        weekHeader: "Sm",
-        dateFormat: "yy-mm-dd",
-        firstDay: 1,
-        isRTL: false,
-        showMonthAfterYear: false,
-        yearSuffix: "" };
-    datepicker.setDefaults( datepicker.regional.es );
-
-    return datepicker.regional.es;
-
-} ) );
+/**
+ * Spanish translation for bootstrap-datepicker
+ * Bruno Bonamin <bruno.bonamin@gmail.com>
+ */
+;(function($){
+    $.fn.datepicker.dates['es'] = {
+        days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+        daysShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+        daysMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+        months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+        monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+        today: "Hoy",
+        monthsTitle: "Meses",
+        clear: "Borrar",
+        weekStart: 1,
+        format: "dd/mm/yyyy"
+    };
+}(jQuery));

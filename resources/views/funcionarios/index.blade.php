@@ -62,8 +62,8 @@
                                 </tr>
                             @endforeach
                             </tbody>
-                            {!! $funcionarios->render() !!}
                         </table>
+                        {!! $funcionarios->render() !!}
                     </div>
                 </div>
             </div>

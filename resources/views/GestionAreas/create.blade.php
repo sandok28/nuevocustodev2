@@ -7,6 +7,7 @@
 
     </div>
     <div>
+        @include('alertas.alertas')
          {!!Form::open(['route'=>'puertas.store', 'method'=>'POST'])!!}
             @include('GestionAreas.forms.formulario')
         <div>

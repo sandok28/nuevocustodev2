@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PuertasActualizarRequest;
+use App\Http\Requests\PuertasCrearRequest;
 use App\Puerta;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -18,8 +20,8 @@ class PuertasController extends Controller
      **/
     public function index()
     {
-        //
         $puertas=Puerta::all();
+        dd($puertas);
         return view('GestionAreas.index',compact('puertas'));
     }
 
@@ -42,10 +44,8 @@ class PuertasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PuertasCrearRequest $request)
     {
-        //
-
         Puerta::create([
             'puerta_especial' => $request['puerta_especial'],
             'nombre' => $request['nombre'],
@@ -53,8 +53,7 @@ class PuertasController extends Controller
             'estatus' => '1',
             'ip' => $request['ip'],
         ]);
-        $puertas=Puerta::all();
-        return view('GestionAreas.index',compact('puertas'));
+        return redirect('/GestionAreas')->with(['message'=>'La Puerta  se ha creado correctamente','tipo'=>'message']);
 
     }
 
@@ -91,7 +90,7 @@ class PuertasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PuertasActualizarRequest $request, $id)
     {
         //
             $variablesAdaptadas = [
@@ -104,8 +103,8 @@ class PuertasController extends Controller
             $puerta = Puerta::find($id);
             $puerta->fill($variablesAdaptadas);
             $puerta->save();
-            Session::flash('message','Puerta Actualizado Correctamente');
-            return Redirect::to('puertas');
+            return redirect('/GestionAreas')->with(['message'=>'La Puerta  se ha actualizado correctamente','tipo'=>'message']);
+
 
     }
 

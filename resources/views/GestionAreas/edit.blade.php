@@ -1,6 +1,7 @@
 @extends('layouts.principal')
 
 @section('content')
+    @include('alertas.alertas')
     {!!Form::model($puerta,['route'=>['puertas.update',$puerta],'method'=>'PUT'])!!}
     @include('GestionAreas.forms.formulario')
     <div class="form-group">

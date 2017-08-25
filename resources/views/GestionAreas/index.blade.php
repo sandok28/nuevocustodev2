@@ -32,7 +32,6 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-
                             <thead>
                             <tr>
                                 <th>Modulo</th>

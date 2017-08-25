@@ -53,12 +53,9 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">FECHA DE NACIMIENTO:</label>
                                         <div class="col-sm-4">
-                                           <div class="input-group date form-control">
-                                               <input type="text" class="pruebas form-control" id="fecha_nacimiento" name="fecha_nacimiento"></div>
-                                            </div>
+                                            <input class="datepicker input-group date form-control" id="fecha_nacimiento" name="fecha_nacimiento">
                                         </div>
-                                        </div>
-                                        </div>
+                                </div>
                                         <br><br>
                                         <div class="form-group">
                                         <div class="col-sm-3">

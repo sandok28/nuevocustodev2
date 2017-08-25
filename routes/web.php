@@ -59,3 +59,9 @@ Route::get('Estadisticas','EstadisticasController@index');
 Route::get('Reportes','ReportesController@index');
 
 Route::resource('horariogeneral','HorariosGeneralesController',['only' => ['index','create','store','destroy']]);
+
+
+Route::controller('datatables', 'DatatablesController', [
+    'anyData'  => 'datatables.data',
+    'getIndex' => 'datatables',
+]);

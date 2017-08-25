@@ -1,4 +1,4 @@
- {
+{
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
     "keywords": ["framework", "laravel"],
@@ -9,9 +9,9 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.3.0",
-        "nesbot/carbon": "^1.22",
+        "nesbot/carbon": "~1.14",
         "owen-it/laravel-auditing": "^4.0",
-        "nesbot/carbon": "~1.14"
+        "yajra/laravel-datatables-oracle": "^7.10"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
