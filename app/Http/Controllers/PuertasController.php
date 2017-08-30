@@ -44,18 +44,20 @@ class PuertasController extends Controller
      */
     public function store(Request $request)
     {
-        //
-
+        //Nota cosas que se deben hacer al crear una nueva puerta
+        //Vincular la nueva puerta como inactiva, con todas las secciones existentes en la tabla   Puertas_Secciones
+        //Vincular la nueva puerta como inactiva, con todas los usuarios existentes en la tabla   Puertas_Users
+        //estatus_en_horario_general creela siempre en 0
         Puerta::create([
             'puerta_especial' => $request['puerta_especial'],
             'nombre' => $request['nombre'],
             'llave_rfid' => $request['llave_rfid'],
             'estatus' => '1',
+            'estatus_en_horario_general'=>'0',
             'ip' => $request['ip'],
         ]);
         $puertas=Puerta::all();
         return view('GestionAreas.index',compact('puertas'));
-
     }
 
     /**

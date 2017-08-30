@@ -24,22 +24,23 @@ Route::resource('usuarios','UsuariosController',['except' => ['show','destroy']]
 Route::resource('funcionarios','FuncionariosController');
 Route::get('funcionarios/horario/{funcionario_id}','FuncionariosController@horario')->name('funcionarios.horario');
 Route::resource('puertas','PuertasController');
-Route::resource('controlareas','ControllerControlAreas');
 
 Route::resource('secciones','SeccionesController',['except' => ['show','destroy']]);
 
-Route::resource('cargos','CargosController',['only' => ['update','edit']]);
-Route::get('cargos/create/{seccion_id}', 'CargosController@create')->name('cargos.create');
-Route::post('cargos/{seccion_id}', 'CargosController@store')->name('cargos.store');
+Route::resource('intervalossecciones','SeccionesController',['except' => ['show','destroy']]);
+
+Route::resource('cargos','CargosController',['only' => ['update','edit','index','create','store']]);
 
 Route::resource('invitados','InvitadosController',['except' => ['show','destroy']]);
 
 Route::resource('invitados','InvitadosController',['except' => ['show','destroy']]);
 
-Route::resource('licencias','LicenciasController',['except' => ['show','destroy','create','store']]);
+Route::resource('licencias','LicenciasController',['except' => ['show','create','store']]);
 Route::get('licencias/create/{funcionario_id}','LicenciasController@create')->name('licencias.create');
 Route::post('licencias/{funcionario_id}','LicenciasController@store')->name('licencias.store');
-
+Route::get('licencias/edit_en_curso/{funcionario_id}','LicenciasController@editEnCurso')->name('licencias.edit_en_curso');
+Route::PUT('licencias/edit_en_curso/{funcionario_id}','LicenciasController@updateEnCurso')->name('licencias.update_en_curso');
+Route::DELETE('licencias/edit_en_curso/{funcionario_id}','LicenciasController@destroyEnCurso')->name('licencias.destroy_en_curso');
 
 Route::resource('IntervalosInvitados','IntervalosInvitadosController',['only' => ['show','destroy']]);
 Route::get('IntervalosInvitados/create/{invitado_id}', 'IntervalosInvitadosController@create')->name('IntervalosInvitados.create');
@@ -59,3 +60,10 @@ Route::get('Estadisticas','EstadisticasController@index');
 Route::get('Reportes','ReportesController@index');
 
 Route::resource('horariogeneral','HorariosGeneralesController',['only' => ['index','create','store','destroy']]);
+Route::get('horariogeneral/show','HorariosGeneralesController@show')->name('horariogeneral.show');
+Route::post('horariogeneral/actualizar_puertas','HorariosGeneralesController@actualizarPuertas')->name('horariogeneral.actualizar_puertas');
+
+
+Route::delete('IntervalosSecciones/{id},{seccion_id}','IntervalosSeccionesController@destroy')->name('IntervalosSecciones.destroy');
+Route::get('IntervalosSecciones/create/{seccion_id}', 'IntervalosSeccionesController@create')->name('IntervalosSecciones.create');
+Route::post('IntervalosSecciones/{seccion_id}', 'IntervalosSeccionesController@store')->name('IntervalosSecciones.store');

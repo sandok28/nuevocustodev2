@@ -24,11 +24,13 @@ class Seccion extends Model implements AuditableContract
      * Obtiene los cargos relacionados a la seccion
      *
      * @author Edwin Sandoval
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany Coleccion con los cargos relacionados a la seccion
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany Coleccion con los cargos relacionados a la seccion
      */
     public function cargos()
     {
-        return $this->hasMany('App\Cargo', 'secciones_id');
+
+        return $this->belongsToMany('App\Cargo','Cargos_Secciones','seccion_id','cargo_id');
+
     }
     /**
      * Obtiene los puertas relacionados a la seccion
@@ -47,7 +49,7 @@ class Seccion extends Model implements AuditableContract
      * @author Edwin Sandoval
      * @return \Illuminate\Database\Eloquent\Relations\HasMany Coleccion con los cargos relacionados a la seccion
      */
-    public function intervalosEspeciales()
+    public function intervalosSecciones()
     {
         return $this->hasMany('App\IntervaloSeccion', 'seccion_id');
     }

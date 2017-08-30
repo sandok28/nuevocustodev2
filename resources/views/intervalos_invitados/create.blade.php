@@ -1,47 +1,80 @@
 @extends('layouts.principal')
 
 @section('titel')
-    agregar intervalo
+    agregar intervalo Invitado
 @endsection
-
-@section('titulo-tarjeta')
-    agregar intervalo
+@section('cargarcss')
+    <!-- iCheck-->
+    {!! Html::style("assets/plugins/icheck/css/_all.css") !!}
 @endsection
 @section('content')
-    <div>
-        {!!Form::open(['route'=>['IntervalosInvitados.store',$invitado_id], 'method'=>'POST'])!!}
-            @include('intervalos_invitados.forms.formulario')
-
-            <div class="row form-group">
-                <div class="col-xs-12 row">
-                    <div class="col-xs-6">
-                        <div class="col-xs-12">
-                            <h1>Puertas normales</h1>
-                        </div>
-                        @foreach($puertasNormales as $puertaNormal)
-                            <div class="col-xs-4">
-                                {!! Form::checkbox($puertaNormal->id, $puertaNormal->id) !!}
-                                {!! Form::label($puertaNormal->nombre) !!}
-                            </div>
-                        @endforeach
-                    </div>
-                    <div class="col-xs-6">
-                        <div class="col-xs-12">
-                            <h1>Puertas especiales</h1>
-                        </div>
-                        @foreach($puertasEspeciales as $puertaEspecial)
-                            <div class="col-xs-4">
-                                {!! Form::checkbox($puertaEspecial->id, $puertaEspecial->id) !!}
-                                {!! Form::label($puertaEspecial->nombre) !!}
-                            </div>
-                        @endforeach
-                    </div>
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Crear intervalo invitado</h3>
+                <div class="actions pull-right">
+                    <i class="fa fa-chevron-down"></i>
+                    <i class="fa fa-times"></i>
                 </div>
             </div>
-            <div class="col-md-12 row form-group">
-                {!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
+            <div class="panel-body">
+                <div>
+                    {!!Form::open(['route'=>['IntervalosInvitados.store',$invitado_id], 'method'=>'POST'])!!}
+                        @include('intervalos_invitados.forms.formulario')
+
+                        <div class=form-group">
+                            <div class="col-xs-12">
+                                <div class="col-xs-6">
+                                    <div class="col-xs-12">
+                                        <h1>Puertas normales</h1>
+                                    </div>
+                                    @foreach($puertasNormales as $puertaNormal)
+                                        <div class="col-xs-4">
+                                            {!! Form::checkbox($puertaNormal->id, $puertaNormal->id) !!}
+                                            {!! Form::label($puertaNormal->nombre) !!}
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="col-xs-12">
+                                        <h1>Puertas especiales</h1>
+                                    </div>
+                                    @foreach($puertasEspeciales as $puertaEspecial)
+                                        <div class="col-xs-4">
+                                            {!! Form::checkbox($puertaEspecial->id, $puertaEspecial->id) !!}
+                                            {!! Form::label($puertaEspecial->nombre) !!}
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    <div class="col-md-12">
+                        <div class="panel-heading row">
+                            <div class="col-md-6">
+                                {!!Form::submit('Registrar',['class'=>'btn btn-info btn-block btn-3d col-xs-10'])!!}
+                            </div>
+                            <div class="col-md-6">
+                                <a class="btn btn-primary btn-block btn-3d" onclick="history.back();">Volver</a>
+                            </div>
+                        </div>
+                    </div>
+                    {!!Form::close()!!}
+                </div>
             </div>
-        {!!Form::close()!!}
+        </div>
     </div>
 
+
+@endsection
+@section('cargarjs')
+    <!--Page Leve JS -->
+    {!! Html::script('assets/plugins/icheck/js/icheck.min.js') !!}
+    <script>
+        $(document).ready(function() {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_flat-grey',
+                radioClass: 'iradio_flat-grey'
+            });
+        });
+    </script>
 @endsection

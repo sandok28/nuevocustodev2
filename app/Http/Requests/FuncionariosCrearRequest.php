@@ -31,7 +31,7 @@ class FuncionariosCrearRequest extends FormRequest
             'fecha_nacimiento'=>'required',
             'correo'=>'required',
             'tarjeta_rfid'=>'required',
-            'horario'=>'required',
+            'horario_normal'=>'required',
         ];
     }
 }

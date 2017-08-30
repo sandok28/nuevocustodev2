@@ -24,6 +24,7 @@ class Puerta extends Model implements AuditableContract
         'estatus',
         'created_at',
         'updated_at',
+        'estatus_en_horario_general',
     ];
 
     /**

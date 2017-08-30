@@ -52,6 +52,7 @@ class Funcionario extends Model implements AuditableContract
      */
     public function cargo()
     {
+
         return $this->belongsTo('App\Cargo','cargo_id');
     }
 
