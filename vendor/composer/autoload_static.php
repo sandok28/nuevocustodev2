@@ -287,6 +287,7 @@ class ComposerStaticInit2d850ed464469b45a77aadc885f3f9b5
 
     public static $classMap = array (
         'App\\Cargo' => __DIR__ . '/../..' . '/app/Cargo.php',
+        'App\\CargoSeccion' => __DIR__ . '/../..' . '/app/CargoSeccion.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Funcionario' => __DIR__ . '/../..' . '/app/Funcionario.php',
@@ -305,6 +306,7 @@ class ComposerStaticInit2d850ed464469b45a77aadc885f3f9b5
         'App\\Http\\Controllers\\HorariosGeneralesController' => __DIR__ . '/../..' . '/app/Http/Controllers/HorariosGeneralesController.php',
         'App\\Http\\Controllers\\IntervalosFuncionariosController' => __DIR__ . '/../..' . '/app/Http/Controllers/IntervalosFuncionariosController.php',
         'App\\Http\\Controllers\\IntervalosInvitadosController' => __DIR__ . '/../..' . '/app/Http/Controllers/IntervalosInvitadosController.php',
+        'App\\Http\\Controllers\\IntervalosSeccionesController' => __DIR__ . '/../..' . '/app/Http/Controllers/IntervalosSeccionesController.php',
         'App\\Http\\Controllers\\InvitadosController' => __DIR__ . '/../..' . '/app/Http/Controllers/InvitadosController.php',
         'App\\Http\\Controllers\\LicenciasController' => __DIR__ . '/../..' . '/app/Http/Controllers/LicenciasController.php',
         'App\\Http\\Controllers\\PuertasController' => __DIR__ . '/../..' . '/app/Http/Controllers/PuertasController.php',
@@ -316,6 +318,8 @@ class ComposerStaticInit2d850ed464469b45a77aadc885f3f9b5
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Http\\Requests\\FuncionariosActualizarRequest' => __DIR__ . '/../..' . '/app/Http/Requests/FuncionariosActualizarRequest.php',
+        'App\\Http\\Requests\\FuncionariosCrearRequest' => __DIR__ . '/../..' . '/app/Http/Requests/FuncionariosCrearRequest.php',
         'App\\Http\\Requests\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/LoginRequest.php',
         'App\\Ingreso' => __DIR__ . '/../..' . '/app/Ingreso.php',
         'App\\IntervaloInvitadoPuerta' => __DIR__ . '/../..' . '/app/IntervaloInvitadoPuerta.php',
@@ -349,6 +353,7 @@ class ComposerStaticInit2d850ed464469b45a77aadc885f3f9b5
         'Collective\\Html\\HtmlFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlFacade.php',
         'Collective\\Html\\HtmlServiceProvider' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlServiceProvider.php',
         'CreateAuditsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_09_012430_create_audits_table.php',
+        'CreateCargoSeccionsTable' => __DIR__ . '/../..' . '/database/migrations/2017_08_25_163200_create_cargo_seccions_table.php',
         'CreateCargosTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_210304_create_cargos_table.php',
         'CreateFuncionariosTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_210813_create_funcionarios_table.php',
         'CreateHorariosgeneralesTable' => __DIR__ . '/../..' . '/database/migrations/2017_08_02_001207_create_horariosgenerales_table.php',

@@ -1,19 +1,35 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: andres
- * Date: 21/08/2017
- * Time: 3:54 PM
- */?>
 
-@if(count($errors)>0)
-    <div class="alert alert-danger alert-dismissable" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"></span></button>
-        <ul>
-            @foreach($errors->all() as $error)
-                <li>{!! $error !!}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+<div class="col-md-12">
+    @if(Session::get('tipo') == 'error')
+        <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 1em;">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{Session::get('message')}}
+        </div>
+    @endif
+
+    @if(Session::get('tipo') == 'message')
+        <div class="alert alert-success alert-dismissible" role="alert" style="margin-bottom: 1em;">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{Session::get('message')}}
+        </div>
+    @endif
+
+    @if(count($errors)>0)
+        <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0.1em;">
+            @if(count($errors) == 1)
+                <h2>Un campo del formulario presenta problemas </h2>
+            @else
+                <h2>{{count($errors)}} campos del formulario presentan problemas </h2>
+            @endif
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{!! $error !!}</li>
+                @endforeach
+            </ul>
+        </div>'
+    @endif
+</div>
+
+
 

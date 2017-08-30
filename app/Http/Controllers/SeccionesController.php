@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Seccion;
 use App\Cargo;
 use App\Puerta;
 use App\PuertaSeccion;
+use Illuminate\Support\Facades\DB;
 use Session;
 use Redirect;
 class SeccionesController extends Controller
 {
+    //Comentar de nuevo todo esto
+
     /**
      * Llama a la vista index donde se listan todos las secciones
      *
@@ -23,6 +27,7 @@ class SeccionesController extends Controller
     public function index()
     {
         $secciones = Seccion::all();
+
         return view('secciones.index',compact('secciones'));
     }
 
@@ -48,25 +53,58 @@ class SeccionesController extends Controller
      */
     public function store(Request $request)
     {
-        Seccion::create([
-            'nombre'=> $request['nombre'],
-            'estatus'=> '1',
+        $this->validate($request, [
+            'nombre' => 'required|unique:Secciones|min:4',
         ]);
+        try{
+            DB::beginTransaction();
+                DB::table('Secciones')->insert([
+                                                'nombre'=>$request->nombre,
+                                                'estatus'=> '1',
+                                                'created_at'=>Carbon::now()->toDateTimeString()
+                                            ]);
 
-        //obtengo la ultima seccion que se creo es decir la que acabamos de crear
-        $seccion = Seccion::orderBy('created_at', 'desc')->first();
+                //obtengo la ultima seccion que se creo es decir la que acabamos de crear
+                $seccion = DB::table('Secciones')
+                            ->select('id')
+                            ->orderBy('created_at', 'desc')
+                            ->first();
 
-        //Relaciono la seccion que se acabo de crear con todas las puertas existentes
-        $todasPuertas = Puerta::all();
-        foreach($todasPuertas as $puerta){
-            PuertaSeccion::create([
-                'seccion_id' => $seccion->id,
-                'puerta_id' => $puerta->id,
-                'estatus_permiso' => 0
-            ]);
+                //Relaciono la seccion que se acabo de crear con todas las puertas existentes
+                $puertas = DB::table('Puertas')
+                            ->select('id')
+                            ->get();
+
+                foreach($puertas as $puerta){
+                    DB::table('Puertas_Secciones')->insert([
+                                                            'seccion_id' => $seccion->id,
+                                                            'puerta_id' => $puerta->id,
+                                                            'estatus_permiso' => 0
+                                                        ]);
+                }
+                //Relaciono la seccion que se acabo de crear con todos las cargos existentes
+                $cargos = DB::table('Cargos')
+                            ->select('id')
+                            ->get();
+
+                foreach($cargos as $cargo){
+
+                    DB::table('Cargos_Secciones')
+                        ->insert([
+                            'cargo_id'=> $cargo->id,
+                            'seccion_id'=> $seccion->id,
+                            'estatus_permiso'=>'0'
+                        ]);
+                }
+
+            DB::commit();
+        }
+        catch (\Exception $ex){
+            dd($ex);
+            return redirect('/secciones/create')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
         }
 
-        return redirect('/secciones/'.$seccion->id.'/edit')->with('message','La seccion se ha registrado correctamente');
+        return redirect('/secciones/'.$seccion->id.'/edit')->with(['message'=>'La seccion se ha registrado correctamente','tipo'=>'message']);
 
     }
 
@@ -85,7 +123,6 @@ class SeccionesController extends Controller
     public function edit($id)
     {
 
-
         //obtengo la seccion relacionada al id que llego
         $seccion = Seccion::find($id);
 
@@ -94,16 +131,11 @@ class SeccionesController extends Controller
 
         //creo una coleccion con todas las puestas normal relacionas a la seccion
         $puertasNormales = Seccion::find($id)->puertas()->where('puerta_especial',0)->get();
-
-
-
-        $funcionario = $seccion;
-
+        $cargos = $seccion->cargos()->where('estatus_permiso',1)->get();
 
         //Devuelvo la vista edit de secciones y le paso la $seccion, $puertasEspeciales y $puertasNormales.
-        return view('secciones.edit',['seccion'=>$seccion,'puertasEspeciales'=>$puertasEspeciales,'puertasNormales'=>$puertasNormales,'funcionario'=>$funcionario]);
+        return view('secciones.edit',['seccion'=>$seccion,'puertasEspeciales'=>$puertasEspeciales,'puertasNormales'=>$puertasNormales,'cargos'=>$cargos]);
     }
-
 
     /**
      * Actualiza la seccion asociada al $id con los datos que trae el $request
@@ -117,6 +149,10 @@ class SeccionesController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $this->validate($request, [
+            'nombre' => 'min:4|required|unique:Secciones,nombre,'.$id,
+        ]);
         //obtengo la seccion relacionada al id que llego
         $seccion = Seccion::find($id);
 
@@ -145,6 +181,6 @@ class SeccionesController extends Controller
         $seccion->save();
         Session::flash('message','Seccion Actualizada Correctamente');
 
-        return Redirect::to('/secciones');
+        return redirect('/secciones')->with(['message'=>'La seccion se ha actualizado correctamente','tipo'=>'message']);
     }
 }

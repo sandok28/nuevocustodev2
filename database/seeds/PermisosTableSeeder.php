@@ -11,6 +11,11 @@ class PermisosTableSeeder extends Seeder
      */
     public function run()
     {
+
+        DB::table('permisos')->insert([
+            'nombre' => 'Asignar Permisos ',
+            'estatus' => 1,
+        ]);
         DB::table('permisos')->insert([
             'nombre' => 'Editar Roles ',
             'estatus' => 1,

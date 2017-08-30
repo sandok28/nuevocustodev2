@@ -18,9 +18,6 @@ class CreateCargosTable extends Migration
             $table->String('nombre');
             $table->integer('estatus');
             $table->timestamps();
-
-            $table->integer('secciones_id')->unsigned();//llave foranea
-            $table->foreign('secciones_id')->references('id')->on('Secciones');
         });
     }
 

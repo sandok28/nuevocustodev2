@@ -15,15 +15,15 @@ class CreateFuncionariosTable extends Migration
     {
         Schema::create('Funcionarios', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cedula');
+            $table->string('cedula');
             $table->String('nombre');
             $table->String('foto');
             $table->date('fecha_nacimiento');
             $table->String('apellido');
             $table->String('celular');
             $table->String('correo');
-            $table->boolean('hoario_normal');
-            $table->boolean('dado_de_baja');
+            $table->boolean('horario_normal');
+            $table->boolean('estatus_licencia');
             $table->boolean('licencia');
             $table->String('tarjeta_rfid');
             $table->integer('estatus');

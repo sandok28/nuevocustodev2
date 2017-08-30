@@ -13,13 +13,15 @@ class IntervalosseccionesTableSeeder extends Seeder
     {
         $carbon = new \Carbon\Carbon();
 
-        for ($i = 0; $i<20; $i++){
-            DB::table('IntervalosSecciones')->insert([
-                'desde' => $carbon->now(),
-                'hasta' => $carbon->now(),
-                'dia' => 1,
-                'seccion_id' => 1,
-            ]);
+        for ($i = 1; $i<11; $i++){
+            for ($j = 1; $j<7; $j++){
+                DB::table('IntervalosSecciones')->insert([
+                    'desde' => '08:00:00',
+                    'hasta' => '12:00:00',
+                    'dia' => $j,
+                    'seccion_id' => $i,
+                ]);
+            }
         }
     }
 }

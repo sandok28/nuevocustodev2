@@ -4,58 +4,59 @@
 @endsection
 
 <section id="main-content">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="row panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Intervalos que del invitado {{$invitado->nombre}} </h3>
+    <div class="col-md-12 row center-xs panel-heading ">
+        <div class="col-xs-12">
 
-                    <div class="actions pull-right">
-                        <i class="fa fa-chevron-down"></i>
-                        <i class="fa fa-times"></i>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <div class="col-md-12 row center-xs panel-heading ">
-                        <div class="col-xs-12">
-
-                            {!!link_to_route('IntervalosInvitados.create', 'Agregar nuevo intervalo', $invitado->id,['class'=>'btn btn-info btn-block btn-3d'])!!}
-                        </div>
-                    </div>
-                    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-
-                        <thead>
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Targeta_rfid</th>
-                                <th>Desde</th>
-                                <th>Hasta</th>
-                                <th>Puertas</th>
-                                <th>Eliminar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($invitado->intervalos as $intervalo)
-                                <tr>
-                                    <td>{{$intervalo->fecha}}</td>
-                                    <td>{{$intervalo->targeta_rfid}}</td>
-                                    <td>{{$intervalo->desde}}</td>
-                                    <td>{{$intervalo->hasta}}</td>
-                                    <th>{!!link_to_route('IntervalosInvitados.show', $title = 'ver', $parameters = $intervalo, $attributes = ['class'=>'btn btn-primary'])!!}</th>
-                                    <th>
-                                        {!!Form::open(['route'=>['IntervalosInvitados.destroy',$intervalo], 'method'=>'DELETE'])!!}
-                                        {!!Form::submit('Eliminar',['class'=>'btn btn-danger'])!!}
-                                        {!!Form::close()!!}
-                                    </th>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            {!!link_to_route('IntervalosInvitados.create', 'Agregar nuevo intervalo', $invitado->id,['class'=>'btn btn-info btn-block btn-3d'])!!}
         </div>
     </div>
+    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Targeta_rfid</th>
+                <th>Desde</th>
+                <th>Hasta</th>
+                <th>Puertas</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($invitado->intervalos as $intervalo)
+                <tr>
+                    <td>{{$intervalo->fecha}}</td>
+                    <td>{{$intervalo->targeta_rfid}}</td>
+                    <td>{{$intervalo->desde}}</td>
+                    <td>{{$intervalo->hasta}}</td>
+                    <th>{!!link_to_route('IntervalosInvitados.show', $title = 'ver', $parameters = $intervalo, $attributes = ['class'=>'btn btn-primary'])!!}</th>
+                    <?php
+                        $hoy = \Carbon\Carbon::now();
+                        $fecha_del_intervalo = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $intervalo->fecha.' '.$intervalo->desde);
+                        $editable= false;
+                        if ($hoy->diffInMinutes($fecha_del_intervalo,false ) > 0){
+                            $editable = true;
+                        }
+
+                    ?>
+                    @if($editable)
+                        <th>
+                            {!!Form::open(['route'=>['IntervalosInvitados.destroy',$intervalo], 'method'=>'DELETE'])!!}
+                            {!!Form::submit('Eliminar',['class'=>'btn btn-danger'])!!}
+                            {!!Form::close()!!}
+                        </th>
+                    @else
+                        <th>
+                            {!!Form::submit('Eliminar',['class'=>'btn btn-default'])!!}
+                        </th>
+                    @endif
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
 </section>
+
 @section('cargarjs')
     <!--Page Leve JS -->
     {!! Html::script('assets/plugins/dataTables/js/jquery.dataTables.js') !!}

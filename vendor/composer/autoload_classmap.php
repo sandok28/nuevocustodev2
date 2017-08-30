@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Cargo' => $baseDir . '/app/Cargo.php',
+    'App\\CargoSeccion' => $baseDir . '/app/CargoSeccion.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Funcionario' => $baseDir . '/app/Funcionario.php',
@@ -25,6 +26,7 @@ return array(
     'App\\Http\\Controllers\\HorariosGeneralesController' => $baseDir . '/app/Http/Controllers/HorariosGeneralesController.php',
     'App\\Http\\Controllers\\IntervalosFuncionariosController' => $baseDir . '/app/Http/Controllers/IntervalosFuncionariosController.php',
     'App\\Http\\Controllers\\IntervalosInvitadosController' => $baseDir . '/app/Http/Controllers/IntervalosInvitadosController.php',
+    'App\\Http\\Controllers\\IntervalosSeccionesController' => $baseDir . '/app/Http/Controllers/IntervalosSeccionesController.php',
     'App\\Http\\Controllers\\InvitadosController' => $baseDir . '/app/Http/Controllers/InvitadosController.php',
     'App\\Http\\Controllers\\LicenciasController' => $baseDir . '/app/Http/Controllers/LicenciasController.php',
     'App\\Http\\Controllers\\PuertasController' => $baseDir . '/app/Http/Controllers/PuertasController.php',
@@ -36,6 +38,8 @@ return array(
     'App\\Http\\Middleware\\RedirectIfAuthenticated' => $baseDir . '/app/Http/Middleware/RedirectIfAuthenticated.php',
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Http\\Requests\\FuncionariosActualizarRequest' => $baseDir . '/app/Http/Requests/FuncionariosActualizarRequest.php',
+    'App\\Http\\Requests\\FuncionariosCrearRequest' => $baseDir . '/app/Http/Requests/FuncionariosCrearRequest.php',
     'App\\Http\\Requests\\LoginRequest' => $baseDir . '/app/Http/Requests/LoginRequest.php',
     'App\\Ingreso' => $baseDir . '/app/Ingreso.php',
     'App\\IntervaloInvitadoPuerta' => $baseDir . '/app/IntervaloInvitadoPuerta.php',
@@ -69,6 +73,7 @@ return array(
     'Collective\\Html\\HtmlFacade' => $vendorDir . '/laravelcollective/html/src/HtmlFacade.php',
     'Collective\\Html\\HtmlServiceProvider' => $vendorDir . '/laravelcollective/html/src/HtmlServiceProvider.php',
     'CreateAuditsTable' => $baseDir . '/database/migrations/2017_05_09_012430_create_audits_table.php',
+    'CreateCargoSeccionsTable' => $baseDir . '/database/migrations/2017_08_25_163200_create_cargo_seccions_table.php',
     'CreateCargosTable' => $baseDir . '/database/migrations/2017_04_10_210304_create_cargos_table.php',
     'CreateFuncionariosTable' => $baseDir . '/database/migrations/2017_04_10_210813_create_funcionarios_table.php',
     'CreateHorariosgeneralesTable' => $baseDir . '/database/migrations/2017_08_02_001207_create_horariosgenerales_table.php',

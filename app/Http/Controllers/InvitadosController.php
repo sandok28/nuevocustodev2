@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Invitado;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\In;
 use Session;
 use Redirect;
@@ -44,19 +46,44 @@ class InvitadosController extends Controller
 
     public function store(Request $request)
     {
-        Invitado::create([
-            'nombre'=>$request->nombre,
-            'apellido'=>$request->apellido,
-            'cedula'=>$request->cedula,
-            'celular'=>$request->celular,
-            'correo'=>$request->correo,
-            'fecha_nacimiento'=>$request->fecha_nacimiento,
-            'foto'=>"NO HAY",
-        ]);
-        //obtengo el ultimo invitado que se creo es decir la que acabamos de crear
-        $invitado = Invitado::orderBy('created_at', 'desc')->first();
 
-        return redirect('/invitados/'.$invitado->id.'/edit')->with('message','El Invitado se ha registrado correctamente');
+        $this->validate($request, [
+            'nombre'=>'required|min:4|max:15',
+            'apellido'=>'required|min:4|max:15',
+            'cedula'=>'required|min:10000000|max:9999999999|numeric|unique:Invitados',
+            'celular'=>'required|min:1000000000|max:9999999999|numeric',
+            'fecha_nacimiento'=>'required|date_format:"Y-m-d"',
+            'correo'=>'required|max:30|email',
+        ]);
+
+        try{
+            DB::beginTransaction();
+            DB::table('Invitados')->insert([
+                'nombre'=>$request->nombre,
+                'apellido'=>$request->apellido,
+                'cedula'=>$request->cedula,
+                'celular'=>$request->celular,
+                'correo'=>$request->correo,
+                'fecha_nacimiento'=>$request->fecha_nacimiento,
+                'foto'=>"NO HAY",
+                'created_at'=>Carbon::now()->toDateTimeString()
+            ]);
+
+            //obtengo el ultimo invitado que se creo es decir la que acabamos de crear
+            $invitado = DB::table('Invitados')
+                ->select('id')
+                ->orderBy('created_at', 'desc')
+                ->first();
+
+            DB::commit();
+        }
+        catch (\Exception $ex){
+            dd($ex);
+            return redirect('/invitados/create')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
+        }
+
+
+        return redirect('/invitados/'.$invitado->id.'/edit')->with(['message'=>'El Invitado se ha registrado correctamente','tipo'=>'message']);
     }
 
     /**
@@ -85,12 +112,38 @@ class InvitadosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $invitado = Invitado::find($id);
-        $invitado->fill($request->all());
-        $invitado->save();
-        Session::flash('message','Invitado Actualizado Correctamente');
+        $this->validate($request, [
+            'nombre'=>'required|min:4|max:15',
+            'apellido'=>'required|min:4|max:15',
+            'cedula'=>'required|min:10000000|max:9999999999|numeric|unique:Invitados,cedula,'.$id,
+            'celular'=>'required|min:1000000000|max:9999999999|numeric',
+            'fecha_nacimiento'=>'required|date_format:"Y-m-d"',
+            'correo'=>'required|max:30|email',
+        ]);
 
-        return Redirect::to('/invitados');
+        try{
+            DB::beginTransaction();
+
+            DB::table('Invitados')
+                ->where('id',$id)
+                ->update([
+                    'nombre'=>$request->nombre,
+                    'apellido'=>$request->apellido,
+                    'cedula'=>$request->cedula,
+                    'celular'=>$request->celular,
+                    'correo'=>$request->correo,
+                    'fecha_nacimiento'=>$request->fecha_nacimiento,
+                    'foto'=>"NO HAY",
+                ]);
+
+            DB::commit();
+        }
+        catch (\Exception $ex){
+            dd($ex);
+            return redirect('/invitados/'.$id.'/edit')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
+        }
+
+        return redirect('/invitados')->with(['message'=>'El invitado se ha actualizado correctamente','tipo'=>'message']);
     }
 
 

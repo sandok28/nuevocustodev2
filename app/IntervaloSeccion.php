@@ -4,13 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class IntervaloSeccion extends Model
+use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
+
+class IntervaloSeccion extends Model implements AuditableContract
 {
     //Tabla a la que referencia el modelo
     protected $table = 'IntervalosSecciones';
 
-    //indico que la tabla se debe auditar
     use Auditable;
+
 
 
 }
