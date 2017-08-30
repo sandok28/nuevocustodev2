@@ -25,9 +25,9 @@ class PuertasCrearRequest extends FormRequest
     {
         return [
             'puerta_especial' => 'required',
-            'nombre' =>'required',
-            'llave_rfid' => 'required',
-            'ip' => 'required',
+            'nombre' =>'required|min:5|alpha_dash',
+            'llave_rfid' => 'required|max:9|alpha_num|regex:/^[0-9a-eA-E]+$/',
+            'ip' => 'required|ip',
         ];
     }
 }

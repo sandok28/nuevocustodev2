@@ -23,16 +23,10 @@ class FuncionariosController extends Controller
      * datos del modelo que se encuentran el la base de datos.
      */
 
-    public  function tomarfoto()
-    {
-        return view('funcionarios.tomarfoto');
-    }
+
     public function index()
     {
-        $funcionarios=Funcionario::paginate(10);
-
-
-        return view('funcionarios.index',compact('funcionarios'));
+        return view('funcionarios.index');
     }
 
     /**
@@ -145,12 +139,8 @@ class FuncionariosController extends Controller
      */
     public function horario($id)
     {
-
-
         $funcionario = Funcionario::find($id);
-
         $horariosEspeciales = $funcionario->horariosEspeciales;
-
         return view('funcionarios.horario',['funcionario'=>$funcionario,'horariosEspeciales'=>$horariosEspeciales]);
     }
 

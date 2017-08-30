@@ -24,10 +24,10 @@ class PuertasActualizarRequest extends FormRequest
     public function rules()
     {
         return [
-            'puerta_especial' => 'required|max:20',
-            'nombre' =>'required|max:9',
-            'llave_rfid' => 'required',
-            'ip' => 'required',
+            'puerta_especial' => 'required',
+            'nombre' =>'required|min:5|alpha_dash',
+            'llave_rfid' => 'required|max:9|alpha_num|regex:/^[0-9a-eA-E]+$/',
+            'ip' => 'required|ip',
         ];
     }
 }

@@ -6,11 +6,11 @@
 
     </div>
     <div>
-        <<<<<<< HEAD:resources/views/usuario/create.blade.php
+
         {!!Form::open(['route'=>'usuario.store', 'method'=>'POST'])!!}
         @include('usuario.forms.formulario')
         {!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
-        =======
+
         {!!Form::open(['route'=>'Usuario', 'method'=>'POST'])!!}
         <div class="form-group">
             {!!Form::label('nombre','Nombre:')!!}
