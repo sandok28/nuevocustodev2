@@ -18,6 +18,7 @@ class CreateIntervalosinvitadosTable extends Migration
             $table->String('targeta_rfid');
             $table->time('desde');
             $table->time('hasta');
+            $table->date('fecha');
 
             $table->integer('invitado_id')->unsigned();//llave foranea
             $table->foreign('invitado_id')->references('id')->on('Invitados');

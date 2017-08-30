@@ -81,21 +81,22 @@
                                 {!!Form::label('cargo','CARGO:')!!}
                             </div>
                             <div class="col-sm-9">
-                                <select class="form-control" name="cargo">
-                                    @foreach($cargos as $cargo)
-                                        <option>{{$cargo->nombre}}</option>
-                                    @endforeach
-                                </select>
+                                {!! Form::select('cargo_id',$cargos_array,null,['class'=>'form-control'])!!}
 
                             </div>
+
                         </div>
                         <br><br>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"></label>
+                                <label class="col-sm-3 control-label">
+                                    {!!Form::label('horario_normal','HORARIO:')!!}
+                                </label>
                                 <div class="col-sm-6">
                                     <div class="radio">
-                                        {{ Form::radio('horario', 0, false,['class'=>'iradio_flat-grey checked','style'=>'position: relative'])}}<label>  Asignar Horario Asignado al Cargo</label><br><br>
-                                        {{ Form::radio('horario', 0,false,['class'=>'iradio_flat-grey checked','style'=>'position: relative'])}}<label>   Asignar Horario Especial</label>
+                                        {{ Form::radio('horario_normal', 0, true, ['class'=>'iradio_flat-grey checked','style'=>'position: relative'])}}<label>  Asignar horario estandar de la empresa</label><br>
+                                        {{ Form::radio('horario_normal', 1, false, ['class'=>'iradio_flat-grey checked','style'=>'position: relative'])}}<label>   Asignar horario especial deacuerdo al empleado</label><br>
+                                        {{ Form::radio('horario_normal', 2, false, ['class'=>'iradio_flat-grey checked','style'=>'position: relative'])}}<label>   Asignar horario deacuerdo al cargo</label>
+
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +126,17 @@
     </div>
 
 </div>
+<<<<<<< HEAD
 
+=======
+<script src="js/say-cheese.js"></script>
+<script>
+    function capturar()
+    {
+        alert('deiby envia el codigo para analizarlo he implementarlo');
+    }
+</script>
+>>>>>>> upstream/nuevocustode_dv
 
 
 

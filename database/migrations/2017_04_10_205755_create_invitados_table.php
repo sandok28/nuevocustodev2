@@ -17,8 +17,8 @@ class CreateInvitadosTable extends Migration
             $table->increments('id');
             $table->String('nombre');
             $table->String('apellido');
-            $table->integer('cedula');
-            $table->integer('celular');
+            $table->String('cedula');
+            $table->String('celular');
             $table->String('correo');
             $table->String('fecha_nacimiento');
             $table->String('foto');

@@ -17,13 +17,13 @@ class CreatePuertasTable extends Migration
             $table->increments('id');
             $table->boolean('puerta_especial');
             $table->string('nombre');
-            $table->integer('llave_rfid');
+            $table->string('llave_rfid');
             $table->string('ip');
             $table->integer('estatus');
+            $table->integer('estatus_en_horario_general');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

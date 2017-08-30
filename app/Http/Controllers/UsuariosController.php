@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\User;
 use App\UserPuerta;
 use App\PermisoUser;
 use App\Puerta;
 use App\Permiso;
+use Illuminate\Support\Facades\DB;
 use Session;
 use Redirect;
 use Illuminate\Database\Eloquent;
@@ -56,34 +58,59 @@ class UsuariosController extends Controller
      */
     public function store(Request $request)
     {
-        User::create([
-            'name'=> $request['name'],
-            'email'=> $request['name'],
-            'password' => bcrypt($request['password']),
-            'estatus'=> '1',
+        $this->validate($request, [
+            'name' => 'required|unique:Users|min:4',
+            'password' => 'required|min:6',
         ]);
-        //obtengo el ultimo usuario que se creo es decir la que acabamos de crear
-        $usuario = User::orderBy('created_at', 'desc')->first();
 
-        //Relaciono el usuario que se acabo de crear con todas las puertas existentes
-        $todasPuertas = Puerta::all();
-        foreach($todasPuertas as $puerta){
-            UserPuerta::create([
-                'user_id' => $usuario->id,
-                'puerta_id' => $puerta->id,
-                'estatus_permiso' => 0
-            ]);
+        if ($request->password!= $request->password_confirmacion){
+            return redirect('/usuarios/create')->with(['message'=>'Las contraseñas no coinciden','tipo'=>'error']);
         }
-        //Relaciono le usuario que se acabo de crear con todos los permisos existentes
-        $todosPermisos = Permiso::all();
-        foreach($todosPermisos as $permiso){
-            PermisoUser::create([
-                'usuario_id' => $usuario->id,
-                'permiso_id' => $permiso->id,
-                'estatus_permiso' => 0
-            ]);
+
+        try {
+            DB::beginTransaction();
+
+                DB::table('Users')->insert([
+                    'name'=> $request['name'],
+                    'email'=> $request['name'],
+                    'password' => bcrypt($request['password']),
+                    'estatus'=> '1',
+                    'created_at'=>Carbon::now()->toDateTimeString(),
+                ]);
+
+                //obtengo el ultimo usuario que se creo es decir la que acabamos de crear
+
+                $usuario = DB::table('Users')
+                                ->select('id')
+                                ->orderBy('created_at', 'desc')
+                                ->first();
+
+
+                //Relaciono el usuario que se acabo de crear con todas las puertas existentes
+                $todasPuertas = Puerta::all();
+                foreach($todasPuertas as $puerta){
+                    DB::table('Puertas_Users')->insert([
+                        'user_id' => $usuario->id,
+                        'puerta_id' => $puerta->id,
+                        'estatus_permiso' => 0
+                    ]);
+                }
+                //Relaciono le usuario que se acabo de crear con todos los permisos existentes
+                $todosPermisos = Permiso::all();
+                foreach($todosPermisos as $permiso){
+                    DB::table('Permisos_Users')->insert([
+                        'usuario_id' => $usuario->id,
+                        'permiso_id' => $permiso->id,
+                        'estatus_permiso' => 0
+                    ]);
+                }
+
+            DB::commit();
+        } catch (\Exception $ex){
+            dd($ex);
         }
-        return redirect('/usuarios/'.$usuario->id.'/edit')->with('message','El Usuario se ha registrado correctamente');
+
+        return redirect('/usuarios/'.$usuario->id.'/edit')->with(['message'=>'El Usuario se ha registrado correctamente','tipo'=>'message']);
     }
 
 
@@ -122,69 +149,98 @@ class UsuariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //obtengo le usuario relacionado al id que llego
-        $usuario = User::find($id);
 
-        //creo una coleccion con todas las puertas
-        $todasPuertas = Puerta::all();
+        $this->validate($request, [
+            'name' => 'min:4|required|unique:Users,name,'.$id,
+        ]);
 
-        //las itero para obtener cada puerta registrada
-        foreach($todasPuertas as $puerta){
 
-            if($request[$puerta->id]!=null){
-                //Si la puerta fue seclecionada en el check se guarda en la relacion usuario-puerta con un 1
-                // indicando que este usuario tiene permiso sobre ella
-                UserPuerta::where('user_id', $usuario->id)
-                    ->where('puerta_id', $request[$puerta->id])
-                    ->update(['estatus_permiso' => 1]);
-            }
-            else{
-                //Si la puerta no fue seclecionada en el check se guarda en la relacion usuario-puerta con un 0
-                // indicando que este usuario no tiene permiso sobre ella
-                UserPuerta::where('user_id', $usuario->id)
-                    ->where('puerta_id', $puerta->id)
-                    ->update(['estatus_permiso' => 0]);
-            }
+        if ($request->password!= $request->password_confirmacion){
+            return redirect('/usuarios/'.$id.'/edit')->with(['message'=>'Las contraseñas no coinciden','tipo'=>'error']);
         }
 
-        //creo una coleccion con todos los permisos
-        $todosPermiso = Permiso::all();
+        try {
+            DB::beginTransaction();
 
-        //los itero para obtener cada permiso registrado
-        foreach($todosPermiso as $permiso){
-            
-            if($request[($permiso->id+10000)]!=null){
+                //obtengo le usuario relacionado al id que llego
+                $usuario = DB::table('Users')
+                                ->where('id',$id)
+                                ->first();
 
-                //Si el permiso fue seclecionada en el check se guarda en la relacion usuario-permiso con un 1
-                // indicando que este usuario tiene ese permiso.
-                PermisoUser::where('usuario_id', $usuario->id)
-                    ->where('permiso_id', $request[$permiso->id+10000])
-                    ->update(['estatus_permiso' => 1]);
-            }
-            else{
+                //creo una coleccion con todas las puertas
+                $todasPuertas = Puerta::all();
 
-                //Si el permiso no fue seclecionada en el check se guarda en la relacion usuario-permiso con un 0
-                // indicando que este usuario no tiene ese permiso.
-                PermisoUser::where('usuario_id', $usuario->id)
-                    ->where('permiso_id', $permiso->id)
+
+                //Hago que todas las puertas tengan estatus_permiso en 0
+                DB::table('Puertas_Users')
+                    ->where('user_id', $usuario->id)
                     ->update(['estatus_permiso' => 0]);
-            }
-        }
-        // si el check estatus es nulo le asigno el valor que tiene el usuario actualmente
-        if($request->estatus == null) $request->estatus=$usuario->estatus;
-        if($request->password == null) $request->password=$usuario->password;
-        //creo un arreglo auxiliar para incorporrar el email enlos datos que se vana guardar en la base de datos
-        $variablesAdaptadas = [
-            'name' => $request->name,
-            'email'=> $request->name,
-            'password'=> $request->password,
-            'estatus'=> $request->estatus
-        ];
-        $usuario->fill($variablesAdaptadas);
-        $usuario->save();
-        Session::flash('message','Usuario Actualizado Correctamente');
 
-        return Redirect::to('/usuarios');
+                //las itero para obtener cada puerta registrada y maro las seleccionadas con estatus_permiso en 1
+                foreach($todasPuertas as $puerta){
+
+                    if($request[$puerta->id]!=null){
+                        //Si la puerta fue seclecionada en el check se guarda en la relacion usuario-puerta con un 1
+                        // indicando que este usuario tiene permiso sobre ella
+                        DB::table('Puertas_Users')
+                            ->where([
+                                ['user_id','=', $usuario->id],
+                                ['puerta_id','=', $request[$puerta->id]]
+                                ])
+                            ->update(['estatus_permiso' => 1]);
+                    }
+                }
+
+                //creo una coleccion con todos los permisos
+                $todosPermiso = Permiso::all();
+
+                //Hago que todas los permisos tengan estatus_permiso en 0
+                DB::table('Permisos_Users')
+                    ->where('usuario_id', $usuario->id)
+                    ->update(['estatus_permiso' => 0]);
+
+                //los itero para obtener cada permiso registrado y marco los seleccionados con estatus_permiso en 1
+                foreach($todosPermiso as $permiso){
+
+                    if($request[($permiso->id+10000)]!=null){
+
+                        //Si el permiso fue seclecionada en el check se guarda en la relacion usuario-permiso con un 1
+                        // indicando que este usuario tiene ese permiso.
+                        DB::table('Permisos_Users')
+                            ->where([
+                                ['usuario_id','=', $usuario->id],
+                                ['permiso_id','=', $request[$permiso->id+10000]],
+                                ])
+                            ->update(['estatus_permiso' => 1]);
+                    }
+                }
+                // si el check estatus es nulo le asigno el valor que tiene el usuario actualmente
+                if($request->estatus == null) $request->estatus=$usuario->estatus;
+                if($request->password == null) $request->password=$usuario->password;
+                //creo un arreglo auxiliar para incorporrar el email enlos datos que se vana guardar en la base de datos
+                $variablesAdaptadas = [
+                    'name' => $request->name,
+                    'email'=> $request->name,
+                    'password'=> $request->password,
+                    'estatus'=> $request->estatus
+                ];
+
+                DB::table('Users')
+                    ->where('id', $id)
+                    ->update([
+                        'name' => $request->name,
+                        'email'=> $request->name,
+                        'password'=> bcrypt($request['password']),
+                        'estatus'=> $request->estatus,
+                    ]);
+
+
+            DB::commit();
+        } catch (\Exception $ex){
+            dd($ex);
+        }
+
+        return redirect('/usuarios')->with(['message'=>'Usuario Actualizado corectamente','tipo'=>'message']);
     }
 
 }

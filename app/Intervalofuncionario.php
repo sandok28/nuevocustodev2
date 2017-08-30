@@ -17,7 +17,7 @@ class Intervalofuncionario extends Model implements AuditableContract
 
     //indico los atributos de la tabla que se pueden modificar desde la vista
     protected $fillable = [
-        'desde', 'hasta', 'dia','funcionario_id',
+        'desde', 'hasta', 'dia','funcionario_id','created_at',
     ];
 
     /**

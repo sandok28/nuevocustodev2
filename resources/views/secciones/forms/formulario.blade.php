@@ -1,4 +1,9 @@
 <div class="form-group">
-    {!!Form::label('nombre','Nombre:')!!}
-    {!!Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Ingresa el Nombre de la Seccion'])!!}
+    <div class="col-md-12">
+        {!!Form::label('nombre','Nombre:')!!}
+    </div>
+    <div class="col-md-10">
+        {!!Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Ingresa el Nombre de la Seccion'])!!}
+    </div>
 </div>
+

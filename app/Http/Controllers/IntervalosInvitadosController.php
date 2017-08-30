@@ -6,6 +6,7 @@ use App\Intervaloinvitado;
 use App\Puerta;
 use App\IntervaloInvitadoPuerta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Session;
 use Redirect;
 
@@ -13,7 +14,7 @@ class IntervalosInvitadosController extends Controller
 {
 
     /**
-     * No hace nada en concreto solo llama a la vista create
+     * No hace nada en concreto solo llama a la vista create de intervalos_invitados
      *
      * @author Edwin Sandoval
      * @return \Illuminate\Http\Response devuelve la vista create de intervalos_invitados
@@ -90,15 +91,25 @@ class IntervalosInvitadosController extends Controller
      */
     public function destroy($id)
     {
-        $puertasIntervalo = IntervaloInvitadoPuerta::all()->where('intervalo_id',$id);
+        try{
+            DB::beginTransaction();
+                DB::table('IntervalosInvitados_Puertas')
+                    ->where('intervalo_invitado_id',$id)
+                    ->delete();
 
-        foreach($puertasIntervalo as $puerta){
-            $puerta->delete();
+                $intervalo_invitado = DB::table('IntervalosInvitados')->select('invitado_id')->where('id',$id)->first();
+
+                DB::table('IntervalosInvitados')
+                    ->where('id',$id)
+                    ->delete();
+            DB::commit();
         }
-        $invitado_id = Intervaloinvitado::find($id)->invitado_id;
-        Intervaloinvitado::destroy($id);
+        catch (\Exception $ex){
+            return redirect('/invitados/'.$intervalo_invitado->invitado_id.'/edit')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
+        }
+
         //devuelve la vista edit de los intervalos_invitados
-        return redirect('/invitados/'.$invitado_id.'/edit');
+        return redirect('/invitados/'.$intervalo_invitado->invitado_id.'/edit')->with(['message'=>'El intervalo se registro correctamente','tipo'=>'message']);
     }
 
     /**
@@ -113,28 +124,39 @@ class IntervalosInvitadosController extends Controller
 
     private function crearIntevaloInvitado(Request $request,$invitado_id)
     {
-        Intervaloinvitado::create([
 
-            'desde'=> $request->desde_hora.":".$request->desde_minuto.":0",
-            'hasta'=> $request->hasta_hora.":".$request->hasta_minuto.":0",
-            'targeta_rfid' => $request->targeta_rfid,
-            'invitado_id'=> $invitado_id,
-        ]);
+        try{
+            DB::beginTransaction();
 
-        //obtengo el ultimo intervalo que se creo es decir la que acabamos de crear
-        $intervalo = Intervaloinvitado::orderBy('created_at', 'desc')->first();
-
-        //Relaciono el intervalo que se acabo de crear con todas las puertas selecionadas
-        $todasPuertas = Puerta::all();
-        foreach($todasPuertas as $puerta){
-            //Si la puerta fue seclecionada en el check se guarda en la relacion secionn-puerta con un 1
-            // indicando que esta seccion tiene permiso sobre ella
-            if($request[$puerta->id]!=null) {
-                IntervaloInvitadoPuerta::create([
-                    'intervalo_invitado_id' => $intervalo->id,
-                    'puerta_id' => $puerta->id,
+                $carbon = new \Carbon\Carbon();
+                DB::table('IntervalosInvitados')->insert([
+                    'desde'=> $request->desde_hora.":".$request->desde_minuto.":0",
+                    'hasta'=> $request->hasta_hora.":".$request->hasta_minuto.":0",
+                    'targeta_rfid' => $request->targeta_rfid,
+                    'invitado_id'=> $invitado_id,
+                    'fecha' => $carbon->now(),
                 ]);
-            }
+
+                //obtengo el ultimo intervalo que se creo es decir la que acabamos de crear
+                $intervalo = DB::table('IntervalosInvitados')->orderBy('created_at', 'desc')->first();
+
+
+                //Relaciono el intervalo que se acabo de crear con todas las puertas selecionadas
+                $todasPuertas = Puerta::all();
+                foreach($todasPuertas as $puerta){
+                    //Si la puerta fue seclecionada en el check se guarda en la relacion secionn-puerta con un 1
+                    // indicando que esta seccion tiene permiso sobre ella
+                    if($request[$puerta->id]!=null) {
+                        DB::table('IntervalosInvitados_Puertas')->insert([
+                            'intervalo_invitado_id' => $intervalo->id,
+                            'puerta_id' => $puerta->id,
+                        ]);
+                    }
+                }
+            DB::commit();
+        } catch (\Exception $ex){
+            return null;
         }
+
     }
 }

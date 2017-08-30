@@ -11,12 +11,15 @@ class PuertasUsersTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i<9; $i++){
-            DB::table('Puertas_Users')->insert([
-                'user_id' => 1,
-                'puerta_id' => $i+1,
-                'estatus_permiso' => 0,
-            ]);
+        for ($i = 1; $i<11; $i++){
+            for ($j = 1; $j<11; $j++) {
+                DB::table('Puertas_Users')->insert([
+                    'user_id' => $i,
+                    'puerta_id' => $j,
+                    'estatus_permiso' => 0,
+                ]);
+            }
         }
+
     }
 }

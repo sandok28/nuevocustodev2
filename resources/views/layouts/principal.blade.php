@@ -79,7 +79,10 @@
                     <a href="/funcionarios"><i class="fa fa-users"></i><span>FUNCIONARIOS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/secciones"><i class="fa  fa-list"></i><span>SECCIONES Y CARGOS</span></a>
+                    <a href="/secciones"><i class="fa  fa-list"></i><span>SECCIONES</span></a>
+                </li>
+                <li class="active">
+                    <a href="/cargos"><i class="fa  fa-list"></i><span>CARGOS</span></a>
                 </li>
                 <li class="active">
                     <a href="/invitados"><i class="fa fa-users"></i><span>INVITADOS</span></a>
@@ -88,7 +91,7 @@
                     <a href="/usuarios"><i class="fa fa-users"></i><span>USUARIOS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/horariogeneral"><i class="fa fa-clock-o"></i><span>HORARIOS</span></a>
+                    <a href="/horariogeneral/show"><i class="fa fa-clock-o"></i><span>HORARIOS</span></a>
                 </li>
                 <li class="active">
                     <a href="/licencias"><i class="fa  fa-files-o"></i><span>LICENCIAS</span></a>
@@ -127,9 +130,9 @@
             <!--dashboard charts and map start-->
 
             <div class="row">
-                <div class="col-md-12">
 
 
+<<<<<<< HEAD
                     @if(Session::get('tipo') == 'error')
                         <div class="alert alert-danger alert-dismissible" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -144,23 +147,14 @@
                         </div>
                     @endif
                 </div>
+=======
 
-                <div class="col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            @yield('titulo-tarjeta')
-                            <div class="actions pull-right">
-                                <i class="fa fa-chevron-down"></i>
-                                <i class="fa fa-times"></i>
-                            </div>
-                        </div>
-                        <div class="panel-body">
+                @include('alertas.alertas')
+                @yield('content')
 
-                            @yield('content')
-                        </div>
-                    </div>
-                </div>
-                <!--segundo corte-->
+>>>>>>> upstream/nuevocustode_dv
+
+
             </div>
         </section>
     </section>

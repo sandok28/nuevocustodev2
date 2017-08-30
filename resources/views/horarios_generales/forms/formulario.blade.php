@@ -14,15 +14,13 @@
         {!!Form::label('hasta','Hasta:', ['class' =>'col-md-3'])!!}
         <div class="col-md-8">
             {!!Form::label('Hora','Hora:')!!}
-            {!!Form::selectRange('hasta_hora', 0, 23)!!}
+
+            {!!Form::selectRange('hasta_hora', 00, 23)!!}
             {!!Form::label('Minuto','Minuto:')!!}
-            {!!Form::selectRange('hasta_minuto', 0,59)!!}
+            {!!Form::selectRange('hasta_minuto', 00,59)!!}
         </div>
     </div>
 </div>
-
-
-
 <div class="form-group col-md-7">
 
     {!!Form::label('dia','Dias:')!!}

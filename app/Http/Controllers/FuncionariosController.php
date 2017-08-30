@@ -6,12 +6,19 @@ namespace App\Http\Controllers;
  *que la aplicacion va a necesitar.
  * */
 use App\Cargo;
+use App\Horariogeneral;
 use App\Funcionario;
 use App\Http\Requests\FuncionariosActualizarRequest;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+<<<<<<< HEAD
 use App\Http\Requests;
 use Yajra\Datatables\Datatables;
+=======
+use Mockery\Exception;
+>>>>>>> upstream/nuevocustode_dv
 
 class FuncionariosController extends Controller
 {
@@ -26,7 +33,17 @@ class FuncionariosController extends Controller
 
     public function index()
     {
+<<<<<<< HEAD
         return view('funcionarios.index');
+=======
+
+
+
+        $this->actualizar_estado_licencias();
+
+        $funcionarios=Funcionario::all();
+        return view('funcionarios.index',compact('funcionarios'));
+>>>>>>> upstream/nuevocustode_dv
     }
 
     /**
@@ -38,8 +55,12 @@ class FuncionariosController extends Controller
     public function create()
     {
         //
-        $cargos = Cargo::all();
-        return view('funcionarios.create',compact('cargos'));
+        $cargos_array = DB::table('cargos')
+                            ->select('id','nombre')
+                            ->where('estatus',1)
+                            ->get()
+                            ->pluck('nombre','id');
+        return view('funcionarios.create',compact('cargos_array'));
     }
 
     /**
@@ -56,6 +77,7 @@ class FuncionariosController extends Controller
     public function store(\App\Http\Requests\FuncionariosCrearRequest $request)
     {
 
+<<<<<<< HEAD
             Funcionario::create([
                 'nombre'=>$request['nombre'],
                 'apellido'=>$request['apellido'],
@@ -74,7 +96,36 @@ class FuncionariosController extends Controller
 
         return redirect('/funcionarios')->with('message','El Usuario se ha registrado correctamente');
     }
+=======
+        try{
+>>>>>>> upstream/nuevocustode_dv
 
+            DB::beginTransaction();
+                DB::table('funcionarios')
+                    ->insert(
+                        [
+                            'nombre'=>$request->nombre,
+                            'apellido'=>$request->apellido,
+                            'cedula'=>$request->cedula,
+                            'correo'=>$request->correo,
+                            'tarjeta_rfid'=>$request->tarjeta_rfid,
+                            'fecha_nacimiento'=>$request->fecha_nacimiento,
+                            'cargo_id'=>$request->cargo_id,
+                            'estatus_licencia'=>'0',
+                            'foto'=>'0',
+                            'celular'=>$request->celular,
+                            'horario_normal'=>$request->horario_normal,
+                            'licencia'=>'0',
+                            'estatus'=>'0',//ojo con esto, ese campo es dado de baja 0 es inactivo
+                        ]
+                    );
+            DB::commit();
+            return redirect('/funcionarios')->with(['message'=>'El Usuario se ha registrado correctamente','tipo'=>'message']);
+        }
+        catch (\Exception $ex){
+            return redirect('/funcionarios/create')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
+        }
+    }
     /**
      * Display the specified resource.
      *El recurso no es utilizado para este proyecto
@@ -97,10 +148,14 @@ class FuncionariosController extends Controller
      */
     public function edit($id)
     {
-        $cargos = Cargo::all();
+        $cargos_array = DB::table('cargos')
+                            ->select('id','nombre')
+                            ->where('estatus',1)
+                            ->get()
+                            ->pluck('nombre','id');
         $funcionario = Funcionario::find($id);
         //dd($funcionario);
-        return view('funcionarios.edit',['funcionario'=>$funcionario,'cargos'=>$cargos]);
+        return view('funcionarios.edit',['funcionario'=>$funcionario,'cargos_array'=>$cargos_array]);
     }
 
     /**
@@ -113,35 +168,130 @@ class FuncionariosController extends Controller
     public function update(FuncionariosActualizarRequest $request, $id)
     {
 
-        $funcionario = Funcionario::find($id);
-        $funcionario->fill($request->all());
-        $funcionario->save();
-        //Session::flash('message','Funcionario Actualizado Correctamente');
-        return Redirect::to('/funcionarios');
+        try{
+            DB::beginTransaction();
+            DB::table('funcionarios')
+                ->where('id',$id)
+                ->update(
+                    [
+                        'nombre'=>$request->nombre,
+                        'apellido'=>$request->apellido,
+                        'cedula'=>$request->cedula,
+                        'correo'=>$request->correo,
+                        'tarjeta_rfid'=>$request->tarjeta_rfid,
+                        'fecha_nacimiento'=>$request->fecha_nacimiento,
+                        'cargo_id'=>$request->cargo_id,
+                        'estatus_licencia'=>'0',
+                        'foto'=>'0',
+                        'celular'=>$request->celular,
+                        'horario_normal'=>$request->horario_normal,
+                        'licencia'=>'0',
+                        'estatus'=>'0',//ojo con esto, ese campo es dado de baja 0 es inactivo
+                    ]
+                );
+            DB::commit();
+
+        }
+        catch (\Exception $ex){
+            return redirect('/funcionarios/create')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
+        }
+        return redirect('/funcionarios')->with(['message'=>'El Usuario se ha Actualizado correctamente','tipo'=>'message']);
     }
 
+
     /**
-     * Remove the specified resource from storage.
-     * No se usa para el proyecto.
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * No hace nada en concreto solo muestra la vista horario de funcionarios en donde se puede visualizar
+     * el horario que tiene el funcionario actualmente Existen 3 tipos:
+     * -horario de acuerdo a la empresa
+     * -Horario propio especiaol
+     * -Horario deacuerdo al cargo
+     * Dependiendo de cual sea redirecciona a caada una de las vistas necesrias
+     *
+     * @author Edwin Sandoval
+     * @return \Illuminate\Http\Response devuelve la vista horario de funcionarios
+     * y le paso
+     * $funcionario objeto del funcionario al que pertenece el id
+     * $horariosEspeciales una coleccion con todas las puestas normales
+     * $puertasEspeciales una coleccion con todas las puertas especiales
+     * @param integer $funcionario_id id del funcionario al que pertenece el horario
      */
-    public function destroy($id)
+    public function horario($funcionario_id)
     {
-        //
+       $funcionario = Funcionario::find($funcionario_id);
+
+
+
+       if($funcionario->horario_normal == 0 ){
+
+           $puertasNormales = DB::table('Puertas')
+                                   ->select('id','nombre','estatus_en_horario_general')
+                                   ->where('puerta_especial',0)->get();
+           $puertasEspeciales = DB::table('Puertas')
+                                   ->select('id','nombre','estatus_en_horario_general')
+                                   ->where('puerta_especial',1)->get();
+           $intervalosHorarioGeneral = Horariogeneral::all();
+           // redirecciona a la vista horario de funcionario y carga el horario general de la empresa
+           return view('funcionarios.horario',['funcionario'=>$funcionario,'puertasNormales'=>$puertasNormales,'puertasEspeciales'=>$puertasEspeciales,'intervalosHorarioGeneral'=>$intervalosHorarioGeneral]);
+
+       }
+       if($funcionario->horario_normal == 1 ){
+            $horariosEspeciales = $funcionario->horariosEspeciales;
+           // redirecciona a la vista horario de funcionario y carga el horario especial del funcionario
+            return view('funcionarios.horario',['funcionario'=>$funcionario,'horariosEspeciales'=>$horariosEspeciales]);
+       }
+        if($funcionario->horario_normal == 2 ){
+            // redirecciona a la vista horario de funcionario y carga el horario  de cada seccion asociada al cargo del funcionario
+            return view('funcionarios.horario',['funcionario'=>$funcionario]);
+        }
+
+        $horariosEspeciales = $funcionario->horariosEspeciales;
+
+        return view('funcionarios.horario',['funcionario'=>$funcionario,'horariosEspeciales'=>$horariosEspeciales]);
     }
 
+
     /**
-     * Remove the specified resource from storage.
-     * No se usa para el proyecto.
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Actualiza el estado de la licencia de todos los funcionarios este metodo esta diseñado
+     * para que sea activado una vez cada noche en el servidor actualmente se ejecuta cada vez
+     * que se ingresa a la vista index de funcionarios
+     *
+     * @author Edwin Sandoval
      */
+<<<<<<< HEAD
     public function horario($id)
     {
         $funcionario = Funcionario::find($id);
         $horariosEspeciales = $funcionario->horariosEspeciales;
         return view('funcionarios.horario',['funcionario'=>$funcionario,'horariosEspeciales'=>$horariosEspeciales]);
+=======
+    private function actualizar_estado_licencias(){
+
+        $funcionarios=Funcionario::all();
+
+        try {
+            DB::beginTransaction();
+                DB::table('Funcionarios')->update(['licencia' =>'0']);
+                foreach ($funcionarios as $funcionario) {
+                    //obtengo una coleccion con todas las licencias activas
+                    $funcionario_licenciasActivas=$funcionario->licencias->where('estatus',1);
+
+                    foreach ($funcionario_licenciasActivas as $funcionario_licenciaActiva) {
+                        $desde = Carbon::createFromFormat('Y-m-d', $funcionario_licenciaActiva->desde);
+                        $hasta = Carbon::createFromFormat('Y-m-d', $funcionario_licenciaActiva->hasta);
+                        $hoy = Carbon::createFromFormat('Y-m-d', Carbon::now()->toDateString());
+
+                        if ( $hoy->diffInDays($desde,false ) * $hoy->diffInDays($hasta,false ) <= 0 ) {
+                            DB::table('Funcionarios')->where('id', $funcionario->id)->update(['licencia' =>'1']);
+                        }
+                    }
+
+
+                }
+            DB::commit();
+        } catch (\Exception $ex){
+            dd($ex);
+        }
+>>>>>>> upstream/nuevocustode_dv
     }
 
 }

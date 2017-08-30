@@ -14,6 +14,7 @@ class CreateIntervalosseccionesTable extends Migration
     public function up()
     {
         Schema::create('IntervalosSecciones', function (Blueprint $table) {
+            $table->increments('id');
             $table->time('desde');
             $table->time('hasta');
             $table->integer('dia');

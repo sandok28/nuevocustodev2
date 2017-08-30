@@ -324,6 +324,7 @@ class ComposerStaticInit2d850ed464469b45a77aadc885f3f9b5
 
     public static $classMap = array (
         'App\\Cargo' => __DIR__ . '/../..' . '/app/Cargo.php',
+        'App\\CargoSeccion' => __DIR__ . '/../..' . '/app/CargoSeccion.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Funcionario' => __DIR__ . '/../..' . '/app/Funcionario.php',
@@ -342,6 +343,7 @@ class ComposerStaticInit2d850ed464469b45a77aadc885f3f9b5
         'App\\Http\\Controllers\\HorariosGeneralesController' => __DIR__ . '/../..' . '/app/Http/Controllers/HorariosGeneralesController.php',
         'App\\Http\\Controllers\\IntervalosFuncionariosController' => __DIR__ . '/../..' . '/app/Http/Controllers/IntervalosFuncionariosController.php',
         'App\\Http\\Controllers\\IntervalosInvitadosController' => __DIR__ . '/../..' . '/app/Http/Controllers/IntervalosInvitadosController.php',
+        'App\\Http\\Controllers\\IntervalosSeccionesController' => __DIR__ . '/../..' . '/app/Http/Controllers/IntervalosSeccionesController.php',
         'App\\Http\\Controllers\\InvitadosController' => __DIR__ . '/../..' . '/app/Http/Controllers/InvitadosController.php',
         'App\\Http\\Controllers\\LicenciasController' => __DIR__ . '/../..' . '/app/Http/Controllers/LicenciasController.php',
         'App\\Http\\Controllers\\PuertasController' => __DIR__ . '/../..' . '/app/Http/Controllers/PuertasController.php',
@@ -394,6 +396,7 @@ class ComposerStaticInit2d850ed464469b45a77aadc885f3f9b5
         'Collective\\Html\\HtmlServiceProvider' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlServiceProvider.php',
         'Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',
         'CreateAuditsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_09_012430_create_audits_table.php',
+        'CreateCargoSeccionsTable' => __DIR__ . '/../..' . '/database/migrations/2017_08_25_163200_create_cargo_seccions_table.php',
         'CreateCargosTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_210304_create_cargos_table.php',
         'CreateFuncionariosTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_210813_create_funcionarios_table.php',
         'CreateHorariosgeneralesTable' => __DIR__ . '/../..' . '/database/migrations/2017_08_02_001207_create_horariosgenerales_table.php',

@@ -1,61 +1,65 @@
 @extends('layouts.principal')
 
 @section('titel')
-    Ver intervalo
+    index Horario General
 @endsection
 
-@section('titulo-tarjeta')
-    Ver intervalo
-@endsection
 
+@section('cargarcss')
+    {{-- DataTables--}}
+    {!! Html::style('assets/plugins/dataTables/css/dataTables.css') !!}
+
+    <!-- iCheck-->
+    {!! Html::style("assets/plugins/icheck/css/_all.css") !!}
+@endsection
 @section('content')
-    <div class="form-group">
-        {!!Form::label('desde','Dede:')!!}
-    </div>
-    <div class="form-group">
-        {!!Form::label($intervalo->desde,null,['class'=>'form-control','placeholder'=>'hh:mm:ss'])!!}
-    </div>
-    <div class="form-group">
-        {!!Form::label('hasta','Hasta:')!!}
-    </div>
-    <div class="form-group">
-        {!!Form::label($intervalo->hasta,null,['class'=>'form-control','placeholder'=>'hh:mm:ss'])!!}
-    </div>
-    <div class="form-group">
-        {!!Form::label('targeta_rfid','Targeta RFID:')!!}
-    </div>
-    <div class="form-group">
-        {!!Form::label($intervalo->targeta_rfid,null,['class'=>'form-control','placeholder'=>'# targeta RFID'])!!}
-    </div>
-    <div class="form-group">
-        <button class="btn btn-primary btn-block btn-3d" onclick="history.back();">Volver</button>
-    </div>
 
-    <div class="row form-group">
-        <div class="col-xs-12 row">
-            <div class="col-xs-6">
-                <div class="col-xs-12">
-                    <h1>Puertas normales</h1>
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Horario General Del Sistema</h3>
+                <div class="actions pull-right">
+                    <i class="fa fa-chevron-down"></i>
+                    <i class="fa fa-times"></i>
                 </div>
-                @foreach($puertasNormales as $puertaNormal)
-                    <div class="col-xs-4">
-                        {!! Form::checkbox($puertaNormal->id, $puertaNormal->id,1,['disabled'=> true]) !!}
-                        {!! Form::label($puertaNormal->nombre) !!}
-                    </div>
-                @endforeach
             </div>
-            <div class="col-xs-6">
-                <div class="col-xs-12">
-                    <h1>Puertas especiales</h1>
-                </div>
-                @foreach($puertasEspeciales as $puertaEspecial)
-                    <div class="col-xs-4">
-                        {!! Form::checkbox($puertaEspecial->id, $puertaEspecial->id, 1,['disabled'=> true]) !!}
-                        {!! Form::label($puertaEspecial->nombre) !!}
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <div class="panel-heading row">
+                        <div class="col-md-6">
+                            {!!link_to_route('horariogeneral.index', 'Editar Horario General', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
+
+                        </div>
+                        <div class="col-md-6">
+                            <a class="btn btn-primary btn-block btn-3d" onclick="history.back();">Volver</a>
+                        </div>
                     </div>
-                @endforeach
+                </div>
             </div>
         </div>
     </div>
 
+
+
+    @include('horarios_generales.show_horario_general');
+@endsection
+@section('cargarjs')
+    <!--Page Leve JS -->
+    {!! Html::script('assets/plugins/dataTables/js/jquery.dataTables.js') !!}
+    {!! Html::script('assets/plugins/dataTables/js/dataTables.bootstrap.js') !!}
+    <script>
+        $(document).ready(function() {
+            $('#example').dataTable();
+        });
+    </script>
+    {!! Html::script('assets/plugins/icheck/js/icheck.min.js') !!}
+    <script>
+        $(document).ready(function() {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_flat-grey',
+                radioClass: 'iradio_flat-grey'
+            });
+        });
+    </script>
 @endsection

@@ -12,21 +12,21 @@ class FuncionariosTableSeeder extends Seeder
     public function run()
     {
         //
-        for ($i = 0; $i<10; $i++){
+        for ($i = 1; $i<11; $i++){
             DB::table('Funcionarios')->insert([
-                'cedula' => $i,
-                'nombre' => 'N'.$i,
+                'cedula' => '112154321'.$i,
+                'nombre' => 'Funcionario '.$i,
                 'foto'=>'F'.$i,
                 'fecha_nacimiento' => '2017-05-22 16:15:10',
-                'apellido' => 'A'.$i,
-                'celular' => $i,
-                'correo' => 'C'.$i,
-                'hoario_normal' => 1,
-                'dado_de_baja' => 0,
+                'apellido' => 'Apellido '.$i,
+                'celular' => '321543885'.$i,
+                'correo' => 'Funcionario'.$i.'@gmail.com',
+                'horario_normal' => 0,
+                'estatus_licencia' => 0,
                 'licencia' => 0,
-                'tarjeta_rfid' => '0'.$i,
+                'tarjeta_rfid' => '47A4F2E'.$i,
                 'estatus' => 1,
-                'cargo_id'=>1,
+                'cargo_id'=>$i,
             ]);
         }
     }
