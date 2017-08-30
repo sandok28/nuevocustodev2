@@ -132,7 +132,7 @@
             <div class="row">
 
 
-<<<<<<< HEAD
+
                     @if(Session::get('tipo') == 'error')
                         <div class="alert alert-danger alert-dismissible" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -147,12 +147,12 @@
                         </div>
                     @endif
                 </div>
-=======
+
 
                 @include('alertas.alertas')
                 @yield('content')
 
->>>>>>> upstream/nuevocustode_dv
+
 
 
             </div>

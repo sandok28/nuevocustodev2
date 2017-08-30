@@ -58,7 +58,6 @@ Route::get('Estadisticas','EstadisticasController@index');
 Route::get('Reportes','ReportesController@index');
 
 Route::resource('horariogeneral','HorariosGeneralesController',['only' => ['index','create','store','destroy']]);
-<<<<<<< HEAD
 
 Route::get('/funcionarios-lista',function ()
 {
@@ -87,7 +86,7 @@ Route::get('/funcionarios-lista',function ()
         })
         ->make(true);
 });
-=======
+
 Route::get('horariogeneral/show','HorariosGeneralesController@show')->name('horariogeneral.show');
 Route::post('horariogeneral/actualizar_puertas','HorariosGeneralesController@actualizarPuertas')->name('horariogeneral.actualizar_puertas');
 
@@ -95,4 +94,4 @@ Route::post('horariogeneral/actualizar_puertas','HorariosGeneralesController@act
 Route::delete('IntervalosSecciones/{id},{seccion_id}','IntervalosSeccionesController@destroy')->name('IntervalosSecciones.destroy');
 Route::get('IntervalosSecciones/create/{seccion_id}', 'IntervalosSeccionesController@create')->name('IntervalosSecciones.create');
 Route::post('IntervalosSecciones/{seccion_id}', 'IntervalosSeccionesController@store')->name('IntervalosSecciones.store');
->>>>>>> upstream/nuevocustode_dv
+

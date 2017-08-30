@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
+
     {!!Form::close()!!}
 @endsection
 
@@ -47,7 +47,5 @@
         });
 
     </script>
-=======
->>>>>>> upstream/nuevocustode_dv
 
 @endsection

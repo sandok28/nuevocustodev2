@@ -1,13 +1,6 @@
 @extends('layouts.principal')
 
 @section('content')
-<<<<<<< HEAD
-    @include('alertas.alertas')
-    {!!Form::model($puerta,['route'=>['puertas.update',$puerta],'method'=>'PUT'])!!}
-    @include('GestionAreas.forms.formulario')
-    <div class="form-group">
-        {!!Form::submit('Actualizar',['class'=>'btn btn-primary'])!!}
-=======
     <div class="col-md-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -26,7 +19,6 @@
                 {!!Form::close()!!}
             </div>
         </div>
->>>>>>> upstream/nuevocustode_dv
     </div>
 
 @endsection

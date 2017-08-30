@@ -126,9 +126,7 @@
     </div>
 
 </div>
-<<<<<<< HEAD
 
-=======
 <script src="js/say-cheese.js"></script>
 <script>
     function capturar()
@@ -136,7 +134,7 @@
         alert('deiby envia el codigo para analizarlo he implementarlo');
     }
 </script>
->>>>>>> upstream/nuevocustode_dv
+
 
 
 

@@ -14,16 +14,7 @@
 @endsection
 
 @section('content')
-<<<<<<< HEAD
-    <div>
-        @include('alertas.alertas')
-        {!!Form::open(['route'=>'funcionarios.store', 'method'=>'POST'])!!}
-        @include('funcionarios.forms.formulario')
-        {!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
-        {!!Form::close()!!}
-    </div>
 
-=======
     <div class="col-md-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -53,7 +44,7 @@
             </div>
         </div>
     </div>
->>>>>>> upstream/nuevocustode_dv
+
 @endsection
 
 @section('cargarjs')

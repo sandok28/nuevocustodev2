@@ -13,12 +13,10 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
-<<<<<<< HEAD
 use App\Http\Requests;
 use Yajra\Datatables\Datatables;
-=======
 use Mockery\Exception;
->>>>>>> upstream/nuevocustode_dv
+
 
 class FuncionariosController extends Controller
 {
@@ -33,17 +31,10 @@ class FuncionariosController extends Controller
 
     public function index()
     {
-<<<<<<< HEAD
-        return view('funcionarios.index');
-=======
-
-
-
         $this->actualizar_estado_licencias();
-
         $funcionarios=Funcionario::all();
         return view('funcionarios.index',compact('funcionarios'));
->>>>>>> upstream/nuevocustode_dv
+
     }
 
     /**
@@ -77,29 +68,7 @@ class FuncionariosController extends Controller
     public function store(\App\Http\Requests\FuncionariosCrearRequest $request)
     {
 
-<<<<<<< HEAD
-            Funcionario::create([
-                'nombre'=>$request['nombre'],
-                'apellido'=>$request['apellido'],
-                'cedula'=>$request['cedula'],
-                'correo'=>$request['correo'],
-                'tarjeta_rfid'=>$request['tarjeta_rfid'],
-                'fecha_nacimiento'=>$request['fecha_nacimiento'],
-                'cargo_id'=>'1',
-                'foto'=>'0',
-                'celular'=>$request['celular'],
-                'hoario_normal'=>$request['horario'],
-                'licencia'=>'0',
-                'estatus'=>'0',
-                'dado_de_baja'=>'0',
-            ]);
-
-        return redirect('/funcionarios')->with('message','El Usuario se ha registrado correctamente');
-    }
-=======
         try{
->>>>>>> upstream/nuevocustode_dv
-
             DB::beginTransaction();
                 DB::table('funcionarios')
                     ->insert(
@@ -257,13 +226,9 @@ class FuncionariosController extends Controller
      *
      * @author Edwin Sandoval
      */
-<<<<<<< HEAD
-    public function horario($id)
-    {
-        $funcionario = Funcionario::find($id);
-        $horariosEspeciales = $funcionario->horariosEspeciales;
-        return view('funcionarios.horario',['funcionario'=>$funcionario,'horariosEspeciales'=>$horariosEspeciales]);
-=======
+
+
+
     private function actualizar_estado_licencias(){
 
         $funcionarios=Funcionario::all();
@@ -291,7 +256,6 @@ class FuncionariosController extends Controller
         } catch (\Exception $ex){
             dd($ex);
         }
->>>>>>> upstream/nuevocustode_dv
     }
 
 }

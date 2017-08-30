@@ -24,7 +24,7 @@ class FuncionariosCrearRequest extends FormRequest
     public function rules()
     {
         return [
-<<<<<<< HEAD
+
             'nombre'=>'required|min:4|max:15|alpha',
             'apellido'=>'required|min:4|max:15|alpha',
             'cedula'=>'required|min:100000|max:9999999999|numeric|unique:funcionarios',
@@ -33,16 +33,7 @@ class FuncionariosCrearRequest extends FormRequest
             'correo'=>'required|max:30|email',
             'tarjeta_rfid'=>'required|max:8|alpha_num|regex:/^[0-9a-eA-E]+$/',
             'horario'=>'required',
-=======
-            'nombre'=>'required',
-            'apellido'=>'required',
-            'cedula'=>'required',
-            'celular'=>'required',
-            'fecha_nacimiento'=>'required',
-            'correo'=>'required',
-            'tarjeta_rfid'=>'required',
-            'horario_normal'=>'required',
->>>>>>> upstream/nuevocustode_dv
+
         ];
     }
 }
