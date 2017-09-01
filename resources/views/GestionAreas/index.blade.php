@@ -53,26 +53,6 @@
                                             <th>Puerta Especial</th>
                                         </tr>
                                         </thead>
-                                        <tbody>
-                                        @foreach($puertas as $puerta)
-                                            <tr>
-                                                <th>{{$puerta->nombre}}</th>
-                                                <th>{{$puerta->llave_rfid}}</th>
-                                                <th>{{$puerta->ip}}</th>
-                                                <th>{!!link_to_route('puertas.edit', $title = 'Editar', $parameters = $puerta, $attributes = ['class'=>'btn btn-primary'])!!}</th>
-                                                @if(($puerta->estatus)==1)
-                                                    <th>Activo</th>
-                                                @else
-                                                    <th>Inactivo</th>
-                                                @endif
-                                                @if(($puerta->puerta_especial)==1)
-                                                    <th>PUERTA ESPECIAL</th>
-                                                @else
-                                                    <th>PUERTA NORMAL</th>
-                                                @endif
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -88,9 +68,32 @@
     <!--Page Leve JS -->
     {!! Html::script('assets/plugins/dataTables/js/jquery.dataTables.js') !!}
     {!! Html::script('assets/plugins/dataTables/js/dataTables.bootstrap.js') !!}
+
     <script>
         $(document).ready(function() {
-            $('#example').dataTable();
-        });
+            $('#example').DataTable( {
+                "processing": true,
+                "serverSide": true,
+                "ajax": "/puertas-listar",
+
+                "columns":[
+                    {data: 'nombre'},
+                    {data: 'llave_rfid'},
+                    {data: 'ip'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                    {data: 'estatus',
+                    render: function(data){
+                        if (data==1){return "Activo";}
+                        else{return "Inactivo"}
+                    }},
+                    {data: 'puerta_especial',
+                     render:function(data){
+                        if(data==1){return "PUERTA ESPECILA"}
+                        else{return "PUERTA NORMAL"}
+                     }},
+
+                ]
+            } );
+        } );
     </script>
 @endsection

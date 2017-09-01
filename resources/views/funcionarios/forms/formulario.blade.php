@@ -7,7 +7,8 @@
                             //poner imagen en la pantalla
                             <div class="row">
                                 <div class="col-md-3">
-                                    <img src="{{url('assets/img/favicon.ico')}}" alt class="img-responsive  form-inline">
+                                    <img id="imgFotoOficial_Perfil" name="imgFotoOficial_Perfil" src="{{url('assets/img/favicon.ico')}}" alt="User Avatar">
+                                    <canvas id="foto" class="col-md-12" style="display: none"></canvas>
                                 </div>
                             </div>
                              <div class="form-group">

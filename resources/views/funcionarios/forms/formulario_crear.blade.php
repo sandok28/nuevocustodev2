@@ -8,7 +8,8 @@
                             //poner imagen en la pantalla
                             <div class="row">
                                 <div class="col-md-3">
-                                    <img src="{{url('assets/img/favicon.ico')}}" alt class="img-responsive  form-inline">
+                                    <img id="imgFotoOficial_Perfil" name="imgFotoOficial_Perfil" src="{{url('assets/img/favicon.ico')}}" alt="User Avatar">
+                                    <canvas id="foto" class="col-md-12" style="display: none"></canvas>
                                 </div>
                             </div>
                              <div class="form-group">
@@ -115,24 +116,86 @@
                     <h4 class="modal-title" id="myModalLabel">CAPTURAR FOTO</h4>
                 </div>
                 <div class="modal-body">
-                    <div id="webcam"></div>
+                    <div id="webcam">
+                        <!--tomar foto-->
+
+
+                        <input id="txtFotoOficial_Perfil" type="hidden" class="form-control" value="">
+                        <video id="camara" autoplay="autoplay" class="col-md-12 img-thumbnail" style="display: none"></video>
+                        <canvas id="foto" class="col-md-12" style="display: none"></canvas>
+
+
+
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">CERRAR</button>
-                    <button type="button" class="btn btn-primary" onclick="alert('implementar')">CAPTURAR</button>
-                    <button type="button" class="btn btn-primary"  onclick="">GUARDAR</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
+                    <button type="button" class="camara btn btn-primary" title="Camara" onclick="cargarVideoCamara()">
+                    <i class="fa fa-camera"></i></button>
+
+                    <button type="button" class="captura btn btn-primary" title="captura" onclick="capturar()">
+                    <i class="fa fa-picture-o"></i></button>
+
                 </div>
             </div>
         </div>
     </div>
 
 </div>
-
-<script src="js/say-cheese.js"></script>
 <script>
-    function capturar()
-    {
-        alert('deiby envia el codigo para analizarlo he implementarlo');
+    //script para tomar fotos
+    function cargarVideoCamara() {
+        $('#imgFotoOficial_Perfil').hide();
+        $('#camara').show();
+        $('.captura').show();
+        window.URL = window.URL || window.webkitURL;
+        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia ||
+            function () {
+                swal(
+                    'Error!!',
+                    'Su navegador no soporta navigator.getUserMedia().',
+                    'error'
+                );
+            };
+
+        window.datosVideo = {
+            'StreamVideo': false,
+            'url': null
+        }
+        navigator.getUserMedia({
+            'audio': false,
+            'video': true
+        }, function (streamVideo) {
+            datosVideo.StreamVideo = streamVideo;
+            datosVideo.url = window.URL.createObjectURL(streamVideo);
+            jQuery('#camara').attr('src', datosVideo.url);
+
+        }, function () {
+            swal(
+                'Error!!',
+                'No fue posible obtener acceso a la cámara.',
+                'error'
+            );
+        });
+    }
+
+
+    function capturar(){
+        $("#foto").show();
+        oCamara = $('#camara');
+        oFoto = $('#foto');
+        w = oCamara.width();
+        l = oCamara.height();
+        oFoto.attr({
+            'width': w,
+            'height': l
+        });
+        oContexto = oFoto[0].getContext('2d');
+        oContexto.drawImage(oCamara[0], 0, 0, w, l);
+        imgSrc = oFoto[0].toDataURL("image/png");
+        $('#imgFotoOficial_Perfil').attr('src',imgSrc);
+
     }
 </script>
 

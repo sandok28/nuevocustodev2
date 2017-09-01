@@ -16,7 +16,6 @@ class GestionAreasController extends Controller
      */
     public function index()
     {
-
         $puertas = Puerta::all();
         return view('GestionAreas.index',compact('puertas'));
     }
@@ -28,7 +27,17 @@ class GestionAreasController extends Controller
      */
     public function create()
     {
-        //
+        $puertas = Puerta::select(['id','nombre','llave_rfid','ip','estatus','puerta_especial']);
+        return  \Datatables::of($puertas)
+            ->addColumn('action',function($puerta)
+            {
+                $aciones = "";
+                $aciones = "<div class='btn btn-group'>";
+                $aciones = $aciones . '<a href="puertas/' . $puerta->id . '/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+                $aciones =$aciones."</div>";
+                return $aciones;
+            })
+        ->make(true);
     }
 
     /**
@@ -104,4 +113,5 @@ class GestionAreasController extends Controller
         return view('ControlAreas.index',['puertasEspeciales'=>$puertasEspeciales,'puertasNormales'=>$puertasNormales]);
 
     }
+
 }

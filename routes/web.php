@@ -22,6 +22,8 @@ Route::resource('usuarios','UsuariosController',['except' => ['show','destroy']]
 Route::resource('funcionarios','FuncionariosController');
 Route::get('funcionarios/horario/{funcionario_id}','FuncionariosController@horario')->name('funcionarios.horario');
 Route::resource('puertas','PuertasController');
+Route::get('puertas/{puerta_id}/edit','PuertasController@edit');
+Route::get('/puertas-listar','GestionAreasController@create');
 
 Route::resource('secciones','SeccionesController',['except' => ['show','destroy']]);
 
@@ -59,33 +61,7 @@ Route::get('Reportes','ReportesController@index');
 
 Route::resource('horariogeneral','HorariosGeneralesController',['only' => ['index','create','store','destroy']]);
 
-Route::get('/funcionarios-lista',function ()
-{
-    $Funcionarios= \App\Funcionario::select(['id','nombre','apellido','cedula','correo','tarjeta_rfid','licencia']);
-    return \Datatables::of($Funcionarios)
-        ->addColumn('action', function ($Funcionario) {
-            $aciones ="";
-
-            if ($Funcionario->licencia==0)
-            {
-                $aciones ="<div class='btn btn-group'>";
-                $aciones =$aciones.'<a href="/funcionarios/'.$Funcionario->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
-                $aciones = $aciones.'<a href="/funcionarios/horario/'.$Funcionario->id.'" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Horario</a>';
-                $aciones = $aciones.'<a href="licencias/create/" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Licencias</a>';
-                $aciones =$aciones."</div>";
-
-            }else
-                {
-                    $aciones ="<div class='btn btn-group'>";
-                    $aciones = $aciones.'<a href="/funcionarios/'.$Funcionario->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
-                    $aciones = $aciones.'<a href="/funcionarios/horario/'.$Funcionario->id.'" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Horario</a>';
-                    $aciones = $aciones.'<a href="licencias/create/'.$Funcionario->id.'" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i> Licencias</a>';
-                    $aciones =$aciones."</div>";
-                }
-            return $aciones;
-        })
-        ->make(true);
-});
+Route::get('/funcionarios-lista','FuncionariosController@listar');
 
 Route::get('horariogeneral/show','HorariosGeneralesController@show')->name('horariogeneral.show');
 Route::post('horariogeneral/actualizar_puertas','HorariosGeneralesController@actualizarPuertas')->name('horariogeneral.actualizar_puertas');

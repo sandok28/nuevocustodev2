@@ -26,7 +26,7 @@ class Funcionario extends Model implements AuditableContract
         'cargo_id',
         'foto',
         'celular',
-        'hoario_normal',
+        'horario_normal',
         'licencia',
         'estatus',
         'dado_de_baja',

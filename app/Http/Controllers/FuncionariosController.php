@@ -81,7 +81,7 @@ class FuncionariosController extends Controller
                             'fecha_nacimiento'=>$request->fecha_nacimiento,
                             'cargo_id'=>$request->cargo_id,
                             'estatus_licencia'=>'0',
-                            'foto'=>'0',
+                            'foto'=>$request->imgFotoOficial_Perfil,
                             'celular'=>$request->celular,
                             'horario_normal'=>$request->horario_normal,
                             'licencia'=>'0',
@@ -151,7 +151,7 @@ class FuncionariosController extends Controller
                         'fecha_nacimiento'=>$request->fecha_nacimiento,
                         'cargo_id'=>$request->cargo_id,
                         'estatus_licencia'=>'0',
-                        'foto'=>'0',
+                        'foto'=>$request->imgFotoOficial_Perfil,
                         'celular'=>$request->celular,
                         'horario_normal'=>$request->horario_normal,
                         'licencia'=>'0',
@@ -259,4 +259,31 @@ class FuncionariosController extends Controller
         }
     }
 
+    public  function listar()
+    {
+            $Funcionarios= \App\Funcionario::select(['id','nombre','apellido','cedula','correo','tarjeta_rfid','licencia']);
+            return \Datatables::of($Funcionarios)
+                ->addColumn('action', function ($Funcionario) {
+                    $aciones ="";
+
+                    if ($Funcionario->licencia==0)
+                    {
+                        $aciones ="<div class='btn btn-group'>";
+                        $aciones =$aciones.'<a href="/funcionarios/'.$Funcionario->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+                        $aciones = $aciones.'<a href="/funcionarios/horario/'.$Funcionario->id.'" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Horario</a>';
+                        $aciones = $aciones.'<a href="licencias/create/" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Licencias</a>';
+                        $aciones =$aciones."</div>";
+
+                    }else
+                    {
+                        $aciones ="<div class='btn btn-group'>";
+                        $aciones = $aciones.'<a href="/funcionarios/'.$Funcionario->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+                        $aciones = $aciones.'<a href="/funcionarios/horario/'.$Funcionario->id.'" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Horario</a>';
+                        $aciones = $aciones.'<a href="licencias/create/'.$Funcionario->id.'" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i> Licencias</a>';
+                        $aciones =$aciones."</div>";
+                    }
+                    return $aciones;
+                })
+                ->make(true);
+    }
 }

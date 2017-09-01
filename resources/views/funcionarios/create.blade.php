@@ -6,6 +6,7 @@
 @section('cargarcss')
     {{-- DataTables--}}
     {!! Html::style('assets/plugins/dataTables/css/dataTables.css') !!}
+    {!! Html::style('assets/plugins/sweetalert/dist/sweetalert.css') !!}
     <!-- iCheck-->
     {!! Html::style("assets/plugins/icheck/css/_all.css") !!}
     {!! Html::style("bootstrap-datepicker/css/bootstrap-datepicker.min.css") !!}
@@ -48,6 +49,7 @@
 @endsection
 
 @section('cargarjs')
+    {!! Html::script("assets/plugins/sweetalert/dist/sweetalert.min.js") !!}
     {!! Html::script("assets/plugins/icheck/js/icheck.min.js") !!}
     {!! Html::script("assets/plugins/validation/js/jquery.validate.min.js") !!}
     {!! Html::script("bootstrap-datepicker/js/bootstrap-datepicker.min.js") !!}
