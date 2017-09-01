@@ -70,15 +70,15 @@ Route::get('/funcionarios-lista',function ()
             {
                 $aciones ="<div class='btn btn-group'>";
                 $aciones =$aciones.'<a href="/funcionarios/'.$Funcionario->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
-                $aciones = $aciones.'<a href="/funcionarios/horarios/'.$Funcionario->id.'" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Horario</a>';
+                $aciones = $aciones.'<a href="/funcionarios/horario/'.$Funcionario->id.'" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Horario</a>';
                 $aciones = $aciones.'<a href="licencias/create/" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Licencias</a>';
                 $aciones =$aciones."</div>";
 
             }else
                 {
                     $aciones ="<div class='btn btn-group'>";
-                    $aciones =$aciones.'<a href="/funcionarios/'.$Funcionario->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
-                    $aciones = $aciones.'<a href="/funcionarios/horarios/'.$Funcionario->id.'" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Horario</a>';
+                    $aciones = $aciones.'<a href="/funcionarios/'.$Funcionario->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+                    $aciones = $aciones.'<a href="/funcionarios/horario/'.$Funcionario->id.'" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Horario</a>';
                     $aciones = $aciones.'<a href="licencias/create/'.$Funcionario->id.'" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i> Licencias</a>';
                     $aciones =$aciones."</div>";
                 }

@@ -13,9 +13,7 @@ use Session;
 use Redirect;
 class SeccionesController extends Controller
 {
-    //Comentar de nuevo todo esto
-
-    /**
+     /**
      * Llama a la vista index donde se listan todos las secciones
      *
      *

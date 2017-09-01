@@ -42,32 +42,29 @@ class PuertasController extends Controller
      * la Funcion create con el modelo Puerta.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response devuelve la vista segun la accion que ocurra con un mensaje
      */
     public function store(PuertasCrearRequest $request)
     {
-<<<<<<< HEAD
-=======
+
         //Nota cosas que se deben hacer al crear una nueva puerta
         //Vincular la nueva puerta como inactiva, con todas las secciones existentes en la tabla   Puertas_Secciones
         //Vincular la nueva puerta como inactiva, con todas los usuarios existentes en la tabla   Puertas_Users
         //estatus_en_horario_general creela siempre en 0
->>>>>>> upstream/nuevocustode_dv
+    try {
         Puerta::create([
             'puerta_especial' => $request['puerta_especial'],
             'nombre' => $request['nombre'],
             'llave_rfid' => $request['llave_rfid'],
             'estatus' => '1',
-            'estatus_en_horario_general'=>'0',
+            'estatus_en_horario_general' => '0',
             'ip' => $request['ip'],
         ]);
-<<<<<<< HEAD
-        return redirect('/GestionAreas')->with(['message'=>'La Puerta  se ha creado correctamente','tipo'=>'message']);
 
-=======
-        $puertas=Puerta::all();
-        return view('GestionAreas.index',compact('puertas'));
->>>>>>> upstream/nuevocustode_dv
+        return redirect('/GestionAreas')->with(['message' => 'La Puerta  se ha creado correctamente', 'tipo' => 'message']);
+    }catch (\Exception $ex){
+    return redirect('/GestionAreas')->with(['message' => 'La Puerta  ha tenido un error al crear', 'tipo' => 'message']);
+    }
     }
 
     /**
@@ -116,6 +113,7 @@ class PuertasController extends Controller
             $puerta = Puerta::find($id);
             $puerta->fill($variablesAdaptadas);
             $puerta->save();
+            //dd('has llegado hasta antes del redirecto');
             return redirect('/GestionAreas')->with(['message'=>'La Puerta  se ha actualizado correctamente','tipo'=>'message']);
 
 

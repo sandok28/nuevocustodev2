@@ -11,7 +11,6 @@
                 </div>
             </div>
             <div class="panel-body">
-                @include('alertas.alertas')
                 {!!Form::model($funcionario,['route'=>['funcionarios.update',$funcionario],'method'=>'PUT'])!!}
                 @include('funcionarios.forms.formulario')
                 <div class="col-md-12">

@@ -1,5 +1,6 @@
 <div class="form-group">
     <section id="main-content">
+
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
@@ -53,7 +54,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">FECHA DE NACIMIENTO:</label>
                                         <div class="col-sm-4">
-                                            <input class="datepicker input-group date form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="{{$funcionario->fecha_nacimiento}}">
+                                            <input class="datepicker input-group date form-control" id="fecha_nacimiento" name="fecha_nacimiento">
                                         </div>
                                 </div>
                                         <br><br>

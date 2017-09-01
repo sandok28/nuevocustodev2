@@ -28,11 +28,11 @@ class FuncionariosCrearRequest extends FormRequest
             'nombre'=>'required|min:4|max:15|alpha',
             'apellido'=>'required|min:4|max:15|alpha',
             'cedula'=>'required|min:100000|max:9999999999|numeric|unique:funcionarios',
-            'celular'=>'required|min:3000000000|max:3230000000|numeric',
+            'celular'=>'required|min:9999999999|max:3230000000|numeric',
             'fecha_nacimiento'=>'required|date_format:"Y-m-d',
             'correo'=>'required|max:30|email',
-            'tarjeta_rfid'=>'required|max:8|alpha_num|regex:/^[0-9a-eA-E]+$/',
-            'horario'=>'required',
+            'tarjeta_rfid'=>'required|max:8|alpha_num|regex:/^[0-9a-fA-F]+$/',
+            'horario_normal'=>'required',
 
         ];
     }

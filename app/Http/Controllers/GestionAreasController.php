@@ -87,14 +87,20 @@ class GestionAreasController extends Controller
         //
     }
 
+    /**
+     * Controlareas se encarga de filtrar el tipo de puertas segun el User que
+     * se encuentre Logeado en el momento en dos variables
+     * PuertasNormales y Puertasw Especiales
+     *
+     * @param  int $id que es el id del usuario logeado en el momento
+     * @param  boolean $puertasNormales Filtra y almacena la informacion tipo de puerta del usuario logeado.
+     * @param boolean  $puertasEspeciales Filtra y almacena la informacion tipo de puerta del usuario logeado.
+     * @return \Illuminate\Http\Response devuelve la vista edit de los intervalos.
+     */
     public function controlareas($id)
     {
         $puertasNormales = Auth::User()->puertas->where('puerta_especial',0);
         $puertasEspeciales = Auth::User()->puertas->where('puerta_especial',1);
-        //dd('hola putos');
-        //dd($puertasEspeciales,$puertasNormales);
-
-        //devuelve la vista edit de los intervalos
         return view('ControlAreas.index',['puertasEspeciales'=>$puertasEspeciales,'puertasNormales'=>$puertasNormales]);
 
     }

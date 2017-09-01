@@ -28,7 +28,7 @@
                 <div>
 
                     {!!Form::open(['route'=>'funcionarios.store', 'method'=>'POST'])!!}
-                    @include('funcionarios.forms.formulario')
+                    @include('funcionarios.forms.formulario_crear')
                     <div class="col-md-12">
                         <div class="panel-heading row">
                             <div class="col-md-6">

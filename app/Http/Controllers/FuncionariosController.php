@@ -172,7 +172,7 @@ class FuncionariosController extends Controller
      * No hace nada en concreto solo muestra la vista horario de funcionarios en donde se puede visualizar
      * el horario que tiene el funcionario actualmente Existen 3 tipos:
      * -horario de acuerdo a la empresa
-     * -Horario propio especiaol
+     * -Horario propio especial
      * -Horario deacuerdo al cargo
      * Dependiendo de cual sea redirecciona a caada una de las vistas necesrias
      *
@@ -186,6 +186,7 @@ class FuncionariosController extends Controller
      */
     public function horario($funcionario_id)
     {
+
        $funcionario = Funcionario::find($funcionario_id);
 
 

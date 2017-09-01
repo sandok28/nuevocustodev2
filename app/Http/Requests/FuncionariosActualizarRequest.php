@@ -31,7 +31,7 @@ class FuncionariosActualizarRequest extends FormRequest
             'celular'=>'required|min:10|numeric',
             'fecha_nacimiento'=>'required|date_format:"Y-m-d',
             'correo'=>'required|max:30|email',
-            'tarjeta_rfid'=>'required|max:8|alpha_num|regex:/^[0-9a-eA-E]+$/',
+            'tarjeta_rfid'=>'required|max:8|alpha_num|regex:/^[0-9a-fA-F]+$/',
             'horario'=>'required',
 
         ];
