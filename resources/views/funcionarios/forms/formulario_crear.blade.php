@@ -10,6 +10,7 @@
                                 <div class="col-md-3">
                                     <img id="imgFotoOficial_Perfil" name="imgFotoOficial_Perfil" src="{{url('assets/img/favicon.ico')}}" alt="User Avatar">
                                     <canvas id="foto" class="col-md-12" style="display: none"></canvas>
+                                    <input type="hidden" value="" id="fotocreada" name="fotocreada">
                                 </div>
                             </div>
                              <div class="form-group">
@@ -195,7 +196,7 @@
         oContexto.drawImage(oCamara[0], 0, 0, w, l);
         imgSrc = oFoto[0].toDataURL("image/png");
         $('#imgFotoOficial_Perfil').attr('src',imgSrc);
-
+        $('#fotocreada').attr('value',imgSrc);
     }
 </script>
 

@@ -81,7 +81,7 @@ class FuncionariosController extends Controller
                             'fecha_nacimiento'=>$request->fecha_nacimiento,
                             'cargo_id'=>$request->cargo_id,
                             'estatus_licencia'=>'0',
-                            'foto'=>$request->imgFotoOficial_Perfil,
+                            'foto'=>$request->fotocreada,
                             'celular'=>$request->celular,
                             'horario_normal'=>$request->horario_normal,
                             'licencia'=>'0',
@@ -123,7 +123,6 @@ class FuncionariosController extends Controller
                             ->get()
                             ->pluck('nombre','id');
         $funcionario = Funcionario::find($id);
-        //dd($funcionario);
         return view('funcionarios.edit',['funcionario'=>$funcionario,'cargos_array'=>$cargos_array]);
     }
 
@@ -151,7 +150,7 @@ class FuncionariosController extends Controller
                         'fecha_nacimiento'=>$request->fecha_nacimiento,
                         'cargo_id'=>$request->cargo_id,
                         'estatus_licencia'=>'0',
-                        'foto'=>$request->imgFotoOficial_Perfil,
+                        'foto'=>$request->fotocreada,
                         'celular'=>$request->celular,
                         'horario_normal'=>$request->horario_normal,
                         'licencia'=>'0',

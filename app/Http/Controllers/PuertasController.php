@@ -7,6 +7,7 @@ use App\Http\Requests\PuertasCrearRequest;
 use App\Puerta;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Session;
 use Redirect;
 
@@ -52,19 +53,23 @@ class PuertasController extends Controller
         //Vincular la nueva puerta como inactiva, con todas los usuarios existentes en la tabla   Puertas_Users
         //estatus_en_horario_general creela siempre en 0
     try {
-        Puerta::create([
-            'puerta_especial' => $request['puerta_especial'],
-            'nombre' => $request['nombre'],
-            'llave_rfid' => $request['llave_rfid'],
-            'estatus' => '1',
-            'estatus_en_horario_general' => '0',
-            'ip' => $request['ip'],
-        ]);
 
-        return redirect('/GestionAreas')->with(['message' => 'La Puerta  se ha creado correctamente', 'tipo' => 'message']);
+        DB::beginTransaction();
+        DB::table('puertas')
+            ->insert(
+                [
+                    'puerta_especial' => $request->puerta_especial,
+                    'nombre' => $request->nombre,
+                    'llave_rfid' => $request->llave_rfid,
+                    'estatus' => '1',
+                    'estatus_en_horario_general' => '0',
+                    'ip' => $request->ip,
+                ]
+            );
     }catch (\Exception $ex){
-    return redirect('/GestionAreas')->with(['message' => 'La Puerta  ha tenido un error al crear', 'tipo' => 'message']);
+        return redirect('/GestionAreas')->with(['message' => 'La Puerta  ha tenido un error al crear', 'tipo' => 'message']);
     }
+        return redirect('/GestionAreas')->with(['message' => 'La Puerta  se ha creado correctamente', 'tipo' => 'message']);
     }
 
     /**
@@ -103,17 +108,26 @@ class PuertasController extends Controller
     public function update(PuertasActualizarRequest $request, $id)
     {
         //
-            $variablesAdaptadas = [
-                'nombre'=> $request->all()['nombre'],
-                'llave_rfid'=>$request->all()['llave_rfid'],
-                'ip'=>$request->all()['ip'],
-                'puerta_especial' => $request->all()['puerta_especial'],
-
-            ];
-            $puerta = Puerta::find($id);
-            $puerta->fill($variablesAdaptadas);
-            $puerta->save();
-            //dd('has llegado hasta antes del redirecto');
+            try
+            {
+                DB::beginTransaction();
+                DB::table('puertas')
+                    ->where('id',$id)
+                    ->update(
+                        [
+                            'nombre'=>$request->nombre,
+                            'llave_rfid'=>$request->llave_rfid,
+                            'ip'=>$request->ip,
+                            'puerta_especial'=>$request->puerta_especial,
+                            'estatus'=>'1',
+                        ]
+                    );
+                DB::commit();
+            }
+            catch (\Exception $ex)
+            {
+                return redirect('/puertas/create')->with(['message'=>'Ha ocurrido un error en la creacion de la puerta','tipo'=>'message']);
+            }
             return redirect('/GestionAreas')->with(['message'=>'La Puerta  se ha actualizado correctamente','tipo'=>'message']);
 
 

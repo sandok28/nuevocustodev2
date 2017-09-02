@@ -35,6 +35,7 @@
 
                 <canvas id = "myChart"  > </canvas>
                 <script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
                 <script>
                     function dibujar() {
                         var ctx = document.getElementById('myChart').getContext('2d');
@@ -82,7 +83,34 @@
     {!! Html::script('assets/plugins/validation/js/jquery.validate.min.js') !!}
     <!--Page Level JS-->
     {!! Html::script("assets/plugins/chartjs/Chart.js") !!}
+    {!! Html::script("bootstrap-datetimepicker/js/moment.js") !!}
+    {!! Html::script("bootstrap-datepicker/js/bootstrap-datepicker.min.js") !!}
+    {!! Html::script("bootstrap-datepicker/js/datepicker-es.js") !!}
+    {!! Html::script("bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js") !!}
 
 
+    <script>
+
+        $('#tipo').change(function () {
+            var opcion=$(this).val();
+            if(opcion=="cant_dias_fun")
+            {
+                $("#hora").hide();
+            }else if(opcion=="cant_ingresos_area")
+            {
+                $("#hora").show();
+            }
+        })
+        $(".datepicker").datepicker({
+            format: 'yyyy-mm-dd',
+            language: 'es'
+        });
+        $('#datetimepicker3').datetimepicker({
+            format: 'LT'
+        });
+        $('#datetimepicker4').datetimepicker({
+            format: 'LT'
+        });
+    </script>
 
 @endsection

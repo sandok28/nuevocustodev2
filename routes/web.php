@@ -25,6 +25,7 @@ Route::resource('puertas','PuertasController');
 Route::get('puertas/{puerta_id}/edit','PuertasController@edit');
 Route::get('/puertas-listar','GestionAreasController@create');
 
+
 Route::resource('secciones','SeccionesController',['except' => ['show','destroy']]);
 
 Route::resource('intervalossecciones','SeccionesController',['except' => ['show','destroy']]);

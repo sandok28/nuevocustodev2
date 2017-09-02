@@ -16,12 +16,13 @@ class GestionAreasController extends Controller
      */
     public function index()
     {
-        $puertas = Puerta::all();
-        return view('GestionAreas.index',compact('puertas'));
+
+        return view('GestionAreas.index');
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Envia la informacion necesaria para mostrar en la vista principal
+     * los datos de puertas que se encuentran en la Base de datos.
      *
      * @return \Illuminate\Http\Response
      */
