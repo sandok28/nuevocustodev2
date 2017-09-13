@@ -11,6 +11,12 @@ use Session;
 use Redirect;
 class LicenciasController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest');
+        $this->middleware('GestionarLicenciasMiddleware');
+    }
+
     /**
      * Llama a la vista index donde se listan todos las licencias
      * valida que estas estan activas o no

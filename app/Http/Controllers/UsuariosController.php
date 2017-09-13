@@ -18,6 +18,13 @@ use Illuminate\Support\Collection;
 class UsuariosController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('guest');
+        $this->middleware('GestionarUsuariosMiddleware');
+    }
+
+
     /**
      * Llama a la vista index donde se listan todos los usuarios
      *
@@ -128,6 +135,7 @@ class UsuariosController extends Controller
     public function edit($id)
     {
         $usuario = User::find($id);
+
         return view('usuarios.edit',['usuario'=>$usuario]);
     }
 

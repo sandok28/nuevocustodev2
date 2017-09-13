@@ -7,14 +7,23 @@ use App\IntervalofuncionarioPuerta;
 use App\Puerta;
 use App\IntervaloInvitadoPuerta;
 use App\Intervalofuncionario;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Session;
 use Redirect;
 
 class IntervalosFuncionariosController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('guest');
+        $this->middleware('GestionarFuncionariosMiddleware');
+    }
+
     /**
      * No hace nada en concreto solo llama a la vista create de intervalos_funcionarios con el formulario para crear un intervalo de horario especial
      *
@@ -29,9 +38,9 @@ class IntervalosFuncionariosController extends Controller
     public function create($funcionario_id)
     {
         //creo una coleccion con todas las puertas especiales
-        $puertasEspeciales = Puerta::All()->where('puerta_especial',1);
+        $puertasEspeciales = User::find(Auth::User()->id)->puertas->where('puerta_especial',1);
         //creo una coleccion con todas las puestas normales
-        $puertasNormales = Puerta::All()->where('puerta_especial',0);
+        $puertasNormales = User::find(Auth::User()->id)->puertas->where('puerta_especial',0);
 
         return view('intervalos_funcionarios.create',['funcionario_id'=>$funcionario_id,'puertasNormales'=>$puertasNormales,'puertasEspeciales'=>$puertasEspeciales]);
     }
