@@ -29,6 +29,10 @@ class SeccionesController extends Controller
         return view('secciones.index',compact('secciones'));
     }
 
+    public function listar_secciones()
+    {
+        $secciones = \App\Seccion::select(['nombre','estatus']);
+    }
     /**
      * No hace nada en concreto solo llama a la vista create de secciones
      *
