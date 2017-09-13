@@ -10,6 +10,12 @@ use Session;
 use Redirect;
 class CargosController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest');
+        $this->middleware('GestionarCargosMiddleware');
+    }
+
 
     /**
      * No hace nada en concreto solo llama a la vista index de Cargos

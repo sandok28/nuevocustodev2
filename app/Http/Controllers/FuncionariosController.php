@@ -21,6 +21,12 @@ use Mockery\Exception;
 class FuncionariosController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('guest');
+        $this->middleware('GestionarFuncionariosMiddleware');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -70,9 +76,9 @@ class FuncionariosController extends Controller
 
         try{
             DB::beginTransaction();
+
                 DB::table('funcionarios')
-                    ->insert(
-                        [
+                    ->insert([
                             'nombre'=>$request->nombre,
                             'apellido'=>$request->apellido,
                             'cedula'=>$request->cedula,
@@ -85,13 +91,49 @@ class FuncionariosController extends Controller
                             'celular'=>$request->celular,
                             'horario_normal'=>$request->horario_normal,
                             'licencia'=>'0',
-                            'estatus'=>'0',//ojo con esto, ese campo es dado de baja 0 es inactivo
-                        ]
-                    );
+                            'estatus'=>'0',//ojo con esto, ese campo es dado de baja donde 0 es inactivo
+                            'created_at'=>Carbon::now(),
+                    ]);
+                $funcionario = DB::table('funcionarios')
+                                    ->select('id')
+                                    ->orderBy('created_at', 'desc')
+                                    ->first();
+
+                $llaves = DB::table('llaves')
+                                    ->where([
+                                        ['llave_rfid','=', $request->tarjeta_rfid],
+                                        ['fecha_expiracion','>', Carbon::now()->toDateString()]//me trae las activas
+                                    ])->get();
+
+
+                foreach ($llaves as $llave){
+                    if ($llave->id_asociado != $funcionario->id){
+                        return redirect('/funcionarios/create')->with(['message'=>'Llave RFID ya esta en uso','tipo'=>'error']);
+                    }
+                }
+                if($llave->tipo == 0){
+                    if ($llave->id_asociado != $invitado_id){
+                        return redirect('/IntervalosInvitados/create/'.$invitado_id)->with(['message'=>'Llave RFID ya esta siendo usada por un funcionario','tipo'=>'error']);
+                    }
+                }
+                if($llave->tipo == 1){
+                    if ($llave->id_asociado != ($invitado_id+100000)){
+                        return redirect('/IntervalosInvitados/create/'.$invitado_id)->with(['message'=>'Llave RFID ya esta siendo usada por un invitado','tipo'=>'error']);
+                    }
+                }
+
+                DB::table('llaves')
+                        ->insert([
+                            'tipo'=> '0',//tipo 0 es el indicativo de funcionario
+                            'llave_rfid' => $request->tarjeta_rfid,
+                            'id_asociado' => $funcionario->id,
+                            'fecha_expiracion' => Carbon::now()->addYears(10)->toDateString(),
+                        ]);
             DB::commit();
             return redirect('/funcionarios')->with(['message'=>'El Usuario se ha registrado correctamente','tipo'=>'message']);
         }
         catch (\Exception $ex){
+            dd($ex);
             return redirect('/funcionarios/create')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
         }
     }
@@ -103,7 +145,6 @@ class FuncionariosController extends Controller
      */
     public function show($id)
     {
-
         $funcionario = Funcionario::find($id);
         return view('funcionarios.edit',['funcionario'=>$funcionario]);
     }
@@ -138,6 +179,18 @@ class FuncionariosController extends Controller
 
         try{
             DB::beginTransaction();
+            $llaves = DB::table('llaves')
+                    ->where([
+                        ['llave_rfid','=', $request->tarjeta_rfid],
+                        ['fecha_expiracion','>', Carbon::now()->toDateString()]//me trae las activas
+                    ])->get();
+
+            foreach ($llaves as $llave){
+                if ($llave->id_asociado != $id){
+                    return redirect('/funcionarios/'.$id.'/edit')->with(['message'=>'Llave RFID ya esta en uso','tipo'=>'error']);
+                }
+            }
+
             DB::table('funcionarios')
                 ->where('id',$id)
                 ->update(
@@ -157,11 +210,27 @@ class FuncionariosController extends Controller
                         'estatus'=>'0',//ojo con esto, ese campo es dado de baja 0 es inactivo
                     ]
                 );
+
+            DB::table('llaves')
+                    ->where([
+                        ['id_asociado','=', $id],
+                        ['fecha_expiracion','>', Carbon::now()->toDateString()]//me trae las activas
+                    ])
+                    ->update([
+                        'fecha_expiracion' => Carbon::now()->subDay(1)->toDateString(),
+                    ]);
+            DB::table('llaves')
+                    ->insert([
+                        'tipo'=> '0',//tipo 0 es el indicativo de funcionario
+                        'llave_rfid' => $request->tarjeta_rfid,
+                        'id_asociado' => $id,
+                        'fecha_expiracion' => Carbon::now()->addYears(10)->toDateString(),
+                    ]);
             DB::commit();
 
         }
         catch (\Exception $ex){
-            return redirect('/funcionarios/create')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
+            return redirect('/funcionarios/'+$id+'/edit')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
         }
         return redirect('/funcionarios')->with(['message'=>'El Usuario se ha Actualizado correctamente','tipo'=>'message']);
     }

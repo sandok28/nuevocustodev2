@@ -9,6 +9,17 @@ use Illuminate\Support\Facades\Auth;
 
 class GestionAreasController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('guest');
+        //$this->middleware('GestionarPuertasMiddleware');
+
+
+        //Para el de auditorias
+        //$this->middleware('GestionarAuditoriasMiddleware');
+    }
+
     /**
      * Display a listing of the resource.
      *

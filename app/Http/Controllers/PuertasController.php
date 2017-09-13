@@ -13,6 +13,15 @@ use Redirect;
 
 class PuertasController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('guest');
+        //$this->middleware('GestionarPuertasMiddleware');
+
+        //Para el de auditorias
+        //$this->middleware('GestionarAuditoriasMiddleware');
+    }
     /**
      * Llama la vista index de GestionAreas y genera la variable puertas
      * que contiene los datos que son tomados del modelo Puertas

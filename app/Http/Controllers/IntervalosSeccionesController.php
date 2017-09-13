@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class IntervalosSeccionesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest');
+        $this->middleware('GestionarSeccionesMiddleware');
+    }
 
     /**
      * No hace nada en concreto solo llama a la vista create intervalos_secciones

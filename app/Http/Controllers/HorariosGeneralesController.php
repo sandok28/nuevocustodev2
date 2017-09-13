@@ -14,6 +14,19 @@ use Mockery\Exception;
 
 class HorariosGeneralesController extends Controller
 {
+<<<<<<< HEAD
+=======
+
+    public function __construct()
+    {
+        $this->middleware('guest');
+        $this->middleware('GestionarHorarioGeneralMiddleware');
+    }
+
+
+    //comentar todo esto otra vez
+
+>>>>>>> upstream/nuevocustode_dv
 
     /**
      * Muestra la vista principal del index en HorariosGenerales

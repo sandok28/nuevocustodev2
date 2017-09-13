@@ -13,6 +13,11 @@ use Redirect;
 class InvitadosController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('guest');
+        $this->middleware('GestionarInvitadosMiddleware');
+    }
     /**
      * No hace nada en concreto solo llama a la vista index donde se listan todos los invitados
      *

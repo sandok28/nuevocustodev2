@@ -11,45 +11,44 @@ class PermisosTableSeeder extends Seeder
      */
     public function run()
     {
-
         DB::table('permisos')->insert([
-            'nombre' => 'Asignar Permisos ',
+            'nombre' => 'Gestionar usuarios',
             'estatus' => 1,
         ]);
         DB::table('permisos')->insert([
-            'nombre' => 'Editar Roles ',
+            'nombre' => 'Gestionar funcionarios',
             'estatus' => 1,
         ]);
         DB::table('permisos')->insert([
-            'nombre' => 'Gestion Puertas',
+            'nombre' => 'Gestionar licencias',
             'estatus' => 1,
         ]);
         DB::table('permisos')->insert([
-            'nombre' => 'Gestionar Horario Funcionarios ',
+            'nombre' => 'Gestionar cargos',
             'estatus' => 1,
         ]);
         DB::table('permisos')->insert([
-            'nombre' => 'Gestionar Invitados ',
+            'nombre' => 'Gestionar secciones',
             'estatus' => 1,
         ]);
         DB::table('permisos')->insert([
-            'nombre' => 'Gestionar Lisencias',
+            'nombre' => 'Gestionar horario general',
             'estatus' => 1,
         ]);
         DB::table('permisos')->insert([
-            'nombre' => 'Generar Reportes ',
+            'nombre' => 'Gestionar invitados',
             'estatus' => 1,
         ]);
         DB::table('permisos')->insert([
-            'nombre' => 'Generar  Estadisticas ',
+            'nombre' => 'Gestionar puertas',
             'estatus' => 1,
         ]);
         DB::table('permisos')->insert([
-            'nombre' => 'Gestionar Secciones y Cargos',
+            'nombre' => 'Gestionar estadisticas',
             'estatus' => 1,
         ]);
         DB::table('permisos')->insert([
-            'nombre' => 'Acceso a Auditorias',
+            'nombre' => 'Gestionar auditorias',
             'estatus' => 1,
         ]);
     }
