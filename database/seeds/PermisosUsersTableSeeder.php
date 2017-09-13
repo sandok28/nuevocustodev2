@@ -16,7 +16,7 @@ class PermisosUsersTableSeeder extends Seeder
                 DB::table('Permisos_Users')->insert([
                     'permiso_id' => $i,
                     'usuario_id' => $j,
-                    'estatus_permiso' => 0,
+                    'estatus_permiso' => 1,
                 ]);
             }
         }

@@ -12,6 +12,13 @@ use App\Http\Requests\LoginRequest;
 
 class HomeController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('guest', ['only'=>'index']);
+    }
+
+
     //ESTA CLASE SE ENCARGA DE TODAS LAS VISTAS GENERALES QUE NO PERTENECEN AUN MODULO EN PARTICULAR
 
     /**

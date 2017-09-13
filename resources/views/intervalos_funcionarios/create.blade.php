@@ -30,10 +30,12 @@
                                     <h1>Puertas normales</h1>
                                 </div>
                                 @foreach($puertasNormales as $puertaNormal)
-                                    <div class="col-xs-4">
-                                        {!! Form::checkbox($puertaNormal->id, $puertaNormal->id) !!}
-                                        {!! Form::label($puertaNormal->nombre) !!}
-                                    </div>
+                                    @if($puertaNormal->pivot->estatus_permiso == 1)
+                                        <div class="col-xs-4">
+                                            {!! Form::checkbox($puertaNormal->id, $puertaNormal->id) !!}
+                                            {!! Form::label($puertaNormal->nombre) !!}
+                                        </div>
+                                    @endif
                                 @endforeach
                             </div>
                             <div class="col-xs-6">
@@ -41,10 +43,12 @@
                                     <h1>Puertas especiales</h1>
                                 </div>
                                 @foreach($puertasEspeciales as $puertaEspecial)
-                                    <div class="col-xs-4">
-                                        {!! Form::checkbox($puertaEspecial->id, $puertaEspecial->id) !!}
-                                        {!! Form::label($puertaEspecial->nombre) !!}
-                                    </div>
+                                    @if($puertaEspecial->pivot->estatus_permiso == 1)
+                                        <div class="col-xs-4">
+                                            {!! Form::checkbox($puertaEspecial->id, $puertaEspecial->id) !!}
+                                            {!! Form::label($puertaEspecial->nombre) !!}
+                                        </div>
+                                    @endif
                                 @endforeach
                             </div>
                         </div>

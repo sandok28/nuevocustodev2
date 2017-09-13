@@ -8,11 +8,18 @@ use App\Seccion;
 use App\Cargo;
 use App\Puerta;
 use App\PuertaSeccion;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Session;
 use Redirect;
 class SeccionesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest');
+        $this->middleware('GestionarSeccionesMiddleware');
+    }
+
     //Comentar de nuevo todo esto
 
     /**
@@ -127,14 +134,45 @@ class SeccionesController extends Controller
         $seccion = Seccion::find($id);
 
         //creo una coleccion con todas las puertas especiales relacionas a la seccion
-        $puertasEspeciales = Seccion::find($id)->puertas()->where('puerta_especial',1)->get();
+        $puertasEspecialesActivas = Seccion::find($id)->puertas()->where('puerta_especial',1)->get();
 
         //creo una coleccion con todas las puestas normal relacionas a la seccion
-        $puertasNormales = Seccion::find($id)->puertas()->where('puerta_especial',0)->get();
+        $puertasNormalesActivas = Seccion::find($id)->puertas()->where('puerta_especial',0)->get();
         $cargos = $seccion->cargos()->where('estatus_permiso',1)->get();
 
+
+        $puertasNormales = DB::table('Puertas')
+                            ->join('Puertas_Secciones', 'Puertas.id', '=', 'Puertas_Secciones.puerta_id')
+                            ->join('Secciones', 'Secciones.id', '=', 'Puertas_Secciones.seccion_id')
+                            ->join('Puertas_Users','Puertas.id', '=','Puertas_Users.puerta_id')
+                            ->join('Users','Users.id','=','Puertas_Users.user_id')
+                            ->where('Puertas.puerta_especial',0)
+                            ->where('Users.id',Auth::User()->id)
+                            ->where('Secciones.id',$id)
+                            ->where('Puertas_Users.estatus_permiso',1)
+                            ->select('Puertas.id', 'Puertas.nombre','Users.email','Puertas_Secciones.estatus_permiso')
+                            ->get();
+        $puertasEspeciales = DB::table('Puertas')
+                            ->join('Puertas_Secciones', 'Puertas.id', '=', 'Puertas_Secciones.puerta_id')
+                            ->join('Secciones', 'Secciones.id', '=', 'Puertas_Secciones.seccion_id')
+                            ->join('Puertas_Users','Puertas.id', '=','Puertas_Users.puerta_id')
+                            ->join('Users','Users.id','=','Puertas_Users.user_id')
+                            ->where('Puertas.puerta_especial',1)
+                            ->where('Users.id',Auth::User()->id)
+                            ->where('Secciones.id',$id)
+                            ->where('Puertas_Users.estatus_permiso',1)
+                            ->select('Puertas.id', 'Puertas.nombre','Puertas_Secciones.estatus_permiso')
+                            ->get();
+
         //Devuelvo la vista edit de secciones y le paso la $seccion, $puertasEspeciales y $puertasNormales.
-        return view('secciones.edit',['seccion'=>$seccion,'puertasEspeciales'=>$puertasEspeciales,'puertasNormales'=>$puertasNormales,'cargos'=>$cargos]);
+        return view('secciones.edit',[
+                                                'seccion'=>$seccion,
+                                                'puertasEspeciales'=>$puertasEspeciales,
+                                                'puertasNormales'=>$puertasNormales,
+                                                'puertasEspecialesActivas'=>$puertasEspecialesActivas,
+                                                'puertasNormalesActivas'=>$puertasNormalesActivas,
+                                                'cargos'=>$cargos
+                                            ]);
     }
 
     /**
@@ -157,10 +195,18 @@ class SeccionesController extends Controller
         $seccion = Seccion::find($id);
 
         //creo una coleccion con todas las puertas
-        $todasPuertas = Puerta::all();
-
+        $todasPuertasDelUsuario = DB::table('Puertas')
+                                        ->join('Puertas_Secciones', 'Puertas.id', '=', 'Puertas_Secciones.puerta_id')
+                                        ->join('Secciones', 'Secciones.id', '=', 'Puertas_Secciones.seccion_id')
+                                        ->join('Puertas_Users','Puertas.id', '=','Puertas_Users.puerta_id')
+                                        ->join('Users','Users.id','=','Puertas_Users.user_id')
+                                        ->where('Users.id',Auth::User()->id)
+                                        ->where('Secciones.id',$id)
+                                        ->where('Puertas_Users.estatus_permiso',1)
+                                        ->select('Puertas.id', 'Puertas.nombre','Users.email','Puertas_Secciones.estatus_permiso')
+                                        ->get();
         //las itero para obtener cada puerta registrada
-        foreach($todasPuertas as $puerta){
+        foreach($todasPuertasDelUsuario as $puerta){
             //Si la puerta fue seclecionada en el check se guarda en la relacion secionn-puerta con un 1
             // indicando que esta seccion tiene permiso sobre ella
             if($request[$puerta->id]!=null){

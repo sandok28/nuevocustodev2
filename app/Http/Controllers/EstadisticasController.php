@@ -8,6 +8,11 @@ use App\Http\Controllers\Controller;
 
 class EstadisticasController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest');
+        $this->middleware('GestionarEstadisticasMiddleware');
+    }
     /**
      * Metodo que devuelve la vista de generar estadisticas
     **/

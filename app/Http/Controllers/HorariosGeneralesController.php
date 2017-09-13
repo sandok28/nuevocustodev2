@@ -14,6 +14,14 @@ use Mockery\Exception;
 
 class HorariosGeneralesController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('guest');
+        $this->middleware('GestionarHorarioGeneralMiddleware');
+    }
+
+
     //comentar todo esto otra vez
 
 

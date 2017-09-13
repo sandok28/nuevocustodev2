@@ -14,8 +14,8 @@
 
 Route::get('/home', 'HomeController@index');
 Route::get('/','HomeController@iniciosession');
-Route::post('login','HomeController@login')->name('home.login');
-Route::get('logout','HomeController@logout')->name('home.logout');
+Route::post('/login','HomeController@login')->name('home.login');
+Route::get('/logout','HomeController@logout')->name('home.logout');
 
 Route::Get('/tomarFoto','FuncionariosController@tomarfoto');
 
