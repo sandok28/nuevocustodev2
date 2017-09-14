@@ -24,15 +24,14 @@ class FuncionariosActualizarRequest extends FormRequest
     public function rules()
     {
         return [
-
-            'nombre'=>'required|min:4|max:15|alpha',
-            'apellido'=>'required|min:4|max:15|alpha',
-            'cedula'=>'required|min:10|numeric',
-            'celular'=>'required|min:10|numeric',
+            'nombre'=>'required|min:4|max:15|regex:/^[a-zA-Z]+(\s*[a-zA-Z])[a-zA-Z]+$/',
+            'apellido'=>'required|min:4|max:15|regex:/^[a-zA-Z]+(\s*[a-zA-Z])[a-zA-Z]+$/',
+            'cedula'=>'required|min:100000|max:9999999999|numeric|unique:funcionarios',
+            'celular'=>'required|min:3000000000|max:3230000000|numeric',
             'fecha_nacimiento'=>'required|date_format:"Y-m-d',
             'correo'=>'required|max:30|email',
             'tarjeta_rfid'=>'required|max:8|alpha_num|regex:/^[0-9a-fA-F]+$/',
-            'horario'=>'required',
+            'horario_normal'=>'required',
 
         ];
     }

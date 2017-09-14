@@ -44,7 +44,7 @@
     <header id="header">
         <!--logo start-->
         <div class="brand">
-            <a href="/home" class="logo"><span></span></a>
+            <a href="/home"  class="logo"><span></span></a>
         </div>
         <!--logo end-->
         <div class="toggle-navigation toggle-left">
@@ -52,16 +52,6 @@
                 <i class="fa fa-bars"></i>
             </button>
         </div>
-
-
-
-
-        <div style="display: inline-block; padding-left: 15em;">
-            <img src="{{url('assets/img/custode.png')}}" alt="" style="width: 100%;" >
-
-        </div>
-
-
         <div class="user-nav">
             <ul>
                 <li class="profile-photo">
@@ -109,22 +99,14 @@
                 <li class="active">
                     <a href="/GestionAreas" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>GESTION DE AREAS</span></a>
                 </li>
-<<<<<<< HEAD
-                <li class="active">
-                    <a href="/area/1"><i class="fa fa-list"></i><span>CONTROL DE AREAS</span></a>
-=======
                  <li class="active">
                     <a href="/area/1" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>CONTROL DE AREAS</span></a>
->>>>>>> upstream/nuevocustode_dv
                 </li>
                 <li class="active">
                     <a href="/Estadisticas" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>ESTADISTICAS</span></a>
                 </li>
                 <li class="active">
                     <a href="/home" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>AUDITORIAS</span></a>
-                </li>
-                <li class="active">
-                    <a href="/Reportes" style="padding-bottom: 0em !important;"><i class="fa fa-files-o"></i><span>REPORTES</span></a>
                 </li>
                 <li class="active">
                     <a href="/home" style="padding-bottom: 0em !important;"><i class="fa fa-gears"></i><span>CONFIGUARION INICIAL</span></a>
@@ -145,8 +127,6 @@
             <!--dashboard charts and map start-->
             <div class="row">
 
-<<<<<<< HEAD
-
 
                     @if(Session::get('tipo') == 'error')
                         <div class="alert alert-danger alert-dismissible" role="alert">
@@ -162,107 +142,11 @@
                         </div>
                     @endif
                 </div>
-
-
                 @include('alertas.alertas')
                 @yield('content')
-
-
-
-
-=======
-                @include('alertas.alertas')
-                @yield('content')
-
->>>>>>> upstream/nuevocustode_dv
-            </div>
+                </div>
         </section>
     </section>
-    <!--main content end-->
-    <!--sidebar right start-->
-    <aside class="sidebarRight">
-        <div id="rightside-navigation ">
-            <div class="sidebar-heading"><i class="fa fa-user"></i> Contacts</div>
-            <div class="sidebar-title">online</div>
-            <div class="list-contacts">
-                <a href="javascript:void(0)" class="list-item">
-                    <div class="list-item-image">
-                        <img src="assets/img/avatar.gif" class="img-circle">
-                    </div>
-                    <div class="list-item-content">
-                        <h4>James Bagian</h4>
-                        <p>Los Angeles, CA</p>
-                    </div>
-                    <div class="item-status item-status-online"></div>
-                </a>
-                <a href="javascript:void(0)" class="list-item">
-                    <div class="list-item-image">
-                        <img src="assets/img/avatar1.gif" class="img-circle">
-                    </div>
-                    <div class="list-item-content">
-                        <h4>Jeffrey Ashby</h4>
-                        <p>New York, NY</p>
-                    </div>
-                    <div class="item-status item-status-online"></div>
-                </a>
-                <a href="javascript:void(0)" class="list-item">
-                    <div class="list-item-image">
-                        <img src="assets/img/avatar2.gif" class="img-circle">
-                    </div>
-                    <div class="list-item-content">
-                        <h4>John Douey</h4>
-                        <p>Dallas, TX</p>
-                    </div>
-                    <div class="item-status item-status-online"></div>
-                </a>
-                <a href="javascript:void(0)" class="list-item">
-                    <div class="list-item-image">
-                        <img src="assets/img/avatar3.gif" class="img-circle">
-                    </div>
-                    <div class="list-item-content">
-                        <h4>Ellen Baker</h4>
-                        <p>London</p>
-                    </div>
-                    <div class="item-status item-status-away"></div>
-                </a>
-            </div>
-
-            <div class="sidebar-title">offline</div>
-            <div class="list-contacts">
-                <a href="javascript:void(0)" class="list-item">
-                    <div class="list-item-image">
-                        <img src="assets/img/avatar4.gif" class="img-circle">
-                    </div>
-                    <div class="list-item-content">
-                        <h4>Ivan Bella</h4>
-                        <p>Tokyo, Japan</p>
-                    </div>
-                    <div class="item-status"></div>
-                </a>
-                <a href="javascript:void(0)" class="list-item">
-                    <div class="list-item-image">
-                        <img src="assets/img/avatar5.gif" class="img-circle">
-                    </div>
-                    <div class="list-item-content">
-                        <h4>Gerald Carr</h4>
-                        <p>Seattle, WA</p>
-                    </div>
-                    <div class="item-status"></div>
-                </a>
-                <a href="javascript:void(0)" class="list-item">
-                    <div class="list-item-image">
-                        <img src="assets/img/avatar6.gif" class="img-circle">
-                    </div>
-                    <div class="list-item-content">
-                        <h4>Viktor Gorbatko</h4>
-                        <p>Palo Alto, CA</p>
-                    </div>
-                    <div class="item-status"></div>
-                </a>
-            </div>
-        </div>
-    </aside>
-    <!--sidebar right end-->
 </section>
 {{--Global JS--}}
 {!! Html::script('assets/js/jquery-1.10.2.min.js') !!}

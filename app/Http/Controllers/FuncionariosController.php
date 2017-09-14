@@ -91,7 +91,7 @@ class FuncionariosController extends Controller
                             'celular'=>$request->celular,
                             'horario_normal'=>$request->horario_normal,
                             'licencia'=>'0',
-                            'estatus'=>'0',//ojo con esto, ese campo es dado de baja donde 0 es inactivo
+                            'estatus'=>'1',//ojo con esto, ese campo es dado de baja donde 0 es inactivo
                             'created_at'=>Carbon::now(),
                     ]);
                 $funcionario = DB::table('funcionarios')

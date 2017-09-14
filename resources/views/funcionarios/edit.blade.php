@@ -43,12 +43,11 @@
 @endsection
 
 @section('cargarjs')
+    {!! Html::script("assets/plugins/sweetalert/dist/sweetalert.min.js") !!}
     {!! Html::script("assets/plugins/icheck/js/icheck.min.js") !!}
     {!! Html::script("assets/plugins/validation/js/jquery.validate.min.js") !!}
     {!! Html::script("bootstrap-datepicker/js/bootstrap-datepicker.min.js") !!}
     {!! Html::script("bootstrap-datepicker/js/datepicker-es.js") !!}
-
-
     <script>
 
         $(".datepicker").datepicker({

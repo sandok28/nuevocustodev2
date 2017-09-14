@@ -40,7 +40,6 @@
                                     <th>editar</th>
                                 </tr>
                                 </thead>
-
                             </table>
                         </div>
                     </section>

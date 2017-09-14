@@ -5,7 +5,6 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                            //poner imagen en la pantalla
                             <div class="row">
                                 <div class="col-md-3">
                                     <img id="imgFotoOficial_Perfil" name="imgFotoOficial_Perfil" src="{{url('assets/img/favicon.ico')}}" alt="User Avatar">
