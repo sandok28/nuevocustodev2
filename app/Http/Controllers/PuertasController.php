@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PuertasActualizarRequest;
+use App\Http\Requests\PuertasCrearRequest;
 use App\Puerta;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Session;
 use Redirect;
 
@@ -35,8 +38,8 @@ class PuertasController extends Controller
      **/
     public function index()
     {
-        //
         $puertas=Puerta::all();
+        dd($puertas);
         return view('GestionAreas.index',compact('puertas'));
     }
 
@@ -57,24 +60,33 @@ class PuertasController extends Controller
      * la Funcion create con el modelo Puerta.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response devuelve la vista segun la accion que ocurra con un mensaje
      */
-    public function store(Request $request)
+    public function store(PuertasCrearRequest $request)
     {
+
         //Nota cosas que se deben hacer al crear una nueva puerta
         //Vincular la nueva puerta como inactiva, con todas las secciones existentes en la tabla   Puertas_Secciones
         //Vincular la nueva puerta como inactiva, con todas los usuarios existentes en la tabla   Puertas_Users
         //estatus_en_horario_general creela siempre en 0
-        Puerta::create([
-            'puerta_especial' => $request['puerta_especial'],
-            'nombre' => $request['nombre'],
-            'llave_rfid' => $request['llave_rfid'],
-            'estatus' => '1',
-            'estatus_en_horario_general'=>'0',
-            'ip' => $request['ip'],
-        ]);
-        $puertas=Puerta::all();
-        return view('GestionAreas.index',compact('puertas'));
+    try {
+
+        DB::beginTransaction();
+        DB::table('puertas')
+            ->insert(
+                [
+                    'puerta_especial' => $request->puerta_especial,
+                    'nombre' => $request->nombre,
+                    'llave_rfid' => $request->llave_rfid,
+                    'estatus' => '1',
+                    'estatus_en_horario_general' => '0',
+                    'ip' => $request->ip,
+                ]
+            );
+    }catch (\Exception $ex){
+        return redirect('/GestionAreas')->with(['message' => 'La Puerta  ha tenido un error al crear', 'tipo' => 'message']);
+    }
+        return redirect('/GestionAreas')->with(['message' => 'La Puerta  se ha creado correctamente', 'tipo' => 'message']);
     }
 
     /**
@@ -110,21 +122,31 @@ class PuertasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PuertasActualizarRequest $request, $id)
     {
         //
-            $variablesAdaptadas = [
-                'nombre'=> $request->all()['nombre'],
-                'llave_rfid'=>$request->all()['llave_rfid'],
-                'ip'=>$request->all()['ip'],
-                'puerta_especial' => $request->all()['puerta_especial'],
+            try
+            {
+                DB::beginTransaction();
+                DB::table('puertas')
+                    ->where('id',$id)
+                    ->update(
+                        [
+                            'nombre'=>$request->nombre,
+                            'llave_rfid'=>$request->llave_rfid,
+                            'ip'=>$request->ip,
+                            'puerta_especial'=>$request->puerta_especial,
+                            'estatus'=>'1',
+                        ]
+                    );
+                DB::commit();
+            }
+            catch (\Exception $ex)
+            {
+                return redirect('/puertas/create')->with(['message'=>'Ha ocurrido un error en la creacion de la puerta','tipo'=>'message']);
+            }
+            return redirect('/GestionAreas')->with(['message'=>'La Puerta  se ha actualizado correctamente','tipo'=>'message']);
 
-            ];
-            $puerta = Puerta::find($id);
-            $puerta->fill($variablesAdaptadas);
-            $puerta->save();
-            Session::flash('message','Puerta Actualizado Correctamente');
-            return Redirect::to('puertas');
 
     }
 

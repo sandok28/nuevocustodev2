@@ -7,7 +7,9 @@
 
             {!!Form::label('Minuto','Minuto:')!!}
             {!!Form::selectRange('desde_minuto', 0, 59)!!}
+
         </div>
+
     </div>
     <div class="form-group col-md-12">
         {!!Form::label('hasta','Hasta:', ['class' =>'col-md-3'])!!}

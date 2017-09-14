@@ -22,14 +22,15 @@ class IntervalosInvitadosController extends Controller
     }
 
     /**
-     * No hace nada en concreto solo llama a la vista create de intervalos_invitados
+     * llama a la vista create de intervalos_invitados
+     * y proporciona la informacion necesaria para la creacion de la vista.
      *
      * @author Edwin Sandoval
      * @return \Illuminate\Http\Response devuelve la vista create de intervalos_invitados
-     * y le paso
-     * $invitado_id id del invitado al que pertenece
-     * $puertasNormales una coleccion con todas las puestas normales
-     * $puertasEspeciales una coleccion con todas las puertas especiales
+     * y le paso.
+     * @param integer $invitado_id id del invitado al que pertenece
+     * @param integer $puertasNormales una coleccion con todas las puestas normales
+     * @param integer $puertasEspeciales una coleccion con todas las puertas especiales
      * @param integer $seccion_id id del invitado al que va pertenecer el invitado
      */
     public function create($invitado_id)

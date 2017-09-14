@@ -17,13 +17,14 @@ Route::get('/','HomeController@iniciosession');
 Route::post('/login','HomeController@login')->name('home.login');
 Route::get('/logout','HomeController@logout')->name('home.logout');
 
-Route::Get('/tomarFoto','FuncionariosController@tomarfoto');
-
 Route::resource('usuarios','UsuariosController',['except' => ['show','destroy']]);
 
 Route::resource('funcionarios','FuncionariosController');
 Route::get('funcionarios/horario/{funcionario_id}','FuncionariosController@horario')->name('funcionarios.horario');
 Route::resource('puertas','PuertasController');
+Route::get('puertas/{puerta_id}/edit','PuertasController@edit');
+Route::get('/puertas-listar','GestionAreasController@create');
+
 
 Route::resource('secciones','SeccionesController',['except' => ['show','destroy']]);
 
@@ -60,6 +61,13 @@ Route::get('Estadisticas','EstadisticasController@index');
 Route::get('Reportes','ReportesController@index');
 
 Route::resource('horariogeneral','HorariosGeneralesController',['only' => ['index','create','store','destroy']]);
+
+Route::get('/funcionarios-lista','FuncionariosController@listar');
+Route::get('/secciones-lista','SeccionesController@listar_secciones');
+Route::get('/cargos-lista','CargosController@listar_cargos');
+Route::get('/invitados-lista','InvitadosController@lista_invitados');
+Route::get('/user-lista','UsuariosController@lista_usuarios');
+
 Route::get('horariogeneral/show','HorariosGeneralesController@show')->name('horariogeneral.show');
 Route::post('horariogeneral/actualizar_puertas','HorariosGeneralesController@actualizarPuertas')->name('horariogeneral.actualizar_puertas');
 
@@ -67,3 +75,4 @@ Route::post('horariogeneral/actualizar_puertas','HorariosGeneralesController@act
 Route::delete('IntervalosSecciones/{id},{seccion_id}','IntervalosSeccionesController@destroy')->name('IntervalosSecciones.destroy');
 Route::get('IntervalosSecciones/create/{seccion_id}', 'IntervalosSeccionesController@create')->name('IntervalosSecciones.create');
 Route::post('IntervalosSecciones/{seccion_id}', 'IntervalosSeccionesController@store')->name('IntervalosSecciones.store');
+

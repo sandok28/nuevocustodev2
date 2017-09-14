@@ -17,7 +17,7 @@ class CreateFuncionariosTable extends Migration
             $table->increments('id');
             $table->string('cedula');
             $table->String('nombre');
-            $table->String('foto');
+            $table->LongText('foto',9999999);
             $table->date('fecha_nacimiento');
             $table->String('apellido');
             $table->String('celular');

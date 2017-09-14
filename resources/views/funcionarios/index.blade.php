@@ -9,6 +9,7 @@
     {!! Html::style('assets/plugins/dataTables/css/dataTables.css') !!}
 @endsection
 
+
 @section('content')
 
     <div class="col-md-12">
@@ -46,35 +47,13 @@
                                             <th>Correo</th>
                                             <th>Tarjeta RFID</th>
                                             <th>Editar</th>
-                                            <th>Horario</th>
-                                            <th>Licencias</th>
                                         </tr>
                                         </thead>
-                                        <tbody>
-                                        @foreach($funcionarios as $funcionario)
-                                            <tr>
-                                                <th>{{$funcionario->nombre}}</th>
-                                                <th>{{$funcionario->apellido}}</th>
-                                                <th>{{$funcionario->cedula}}</th>
-                                                <th>{{$funcionario->correo}}</th>
-                                                <th>{{$funcionario->tarjeta_rfid}}</th>
-                                                <th>{!!link_to_route('funcionarios.edit', $title = 'Editar', $parameters = $funcionario, $attributes = ['class'=>'btn btn-primary'])!!}</th>
-                                                <th>{!!link_to_route('funcionarios.horario', $title = 'Horario', $parameters = $funcionario, $attributes = ['class'=>'btn btn-primary'])!!}</th>
-                                                @if($funcionario->licencia == 0)
-                                                    <th>{!!link_to_route('licencias.create', $title = 'Agregar licencia', $parameters = $funcionario, $attributes = ['class'=>'btn btn-primary'])!!}</th>
-                                                @else
-                                                    <th>{!!link_to_route('licencias.index', 'En Licencia',null, ['class'=>'btn btn-info'])!!}</th>
-                                                @endif
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                 </section>
             </div>
         </div>
@@ -87,9 +66,24 @@
     <!--Page Leve JS -->
     {!! Html::script('assets/plugins/dataTables/js/jquery.dataTables.js') !!}
     {!! Html::script('assets/plugins/dataTables/js/dataTables.bootstrap.js') !!}
+
     <script>
         $(document).ready(function() {
-            $('#example').dataTable();
-        });
+            $('#example').DataTable( {
+                "processing": true,
+                "serverSide": true,
+                "ajax": "/funcionarios-lista",
+
+                "columns":[
+                    {data: 'nombre'},
+                    {data: 'apellido'},
+                    {data: 'cedula'},
+                    {data: 'correo'},
+                    {data: 'tarjeta_rfid'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                    ]
+            } );
+        } );
     </script>
+
 @endsection

@@ -15,6 +15,7 @@ use Mockery\Exception;
 class HorariosGeneralesController extends Controller
 {
 
+
     public function __construct()
     {
         $this->middleware('guest');
@@ -26,7 +27,10 @@ class HorariosGeneralesController extends Controller
 
 
     /**
-     * No hace nada en concreto solo llama a la vista index de Horarios generales
+     * Muestra la vista principal del index en HorariosGenerales
+     * y envia la informacion necesaria para la visualizacion de
+     * la informacion en tres variables dos para el tipo de puerta
+     * y en intervaloshorariogeneral.
      *
      * @author Edwin Sandoval
      * @return \Illuminate\Http\Response devuelve la vista index de Horarios generales
@@ -54,7 +58,8 @@ class HorariosGeneralesController extends Controller
 
 
     /**
-     * No hace nada en concreto solo llama a la vista create de los horarios generales
+     * llama a la vista create de los horarios generales y
+     * pasa la informacion necesaria solicitada por el usuario.
      *
      * @author Edwin Sandoval
      * @return \Illuminate\Http\Response devuelve la vista create de de los horarios_generales
@@ -74,14 +79,13 @@ class HorariosGeneralesController extends Controller
     }
 
     /**
-     * No hace nada en concreto solo llama a la vista create de los horarios generales
+     * llama a la vista create de los horarios generales
      *
      * @author Edwin Sandoval
      * @return \Illuminate\Http\Response devuelve la vista create de de los horarios_generales
      */
     public function create()
     {
-
         return view('horarios_generales.create');
     }
 

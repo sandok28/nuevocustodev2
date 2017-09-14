@@ -11,9 +11,19 @@
                 </div>
             </div>
             <div class="panel-body">
-                @include('alertas.alertas')
                 {!!Form::model($funcionario,['route'=>['funcionarios.update',$funcionario],'method'=>'PUT'])!!}
                 @include('funcionarios.forms.formulario')
+                @if(($funcionario->estatus) == 1)
+                    <div class="form-group">
+                        {{ Form::checkbox('estatus', '0',false),['class'=>'form-control'] }}
+                        {{ Form::label('dar de baja') }}
+                    </div>
+                @else
+                    <div class="form-group">
+                        {{ Form::checkbox('estatus', '1',false),['class'=>'form-control'] }}
+                        {{ Form::label('Reactivar') }}
+                    </div>
+                @endif
                 <div class="col-md-12">
                     <div class="panel-heading row">
                         <div class="col-md-6">
@@ -28,5 +38,23 @@
             </div>
         </div>
     </div>
+
+    {!!Form::close()!!}
+@endsection
+
+@section('cargarjs')
+    {!! Html::script("assets/plugins/sweetalert/dist/sweetalert.min.js") !!}
+    {!! Html::script("assets/plugins/icheck/js/icheck.min.js") !!}
+    {!! Html::script("assets/plugins/validation/js/jquery.validate.min.js") !!}
+    {!! Html::script("bootstrap-datepicker/js/bootstrap-datepicker.min.js") !!}
+    {!! Html::script("bootstrap-datepicker/js/datepicker-es.js") !!}
+    <script>
+
+        $(".datepicker").datepicker({
+            format: 'yyyy-mm-dd',
+            language: 'es'
+        });
+
+    </script>
 
 @endsection

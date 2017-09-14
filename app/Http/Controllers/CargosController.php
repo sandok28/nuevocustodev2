@@ -25,8 +25,21 @@ class CargosController extends Controller
      */
     public function index()
     {
-        $cargos = Cargo::all();
-        return view('cargos.index',['cargos'=>$cargos]);
+        return view('cargos.index');
+    }
+
+    public  function listar_cargos()
+    {
+        $cargos = \App\Cargo::select(['id','nombre','estatus']);
+        return \Datatables::of($cargos)->addColumn('action', function ($cargo)
+        {
+            $aciones ="";
+            $aciones ="<div class='btn btn-group'>";
+            $aciones =$aciones.'<a href="/cargos/'.$cargo->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+            $aciones =$aciones."</div>";
+            return $aciones;
+
+        })->make(true);
     }
 
     /**

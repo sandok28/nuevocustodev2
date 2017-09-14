@@ -30,18 +30,28 @@ class GestionAreasController extends Controller
     public function index()
     {
 
-        $puertas = Puerta::all();
-        return view('GestionAreas.index',compact('puertas'));
+        return view('GestionAreas.index');
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Envia la informacion necesaria para mostrar en la vista principal
+     * los datos de puertas que se encuentran en la Base de datos.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        $puertas = Puerta::select(['id','nombre','llave_rfid','ip','estatus','puerta_especial']);
+        return  \Datatables::of($puertas)
+            ->addColumn('action',function($puerta)
+            {
+                $aciones = "";
+                $aciones = "<div class='btn btn-group'>";
+                $aciones = $aciones . '<a href="puertas/' . $puerta->id . '/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+                $aciones =$aciones."</div>";
+                return $aciones;
+            })
+        ->make(true);
     }
 
     /**
@@ -100,12 +110,23 @@ class GestionAreasController extends Controller
         //
     }
 
+    /**
+     * Controlareas se encarga de filtrar el tipo de puertas segun el User que
+     * se encuentre Logeado en el momento en dos variables
+     * PuertasNormales y Puertasw Especiales
+     *
+     * @param  int $id que es el id del usuario logeado en el momento
+     * @param  boolean $puertasNormales Filtra y almacena la informacion tipo de puerta del usuario logeado.
+     * @param boolean  $puertasEspeciales Filtra y almacena la informacion tipo de puerta del usuario logeado.
+     * @return \Illuminate\Http\Response devuelve la vista edit de los intervalos.
+     */
     public function controlareas($id)
     {
         $puertasNormales = Auth::User()->puertas->where('puerta_especial',0);
         $puertasEspeciales = Auth::User()->puertas->where('puerta_especial',1);
-        //devuelve la vista edit de los intervalos
+
         return view('ControlAreas.index',['puertasEspeciales'=>$puertasEspeciales,'puertasNormales'=>$puertasNormales]);
 
     }
+
 }

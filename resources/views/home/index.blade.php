@@ -1,6 +1,5 @@
 @extends('layouts.principal')
 
 @section('content')
-
-    <img src="{{url('assets/img/home.png')}}" alt="" style="width: 100%;" >
+    aca toca colocar links a accesos directos mas usados
 @endsection

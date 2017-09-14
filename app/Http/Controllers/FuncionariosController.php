@@ -13,7 +13,10 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests;
+use Yajra\Datatables\Datatables;
 use Mockery\Exception;
+
 
 class FuncionariosController extends Controller
 {
@@ -31,19 +34,13 @@ class FuncionariosController extends Controller
      * datos del modelo que se encuentran el la base de datos.
      */
 
-    public  function tomarfoto()
-    {
-        return view('funcionarios.tomarfoto');
-    }
+
     public function index()
     {
-
-
-
         $this->actualizar_estado_licencias();
-
         $funcionarios=Funcionario::all();
         return view('funcionarios.index',compact('funcionarios'));
+
     }
 
     /**
@@ -78,7 +75,6 @@ class FuncionariosController extends Controller
     {
 
         try{
-
             DB::beginTransaction();
 
                 DB::table('funcionarios')
@@ -91,11 +87,11 @@ class FuncionariosController extends Controller
                             'fecha_nacimiento'=>$request->fecha_nacimiento,
                             'cargo_id'=>$request->cargo_id,
                             'estatus_licencia'=>'0',
-                            'foto'=>'0',
+                            'foto'=>$request->fotocreada,
                             'celular'=>$request->celular,
                             'horario_normal'=>$request->horario_normal,
                             'licencia'=>'0',
-                            'estatus'=>'0',//ojo con esto, ese campo es dado de baja donde 0 es inactivo
+                            'estatus'=>'1',//ojo con esto, ese campo es dado de baja donde 0 es inactivo
                             'created_at'=>Carbon::now(),
                     ]);
                 $funcionario = DB::table('funcionarios')
@@ -197,11 +193,11 @@ class FuncionariosController extends Controller
                         'fecha_nacimiento'=>$request->fecha_nacimiento,
                         'cargo_id'=>$request->cargo_id,
                         'estatus_licencia'=>'0',
-                        'foto'=>'0',
+                        'foto'=>$request->fotocreada,
                         'celular'=>$request->celular,
                         'horario_normal'=>$request->horario_normal,
                         'licencia'=>'0',
-                        'estatus'=>'0',//ojo con esto, ese campo es dado de baja 0 es inactivo
+                        'estatus'=>$request->estatus,//ojo con esto, ese campo es dado de baja 0 es inactivo
                     ]
                 );
 
@@ -234,7 +230,7 @@ class FuncionariosController extends Controller
      * No hace nada en concreto solo muestra la vista horario de funcionarios en donde se puede visualizar
      * el horario que tiene el funcionario actualmente Existen 3 tipos:
      * -horario de acuerdo a la empresa
-     * -Horario propio especiaol
+     * -Horario propio especial
      * -Horario deacuerdo al cargo
      * Dependiendo de cual sea redirecciona a caada una de las vistas necesrias
      *
@@ -248,6 +244,7 @@ class FuncionariosController extends Controller
      */
     public function horario($funcionario_id)
     {
+
        $funcionario = Funcionario::find($funcionario_id);
 
 
@@ -288,6 +285,9 @@ class FuncionariosController extends Controller
      *
      * @author Edwin Sandoval
      */
+
+
+
     private function actualizar_estado_licencias(){
 
         $funcionarios=Funcionario::all();
@@ -314,5 +314,33 @@ class FuncionariosController extends Controller
             DB::commit();
         } catch (\Exception $ex){
         }
+    }
+
+    public  function listar()
+    {
+            $Funcionarios= \App\Funcionario::select(['id','nombre','apellido','cedula','correo','tarjeta_rfid','licencia']);
+            return \Datatables::of($Funcionarios)
+                ->addColumn('action', function ($Funcionario) {
+                    $aciones ="";
+
+                    if ($Funcionario->licencia==0)
+                    {
+                        $aciones ="<div class='btn btn-group'>";
+                        $aciones =$aciones.'<a href="/funcionarios/'.$Funcionario->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+                        $aciones = $aciones.'<a href="/funcionarios/horario/'.$Funcionario->id.'" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Horario</a>';
+                        $aciones = $aciones.'<a href="licencias/create/" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Licencias</a>';
+                        $aciones =$aciones."</div>";
+
+                    }else
+                    {
+                        $aciones ="<div class='btn btn-group'>";
+                        $aciones = $aciones.'<a href="/funcionarios/'.$Funcionario->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+                        $aciones = $aciones.'<a href="/funcionarios/horario/'.$Funcionario->id.'" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Horario</a>';
+                        $aciones = $aciones.'<a href="licencias/create/'.$Funcionario->id.'" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i> Licencias</a>';
+                        $aciones =$aciones."</div>";
+                    }
+                    return $aciones;
+                })
+                ->make(true);
     }
 }

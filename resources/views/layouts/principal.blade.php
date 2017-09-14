@@ -44,7 +44,7 @@
     <header id="header">
         <!--logo start-->
         <div class="brand">
-            <a href="/home" class="logo"><span></span></a>
+            <a href="/home"  class="logo"><span></span></a>
         </div>
         <!--logo end-->
         <div class="toggle-navigation toggle-left">
@@ -52,95 +52,8 @@
                 <i class="fa fa-bars"></i>
             </button>
         </div>
-
-
-
-
-        <div style="display: inline-block; padding-left: 15em;">
-            <img src="{{url('assets/img/custode.png')}}" alt="" style="width: 100%;" >
-
-        </div>
-
-
         <div class="user-nav">
             <ul>
-                <li class="dropdown messages">
-                    <span class="badge badge-danager animated bounceIn" id="new-messages">5</span>
-                    <button type="button" class="btn btn-default dropdown-toggle options" id="toggle-mail" data-toggle="dropdown">
-                        <i class="fa fa-envelope"></i>
-                    </button>
-                    <ul class="dropdown-menu alert animated fadeInDown">
-                        <li>
-                            <h1>You have <strong>5</strong> new messages</h1>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="profile-photo">
-                                    <img src="{{url('assets/img/avatar.gif')}}" alt="" class="img-circle">
-                                </div>
-                                <div class="message-info">
-                                    <span class="sender">James Bagian</span>
-                                    <span class="time">30 mins</span>
-                                    <div class="message-content">Lorem ipsum dolor sit amet, elit rutrum felis sed erat augue fusce...</div>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <div class="profile-photo">
-                                    <img src="assets/img/avatar1.gif" alt="" class="img-circle">
-                                </div>
-                                <div class="message-info">
-                                    <span class="sender">Jeffrey Ashby</span>
-                                    <span class="time">2 hour</span>
-                                    <div class="message-content">hendrerit pellentesque, iure tincidunt, faucibus vitae dolor aliquam...</div>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <div class="profile-photo">
-                                    <img src="assets/img/avatar2.gif" alt="" class="img-circle">
-                                </div>
-                                <div class="message-info">
-                                    <span class="sender">John Douey</span>
-                                    <span class="time">3 hours</span>
-                                    <div class="message-content">Penatibus suspendisse sit pellentesque eu accumsan condimentum nec...</div>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <div class="profile-photo">
-                                    <img src="assets/img/avatar3.gif" alt="" class="img-circle">
-                                </div>
-                                <div class="message-info">
-                                    <span class="sender">Ellen Baker</span>
-                                    <span class="time">7 hours</span>
-                                    <div class="message-content">Sem dapibus in, orci bibendum faucibus tellus, justo arcu...</div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="profile-photo">
-                                    <img src="assets/img/avatar4.gif" alt="" class="img-circle">
-                                </div>
-                                <div class="message-info">
-                                    <span class="sender">Ivan Bella</span>
-                                    <span class="time">6 hours</span>
-                                    <div class="message-content">Curabitur metus faucibus sapien elit, ante molestie sapien...</div>
-                                </div>
-                            </a>
-                        </li>
-                        <li><a href="#">Check all messages <i class="fa fa-angle-right"></i></a>
-                        </li>
-                    </ul>
-
-                </li>
                 <li class="profile-photo">
                     <img src="assets/img/avatar.png" alt="" class="img-circle">
                 </li>
@@ -151,27 +64,10 @@
                     </a>
                     <ul class="dropdown-menu animated fadeInDown">
                         <li>
-                            <a href="#"><i class="fa fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-calendar"></i> Calendar</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-envelope"></i> Inbox <span class="badge badge-danager" id="user-inbox">5</span></a>
-                        </li>
-                        <li>
                             <i class="fa fa-power-off"> {!!link_to_route('home.logout', ' Cerrar session')!!}</i>
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <div class="toggle-navigation toggle-right">
-                        <button type="button" class="btn btn-default" id="toggle-right">
-                            <i class="fa fa-comment"></i>
-                        </button>
-                    </div>
-                </li>
-
             </ul>
         </div>
     </header>
@@ -213,9 +109,6 @@
                     <a href="/home" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>AUDITORIAS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/Reportes" style="padding-bottom: 0em !important;"><i class="fa fa-files-o"></i><span>REPORTES</span></a>
-                </li>
-                <li class="active">
                     <a href="/home" style="padding-bottom: 0em !important;"><i class="fa fa-gears"></i><span>CONFIGUARION INICIAL</span></a>
                 </li>
             </ul>
@@ -234,97 +127,26 @@
             <!--dashboard charts and map start-->
             <div class="row">
 
+
+                    @if(Session::get('tipo') == 'error')
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            {{Session::get('message')}}
+                        </div>
+                    @endif
+
+                    @if(Session::get('tipo') == 'message')
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            {{Session::get('message')}}
+                        </div>
+                    @endif
+                </div>
                 @include('alertas.alertas')
                 @yield('content')
-
-            </div>
+                </div>
         </section>
     </section>
-    <!--main content end-->
-    <!--sidebar right start-->
-    <aside class="sidebarRight">
-        <div id="rightside-navigation ">
-            <div class="sidebar-heading"><i class="fa fa-user"></i> Contacts</div>
-            <div class="sidebar-title">online</div>
-            <div class="list-contacts">
-                <a href="javascript:void(0)" class="list-item">
-                    <div class="list-item-image">
-                        <img src="assets/img/avatar.gif" class="img-circle">
-                    </div>
-                    <div class="list-item-content">
-                        <h4>James Bagian</h4>
-                        <p>Los Angeles, CA</p>
-                    </div>
-                    <div class="item-status item-status-online"></div>
-                </a>
-                <a href="javascript:void(0)" class="list-item">
-                    <div class="list-item-image">
-                        <img src="assets/img/avatar1.gif" class="img-circle">
-                    </div>
-                    <div class="list-item-content">
-                        <h4>Jeffrey Ashby</h4>
-                        <p>New York, NY</p>
-                    </div>
-                    <div class="item-status item-status-online"></div>
-                </a>
-                <a href="javascript:void(0)" class="list-item">
-                    <div class="list-item-image">
-                        <img src="assets/img/avatar2.gif" class="img-circle">
-                    </div>
-                    <div class="list-item-content">
-                        <h4>John Douey</h4>
-                        <p>Dallas, TX</p>
-                    </div>
-                    <div class="item-status item-status-online"></div>
-                </a>
-                <a href="javascript:void(0)" class="list-item">
-                    <div class="list-item-image">
-                        <img src="assets/img/avatar3.gif" class="img-circle">
-                    </div>
-                    <div class="list-item-content">
-                        <h4>Ellen Baker</h4>
-                        <p>London</p>
-                    </div>
-                    <div class="item-status item-status-away"></div>
-                </a>
-            </div>
-
-            <div class="sidebar-title">offline</div>
-            <div class="list-contacts">
-                <a href="javascript:void(0)" class="list-item">
-                    <div class="list-item-image">
-                        <img src="assets/img/avatar4.gif" class="img-circle">
-                    </div>
-                    <div class="list-item-content">
-                        <h4>Ivan Bella</h4>
-                        <p>Tokyo, Japan</p>
-                    </div>
-                    <div class="item-status"></div>
-                </a>
-                <a href="javascript:void(0)" class="list-item">
-                    <div class="list-item-image">
-                        <img src="assets/img/avatar5.gif" class="img-circle">
-                    </div>
-                    <div class="list-item-content">
-                        <h4>Gerald Carr</h4>
-                        <p>Seattle, WA</p>
-                    </div>
-                    <div class="item-status"></div>
-                </a>
-                <a href="javascript:void(0)" class="list-item">
-                    <div class="list-item-image">
-                        <img src="assets/img/avatar6.gif" class="img-circle">
-                    </div>
-                    <div class="list-item-content">
-                        <h4>Viktor Gorbatko</h4>
-                        <p>Palo Alto, CA</p>
-                    </div>
-                    <div class="item-status"></div>
-                </a>
-            </div>
-        </div>
-    </aside>
-    <!--sidebar right end-->
 </section>
 {{--Global JS--}}
 {!! Html::script('assets/js/jquery-1.10.2.min.js') !!}

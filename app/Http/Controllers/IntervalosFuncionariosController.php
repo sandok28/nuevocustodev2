@@ -25,14 +25,15 @@ class IntervalosFuncionariosController extends Controller
     }
 
     /**
-     * No hace nada en concreto solo llama a la vista create de intervalos_funcionarios con el formulario para crear un intervalo de horario especial
+     * llama a la vista create de intervalos_funcionarios
+     * con el formulario para crear un intervalo de horario especial.
      *
      * @author Edwin Sandoval
      * @return \Illuminate\Http\Response devuelve la vista create de intervalos_funcionarios
      * y le paso
-     * $funcionario_id id del funcionario al que pertenece
-     * $puertasNormales una coleccion con todas las puestas normales
-     * $puertasEspeciales una coleccion con todas las puertas especiales
+     * @param int $funcionario_id id del funcionario al que pertenece
+     * @param int $puertasNormales una coleccion con todas las puestas normales
+     * @param int $puertasEspeciales una coleccion con todas las puertas especiales
      * @param integer $funcionario_id id del funcionario al que va pertenecer el horario especial
      */
     public function create($funcionario_id)
@@ -169,9 +170,9 @@ class IntervalosFuncionariosController extends Controller
      * @author Edwin Sandoval
      * @return \Illuminate\Http\Response devuelve la vista edit de los intervalos
      * y le paso
-     * $intervaloEspecial objeto del intervalo de horario especial que se quiere mostrar
-     * $puertasNormales una coleccion con todas las puestas normales asociadas al intervalo
-     * $puertasEspeciales una coleccion con todas las puertas especiales normales asociadas al intervalo de horario especial
+     * @param int $intervaloEspecial objeto del intervalo de horario especial que se quiere mostrar
+     * @param int $puertasNormales una coleccion con todas las puestas normales asociadas al intervalo
+     * @param int $puertasEspeciales una coleccion con todas las puertas especiales normales asociadas al intervalo de horario especial
      * @param integer $id id del intervalo de horario especial que se va a mostrar
      */
     public function show($id)
