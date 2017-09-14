@@ -83,7 +83,9 @@ class PuertasController extends Controller
                     'ip' => $request->ip,
                 ]
             );
+        DB::commit();
     }catch (\Exception $ex){
+        DB::rollback();
         return redirect('/GestionAreas')->with(['message' => 'La Puerta  ha tenido un error al crear', 'tipo' => 'message']);
     }
         return redirect('/GestionAreas')->with(['message' => 'La Puerta  se ha creado correctamente', 'tipo' => 'message']);
@@ -143,6 +145,7 @@ class PuertasController extends Controller
             }
             catch (\Exception $ex)
             {
+                DB::rollback();
                 return redirect('/puertas/create')->with(['message'=>'Ha ocurrido un error en la creacion de la puerta','tipo'=>'message']);
             }
             return redirect('/GestionAreas')->with(['message'=>'La Puerta  se ha actualizado correctamente','tipo'=>'message']);

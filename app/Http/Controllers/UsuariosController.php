@@ -128,9 +128,9 @@ class UsuariosController extends Controller
 
             DB::commit();
         } catch (\Exception $ex){
+            DB::rollback();
             return redirect('/usuarios/create')->with(['message'=>'Algo salio mal','tipo'=>'error']);
         }
-
         return redirect('/usuarios/'.$usuario->id.'/edit')->with(['message'=>'El Usuario se ha registrado correctamente','tipo'=>'message']);
     }
 
@@ -149,7 +149,6 @@ class UsuariosController extends Controller
     public function edit($id)
     {
         $usuario = User::find($id);
-
         return view('usuarios.edit',['usuario'=>$usuario]);
     }
 
@@ -262,9 +261,9 @@ class UsuariosController extends Controller
 
             DB::commit();
         } catch (\Exception $ex){
+            DB::rollback();
             return redirect('/usuarios/'.$id.'/edit')->with(['message'=>'Algo salio mal','tipo'=>'error']);
         }
-
         return redirect('/usuarios')->with(['message'=>'Usuario Actualizado corectamente','tipo'=>'message']);
     }
 

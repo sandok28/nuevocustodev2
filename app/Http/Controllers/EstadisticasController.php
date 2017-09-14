@@ -18,8 +18,7 @@ class EstadisticasController extends Controller
     **/
     public function index()
     {
-        $nombres= Funcionario::all();
-        $horarios=Funcionario::all();
-        return view('Estadisticas.Generar',['nombres'=>$nombres,'horarios'=>$horarios]);
+        $funcionarios= Funcionario::all();
+        return view('Estadisticas.Generar',['funcionarios'=>$funcionarios]);
     }
 }

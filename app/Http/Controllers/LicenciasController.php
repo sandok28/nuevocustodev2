@@ -154,10 +154,9 @@ class LicenciasController extends Controller
                 ]);
             DB::commit();
         } catch (\Exception $ex){
+            DB::rollback();
             return redirect('licencias/create/'.$funcionario_id)->with(['message'=>'Algo salio mal ','tipo'=>'error']);
         }
-
-
         return redirect('/licencias')->with(['message'=>'La licencia se ha registrada correctamente','tipo'=>'message']);
     }
 
@@ -239,10 +238,9 @@ class LicenciasController extends Controller
 
             DB::commit();
         } catch (\Exception $ex){
+            DB::rollback();
             dd($ex);
         }
-
-
         return redirect('/licencias')->with(['message'=>'La licencia  ha actualizado correctamente','tipo'=>'message']);
     }
 
@@ -331,6 +329,7 @@ class LicenciasController extends Controller
 
             DB::commit();
         } catch (\Exception $ex){
+            DB::rollback();
             dd($ex);
         }
 
@@ -349,9 +348,9 @@ class LicenciasController extends Controller
             DB::commit();
         }
         catch (\Exception $ex){
+            DB::rollback();
             return redirect('/licencias')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
         }
-
         //devuelve la vista edit de los intervalos_invitados
         return redirect('/licencias')->with(['message'=>'La licencia  se ha eliminado correctamente','tipo'=>'message']);
     }
@@ -369,6 +368,7 @@ class LicenciasController extends Controller
             DB::commit();
         }
         catch (\Exception $ex){
+            DB::rollback();
             return redirect('/licencias')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
         }
         return redirect('/licencias')->with(['message'=>'La licencia  se ha concluido correctamente','tipo'=>'message']);
@@ -397,6 +397,7 @@ class LicenciasController extends Controller
                 }
             DB::commit();
         } catch (\Exception $ex){
+            DB::rollback();
             dd($ex);
         }
     }

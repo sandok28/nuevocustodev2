@@ -109,10 +109,9 @@ class CargosController extends Controller
                 }
             DB::commit();
         } catch (\Exception $ex){
+            DB::rollback();
             return redirect('/cargos/create')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
         }
-
-
         return redirect('/cargos')->with(['message'=>'El Cargo se ha registrado correctamente','tipo'=>'message']);
     }
 
@@ -186,6 +185,7 @@ class CargosController extends Controller
             DB::commit();
 
         } catch (\Exception $ex){
+            DB::rollback();
             return redirect('cargos/'.$id.'/edit')->with(['message'=>'Error Inesperado al realizar el registro','tipo'=>'error']);
         }
         return redirect('/cargos')->with(['message'=>'El Cargo se ha actualizado correctamente','tipo'=>'message']);

@@ -108,15 +108,13 @@ class IntervalosSeccionesController extends Controller
 
         }
         catch (\Exception $ex){
-
+            DB::rollback();
             return redirect('IntervalosSecciones/create/'.$seccion_id)->with(['message'=>'Error Inesperado al realizar el registro','tipo'=>'error']);
         }
         if(!$dias_validos){
             return redirect('IntervalosSecciones/create/'.$seccion_id)->with(['message'=>'Seleccione al menos un dia','tipo'=>'error']);
         }
-
         DB::commit();
-
         return redirect('/secciones/'.$seccion_id.'/edit')->with(['message'=>'El intervalo general se ha registrado correctamente','tipo'=>'message']);
     }
 
@@ -138,9 +136,9 @@ class IntervalosSeccionesController extends Controller
             DB::commit();
         }
         catch (\Exception $ex){
+            DB::rollback();
             return redirect('/secciones/'.$seccion_id.'/edit')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
         }
-
         //devuelve la vista edit de los intervalos_invitados
         return redirect('/secciones/'.$seccion_id.'/edit')->with(['message'=>'Intervalo eliminado correctamente','tipo'=>'message']);
     }
