@@ -1,0 +1,193 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use App\Cargo;
+use Illuminate\Support\Facades\DB;
+use Session;
+use Redirect;
+class CargosController extends Controller
+{
+    public function __construct()
+    {
+        $this->middleware('guest');
+        $this->middleware('GestionarCargosMiddleware');
+    }
+
+
+    /**
+     * No hace nada en concreto solo llama a la vista index de Cargos
+     *
+     * @author Edwin Sandoval
+     * @return \Illuminate\Http\Response devuelve la vista index de cargos y le paso una coleccion con todos los cargps
+     */
+    public function index()
+    {
+        return view('cargos.index');
+    }
+
+    public  function listar_cargos()
+    {
+        $cargos = \App\Cargo::select(['id','nombre','estatus']);
+        return \Datatables::of($cargos)->addColumn('action', function ($cargo)
+        {
+            $aciones ="";
+            $aciones ="<div class='btn btn-group'>";
+            $aciones =$aciones.'<a href="/cargos/'.$cargo->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+            $aciones =$aciones."</div>";
+            return $aciones;
+
+        })->make(true);
+    }
+
+    /**
+     * No hace nada en concreto solo llama a la vista create
+     *
+     * @author Edwin Sandoval
+     * @return \Illuminate\Http\Response devuelve la vista create de cargos y le paso una coleccion con todos las secciones
+     */
+    public function create()
+    {
+        $secciones = DB::table('Secciones')
+                        ->select('id','nombre')
+                        ->get();
+        return view('cargos.create',['secciones'=>$secciones]);
+    }
+
+    /**
+     * Crea un nuevo cargo con los datos que recibe del formulario
+     * por defecto asigna el estatus del nuevo cargo en 1 indicando que esta activo
+     *
+     * @author Edwin Sandoval
+     * @return \Illuminate\Http\Response Redirecciona a la vista index de cargos
+     * @param Request $request con los datos del formulario de cargos
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'nombre' => 'required|unique:Cargos|min:4',
+        ]);
+
+        try{
+            DB::beginTransaction();
+                DB::table('Cargos')->insert([
+                    'nombre'=> $request->nombre,
+                    'estatus'=> '1',
+                    'created_at'=>Carbon::now()->toDateTimeString()
+                ]);
+
+
+                $cargo = DB::table('cargos')
+                    ->select('id')
+                    ->orderBy('created_at', 'desc')
+                    ->first();
+                $secciones = DB::table('Secciones')
+                    ->select('id')
+                    ->get();
+
+                foreach($secciones as $seccion){
+                    //Si la seccion fue seclecionada en el check, se guarda en la relacion cargo-seciones con un 1
+                    // indicando que esta seccion tiene permiso sobre el
+                    if($request[$seccion->id]!=null) {
+                        DB::table('Cargos_Secciones')
+                            ->insert([
+                                'cargo_id'=> $cargo->id,
+                                'seccion_id'=> $seccion->id,
+                                'estatus_permiso'=>'1'
+                            ]);
+                    }
+                    else{
+                        DB::table('Cargos_Secciones')
+                            ->insert([
+                                'cargo_id'=> $cargo->id,
+                                'seccion_id'=> $seccion->id,
+                                'estatus_permiso'=>'0'
+                            ]);
+                    }
+                }
+            DB::commit();
+        } catch (\Exception $ex){
+            return redirect('/cargos/create')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
+        }
+
+
+        return redirect('/cargos')->with(['message'=>'El Cargo se ha registrado correctamente','tipo'=>'message']);
+    }
+
+    /**
+     * Busca el cargo asociado al $id y lo guarda en la variable $cargo
+     * luego llama a la vista edit
+     * @author Edwin Sandoval
+     * @return \Illuminate\Http\Response devuelve la vista edit de cargos y le paso la variable $cargo
+     * @param integer $id  id del cargo que se quiere editar
+     */
+    public function edit($id)
+    {
+
+        $cargo = Cargo::find($id);
+
+        $secciones = DB::table('Cargos')
+                            ->where('Cargos.id',$id)
+                            ->join('Cargos_Secciones', 'cargos.id', '=', 'Cargos_Secciones.cargo_id')
+                            ->join('Secciones', 'Secciones.id', '=', 'Cargos_Secciones.seccion_id')
+                            ->select('Secciones.id', 'Secciones.nombre', 'Cargos_Secciones.estatus_permiso')
+                            ->get();
+
+        return view('cargos.edit',['cargo'=>$cargo,'secciones'=>$secciones]);
+    }
+
+    /**
+     * Busca el cargo asociado al $id y actualiza los datos de este
+     * @author Edwin Sandoval
+     * @return \Illuminate\Http\Response Redirecciona a la vista index de cargos
+     * @param Request $request con los datos del formulario
+     */
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'nombre' => 'min:4|required|unique:Cargos,nombre,'.$id,
+        ]);
+
+        try{
+            DB::beginTransaction();
+
+                if($request->estatus!=null) {
+                    DB::table('Cargos')
+                        ->where('id',$id)
+                        ->update([
+                            'nombre'=> $request->nombre,
+                            'estatus'=> $request->estatus,
+                        ]);
+                }
+                else{
+                    DB::table('Cargos')
+                        ->where('id',$id)
+                        ->update(['nombre'=> $request->nombre]);
+                }
+
+
+                $secciones = DB::table('Secciones')
+                    ->select('id')
+                    ->get();
+
+                DB::table('Cargos_Secciones')->where('cargo_id',$id)->update(['estatus_permiso' => 0]);
+
+                foreach($secciones as $secciom){
+                    //Si la puerta fue seclecionada en el check se guarda en la relacion secionn-puerta con un 1
+                    // indicando que esta seccion tiene permiso sobre ella
+                    if($request[$secciom->id]!=null) {
+                        DB::table('Cargos_Secciones')
+                            ->where(['cargo_id'=>$id,'seccion_id'=>$request[$secciom->id]])
+                            ->update(['estatus_permiso'=> 1]);
+                    }
+                }
+            DB::commit();
+
+        } catch (\Exception $ex){
+            return redirect('cargos/'.$id.'/edit')->with(['message'=>'Error Inesperado al realizar el registro','tipo'=>'error']);
+        }
+        return redirect('/cargos')->with(['message'=>'El Cargo se ha actualizado correctamente','tipo'=>'message']);
+    }
+}
