@@ -47,8 +47,8 @@
 
                             data: {
                                 labels: [
-                                    @forEach($nombres as $nombre)
-                                        '{{$nombre->nombre}}',
+                                    @forEach($funcionarios as $funcionario)
+                                        '{{$funcionario->nombre}}',
                                     @endforeach
                                 ],
                                 datasets: [{
@@ -56,8 +56,8 @@
                                     backgroundColor: 'rgb(0, 0, 0)',
                                     borderColor: 'rgb(255, 255, 255)',
                                     data: [
-                                        @forEach($horarios as $horario)
-                                        {{$horario->hoario_normal}},
+                                        @forEach($funcionarios as $funcionario)
+                                        {{$funcionario->hoario_normal}},
                                         @endforeach
                                     ],
                                 }]
