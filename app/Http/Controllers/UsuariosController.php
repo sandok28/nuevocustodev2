@@ -114,7 +114,7 @@ class UsuariosController extends Controller
 
             DB::commit();
         } catch (\Exception $ex){
-            dd($ex);
+            return redirect('/usuarios/create')->with(['message'=>'Algo salio mal','tipo'=>'error']);
         }
 
         return redirect('/usuarios/'.$usuario->id.'/edit')->with(['message'=>'El Usuario se ha registrado correctamente','tipo'=>'message']);
@@ -225,27 +225,30 @@ class UsuariosController extends Controller
                 // si el check estatus es nulo le asigno el valor que tiene el usuario actualmente
                 if($request->estatus == null) $request->estatus=$usuario->estatus;
                 if($request->password == null) $request->password=$usuario->password;
-                //creo un arreglo auxiliar para incorporrar el email enlos datos que se vana guardar en la base de datos
-                $variablesAdaptadas = [
-                    'name' => $request->name,
-                    'email'=> $request->name,
-                    'password'=> $request->password,
-                    'estatus'=> $request->estatus
-                ];
 
-                DB::table('Users')
-                    ->where('id', $id)
-                    ->update([
-                        'name' => $request->name,
-                        'email'=> $request->name,
-                        'password'=> bcrypt($request['password']),
-                        'estatus'=> $request->estatus,
-                    ]);
-
+                if($request['password']!=null) {
+                    DB::table('Users')
+                        ->where('id', $id)
+                        ->update([
+                            'name' => $request->name,
+                            'email'=> $request->name,
+                            'password'=> bcrypt($request['password']),
+                            'estatus'=> $request->estatus,
+                        ]);
+                }
+                else{
+                    DB::table('Users')
+                        ->where('id', $id)
+                        ->update([
+                            'name' => $request->name,
+                            'email'=> $request->name,
+                            'estatus'=> $request->estatus,
+                        ]);
+                }
 
             DB::commit();
         } catch (\Exception $ex){
-            dd($ex);
+            return redirect('/usuarios/'.$id.'/edit')->with(['message'=>'Algo salio mal','tipo'=>'error']);
         }
 
         return redirect('/usuarios')->with(['message'=>'Usuario Actualizado corectamente','tipo'=>'message']);
