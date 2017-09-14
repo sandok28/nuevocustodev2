@@ -14,9 +14,7 @@ use Session;
 use Redirect;
 class SeccionesController extends Controller
 {
-<<<<<<< HEAD
-     /**
-=======
+
     public function __construct()
     {
         $this->middleware('guest');
@@ -26,7 +24,6 @@ class SeccionesController extends Controller
     //Comentar de nuevo todo esto
 
     /**
->>>>>>> upstream/nuevocustode_dv
      * Llama a la vista index donde se listan todos las secciones
      *
      *
@@ -37,14 +34,21 @@ class SeccionesController extends Controller
      */
     public function index()
     {
-        $secciones = Seccion::all();
-
-        return view('secciones.index',compact('secciones'));
+        return view('secciones.index');
     }
 
     public function listar_secciones()
     {
-        $secciones = \App\Seccion::select(['nombre','estatus']);
+        $secciones = \App\Seccion::select(['id','nombre','estatus']);
+        return \Datatables::of($secciones)->addColumn('action', function ($seccion)
+        {
+            $aciones ="";
+            $aciones ="<div class='btn btn-group'>";
+            $aciones =$aciones.'<a href="/secciones/'.$seccion->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+            $aciones =$aciones."</div>";
+            return $aciones;
+
+        })->make(true);
     }
     /**
      * No hace nada en concreto solo llama a la vista create de secciones

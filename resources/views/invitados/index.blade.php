@@ -49,24 +49,14 @@
                                         <thead>
                                         <tr>
 
-                                            <th>Nombres y Apellidos </th>
+                                            <th>Nombre </th>
+                                            <th>Apellido </th>
                                             <th>Cedula</th>
                                             <th>Celular</th>
                                             <th>Correo</th>
                                             <th>Editar</th>
                                         </tr>
                                         </thead>
-                                        <tbody>
-                                        @foreach($invitados as $invitado)
-                                            <tr>
-                                                <th>{{$invitado->nombre." ".$invitado->apellido}}</th>
-                                                <th>{{$invitado->cedula}}</th>
-                                                <th>{{$invitado->celular}}</th>
-                                                <th>{{$invitado->correo}}</th>
-                                                <th>{!!link_to_route('invitados.edit', $title = 'Editar', $parameters = $invitado, $attributes = ['class'=>'btn btn-primary'])!!}</th>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -85,9 +75,23 @@
     <!--Page Leve JS -->
     {!! Html::script('assets/plugins/dataTables/js/jquery.dataTables.js') !!}
     {!! Html::script('assets/plugins/dataTables/js/dataTables.bootstrap.js') !!}
+
     <script>
         $(document).ready(function() {
-            $('#example').dataTable();
-        });
+            $('#example').DataTable( {
+                "processing": true,
+                "serverSide": true,
+                "ajax": "/invitados-lista",
+
+                "columns":[
+                    {data: 'nombre'},
+                    {data: 'apellido'},
+                    {data: 'cedula'},
+                    {data: 'celular'},
+                    {data: 'correo'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                ]
+            } );
+        } );
     </script>
 @endsection

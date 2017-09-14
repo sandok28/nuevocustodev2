@@ -28,10 +28,24 @@ class InvitadosController extends Controller
      */
     public function index()
     {
-        $invitados=Invitado::all();
-        return view('invitados.index',compact('invitados'));
+
+        return view('invitados.index');
     }
 
+    public function lista_invitados()
+    {
+        $invitados= \App\Invitado::select(['id','nombre','apellido','cedula','celular','correo']);
+        return \Datatables::of($invitados)
+            ->addColumn('action', function ($invitado) {
+                $aciones ="";
+                $aciones ="<div class='btn btn-group'>";
+                $aciones =$aciones.'<a href="//'.$invitado->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+                $aciones =$aciones."</div>";
+
+            return $aciones;
+            })
+            ->make(true);
+    }
     /**
      * No hace nada en concreto solo llama a la vista create de invitados
      *

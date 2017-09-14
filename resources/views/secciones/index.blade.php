@@ -45,19 +45,6 @@
 
                             </tr>
                             </thead>
-                            <tbody>
-                            @foreach($secciones as $seccion)
-                                <tr>
-                                    <td>{{$seccion->nombre}}</td>
-                                    @if(($seccion->estatus) == 1)
-                                        <th>activa</th>
-                                    @else
-                                        <th>inactiva</th>
-                                    @endif
-                                    <th>{!!link_to_route('secciones.edit', $title = 'Editar', $parameters = $seccion, $attributes = ['class'=>'btn btn-primary'])!!}</th>
-                                </tr>
-                            @endforeach
-                            </tbody>
                         </table>
 
                     </div>
@@ -72,12 +59,25 @@
     <!--Page Leve JS -->
     {!! Html::script('assets/plugins/dataTables/js/jquery.dataTables.js') !!}
     {!! Html::script('assets/plugins/dataTables/js/dataTables.bootstrap.js') !!}
+
     <script>
         $(document).ready(function() {
-            $('#example').dataTable();
-        });
-    </script>
-    <script>
+            $('#example').DataTable( {
+                "processing": true,
+                "serverSide": true,
+                "ajax": "/secciones-lista",
 
+                "columns":[
+                    {data: 'nombre'},
+                    {data: 'estatus',
+                    render: function (data) {
+                        if(data==1){return "Activa"}
+                        else{return "Inactiva"}
+                    }
+                    },
+                    {data: 'action', name: 'action', orderable: false, searchable: false}
+                ]
+            } );
+        } );
     </script>
 @endsection

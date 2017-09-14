@@ -40,6 +40,20 @@ class UsuariosController extends Controller
         return view('usuarios.index',compact('usuarios'));
     }
 
+    public function lista_usuarios()
+    {
+        $usuarios= User::select(['id','name','created_at','updated_at','estatus'])->get();
+        return \Datatables::of($usuarios)
+            ->addColumn('action', function ($usuario) {
+                $aciones ="";
+                $aciones ="<div class='btn btn-group'>";
+                $aciones =$aciones.'<a href="usuarios/'.$usuario->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+                $aciones =$aciones."</div>";
+
+                return $aciones;
+            })
+            ->make(true);
+    }
     /**
      * No hace nada en concreto solo llama a la vista create de usuarios
      *

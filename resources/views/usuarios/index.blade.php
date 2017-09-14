@@ -47,21 +47,6 @@
 
                             </tr>
                             </thead>
-                            <tbody>
-                            @foreach($usuarios as $usuario)
-                                <tr>
-                                    <td>{{$usuario->name}}</td>
-                                    <td>{{$usuario->created_at}}</td>
-                                    <td>{{$usuario->updated_at}}</td>
-                                    @if(($usuario->estatus) == 1)
-                                        <th>activo</th>
-                                    @else
-                                        <th>inactivo</th>
-                                    @endif
-                                    <th>{!!link_to_route('usuarios.edit', $title = 'Editar', $parameters = $usuario, $attributes = ['class'=>'btn btn-primary'])!!}</th>
-                                </tr>
-                            @endforeach
-                            </tbody>
                         </table>
 
                     </div>
@@ -76,12 +61,26 @@
     <!--Page Leve JS -->
     {!! Html::script('assets/plugins/dataTables/js/jquery.dataTables.js') !!}
     {!! Html::script('assets/plugins/dataTables/js/dataTables.bootstrap.js') !!}
+
+
     <script>
         $(document).ready(function() {
-            $('#example').dataTable();
-        });
-    </script>
-    <script>
+            $('#example').DataTable( {
+                "processing": true,
+                "serverSide": true,
+                "ajax": "/user-lista",
 
+                "columns":[
+                    {data: 'name'},
+                    {data: 'created_at'},
+                    {data: 'updated_at'},
+                    {data: 'estatus',render:function (data) {
+                        if(data==1){return "Activo"}
+                        else {return "Inactivo"}
+                    }},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                ]
+            } );
+        } );
     </script>
 @endsection

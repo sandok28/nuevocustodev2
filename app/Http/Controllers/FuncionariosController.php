@@ -207,7 +207,7 @@ class FuncionariosController extends Controller
                         'celular'=>$request->celular,
                         'horario_normal'=>$request->horario_normal,
                         'licencia'=>'0',
-                        'estatus'=>'0',//ojo con esto, ese campo es dado de baja 0 es inactivo
+                        'estatus'=>$request->estatus,//ojo con esto, ese campo es dado de baja 0 es inactivo
                     ]
                 );
 
