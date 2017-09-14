@@ -63,7 +63,6 @@ class IntervalosInvitadosController extends Controller
                     ['llave_rfid','=', $request->targeta_rfid],
                     ['fecha_expiracion','>', Carbon::now()->toDateString()]//me trae las activas
                 ])->get();
-            //dd($llaves);
             foreach ($llaves as $llave){
 
                 if ($llave->id_asociado != ($invitado_id+100000)) {

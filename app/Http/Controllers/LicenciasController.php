@@ -154,7 +154,7 @@ class LicenciasController extends Controller
                 ]);
             DB::commit();
         } catch (\Exception $ex){
-            dd($ex);
+            return redirect('licencias/create/'.$funcionario_id)->with(['message'=>'Algo salio mal ','tipo'=>'error']);
         }
 
 

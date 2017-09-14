@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'GestionarEstadisticasMiddleware' => 'App\Http\Middleware\GestionarEstadisticasMiddleware',
         'GestionarAuditoriasMiddleware' => 'App\Http\Middleware\GestionarAuditoriasMiddleware',
         'GestionarPuertasMiddleware' => 'App\Http\Middleware\GestionarPuertasMiddleware',
+        'ControlPuertasMiddleware' => 'App\Http\Middleware\ControlPuertasMiddleware',
     ];
 }

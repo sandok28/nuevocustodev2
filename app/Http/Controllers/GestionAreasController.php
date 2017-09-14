@@ -15,6 +15,8 @@ class GestionAreasController extends Controller
         $this->middleware('guest');
         //$this->middleware('GestionarPuertasMiddleware');
 
+        //Para control de puertas
+        //$this->middleware('ControlPuertasMiddleware');
 
         //Para el de auditorias
         //$this->middleware('GestionarAuditoriasMiddleware');
@@ -122,6 +124,10 @@ class GestionAreasController extends Controller
     {
         $puertasNormales = Auth::User()->puertas->where('puerta_especial',0);
         $puertasEspeciales = Auth::User()->puertas->where('puerta_especial',1);
+<<<<<<< HEAD
+=======
+        //devuelve la vista edit de los intervalos
+>>>>>>> upstream/nuevocustode_dv
         return view('ControlAreas.index',['puertasEspeciales'=>$puertasEspeciales,'puertasNormales'=>$puertasNormales]);
 
     }

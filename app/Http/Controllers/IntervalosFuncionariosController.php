@@ -153,7 +153,6 @@ class IntervalosFuncionariosController extends Controller
 
         }
         catch (\Exception $ex){
-            dd($ex);
             return redirect('IntervalosFuncionarios/create/'.$funcionario_id)->with(['message'=>'Error Inesperado al realizar el registro','tipo'=>'error']);
         }
         if(!$dias_validos){

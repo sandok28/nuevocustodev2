@@ -42,7 +42,7 @@
 
 
 
-    @include('horarios_generales.show_horario_general');
+    @include('horarios_generales.show_horario_general')
 @endsection
 @section('cargarjs')
     <!--Page Leve JS -->
