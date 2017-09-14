@@ -20,7 +20,6 @@ class EstadisticasController extends Controller
     {
         $nombres= Funcionario::all();
         $horarios=Funcionario::all();
-        //dd($nombres,$horarios);
         return view('Estadisticas.Generar',['nombres'=>$nombres,'horarios'=>$horarios]);
     }
 }

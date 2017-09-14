@@ -115,16 +115,6 @@ class FuncionariosController extends Controller
                         return redirect('/funcionarios/create')->with(['message'=>'Llave RFID ya esta en uso','tipo'=>'error']);
                     }
                 }
-                if($llave->tipo == 0){
-                    if ($llave->id_asociado != $invitado_id){
-                        return redirect('/IntervalosInvitados/create/'.$invitado_id)->with(['message'=>'Llave RFID ya esta siendo usada por un funcionario','tipo'=>'error']);
-                    }
-                }
-                if($llave->tipo == 1){
-                    if ($llave->id_asociado != ($invitado_id+100000)){
-                        return redirect('/IntervalosInvitados/create/'.$invitado_id)->with(['message'=>'Llave RFID ya esta siendo usada por un invitado','tipo'=>'error']);
-                    }
-                }
 
                 DB::table('llaves')
                         ->insert([
@@ -168,7 +158,6 @@ class FuncionariosController extends Controller
                             ->get()
                             ->pluck('nombre','id');
         $funcionario = Funcionario::find($id);
-        //dd($funcionario);
         return view('funcionarios.edit',['funcionario'=>$funcionario,'cargos_array'=>$cargos_array]);
     }
 
@@ -324,7 +313,6 @@ class FuncionariosController extends Controller
                 }
             DB::commit();
         } catch (\Exception $ex){
-            dd($ex);
         }
     }
 }

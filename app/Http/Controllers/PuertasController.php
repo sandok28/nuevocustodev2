@@ -16,7 +16,15 @@ class PuertasController extends Controller
         $this->middleware('guest');
         //$this->middleware('GestionarPuertasMiddleware');
 
+        //$this->middleware('GestionarPuertasMiddleware');
+
+        //Para control de puertas
+        //$this->middleware('ControlPuertasMiddleware');
+
         //Para el de auditorias
+        //$this->middleware('GestionarAuditoriasMiddleware');
+        //Para el de auditorias
+
         //$this->middleware('GestionarAuditoriasMiddleware');
     }
     /**

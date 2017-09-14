@@ -83,7 +83,6 @@ class InvitadosController extends Controller
             DB::commit();
         }
         catch (\Exception $ex){
-            dd($ex);
             return redirect('/invitados/create')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
         }
 
@@ -144,7 +143,6 @@ class InvitadosController extends Controller
             DB::commit();
         }
         catch (\Exception $ex){
-            dd($ex);
             return redirect('/invitados/'.$id.'/edit')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
         }
 

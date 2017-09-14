@@ -86,15 +86,7 @@ class IntervalosSeccionesController extends Controller
 
                         $nuevo_intervalo_hasta = Carbon::createFromFormat('H:i:s', $request->hasta_hora.':'.$request->hasta_minuto.':00');
                         $actual_intervalo_desde = Carbon::createFromFormat('H:i:s', $intervalo_seccion_del_dia->desde);
-                        /*
-                        dd(
-                            $nuevo_intervalo_desde->diffInMinutes($actual_intervalo_desde,false ),
-                            $nuevo_intervalo_desde->diffInMinutes($actual_intervalo_hasta,false ),
 
-                            $nuevo_intervalo_hasta->diffInMinutes($actual_intervalo_hasta,false ),
-                            $nuevo_intervalo_hasta->diffInMinutes($actual_intervalo_desde,false )
-                        );
-                        */
                         $hora_valida_por_abajo = $nuevo_intervalo_desde->diffInMinutes($actual_intervalo_desde,false ) * $nuevo_intervalo_desde->diffInMinutes($actual_intervalo_hasta,false );
                         $hora_valida_por_arriba = $nuevo_intervalo_hasta->diffInMinutes($actual_intervalo_hasta,false ) * $nuevo_intervalo_hasta->diffInMinutes($actual_intervalo_desde,false );
                         $hora_valida_por_centro = ($nuevo_intervalo_desde->diffInMinutes($actual_intervalo_desde,false ) + $nuevo_intervalo_desde->diffInMinutes($actual_intervalo_hasta,false ) ) * ( $nuevo_intervalo_hasta->diffInMinutes($actual_intervalo_hasta,false ) + $nuevo_intervalo_hasta->diffInMinutes($actual_intervalo_desde,false ));

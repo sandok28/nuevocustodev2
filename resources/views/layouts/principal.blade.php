@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     {{-- Favicon --}}
-    <link rel="shortcut icon" src="{{url('assets/img/favicon.ico')}}" type="image/x-icon">
+    <link rel="shortcut icon" src="{{url('assets/img/logo_empresa.png')}}" type="image/x-icon">
     {{-- Bootstrap core CSS --}}
     {!! Html::style('assets/plugins/bootstrap/css/bootstrap.min.css') !!}
     {{-- Fonts from Font Awsome --}}
@@ -44,7 +44,7 @@
     <header id="header">
         <!--logo start-->
         <div class="brand">
-            <a href="/home" class="logo"><span>CUSTODE</span></a>
+            <a href="/home" class="logo"><span></span></a>
         </div>
         <!--logo end-->
         <div class="toggle-navigation toggle-left">
@@ -52,6 +52,16 @@
                 <i class="fa fa-bars"></i>
             </button>
         </div>
+
+
+
+
+        <div style="display: inline-block; padding-left: 15em;">
+            <img src="{{url('assets/img/custode.png')}}" alt="" style="width: 100%;" >
+
+        </div>
+
+
         <div class="user-nav">
             <ul>
                 <li class="dropdown messages">
@@ -170,43 +180,43 @@
         <div id="leftside-navigation" class="nano">
             <ul class="nano-content">
                 <li class="active">
-                    <a href="/funcionarios"><i class="fa fa-users"></i><span>FUNCIONARIOS</span></a>
+                    <a href="/funcionarios" style="padding-bottom: 0.3em !important;"><i class="fa fa-users"></i><span>FUNCIONARIOS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/secciones"><i class="fa  fa-list"></i><span>SECCIONES</span></a>
+                    <a href="/secciones" style="padding-bottom: 0.3em !important;"><i class="fa  fa-list"></i><span>SECCIONES</span></a>
                 </li>
                 <li class="active">
-                    <a href="/cargos"><i class="fa  fa-list"></i><span>CARGOS</span></a>
+                    <a href="/cargos" style="padding-bottom: 0.3em !important;"><i class="fa  fa-list"></i><span>CARGOS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/invitados"><i class="fa fa-users"></i><span>INVITADOS</span></a>
+                    <a href="/invitados" style="padding-bottom: 0.3em !important;" ><i class="fa fa-users"></i><span>INVITADOS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/usuarios"><i class="fa fa-users"></i><span>USUARIOS</span></a>
+                    <a href="/usuarios" style="padding-bottom: 0.3em !important;"><i class="fa fa-users"></i><span>USUARIOS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/horariogeneral/show"><i class="fa fa-clock-o"></i><span>HORARIOS</span></a>
+                    <a href="/horariogeneral/show" style="padding-bottom: 0.3em !important;"><i class="fa fa-clock-o"></i><span>HORARIOS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/licencias"><i class="fa  fa-files-o"></i><span>LICENCIAS</span></a>
+                    <a href="/licencias" style="padding-bottom: 0.3em !important;"><i class="fa  fa-files-o"></i><span>LICENCIAS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/GestionAreas"><i class="fa fa-list"></i><span>GESTION DE AREAS</span></a>
+                    <a href="/GestionAreas" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>GESTION DE AREAS</span></a>
                 </li>
                  <li class="active">
-                    <a href="/area/1"><i class="fa fa-list"></i><span>CONTROL DE AREAS</span></a>
+                    <a href="/area/1" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>CONTROL DE AREAS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/Estadisticas"><i class="fa fa-list"></i><span>ESTADISTICAS</span></a>
+                    <a href="/Estadisticas" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>ESTADISTICAS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/home"><i class="fa fa-list"></i><span>AUDITORIAS</span></a>
+                    <a href="/home" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>AUDITORIAS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/Reportes"><i class="fa fa-files-o"></i><span>REPORTES</span></a>
+                    <a href="/Reportes" style="padding-bottom: 0em !important;"><i class="fa fa-files-o"></i><span>REPORTES</span></a>
                 </li>
                 <li class="active">
-                    <a href="/home"><i class="fa fa-gears"></i><span>CONFIGUARION INICIAL</span></a>
+                    <a href="/home" style="padding-bottom: 0em !important;"><i class="fa fa-gears"></i><span>CONFIGUARION INICIAL</span></a>
                 </li>
             </ul>
         </div>
@@ -216,21 +226,16 @@
     <!--sidebar left end-->
     <!--main content start-->
     <section class="main-content-wrapper">
-        <section id="main-content">
+        <section id="main-content" >
             <!--tiles start-->
 
             <!--aca primer corte-->
             <!--tiles end-->
             <!--dashboard charts and map start-->
-
             <div class="row">
-
-
 
                 @include('alertas.alertas')
                 @yield('content')
-
-
 
             </div>
         </section>
