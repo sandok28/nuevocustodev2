@@ -164,15 +164,13 @@ class HorariosGeneralesController extends Controller
 
         }
         catch (\Exception $ex){
-
+            DB::rollback();
            return redirect('horariogeneral/create')->with(['message'=>'Error Inesperado al realizar el registro','tipo'=>'error']);
         }
         if(!$dias_validos){
             return redirect('horariogeneral/create')->with(['message'=>'Seleccione al menos un dia','tipo'=>'error']);
         }
-
         DB::commit();
-
         return redirect('/horariogeneral')->with(['message'=>'El intervalo general se ha registrado correctamente','tipo'=>'message']);
     }
 
@@ -221,9 +219,9 @@ class HorariosGeneralesController extends Controller
             DB::commit();
         }
         catch (\Exception $ex){
+            DB::rollback();
             return redirect('horariogeneral/')->with(['message'=>'Error Inesperado al realizar el registro','tipo'=>'error']);
         }
-
         return redirect('/horariogeneral')->with(['message'=>'El intervalo general se ha registrado correctamente','tipo'=>'message']);
     }
 

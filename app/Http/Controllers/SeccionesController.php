@@ -119,6 +119,7 @@ class SeccionesController extends Controller
             DB::commit();
         }
         catch (\Exception $ex){
+            DB::rollback();
             return redirect('/secciones/create')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
         }
 

@@ -123,7 +123,7 @@ class FuncionariosController extends Controller
             return redirect('/funcionarios')->with(['message'=>'El Usuario se ha registrado correctamente','tipo'=>'message']);
         }
         catch (\Exception $ex){
-            dd($ex);
+            DB::rollback();
             return redirect('/funcionarios/create')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
         }
     }
@@ -220,6 +220,7 @@ class FuncionariosController extends Controller
 
         }
         catch (\Exception $ex){
+            DB::rollback();
             return redirect('/funcionarios/'+$id+'/edit')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
         }
         return redirect('/funcionarios')->with(['message'=>'El Usuario se ha Actualizado correctamente','tipo'=>'message']);
@@ -313,6 +314,7 @@ class FuncionariosController extends Controller
                 }
             DB::commit();
         } catch (\Exception $ex){
+            DB::rollback();
         }
     }
 

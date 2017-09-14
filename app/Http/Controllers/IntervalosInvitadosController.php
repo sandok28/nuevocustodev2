@@ -55,8 +55,6 @@ class IntervalosInvitadosController extends Controller
      */
     public function store(Request $request,$invitado_id)
     {
-
-
         DB::beginTransaction();
             $llaves = DB::table('llaves')
                 ->where([
@@ -135,9 +133,9 @@ class IntervalosInvitadosController extends Controller
             DB::commit();
         }
         catch (\Exception $ex){
+            DB::rollback();
             return redirect('/invitados/'.$intervalo_invitado->invitado_id.'/edit')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
         }
-
         //devuelve la vista edit de los intervalos_invitados
         return redirect('/invitados/'.$intervalo_invitado->invitado_id.'/edit')->with(['message'=>'El intervalo se registro correctamente','tipo'=>'message']);
     }
@@ -185,6 +183,7 @@ class IntervalosInvitadosController extends Controller
                 }
             DB::commit();
         } catch (\Exception $ex){
+            DB::rollback();
             return null;
         }
 

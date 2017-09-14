@@ -97,10 +97,9 @@ class InvitadosController extends Controller
             DB::commit();
         }
         catch (\Exception $ex){
+            DB::rollback();
             return redirect('/invitados/create')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
         }
-
-
         return redirect('/invitados/'.$invitado->id.'/edit')->with(['message'=>'El Invitado se ha registrado correctamente','tipo'=>'message']);
     }
 
@@ -157,9 +156,9 @@ class InvitadosController extends Controller
             DB::commit();
         }
         catch (\Exception $ex){
+            DB::rollback();
             return redirect('/invitados/'.$id.'/edit')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
         }
-
         return redirect('/invitados')->with(['message'=>'El invitado se ha actualizado correctamente','tipo'=>'message']);
     }
 

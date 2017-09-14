@@ -153,14 +153,12 @@ class IntervalosFuncionariosController extends Controller
 
         }
         catch (\Exception $ex){
+            DB::rollback();
             return redirect('IntervalosFuncionarios/create/'.$funcionario_id)->with(['message'=>'Error Inesperado al realizar el registro','tipo'=>'error']);
         }
         if(!$dias_validos){
             return redirect('IntervalosFuncionarios/create/'.$funcionario_id)->with(['message'=>'Seleccione al menos un dia','tipo'=>'error']);
         }
-
-
-
         return redirect('/funcionarios/horario/'.$funcionario_id)->with(['message'=>'El intervalo se ha registrado correctamente','tipo'=>'message']);
     }
 
