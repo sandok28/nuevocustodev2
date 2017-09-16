@@ -35,7 +35,7 @@
                     <div class="col-xs-12 row">
                         <div class="col-xs-6">
                             <div class="col-xs-12">
-                                <h1>Control Pertas</h1>
+                                <h1>Control Puertas</h1>
                             </div>
                             @foreach($usuario->puertas as $puertasPermisos)
                                 <div class="col-xs-8">

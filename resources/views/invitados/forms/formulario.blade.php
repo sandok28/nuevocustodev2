@@ -1,7 +1,3 @@
-
- <div class="form-group col-xs-12">
-     <<  Agregar foto  >>
- </div>
 <div class="form-group col-xs-6">
     {!!Form::label('nombre','Nombres:')!!}
     {!!Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Ingresa el Nombre del usuario'])!!}
@@ -23,9 +19,14 @@
     {!!Form::email('correo',null,['class'=>'form-control','placeholder'=>'Ingresa el E-mail del usuario'])!!}
 </div>
 <div class="form-group col-xs-6">
-    {!!Form::label('fecha_nacimiento','Fecha de nacimiento:')!!}
-    {!! Form::date('fecha_nacimiento', \Carbon\Carbon::now(),['class'=>'form-control'])!!}
+    <div class="form-group">
+        <label class="control-label">FECHA DE NACIMIENTO:</label><br>
+        <div class="col-sm-14">
+            <input class="datepicker input-group date form-control" id="fecha_nacimiento" name="fecha_nacimiento">
+        </div>
+    </div>
 </div>
+
 
 
 
