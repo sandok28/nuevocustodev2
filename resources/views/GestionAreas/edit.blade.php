@@ -13,6 +13,17 @@
             <div class="panel-body">
                 {!!Form::model($puerta,['route'=>['puertas.update',$puerta],'method'=>'PUT'])!!}
                 @include('GestionAreas.forms.formulario')
+                @if(($puerta->estatus) == 1)
+                    <div class="form-group">
+                        {{ Form::checkbox('estatus', '0',false),['class'=>'form-control'] }}
+                        {{ Form::label('dar de baja') }}
+                    </div>
+                @else
+                    <div class="form-group">
+                        {{ Form::checkbox('estatus', '1',false),['class'=>'form-control'] }}
+                        {{ Form::label('Reactivar') }}
+                    </div>
+                @endif
                 <div class="form-group">
                     {!!Form::submit('Actualizar',['class'=>'btn btn-primary'])!!}
                 </div>

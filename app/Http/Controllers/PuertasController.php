@@ -139,21 +139,36 @@ class PuertasController extends Controller
      */
     public function update(PuertasActualizarRequest $request, $id)
     {
-        //
+
             try
             {
                 DB::beginTransaction();
-                DB::table('puertas')
-                    ->where('id',$id)
-                    ->update(
-                        [
-                            'nombre'=>$request->nombre,
-                            'llave_rfid'=>$request->llave_rfid,
-                            'ip'=>$request->ip,
-                            'puerta_especial'=>$request->puerta_especial,
-                            'estatus'=>'1',
-                        ]
-                    );
+                if($request->estatus!=null) {
+                    DB::table('puertas')
+                        ->where('id',$id)
+                        ->update(
+                            [
+                                'nombre'=>$request->nombre,
+                                'llave_rfid'=>$request->llave_rfid,
+                                'ip'=>$request->ip,
+                                'puerta_especial'=>$request->puerta_especial,
+                                'estatus'=>$request->estatus,
+                            ]
+                        );
+                }
+                else{
+                    DB::table('puertas')
+                        ->where('id',$id)
+                        ->update(
+                            [
+                                'nombre'=>$request->nombre,
+                                'llave_rfid'=>$request->llave_rfid,
+                                'ip'=>$request->ip,
+                                'puerta_especial'=>$request->puerta_especial,
+                            ]
+                        );
+                }
+
                 DB::commit();
             }
             catch (\Exception $ex)

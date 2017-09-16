@@ -73,7 +73,10 @@ class FuncionariosController extends Controller
 
     public function store(\App\Http\Requests\FuncionariosCrearRequest $request)
     {
-
+        if($request->cargo_id==null)
+        {
+            return redirect('/funcionarios/create')->with(['message'=>'El cargo no puede ser nulo, crear Cargo','tipo'=>'error']);
+        }
         try{
             DB::beginTransaction();
 
@@ -120,7 +123,7 @@ class FuncionariosController extends Controller
                             'fecha_expiracion' => Carbon::now()->addYears(10)->toDateString(),
                         ]);
             DB::commit();
-            return redirect('/funcionarios')->with(['message'=>'El Usuario se ha registrado correctamente','tipo'=>'message']);
+            return redirect('/funcionarios')->with(['message'=>'El Funcionario se ha registrado correctamente','tipo'=>'message']);
         }
         catch (\Exception $ex){
             DB::rollback();
@@ -352,7 +355,7 @@ class FuncionariosController extends Controller
 
     public  function listar()
     {
-            $Funcionarios= \App\Funcionario::select(['id','nombre','apellido','cedula','correo','tarjeta_rfid','licencia']);
+            $Funcionarios= Funcionario::all();
             return \Datatables::of($Funcionarios)
                 ->addColumn('action', function ($Funcionario) {
                     $aciones ="";

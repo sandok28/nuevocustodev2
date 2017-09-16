@@ -45,7 +45,7 @@
                                             <th>Apellido</th>
                                             <th>Cedula</th>
                                             <th>Correo</th>
-                                            <th>Tarjeta RFID</th>
+                                            <th>Estatus</th>
                                             <th>Editar</th>
                                         </tr>
                                         </thead>
@@ -72,14 +72,14 @@
             $('#example').DataTable( {
                 "processing": true,
                 "serverSide": true,
-                "ajax": "/funcionarios-lista",
+                "ajax": "{{route('gridfuncioarios')}}",
 
                 "columns":[
                     {data: 'nombre'},
                     {data: 'apellido'},
                     {data: 'cedula'},
                     {data: 'correo'},
-                    {data: 'tarjeta_rfid'},
+                    {data: 'estatus'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                     ]
             } );
