@@ -181,25 +181,56 @@ class FuncionariosController extends Controller
                 }
             }
 
-            DB::table('funcionarios')
-                ->where('id',$id)
-                ->update(
-                    [
-                        'nombre'=>$request->nombre,
-                        'apellido'=>$request->apellido,
-                        'cedula'=>$request->cedula,
-                        'correo'=>$request->correo,
-                        'tarjeta_rfid'=>$request->tarjeta_rfid,
-                        'fecha_nacimiento'=>$request->fecha_nacimiento,
-                        'cargo_id'=>$request->cargo_id,
-                        'estatus_licencia'=>'0',
-                        'foto'=>$request->fotocreada,
-                        'celular'=>$request->celular,
-                        'horario_normal'=>$request->horario_normal,
-                        'licencia'=>'0',
-                        'estatus'=>$request->estatus,//ojo con esto, ese campo es dado de baja 0 es inactivo
-                    ]
-                );
+
+            if($request->foto==null)
+            {
+                $request->fotocreada=DB::table("funcionarios")->where('id',$id)->get()[0]->foto;
+            }
+
+
+            if($request->estatus!=null) {
+                DB::table('funcionarios')
+                    ->where('id',$id)
+                    ->update(
+                        [
+                            'nombre'=>$request->nombre,
+                            'apellido'=>$request->apellido,
+                            'cedula'=>$request->cedula,
+                            'correo'=>$request->correo,
+                            'tarjeta_rfid'=>$request->tarjeta_rfid,
+                            'fecha_nacimiento'=>$request->fecha_nacimiento,
+                            'cargo_id'=>$request->cargo_id,
+                            'estatus_licencia'=>'0',
+                            'foto'=>$request->fotocreada,
+                            'celular'=>$request->celular,
+                            'horario_normal'=>$request->horario_normal,
+                            'licencia'=>'0',
+                            'estatus'=>$request->estatus,//ojo con esto, ese campo es dado de baja 0 es inactivo
+                        ]
+                    );
+            }
+            else{
+                DB::table('funcionarios')
+                    ->where('id',$id)
+                    ->update(
+                        [
+                            'nombre'=>$request->nombre,
+                            'apellido'=>$request->apellido,
+                            'cedula'=>$request->cedula,
+                            'correo'=>$request->correo,
+                            'tarjeta_rfid'=>$request->tarjeta_rfid,
+                            'fecha_nacimiento'=>$request->fecha_nacimiento,
+                            'cargo_id'=>$request->cargo_id,
+                            'estatus_licencia'=>'0',
+                            'foto'=>$request->fotocreada,
+                            'celular'=>$request->celular,
+                            'horario_normal'=>$request->horario_normal,
+                            'licencia'=>'0',
+                        ]
+                    );
+            }
+
+
 
             DB::table('llaves')
                     ->where([
@@ -220,6 +251,7 @@ class FuncionariosController extends Controller
 
         }
         catch (\Exception $ex){
+            dd($ex);
             DB::rollback();
             return redirect('/funcionarios/'+$id+'/edit')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
         }
@@ -330,7 +362,7 @@ class FuncionariosController extends Controller
                         $aciones ="<div class='btn btn-group'>";
                         $aciones =$aciones.'<a href="/funcionarios/'.$Funcionario->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
                         $aciones = $aciones.'<a href="/funcionarios/horario/'.$Funcionario->id.'" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Horario</a>';
-                        $aciones = $aciones.'<a href="licencias/create/" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Licencias</a>';
+                        $aciones = $aciones.'<a href="/licencias/create/'.$Funcionario->id.'" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i>Agregar Licencias</a>';
                         $aciones =$aciones."</div>";
 
                     }else
@@ -338,7 +370,7 @@ class FuncionariosController extends Controller
                         $aciones ="<div class='btn btn-group'>";
                         $aciones = $aciones.'<a href="/funcionarios/'.$Funcionario->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
                         $aciones = $aciones.'<a href="/funcionarios/horario/'.$Funcionario->id.'" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Horario</a>';
-                        $aciones = $aciones.'<a href="licencias/create/'.$Funcionario->id.'" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i> Licencias</a>';
+                        $aciones = $aciones.'<a href="licencias" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i>En Licencia</a>';
                         $aciones =$aciones."</div>";
                     }
                     return $aciones;

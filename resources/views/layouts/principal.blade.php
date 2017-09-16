@@ -44,7 +44,7 @@
     <header id="header">
         <!--logo start-->
         <div class="brand">
-            <a href="/home"  class="logo"><span></span></a>
+            <a href="/home"><img src="{{url('assets/img/logo_empresa.png')}}" width="400" height="90"></a>
         </div>
         <!--logo end-->
         <div class="toggle-navigation toggle-left">
@@ -75,6 +75,9 @@
     <aside class="sidebar">
         <div id="leftside-navigation" class="nano">
             <ul class="nano-content">
+                <li class="active">
+                    <a href="/home" style="padding-bottom: 0em !important;"><i class="glyphicon glyphicon-home"></i><span>HOME</span></a>
+                </li>
                 <li class="active">
                     <a href="/funcionarios" style="padding-bottom: 0.3em !important;"><i class="fa fa-users"></i><span>FUNCIONARIOS</span></a>
                 </li>
@@ -111,6 +114,7 @@
                 <li class="active">
                     <a href="/home" style="padding-bottom: 0em !important;"><i class="fa fa-gears"></i><span>CONFIGUARION INICIAL</span></a>
                 </li>
+
             </ul>
         </div>
         </nav>
@@ -125,23 +129,7 @@
             <!--aca primer corte-->
             <!--tiles end-->
             <!--dashboard charts and map start-->
-            <div class="row">
 
-
-                    @if(Session::get('tipo') == 'error')
-                        <div class="alert alert-danger alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            {{Session::get('message')}}
-                        </div>
-                    @endif
-
-                    @if(Session::get('tipo') == 'message')
-                        <div class="alert alert-success alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            {{Session::get('message')}}
-                        </div>
-                    @endif
-                </div>
                 @include('alertas.alertas')
                 @yield('content')
                 </div>
