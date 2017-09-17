@@ -35,14 +35,22 @@
                     <div class="col-xs-12 row">
                         <div class="col-xs-6">
                             <div class="col-xs-12">
-                                <h1>Control Pertas</h1>
+                                <h1>Control Puertas</h1>
                             </div>
-                            @foreach($usuario->puertas as $puertasPermisos)
-                                <div class="col-xs-8">
-                                    {!! Form::checkbox($puertasPermisos->id, $puertasPermisos->id,$puertasPermisos->pivot->estatus_permiso) !!}
-                                    {!! Form::label($puertasPermisos->nombre) !!}
-                                </div>
-                            @endforeach
+                            <div class="col-xs-12">
+                                @if($usuario->puertas->where('estatus','1')->count('id')==0)
+                                    <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 1em;">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        NO HAY PUERTAS ACTIVAS.
+                                    </div>
+                                @endif
+                                @foreach($usuario->puertas->where('estatus','1') as $puertasPermisos)
+                                    <div class="col-xs-8">
+                                        {!! Form::checkbox($puertasPermisos->id, $puertasPermisos->id,$puertasPermisos->pivot->estatus_permiso) !!}
+                                        {!! Form::label($puertasPermisos->nombre) !!}
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                         <div class="col-xs-6">
                             <div class="col-xs-12">

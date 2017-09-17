@@ -62,7 +62,7 @@ Route::get('Reportes','ReportesController@index');
 
 Route::resource('horariogeneral','HorariosGeneralesController',['only' => ['index','create','store','destroy']]);
 
-Route::get('/funcionarios-lista','FuncionariosController@listar');
+Route::get('funcionarios/lista/griddata','FuncionariosController@listar')->name('gridfuncioarios');
 Route::get('/secciones-lista','SeccionesController@listar_secciones');
 Route::get('/cargos-lista','CargosController@listar_cargos');
 Route::get('/invitados-lista','InvitadosController@lista_invitados');

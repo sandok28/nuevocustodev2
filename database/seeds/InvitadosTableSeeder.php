@@ -20,7 +20,7 @@ class InvitadosTableSeeder extends Seeder
                 'cedula' => '112182557'.$i,
                 'celular' => '310446839'.$i,
                 'correo' => 'Invitado'.$i.'@gmail.com',
-                'fecha_nacimiento' => $carbon->now(),
+                'fecha_nacimiento' => $carbon->now()->toDateString(),
                 'foto'=>'F-i-'.$i,
                 'created_at' => $carbon->now(),
                 'updated_at' => $carbon->now(),

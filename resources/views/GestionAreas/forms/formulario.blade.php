@@ -38,7 +38,7 @@
                             <label class="col-sm-3 control-label"></label>
                             <div class="col-sm-6">
                                 <div class="checkbox">
-                                    {{ Form::radio('puerta_especial', 1, false,['class'=>'iradio_flat-grey checked','style'=>'position: relative'])}}<label> Puerta Especila</label><br><br>
+                                    {{ Form::radio('puerta_especial', 1, false,['class'=>'iradio_flat-grey checked','style'=>'position: relative'])}}<label> Puerta Especial</label><br><br>
                                     {{ Form::radio('puerta_especial', 0,false,['class'=>'iradio_flat-grey checked','style'=>'position: relative'])}}<label>  Puerta Normal</label>
                                 </div>
                             </div>

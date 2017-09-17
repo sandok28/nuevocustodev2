@@ -23,6 +23,7 @@ class IntervalosinvitadosTableSeeder extends Seeder
                         'fecha' => $carbon->now()->subDays($i),
                     ]);
 
+
                 } elseif ($i < 8) {
                     DB::table('IntervalosInvitados')->insert([
                         'targeta_rfid' => '4A2B2FD' . $i,
@@ -31,6 +32,13 @@ class IntervalosinvitadosTableSeeder extends Seeder
                         'invitado_id' => $j,
                         'fecha' => $carbon->now(),
                     ]);
+                    DB::table('llaves')
+                        ->insert([
+                            'tipo'=> '1',//tipo 0 es el indicativo de funcionario
+                            'llave_rfid' =>'4A2B2FD' . $i,
+                            'id_asociado' =>  $i+100000,
+                            'fecha_expiracion' => \Carbon\Carbon::now()->addDays(1)->toDateString(),
+                        ]);
                 } else {
                     DB::table('IntervalosInvitados')->insert([
                         'targeta_rfid' => '4A2B2FD' . $i,
@@ -39,6 +47,13 @@ class IntervalosinvitadosTableSeeder extends Seeder
                         'invitado_id' => $j,
                         'fecha' => $carbon->now()->addDays($i-7),
                     ]);
+                    DB::table('llaves')
+                        ->insert([
+                            'tipo'=> '1',//tipo 0 es el indicativo de funcionario
+                            'llave_rfid' =>'4A2B2FD' . $i,
+                            'id_asociado' =>  $i+100000,
+                            'fecha_expiracion' => \Carbon\Carbon::now()->addDays($i+8)->toDateString(),
+                        ]);
                 }
             }
         }

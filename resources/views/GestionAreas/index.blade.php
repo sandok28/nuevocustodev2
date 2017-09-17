@@ -48,9 +48,9 @@
                                             <th>Modulo</th>
                                             <th>Llave</th>
                                             <th>Ip</th>
-                                            <th>Editar</th>
                                             <th>Dado de Baja</th>
                                             <th>Puerta Especial</th>
+                                            <th>Editar</th>
                                         </tr>
                                         </thead>
                                     </table>
@@ -80,7 +80,6 @@
                     {data: 'nombre'},
                     {data: 'llave_rfid'},
                     {data: 'ip'},
-                    {data: 'action', name: 'action', orderable: false, searchable: false},
                     {data: 'estatus',
                     render: function(data){
                         if (data==1){return "Activo";}
@@ -91,6 +90,7 @@
                         if(data==1){return "PUERTA ESPECILA"}
                         else{return "PUERTA NORMAL"}
                      }},
+                    {data: 'action', name: 'action', orderable: false, searchable: false}
 
                 ]
             } );

@@ -7,8 +7,8 @@
     {!!Form::text('apellido',null,['class'=>'form-control','placeholder'=>'Ingresa el Apellido del usuario'])!!}
 </div>
 <div class="form-group col-xs-6">
-   {!!Form::label('cedula','Cedula:')!!}
-   {!!Form::number('cedula',null,['class'=>'form-control','placeholder'=>'Ingresa el Cedula del usuario'])!!}
+    {!!Form::label('cedula','Cedula:')!!}
+    {!!Form::number('cedula',null,['class'=>'form-control','placeholder'=>'Ingresa el Cedula del usuario'])!!}
 </div>
 <div class="form-group col-xs-6">
     {!!Form::label('celular','Celular:')!!}
@@ -22,10 +22,11 @@
     <div class="form-group">
         <label class="control-label">FECHA DE NACIMIENTO:</label><br>
         <div class="col-sm-14">
-            <input class="datepicker input-group date form-control" id="fecha_nacimiento" name="fecha_nacimiento">
+            <input class="datepicker input-group date form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="{{$invitado->fecha_nacimiento}}">
         </div>
     </div>
 </div>
+
 
 
 

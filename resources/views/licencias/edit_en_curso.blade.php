@@ -17,8 +17,12 @@ editar licencia en curso
         <div class="panel-body">
             {!!Form::model($licencia,['route'=>['licencias.update_en_curso',$licencia],'method'=>'PUT'])!!}
             <div class="form-group col-xs-12">
-                {!!Form::label('hasta','Hasta:')!!}
-                {!!Form::date('hasta',null,['class'=>'form-control','placeholder'=>'Ingresa el Apellido del usuario'])!!}
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Hasta:</label>
+                    <div class="col-sm-6">
+                        <input class="datepicker input-group date form-control" id="hasta" name="hasta">
+                    </div>
+                </div>
             </div>
             <div class="col-md-12">
                 <div class="panel-heading row">
