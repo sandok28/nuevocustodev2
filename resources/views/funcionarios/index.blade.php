@@ -58,6 +58,40 @@
             </div>
         </div>
     </div>
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Lista Funcionarios Inactivos</h3>
+                <div class="actions pull-right">
+                    <i class="fa fa-chevron-down"></i>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+            <div class="panel-body">
+                <section id="main-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <table id="example1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                        <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Apellido</th>
+                                            <th>Cedula</th>
+                                            <th>Correo</th>
+                                            <th>Editar</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -79,11 +113,30 @@
                     {data: 'apellido'},
                     {data: 'cedula'},
                     {data: 'correo'},
-                    {data: 'estatus'},
+                    {data: 'estatus', render: function (data) {
+                        if(data==1){return "activo";}
+                        else {return "inactivo";}
+                    }},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                     ]
             } );
         } );
     </script>
+    <script>
+        $(document).ready(function() {
+            $('#example1').DataTable( {
+                "processing": true,
+                "serverSide": true,
+                "ajax": "funcionariosinactivos",
 
+                "columns":[
+                    {data: 'nombre'},
+                    {data: 'apellido'},
+                    {data: 'cedula'},
+                    {data: 'correo'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                ]
+            } );
+        } );
+    </script>
 @endsection

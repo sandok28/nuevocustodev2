@@ -355,7 +355,7 @@ class FuncionariosController extends Controller
 
     public  function listar()
     {
-            $Funcionarios= Funcionario::all();
+            $Funcionarios= Funcionario::select(['id','nombre','apellido','cedula','correo','estatus'])->where('estatus',1)->get();
             return \Datatables::of($Funcionarios)
                 ->addColumn('action', function ($Funcionario) {
                     $aciones ="";
@@ -379,5 +379,20 @@ class FuncionariosController extends Controller
                     return $aciones;
                 })
                 ->make(true);
+    }
+
+    public function inactivos()
+    {
+        $Funcionarios= Funcionario::select(['id','nombre','apellido','correo','cedula'])->where('estatus',0)->get();
+        return \Datatables::of($Funcionarios)
+            ->addColumn('action', function ($Funcionario) {
+                $aciones ="";
+                    $aciones ="<div class='btn btn-group'>";
+                    $aciones =$aciones.'<a href="/funcionarios/'.$Funcionario->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i>Activar</a>';
+                    $aciones =$aciones."</div>";
+
+                return $aciones;
+            })
+            ->make(true);
     }
 }
