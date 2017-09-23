@@ -13,8 +13,6 @@
     {!! Html::style("assets/plugins/icheck/css/_all.css") !!}
 @endsection
 @section('content')
-
-
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">

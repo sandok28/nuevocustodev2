@@ -177,7 +177,6 @@ class FuncionariosController extends Controller
                         ['llave_rfid','=', $request->tarjeta_rfid],
                         ['fecha_expiracion','>', Carbon::now()->toDateString()]//me trae las activas
                     ])->get();
-
             foreach ($llaves as $llave){
                 if ($llave->id_asociado != $id){
                     return redirect('/funcionarios/'.$id.'/edit')->with(['message'=>'Llave RFID ya esta en uso','tipo'=>'error']);
@@ -189,7 +188,6 @@ class FuncionariosController extends Controller
             {
                 $request->fotocreada=DB::table("funcionarios")->where('id',$id)->get()[0]->foto;
             }
-
 
             if($request->estatus!=null) {
                 DB::table('funcionarios')
@@ -237,19 +235,36 @@ class FuncionariosController extends Controller
 
             DB::table('llaves')
                     ->where([
-                        ['id_asociado','=', $id],
-                        ['fecha_expiracion','>', Carbon::now()->toDateString()]//me trae las activas
+                        ['id_asociado','=', $id]
                     ])
-                    ->update([
-                        'fecha_expiracion' => Carbon::now()->subDay(1)->toDateString(),
-                    ]);
-            DB::table('llaves')
+                    ->delete();
+            $funcionario = DB::table('funcionarios')->select('estatus')->where('id',$id)->get()->first();
+            if($funcionario->estatus == 1){
+                DB::table('llaves')
                     ->insert([
                         'tipo'=> '0',//tipo 0 es el indicativo de funcionario
                         'llave_rfid' => $request->tarjeta_rfid,
                         'id_asociado' => $id,
                         'fecha_expiracion' => Carbon::now()->addYears(10)->toDateString(),
                     ]);
+            }
+            else{
+                DB::table('licencias')
+                    ->where([
+                        ['funcionario_id','=',$id],
+                        ['desde','>',Carbon::now()->toDateString()],
+                        ['estatus','=',1],
+                    ])->delete();
+                DB::table('licencias')
+                    ->where([
+                        ['funcionario_id','=',$id],
+                        ['desde','<=',Carbon::now()->toDateString()],
+                        ['estatus','=',1],
+                    ]) ->update([
+                        'estatus' => 0,
+                        'hasta' => Carbon::now()->toDateString()
+                    ]);
+            }
             DB::commit();
 
         }
@@ -258,7 +273,7 @@ class FuncionariosController extends Controller
             DB::rollback();
             return redirect('/funcionarios/'+$id+'/edit')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
         }
-        return redirect('/funcionarios')->with(['message'=>'El Usuario se ha Actualizado correctamente','tipo'=>'message']);
+        return redirect('/funcionarios')->with(['message'=>'El funcionario se ha Actualizado correctamente','tipo'=>'message']);
     }
 
 
