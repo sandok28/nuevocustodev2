@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PuertasActualizarRequest;
 use App\Http\Requests\PuertasCrearRequest;
 use App\Puerta;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -83,6 +84,18 @@ class PuertasController extends Controller
                     'ip' => $request->ip,
                 ]
             );
+        $puerta = DB::table('Puertas')
+            ->select('id')
+            ->orderBy('created_at', 'desc')
+            ->first();
+            $usuarios=User::all();
+            foreach ($usuarios as $usuario) {
+                DB::table('Puertas_Users')->insert([
+                    'user_id' => $usuario->id,
+                    'puerta_id' => $puerta->id,
+                    'estatus_permiso' => 0,
+                ]);
+            }
         DB::commit();
     }catch (\Exception $ex){
         DB::rollback();
@@ -126,21 +139,36 @@ class PuertasController extends Controller
      */
     public function update(PuertasActualizarRequest $request, $id)
     {
-        //
+
             try
             {
                 DB::beginTransaction();
-                DB::table('puertas')
-                    ->where('id',$id)
-                    ->update(
-                        [
-                            'nombre'=>$request->nombre,
-                            'llave_rfid'=>$request->llave_rfid,
-                            'ip'=>$request->ip,
-                            'puerta_especial'=>$request->puerta_especial,
-                            'estatus'=>'1',
-                        ]
-                    );
+                if($request->estatus!=null) {
+                    DB::table('puertas')
+                        ->where('id',$id)
+                        ->update(
+                            [
+                                'nombre'=>$request->nombre,
+                                'llave_rfid'=>$request->llave_rfid,
+                                'ip'=>$request->ip,
+                                'puerta_especial'=>$request->puerta_especial,
+                                'estatus'=>$request->estatus,
+                            ]
+                        );
+                }
+                else{
+                    DB::table('puertas')
+                        ->where('id',$id)
+                        ->update(
+                            [
+                                'nombre'=>$request->nombre,
+                                'llave_rfid'=>$request->llave_rfid,
+                                'ip'=>$request->ip,
+                                'puerta_especial'=>$request->puerta_especial,
+                            ]
+                        );
+                }
+
                 DB::commit();
             }
             catch (\Exception $ex)

@@ -52,3 +52,18 @@
 
 
 @endsection
+@section('cargarjs')
+    {!! Html::script("bootstrap-datepicker/js/bootstrap-datepicker.min.js") !!}
+    {!! Html::script("bootstrap-datepicker/js/datepicker-es.js") !!}
+
+
+    <script>
+        //
+        $(".datepicker").datepicker({
+            format: 'yyyy-mm-dd',
+            language: 'es'
+        });
+
+    </script>
+
+@endsection

@@ -11,7 +11,7 @@
 
                                 <img id="imgFotoOficial_Perfil" name="imgFotoOficial_Perfil" src="{{$funcionario->foto}}" alt="User Avatar">
                                 <canvas id="foto" class="col-md-12" style="display: none"></canvas>
-                                <input type="hidden" value="" id="fotocreada" name="fotocreada">
+                                <input type="hidden" value="" id="fotocreada" name="fotocreada" src="{{$funcionario->foto}}">
                                 @else
                                     <img id="imgFotoOficial_Perfil" name="imgFotoOficial_Perfil" src="{{url('assets/img/favicon.ico')}}" alt="User Avatar">
                                     <canvas id="foto" class="col-md-12" style="display: none"></canvas>

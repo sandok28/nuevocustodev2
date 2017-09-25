@@ -15,7 +15,7 @@
             </div>
             <div class="panel-body">
                 {!!Form::model($invitado,['route'=>['invitados.update',$invitado],'method'=>'PUT'])!!}
-                @include('invitados.forms.formulario')
+                @include('invitados.forms.formulario_edit')
                 <div class="col-md-12">
                     <div class="panel-heading row">
                         <div class="col-md-6">
@@ -45,4 +45,18 @@
         </div>
     </div>
 
+@endsection
+@section('cargarjs')
+    {!! Html::script("bootstrap-datepicker/js/bootstrap-datepicker.min.js") !!}
+    {!! Html::script("bootstrap-datepicker/js/datepicker-es.js") !!}
+
+
+    <script>
+        //
+        $(".datepicker").datepicker({
+            format: 'yyyy-mm-dd',
+            language: 'es'
+        });
+
+    </script>
 @endsection

@@ -145,7 +145,6 @@ class LicenciasController extends Controller
                         DB::table('Licencias')->where('id', $licenciaActiva->id)->update(['estatus' =>'0']);
                     }
                 }
-
                 DB::table('Licencias')->insert([
                     'desde'=> $request->desde,
                     'hasta'=> $request->hasta,

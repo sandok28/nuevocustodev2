@@ -39,7 +39,7 @@ class InvitadosController extends Controller
             ->addColumn('action', function ($invitado) {
                 $aciones ="";
                 $aciones ="<div class='btn btn-group'>";
-                $aciones =$aciones.'<a href="//'.$invitado->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+                $aciones =$aciones.'<a href="/invitados/'.$invitado->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
                 $aciones =$aciones."</div>";
 
             return $aciones;

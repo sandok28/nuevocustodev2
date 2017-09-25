@@ -55,7 +55,7 @@ class HomeController extends Controller
         if(Auth::attempt(['email'=>$request['email'], 'password'=> $request['password']])){
             return redirect('/home');
         }
-        return redirect('/')->with(['message'=>'','tipo'=>'error']);
+        return redirect('/')->with(['message'=>'Contraseña o Usuario Invalido','tipo'=>'error']);
     }
 
     /**
