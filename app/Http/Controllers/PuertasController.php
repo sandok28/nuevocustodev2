@@ -6,6 +6,7 @@ use App\Http\Requests\PuertasActualizarRequest;
 use App\Http\Requests\PuertasCrearRequest;
 use App\Puerta;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -40,7 +41,6 @@ class PuertasController extends Controller
     public function index()
     {
         $puertas=Puerta::all();
-        dd($puertas);
         return view('GestionAreas.index',compact('puertas'));
     }
 
@@ -82,6 +82,7 @@ class PuertasController extends Controller
                     'estatus' => '1',
                     'estatus_en_horario_general' => '0',
                     'ip' => $request->ip,
+                    'created_at'=>Carbon::now()->toDateTimeString(),
                 ]
             );
         $puerta = DB::table('Puertas')

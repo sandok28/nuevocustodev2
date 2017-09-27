@@ -13,10 +13,13 @@
     <div class="col-md-12">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h3 class="panel-title">GESTION DE AREAS</h3>
+                <h3 class="panel-title">GESTION DE PUERTAS</h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7f38e4cad5d65afec0b3627da2df116773b00953
                 </div>
             </div>
             <div class="panel-body">

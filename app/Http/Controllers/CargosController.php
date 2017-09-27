@@ -6,14 +6,19 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Cargo;
 use Illuminate\Support\Facades\DB;
-use Session;
-use Redirect;
+use Yajra\Datatables\Datatables;
+use Mockery\Exception;
+use App\Horariogeneral;
+use App\Funcionario;
+use App\Http\Requests\FuncionariosActualizarRequest;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests;
 class CargosController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest');
-        $this->middleware('GestionarCargosMiddleware');
+        //$this->middleware('guest');
+        //$this->middleware('GestionarCargosMiddleware');
     }
 
 
@@ -30,16 +35,23 @@ class CargosController extends Controller
 
     public  function listar_cargos()
     {
-        $cargos = \App\Cargo::select(['id','nombre','estatus']);
-        return \Datatables::of($cargos)->addColumn('action', function ($cargo)
-        {
-            $aciones ="";
-            $aciones ="<div class='btn btn-group'>";
-            $aciones =$aciones.'<a href="/cargos/'.$cargo->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
-            $aciones =$aciones."</div>";
-            return $aciones;
+        try{
+            $cargos = Cargo::select(['id','nombre','estatus']);
+            return Datatables::of($cargos)
+                ->addColumn('action', function ($cargo)
+                {
+                    $aciones ="";
+                    $aciones ="<div class='btn btn-group'>";
+                    $aciones =$aciones.'<a href="/cargos/'.$cargo->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+                    $aciones =$aciones."</div>";
+                    return $aciones;
 
-        })->make(true);
+                })->make(true);
+        } catch (\Exception $ex){
+            dd($ex);
+
+    }
+
     }
 
     /**

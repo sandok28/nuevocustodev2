@@ -58,8 +58,8 @@
                                                 @foreach($puertasEspeciales as $puertaEspecial)
                                                     @if($puertaEspecial->pivot->estatus_permiso == 1)
                                                         <div class="col-md-3">
-                                                            {{$puertaEspecial->nombre}}<br>
-                                                            <img src="{{url('assets/img/puerta.gif')}}" alt class="img-responsive img-rounded form-inline"><br>
+                                                            {{$puertaEspecial->nombre}}
+                                                            <img src="{{url('assets/img/puerta.gif')}}" alt class="img-responsive img-rounded form-inline">
                                                             {!! Form::submit('Abrir Puerta',['class'=>'btn btn-primary','onclick'=>'abrirpuerta()']) !!}
                                                         </div>
                                                     @endif

@@ -22,7 +22,10 @@
                 <h3 class="panel-title">Agregar Funcionario</h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7f38e4cad5d65afec0b3627da2df116773b00953
                 </div>
             </div>
             <div class="panel-body">
