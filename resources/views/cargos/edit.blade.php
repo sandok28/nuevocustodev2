@@ -16,23 +16,36 @@
                 <h3 class="panel-title">Editar Cargo</h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
-                    <i class="fa fa-times"></i>
+
                 </div>
             </div>
             <div class="panel-body">
                 {!!Form::model($cargo,['route'=>['cargos.update',$cargo],'method'=>'PUT'])!!}
                 @include('cargos.forms.formulario')
-                @if(($cargo->estatus) == 1)
-                    <div class="form-group">
-                        {{ Form::checkbox('estatus', '0',false),['class'=>'form-control'] }}
-                        {{ Form::label('dar de baja') }}
-                    </div>
-                @else
-                    <div class="form-group">
-                        {{ Form::checkbox('estatus', '1',false),['class'=>'form-control'] }}
-                        {{ Form::label('Reactivar') }}
-                    </div>
-                @endif
+                <div class="col-md-12">
+
+                        @if(($cargo->estatus) == 1)
+                            <div class="col-md-2" style="margin: 1em;">
+                                <div class="form-group">
+                                    {{ Form::checkbox('estatus', '0',false),['class'=>'form-control'] }}
+                                    {{ Form::label('dar de baja') }}
+                                </div>
+                            </div>
+                        <div class="col-md-7">
+                            <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 1em;">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                Si da de baja el cargo "{{$cargo->nombre}}"  {{$num_funcionarios}} funcionarios perderan acceso en las secciones.
+                            </div>
+                        </div>
+                        @else
+                            <div class="form-group">
+                                {{ Form::checkbox('estatus', '1',false),['class'=>'form-control'] }}
+                                {{ Form::label('Reactivar') }}
+                            </div>
+                        @endif
+                    <br>
+                </div>
+
 
 
                 <div class="col-md-12">
@@ -41,7 +54,7 @@
                             <h3 class="panel-title">Seleccione las secciones al que pertence el cargo</h3>
                             <div class="actions pull-right">
                                 <i class="fa fa-chevron-down"></i>
-                                <i class="fa fa-times"></i>
+
                             </div>
                         </div>
                         <div class="panel-body">
@@ -54,7 +67,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-12">
                     <div class="panel-heading row">
                         <div class="col-md-6">

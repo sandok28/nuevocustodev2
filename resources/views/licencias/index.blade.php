@@ -17,7 +17,7 @@
                 <h3 class="panel-title">Lista de las licencias activas</h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
-                    <i class="fa fa-times"></i>
+
                 </div>
             </div>
             <div class="panel-body">
@@ -87,7 +87,7 @@
                 <h3 class="panel-title">Licencias caducadas</h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
-                    <i class="fa fa-times"></i>
+
                 </div>
             </div>
             <div class="panel-body">

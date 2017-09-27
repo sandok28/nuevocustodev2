@@ -308,15 +308,38 @@ class FuncionariosController extends Controller
            $puertasEspeciales = DB::table('Puertas')
                                    ->select('id','nombre','estatus_en_horario_general')
                                    ->where('puerta_especial',1)->get();
-           $intervalosHorarioGeneral = Horariogeneral::all();
+                                   $intervalosHorarioGeneralAgrupados = DB::table('HorariosGenerales')
+                                       ->select('desde','hasta',DB::raw('count(*) as total'))
+                                       ->groupBy('desde','hasta')
+                                       ->get();
+
+           foreach ($intervalosHorarioGeneralAgrupados as $intervaloHorarioGeneralAgrupado){
+               $intervaloHorarioGeneralAgrupado->dias = DB::table('HorariosGenerales')->select('dia')->where('desde',$intervaloHorarioGeneralAgrupado->desde)->get();
+           }
            // redirecciona a la vista horario de funcionario y carga el horario general de la empresa
-           return view('funcionarios.horario',['funcionario'=>$funcionario,'puertasNormales'=>$puertasNormales,'puertasEspeciales'=>$puertasEspeciales,'intervalosHorarioGeneral'=>$intervalosHorarioGeneral]);
+           return view('funcionarios.horario',['funcionario'=>$funcionario,'puertasNormales'=>$puertasNormales,'puertasEspeciales'=>$puertasEspeciales,'intervalosHorarioGeneralAgrupados'=>$intervalosHorarioGeneralAgrupados]);
 
        }
        if($funcionario->horario_normal == 1 ){
             $horariosEspeciales = $funcionario->horariosEspeciales;
+           $horariosEspecialesAgrupados = DB::table('IntervalosFuncionarios')
+               ->select('desde','hasta',DB::raw('count(*) as total'))
+               ->where('funcionario_id',$funcionario->id)
+               ->groupBy('desde','hasta')
+               ->get();
+           foreach ($horariosEspecialesAgrupados as $horarioEspecialesAgrupado){
+               $horarioEspecialesAgrupado->dias = DB::table('IntervalosFuncionarios')
+                   ->select('id','dia')
+                   ->where([
+                       ['desde',$horarioEspecialesAgrupado->desde],
+                       ['funcionario_id','=',$funcionario->id],
+                   ])
+                   ->get();
+           }
+
+
            // redirecciona a la vista horario de funcionario y carga el horario especial del funcionario
-            return view('funcionarios.horario',['funcionario'=>$funcionario,'horariosEspeciales'=>$horariosEspeciales]);
+            return view('funcionarios.horario',['funcionario'=>$funcionario,'horariosEspecialesAgrupados'=>$horariosEspecialesAgrupados]);
        }
         if($funcionario->horario_normal == 2 ){
             // redirecciona a la vista horario de funcionario y carga el horario  de cada seccion asociada al cargo del funcionario

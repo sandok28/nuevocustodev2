@@ -3330,7 +3330,7 @@ Az admirális figyelmesen végighallgatta a történetet.
 - Tengernagy úr... Bob Warins a férjem... Kérem, erre mindenesetre legyen tekintettel, ha... elfogja... - szólt közbe Anna Alvarez.
 - Szenyorita - mondta tiszteletteljes hangon a tengernagy -, Bob Warins sorsáról nem döntenek az ön hozzászólása nélkül...
 - És ami a továbbiakat illeti? - kérdezi az amerikai.
-- Ha csakugyan egy csavargó bitorolja a trónt, úgy a home Fleet egyetlen rombolója sem mozdul az uralmáért - felelte az angol.
+- Ha csakugyan egy csavargó bitorolja a trónt, úgy a Home Fleet egyetlen rombolója sem mozdul az uralmáért - felelte az angol.
 - Hogyan lehetne a kérdést dűlőre vinni?
 - Kihallgatást kértem őfelségétől - mondta Parker, - akit igen jól ismerek. Azt hiszem, elfogadják tőlem a személyazonosság igazolását?
 - Feltétlenül - felelte az amerikai.

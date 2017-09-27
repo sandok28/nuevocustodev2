@@ -134,7 +134,18 @@ class CargosController extends Controller
                             ->select('Secciones.id', 'Secciones.nombre', 'Cargos_Secciones.estatus_permiso')
                             ->get();
 
-        return view('cargos.edit',['cargo'=>$cargo,'secciones'=>$secciones]);
+        $num_funcionarios = DB::table('Cargos')
+                            ->where('Cargos.id',$id)
+                            ->join('Funcionarios', 'cargos.id', '=', 'Funcionarios.cargo_id')
+                            ->where([
+                                ['Funcionarios.horario_normal','=','2'],
+                                ['Funcionarios.estatus','=','1'],
+
+                            ])->count();
+
+
+
+        return view('cargos.edit',['cargo'=>$cargo,'secciones'=>$secciones,'num_funcionarios'=>$num_funcionarios]);
     }
 
     /**

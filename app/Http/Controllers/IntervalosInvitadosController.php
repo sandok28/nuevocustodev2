@@ -163,6 +163,7 @@ class IntervalosInvitadosController extends Controller
                     'targeta_rfid' => $request->targeta_rfid,
                     'invitado_id'=> $invitado_id,
                     'fecha' => $carbon->now(),
+                    'created_at'=>Carbon::now()->toDateTimeString(),
                 ]);
 
                 //obtengo el ultimo intervalo que se creo es decir la que acabamos de crear

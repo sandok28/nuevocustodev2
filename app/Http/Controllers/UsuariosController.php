@@ -9,6 +9,7 @@ use App\UserPuerta;
 use App\PermisoUser;
 use App\Puerta;
 use App\Permiso;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Session;
 use Redirect;
@@ -21,7 +22,7 @@ class UsuariosController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-        $this->middleware('GestionarUsuariosMiddleware');
+        $this->middleware('GestionarUsuariosMiddleware',['except' => ['editUsuarioActual', 'updateUsuarioActual']]);
     }
 
 
@@ -97,6 +98,7 @@ class UsuariosController extends Controller
                     'password' => bcrypt($request['password']),
                     'estatus'=> '1',
                     'created_at'=>Carbon::now()->toDateTimeString(),
+                    'updated_at'=>Carbon::now()->toDateTimeString(),
                 ]);
 
                 //obtengo el ultimo usuario que se creo es decir la que acabamos de crear
@@ -247,6 +249,7 @@ class UsuariosController extends Controller
                             'email'=> $request->name,
                             'password'=> bcrypt($request['password']),
                             'estatus'=> $request->estatus,
+                            'updated_at'=>Carbon::now()->toDateTimeString(),
                         ]);
                 }
                 else{
@@ -256,15 +259,72 @@ class UsuariosController extends Controller
                             'name' => $request->name,
                             'email'=> $request->name,
                             'estatus'=> $request->estatus,
+                            'updated_at'=>Carbon::now()->toDateTimeString(),
                         ]);
                 }
 
             DB::commit();
         } catch (\Exception $ex){
             DB::rollback();
+
             return redirect('/usuarios/'.$id.'/edit')->with(['message'=>'Algo salio mal','tipo'=>'error']);
         }
         return redirect('/usuarios')->with(['message'=>'Usuario Actualizado corectamente','tipo'=>'message']);
     }
+
+    public function editUsuarioActual()
+    {
+        return view('usuarios.edit_usuario_actual');
+    }
+    public function updateUsuarioActual(Request $request)
+    {
+
+        $this->validate($request, [
+            'name' => 'min:4|required|unique:Users,name,'.Auth::User()->id,
+        ]);
+
+
+        if ($request->password!= $request->password_confirmacion){
+            return redirect('/usuario_actual/edit')->with(['message'=>'Las contraseñas no coinciden','tipo'=>'error']);
+        }
+
+        try {
+            DB::beginTransaction();
+
+            //obtengo le usuario relacionado al id que llego
+            $usuario = DB::table('Users')
+                            ->where('id',Auth::User()->id)
+                            ->first();
+
+            if($request->password == null) $request->password=$usuario->password;
+
+            if($request['password']!=null) {
+                DB::table('Users')
+                    ->where('id', Auth::User()->id)
+                    ->update([
+                        'name' => $request->name,
+                        'email'=> $request->name,
+                        'password'=> bcrypt($request['password']),
+                        'updated_at'=>Carbon::now()->toDateTimeString(),
+                    ]);
+            }
+            else{
+                DB::table('Users')
+                    ->where('id', Auth::User()->id)
+                    ->update([
+                        'name' => $request->name,
+                        'email'=> $request->name,
+                        'updated_at'=>Carbon::now()->toDateTimeString(),
+                    ]);
+            }
+
+            DB::commit();
+        } catch (\Exception $ex){
+            DB::rollback();
+            return redirect('/usuario_actual/edit')->with(['message'=>'Algo salio mal','tipo'=>'error']);
+        }
+        return redirect('/home')->with(['message'=>'Usuario Actualizado corectamente','tipo'=>'message']);
+    }
+
 
 }
