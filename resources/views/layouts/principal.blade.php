@@ -48,7 +48,7 @@
                 <!--logo custode-->
                 <!DOCTYPE  PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                     width="200px" height="100px" viewBox="0 0 612 792" enable-background="new 0 0 612 792" xml:space="preserve">
+                     width="300px" height="250px" viewBox="50 200 999 999" enable-background="new 0 0 612 792" xml:space="preserve">
                         <g id="XMLID_462_">
                             <g>
                                 <g>
@@ -196,10 +196,10 @@
                     <a href="/licencias" style="padding-bottom: 0.3em !important;"><i class="fa  fa-files-o"></i><span>LICENCIAS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/GestionAreas" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>GESTION DE AREAS</span></a>
+                    <a href="/GestionAreas" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>GESTION DE PUERTAS</span></a>
                 </li>
                  <li class="active">
-                    <a href="/area/1" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>CONTROL DE AREAS</span></a>
+                    <a href="/area/1" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>CONTROL DE PUERTAS</span></a>
                 </li>
                 <li class="active">
                     <a href="/Estadisticas" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>ESTADISTICAS</span></a>

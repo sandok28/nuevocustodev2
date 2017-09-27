@@ -64,7 +64,7 @@ Route::resource('horariogeneral','HorariosGeneralesController',['only' => ['inde
 
 Route::get('funcionarios/lista/griddata','FuncionariosController@listar')->name('gridfuncioarios');
 Route::get('/secciones-lista','SeccionesController@listar_secciones');
-Route::get('/cargos-lista','CargosController@listar_cargos');
+Route::get('/cargos_lista','CargosController@listar_cargos');
 Route::get('/invitados-lista','InvitadosController@lista_invitados');
 Route::get('/user-lista','UsuariosController@lista_usuarios');
 Route::get('funcionariosinactivos','FuncionariosController@inactivos');
