@@ -10,7 +10,7 @@
         <div class="col-md-12">
             <div class="row panel panel-info">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Cargos que se desempeñan en esta area </h3>
+                    <h3 class="panel-title">Cargos </h3>
 
                     <div class="actions pull-right">
                         <i class="fa fa-chevron-down"></i>
@@ -59,14 +59,14 @@
             $('#example').DataTable( {
                 "processing": true,
                 "serverSide": true,
-                "ajax": "/cargos-lista",
+                "ajax": "/cargos_lista",
 
                 "columns":[
                     {data: 'nombre'},
                     {data: 'estatus',
                         render: function (data) {
-                            if(data==1){return "Activa"}
-                            else{return "Inactiva"}
+                            if(data==1){return "Activo"}
+                            else{return "Inactivo"}
                         }
                     },
                     {data: 'action', name: 'action', orderable: false, searchable: false}

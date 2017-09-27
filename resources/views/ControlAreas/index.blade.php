@@ -17,7 +17,7 @@
                 <h3 class="panel-title">CONTROL DE PUERTAS</h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
-                    <i class="fa fa-times"></i>
+
                 </div>
             </div>
             <div class="panel-body">
@@ -59,8 +59,8 @@
                                                 @foreach($puertasEspeciales as $puertaEspecial)
                                                     @if($puertaEspecial->pivot->estatus_permiso == 1)
                                                         <div class="col-md-3">
-                                                            {{$puertaEspecial->nombre}}<br>
-                                                            <img src="{{url('assets/img/puerta.gif')}}" alt class="img-responsive img-rounded form-inline"><br>
+                                                            {{$puertaEspecial->nombre}}
+                                                            <img src="{{url('assets/img/puerta.gif')}}" alt class="img-responsive img-rounded form-inline">
                                                             {!! Form::submit('Abrir Puerta',['class'=>'btn btn-primary','onclick'=>'abrirpuerta()']) !!}
                                                         </div>
                                                     @endif

@@ -34,5 +34,6 @@ class GestionarCargosMiddleware
             return redirect()->to('/home');
         }
         return $next($request);
-    }
+
+        }
 }

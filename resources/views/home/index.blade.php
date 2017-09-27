@@ -44,7 +44,7 @@
                             </div>
                         </div><br><br><br><br><br>
                         <div class="row">
-                            <div class="col-md-2"></div>
+                            <div class="col-md-1"></div>
                             <div class="col-md-3">
                                 <img src="{{url('assets/img/secciones.png')}}" width="200" height="200"
                                      alt class="img-responsive img-circle img-thumbnail form-inline"><br>
@@ -55,7 +55,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-2"></div>
+                            <div class="col-md-3">
+                                <img src="{{url('assets/img/funcionarios.png')}}" width="200" height="200" a
+                                     lt class="img-responsive img-thumbnail img-circle form-inline">
+                                <div class="row">
+
+                                    <div class="col-md-9">
+                                        <a href="/funcionarios" class="btn btn-info btn-block btn-3d">
+                                            <i class="glyphicon glyphicon-arrow-right "></i> Ir a Funcionarios</a>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-md-3">
                                 <img src="{{url('assets/img/puerta.gif')}}" width="140" height="200"
                                      alt class="img-responsive img-circle img-thumbnail form-inline">
@@ -66,26 +76,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                        </div><br><br><br>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="col-md-4"></div>
-                                <div class="col-md-4">
-                                    <img src="{{url('assets/img/funcionarios.png')}}" width="200" height="200" a
-                                         lt class="img-responsive img-thumbnail img-circle form-inline">
-                                    <div class="row">
-
-                                        <div class="col-md-7">
-                                            <a href="/funcionarios" class="btn btn-info btn-block btn-3d">
-                                                <i class="glyphicon glyphicon-arrow-right "></i> Ir a Funcionarios</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-4"></div>
-                            </div>
-                        </div>
                     </div>
                 </section>
             </div>
