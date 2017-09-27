@@ -13,10 +13,9 @@
     <div class="col-md-12">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h3 class="panel-title">GESTION DE AREAS</h3>
+                <h3 class="panel-title">GESTION DE PUERTAS</h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
-                    <i class="fa fa-times"></i>
                 </div>
             </div>
             <div class="panel-body">

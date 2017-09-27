@@ -77,6 +77,61 @@ class FuncionariosController extends Controller
         {
             return redirect('/funcionarios/create')->with(['message'=>'El cargo no puede ser nulo, crear Cargo','tipo'=>'error']);
         }
+        if($request->fotocreada!=null){
+            try{
+                DB::beginTransaction();
+
+                DB::table('funcionarios')
+                    ->insert([
+                        'nombre'=>$request->nombre,
+                        'apellido'=>$request->apellido,
+                        'cedula'=>$request->cedula,
+                        'correo'=>$request->correo,
+                        'tarjeta_rfid'=>$request->tarjeta_rfid,
+                        'fecha_nacimiento'=>$request->fecha_nacimiento,
+                        'cargo_id'=>$request->cargo_id,
+                        'estatus_licencia'=>'0',
+                        'foto'=>$request->fotocreada,
+                        'celular'=>$request->celular,
+                        'horario_normal'=>$request->horario_normal,
+                        'licencia'=>'0',
+                        'estatus'=>'1',//ojo con esto, ese campo es dado de baja donde 0 es inactivo
+                        'created_at'=>Carbon::now(),
+                    ]);
+                $funcionario = DB::table('funcionarios')
+                    ->select('id')
+                    ->orderBy('created_at', 'desc')
+                    ->first();
+
+                $llaves = DB::table('llaves')
+                    ->where([
+                        ['llave_rfid','=', $request->tarjeta_rfid],
+                        ['fecha_expiracion','>', Carbon::now()->toDateString()]//me trae las activas
+                    ])->get();
+
+
+                foreach ($llaves as $llave){
+                    if ($llave->id_asociado != $funcionario->id){
+                        return redirect('/funcionarios/create')->with(['message'=>'Llave RFID ya esta en uso','tipo'=>'error']);
+                    }
+                }
+
+                DB::table('llaves')
+                    ->insert([
+                        'tipo'=> '0',//tipo 0 es el indicativo de funcionario
+                        'llave_rfid' => $request->tarjeta_rfid,
+                        'id_asociado' => $funcionario->id,
+                        'fecha_expiracion' => Carbon::now()->addYears(10)->toDateString(),
+                    ]);
+                DB::commit();
+                return redirect('/funcionarios')->with(['message'=>'El Funcionario se ha registrado correctamente','tipo'=>'message']);
+            }
+            catch (\Exception $ex){
+                DB::rollback();
+                return redirect('/funcionarios/create')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
+            }
+        }
+        else{
         try{
             DB::beginTransaction();
 
@@ -90,7 +145,7 @@ class FuncionariosController extends Controller
                             'fecha_nacimiento'=>$request->fecha_nacimiento,
                             'cargo_id'=>$request->cargo_id,
                             'estatus_licencia'=>'0',
-                            'foto'=>$request->fotocreada,
+                            'foto'=>'0',
                             'celular'=>$request->celular,
                             'horario_normal'=>$request->horario_normal,
                             'licencia'=>'0',
@@ -127,7 +182,9 @@ class FuncionariosController extends Controller
         }
         catch (\Exception $ex){
             DB::rollback();
+            dd($ex);
             return redirect('/funcionarios/create')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
+        }
         }
     }
     /**
@@ -370,7 +427,7 @@ class FuncionariosController extends Controller
 
     public  function listar()
     {
-            $Funcionarios= Funcionario::all();
+            $Funcionarios= Funcionario::select(['id','nombre','apellido','cedula','correo','estatus'])->where('estatus',1)->get();
             return \Datatables::of($Funcionarios)
                 ->addColumn('action', function ($Funcionario) {
                     $aciones ="";
@@ -394,5 +451,20 @@ class FuncionariosController extends Controller
                     return $aciones;
                 })
                 ->make(true);
+    }
+
+    public function inactivos()
+    {
+        $Funcionarios= Funcionario::select(['id','nombre','apellido','correo','cedula'])->where('estatus',0)->get();
+        return \Datatables::of($Funcionarios)
+            ->addColumn('action', function ($Funcionario) {
+                $aciones ="";
+                    $aciones ="<div class='btn btn-group'>";
+                    $aciones =$aciones.'<a href="/funcionarios/'.$Funcionario->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i>Activar</a>';
+                    $aciones =$aciones."</div>";
+
+                return $aciones;
+            })
+            ->make(true);
     }
 }
