@@ -16,6 +16,8 @@ Route::get('/home', 'HomeController@index');
 Route::get('/','HomeController@iniciosession');
 Route::post('/login','HomeController@login')->name('home.login');
 Route::get('/logout','HomeController@logout')->name('home.logout');
+Route::get('/inicial','HomeController@inicial')->name('home.inicial');
+
 
 Route::resource('usuarios','UsuariosController',['except' => ['show','destroy']]);
 Route::get('usuario_actual/edit','UsuariosController@editUsuarioActual')->name('usuarios.edit_usuario_actual');

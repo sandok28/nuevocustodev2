@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\DB;
 use Session;
 use Redirect;
 
@@ -30,6 +31,39 @@ class HomeController extends Controller
      */
     function index(){
         return view('home.index');
+    }
+
+    function inicial(){
+
+        $progreso =0;
+
+        $num_puertas = DB::table('Puertas')->count();
+        $num_control_puertas = DB::table('Puertas_Users')
+                            ->where('estatus_permiso','1')
+                            ->count();
+        $num_horario_general= DB::table('HorariosGenerales')->count();
+        $num_secciones= DB::table('secciones')->count();
+        $num_cargos= DB::table('cargos')->count();
+        $num_funcionarios= DB::table('funcionarios')->count();
+        $num_usuarios= DB::table('users')->count();
+
+        if($num_puertas > 0) $progreso = $progreso + 15;
+        if($num_control_puertas > 0) $progreso = $progreso + 5;
+        if($num_horario_general > 0) $progreso = $progreso + 20;
+        if($num_secciones > 0) $progreso = $progreso + 15;
+        if($num_cargos > 0) $progreso = $progreso + 15;
+        if($num_funcionarios > 0) $progreso = $progreso + 15;
+        if($num_usuarios > 1) $progreso = $progreso + 15;
+
+        return view('home.inicial',['progreso'=>$progreso,
+            'num_puertas'=>$num_puertas,
+            'num_control_puertas'=>$num_control_puertas,
+            'num_horario_general'=>$num_horario_general,
+            'num_secciones'=>$num_secciones,
+            'num_cargos'=>$num_cargos,
+            'num_funcionarios'=>$num_funcionarios,
+            'num_usuarios'=>$num_usuarios
+            ]);
     }
 
     /**
