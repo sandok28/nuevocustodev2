@@ -56,31 +56,43 @@ class IntervalosInvitadosController extends Controller
     public function store(Request $request,$invitado_id)
     {
         DB::beginTransaction();
+            if($request->hasta_minuto < 10 ){
+                $request->hasta_minuto = '0'.$request->hasta_minuto;
+            }
+        if($request->desde_minuto < 10 ){
+            $request->desde_minuto = '0'.$request->desde_minuto;
+        }
             $llaves = DB::table('llaves')
                 ->where([
                     ['llave_rfid','=', $request->targeta_rfid],
-                    ['fecha_expiracion','>', Carbon::now()->toDateString()]//me trae las activas
+                    ['fecha_expiracion','>', Carbon::createFromFormat('Y-m-d H:i:s', Carbon::now()->toDateString().' '.$request->desde_hora.':'.$request->desde_minuto.':00')]//me trae las activas
                 ])->get();
             foreach ($llaves as $llave){
-
                 if ($llave->id_asociado != ($invitado_id+100000)) {
                     return redirect('/IntervalosInvitados/create/' . $invitado_id)->with(['message' => 'Llave RFID ya esta en uso', 'tipo' => 'error']);
                 }
             }
-            DB::table('llaves')
-                ->insert([
-                    'tipo'=> '1',//tipo 0 es el indicativo de funcionario
-                    'llave_rfid' => $request->targeta_rfid,
-                    'id_asociado' => $invitado_id+100000,
-                    'fecha_expiracion' => Carbon::now()->addDays(1)->toDateString(),
-                ]);
+
 
             if ($request->hasta_hora > $request->desde_hora) {
-
                 $this->crearIntevaloInvitado($request,$invitado_id);
+                DB::table('llaves')
+                    ->insert([
+                        'tipo'=> '1',//tipo 0 es el indicativo de funcionario
+                        'llave_rfid' => $request->targeta_rfid,
+                        'id_asociado' => $invitado_id+100000,
+                        'fecha_expiracion' => Carbon::createFromFormat('Y-m-d H:i:s', Carbon::now()->toDateString().' '.$request->hasta_hora.':'.$request->hasta_minuto.':00'),
+                    ]);
             }
             else if($request->hasta_hora == $request->desde_hora && $request->hasta_minuto > $request->desde_minuto){
                 $this->crearIntevaloInvitado($request,$invitado_id);
+                DB::table('llaves')
+                    ->insert([
+                        'tipo'=> '1',//tipo 0 es el indicativo de funcionario
+                        'llave_rfid' => $request->targeta_rfid,
+                        'id_asociado' => $invitado_id+100000,
+                        'fecha_expiracion' => Carbon::createFromFormat('Y-m-d H:i:s', Carbon::now()->toDateString().' '.$request->hasta_hora.':'.$request->hasta_minuto.':00'),
+                    ]);
             } else{
                 return redirect('IntervalosInvitados/create/'.$invitado_id)->with(['message'=>'Intervalo de tiempo invalido','tipo'=>'error']);
             }
@@ -125,7 +137,14 @@ class IntervalosInvitadosController extends Controller
                     ->where('intervalo_invitado_id',$id)
                     ->delete();
 
-                $intervalo_invitado = DB::table('IntervalosInvitados')->select('invitado_id')->where('id',$id)->first();
+
+                $intervalo_invitado = DB::table('IntervalosInvitados')->select('invitado_id','fecha','hasta')->where('id',$id)->first();
+
+                DB::table('llaves')
+                    ->where([
+                        ['id_asociado','=', $intervalo_invitado->invitado_id+100000],
+                        ['fecha_expiracion','=', Carbon::createFromFormat('Y-m-d H:i:s', $intervalo_invitado->fecha.' '.$intervalo_invitado->hasta)]
+                    ])->delete();
 
                 DB::table('IntervalosInvitados')
                     ->where('id',$id)
@@ -133,6 +152,7 @@ class IntervalosInvitadosController extends Controller
             DB::commit();
         }
         catch (\Exception $ex){
+            dd($ex);
             DB::rollback();
             return redirect('/invitados/'.$intervalo_invitado->invitado_id.'/edit')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
         }
