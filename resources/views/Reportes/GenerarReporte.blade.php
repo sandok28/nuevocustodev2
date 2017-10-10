@@ -18,6 +18,7 @@
                 <h3 class="panel-title">Panel title</h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
+
                 </div>
             </div>
             <div class="panel-body">

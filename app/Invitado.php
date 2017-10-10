@@ -38,6 +38,7 @@ class Invitado extends Model implements AuditableContract
      */
     public function intervalos()
     {
-        return $this->hasMany('App\Intervaloinvitado', 'invitado_id');
+        return $this->hasMany('App\Intervaloinvitado', 'invitado_id')->orderBy('fecha', 'desc');
+
     }
 }

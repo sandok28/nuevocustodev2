@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\IntervaloSeccion;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -129,10 +130,17 @@ class IntervalosSeccionesController extends Controller
     public function destroy($id,$seccion_id)
     {
         try{
-            DB::beginTransaction();
-                DB::table('IntervalosSecciones')
-                    ->where('id',$id)
-                    ->delete();
+
+
+
+
+            $intervalo = IntervaloSeccion::find($id);
+            DB::table('IntervalosSecciones')
+                ->where([
+                    ['desde','=',$intervalo->desde],
+                    ['seccion_id','=',$seccion_id]
+                ])->delete();
+
             DB::commit();
         }
         catch (\Exception $ex){

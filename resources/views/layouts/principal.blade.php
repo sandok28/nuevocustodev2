@@ -160,6 +160,9 @@
                     </a>
                     <ul class="dropdown-menu animated fadeInDown">
                         <li>
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"> {!!link_to_route('usuarios.edit_usuario_actual', 'Editar Perfil')!!}</i>
+                        </li>
+                        <li>
                             <i class="fa fa-power-off"> {!!link_to_route('home.logout', ' Cerrar session')!!}</i>
                         </li>
                     </ul>
@@ -171,6 +174,9 @@
     <aside class="sidebar">
         <div id="leftside-navigation" class="nano">
             <ul class="nano-content">
+                <li class="active">
+                    <a href="/inicial" style="padding-bottom: 0em !important;"><i class="fa fa-gears"></i><span>CONFIGUARION INICIAL</span></a>
+                </li>
                 <li class="active">
                     <a href="/home" style="padding-bottom: 0em !important;"><i class="glyphicon glyphicon-home"></i><span>HOME</span></a>
                 </li>
@@ -207,10 +213,6 @@
                 <li class="active">
                     <a href="/home" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>AUDITORIAS</span></a>
                 </li>
-                <li class="active">
-                    <a href="/home" style="padding-bottom: 0em !important;"><i class="fa fa-gears"></i><span>CONFIGUARION INICIAL</span></a>
-                </li>
-
             </ul>
         </div>
         </nav>

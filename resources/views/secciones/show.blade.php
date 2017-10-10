@@ -4,7 +4,7 @@
             <h3 class="panel-title">Lista De intervalos y Puertas Asignadas a la seccion {{$seccion->nombre}}</h3>
             <div class="actions pull-right">
                 <i class="fa fa-chevron-down"></i>
-                <i class="fa fa-times"></i>
+
             </div>
         </div>
         <div class="panel-body">
@@ -42,7 +42,7 @@
                         <h3 class="panel-title">Intervalos de tiempo</h3>
                         <div class="actions pull-right">
                             <i class="fa fa-chevron-down"></i>
-                            <i class="fa fa-times"></i>
+
                         </div>
                     </div>
                     <div class="panel-body">

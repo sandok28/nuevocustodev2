@@ -10,7 +10,7 @@
             <h3 class="panel-title">Intervalos que del funcionario {{$funcionario->nombre}}</h3>
             <div class="actions pull-right">
                 <i class="fa fa-chevron-down"></i>
-                <i class="fa fa-times"></i>
+
             </div>
         </div>
         <div class="panel-body">
@@ -23,36 +23,41 @@
 
                 <thead>
                 <tr>
-                    <th>dia</th>
                     <th>desde</th>
                     <th>hasta</th>
+                    <th>dia</th>
                     <th>ver</th>
                     <th>Eliminar</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($horariosEspeciales as $horarioEspecial)
+                @foreach($horariosEspecialesAgrupados as $horarioEspecialesAgrupado)
                     <tr>
-                        @if($horarioEspecial->dia == 1)
-                            <td>Lunes</td>
-                        @elseif($horarioEspecial->dia == 2)
-                            <td>Martes</td>
-                        @elseif($horarioEspecial->dia == 3)
-                            <td>Miercoles</td>
-                        @elseif($horarioEspecial->dia == 4)
-                            <td>Jueves</td>
-                        @elseif($horarioEspecial->dia == 5)
-                            <td>Viernes</td>
-                        @elseif($horarioEspecial->dia == 6)
-                            <td>Sabado</td>
-                        @elseif($horarioEspecial->dia == 7)
-                            <td>Domingo</td>
-                        @endif
-                        <td>{{$horarioEspecial->desde}}</td>
-                        <td>{{$horarioEspecial->hasta}}</td>
-                        <th>{!!link_to_route('IntervalosFuncionarios.show', $title = 'ver', $parameters = $horarioEspecial->id, $attributes = ['class'=>'btn btn-primary'])!!}</th>
+                        <td>{{$horarioEspecialesAgrupado->desde}}</td>
+                        <td>{{$horarioEspecialesAgrupado->hasta}}</td>
+                        <td>
+                            @foreach($horarioEspecialesAgrupado->dias as $dia)
+                                @if($dia->dia == 1)
+                                    Lunes
+                                @elseif($dia->dia == 2)
+                                    Martes
+                                @elseif($dia->dia == 3)
+                                    Miercoles
+                                @elseif($dia->dia == 4)
+                                    Jueves
+                                @elseif($dia->dia == 5)
+                                    Viernes
+                                @elseif($dia->dia == 6)
+                                    Sabado
+                                @elseif($dia->dia == 7)
+                                    Domingo
+                                @endif
+
+                            @endforeach
+                        </td>
+                        <th>{!!link_to_route('IntervalosFuncionarios.show', $title = 'ver', $parameters = $horarioEspecialesAgrupado->dias[0]->id, $attributes = ['class'=>'btn btn-primary'])!!}</th>
                         <th>
-                            {!!Form::open(['route'=>['IntervalosFuncionarios.destroy',$horarioEspecial], 'method'=>'DELETE'])!!}
+                            {!!Form::open(['route'=>['IntervalosFuncionarios.destroy',$horarioEspecialesAgrupado->dias[0]->id], 'method'=>'DELETE'])!!}
                             {!!Form::submit('Eliminar',['class'=>'btn btn-danger'])!!}
                             {!!Form::close()!!}
                         </th>

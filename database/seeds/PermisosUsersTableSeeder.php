@@ -12,13 +12,11 @@ class PermisosUsersTableSeeder extends Seeder
     public function run()
     {
         for ($i = 1; $i<12; $i++){
-            for ($j = 1; $j<11; $j++) {
-                DB::table('Permisos_Users')->insert([
-                    'permiso_id' => $i,
-                    'usuario_id' => $j,
-                    'estatus_permiso' => 1,
-                ]);
-            }
+            DB::table('Permisos_Users')->insert([
+                'permiso_id' => $i,
+                'usuario_id' => 1,
+                'estatus_permiso' => 1,
+            ]);
         }
     }
 }
