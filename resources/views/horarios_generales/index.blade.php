@@ -19,7 +19,7 @@
                 <h3 class="panel-title">Asignar puertas</h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
-                    <i class="fa fa-times"></i>
+
                 </div>
             </div>
             <div class="panel-body">
@@ -74,7 +74,7 @@
                 <h3 class="panel-title">Lista de intervalos</h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
-                    <i class="fa fa-times"></i>
+
                 </div>
             </div>
             <div class="panel-body">
@@ -89,32 +89,37 @@
                     <tr>
                         <th>desde</th>
                         <th>hasta</th>
-                        <th>dia</th>
+                        <th>dias</th>
                         <th>Eliminar</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($intervalosHorarioGeneral as $intervaloHorarioGeneral)
+                    @foreach($intervalosHorarioGeneralAgrupados as $intervaloHorarioGeneralAgrupado)
                         <tr>
-                            <td>{{$intervaloHorarioGeneral->desde}}</td>
-                            <td>{{$intervaloHorarioGeneral->hasta}}</td>
-                            @if($intervaloHorarioGeneral->dia == 1)
-                                <td>Lunes</td>
-                            @elseif($intervaloHorarioGeneral->dia == 2)
-                                <td>Martes</td>
-                            @elseif($intervaloHorarioGeneral->dia == 3)
-                                <td>Miercoles</td>
-                            @elseif($intervaloHorarioGeneral->dia == 4)
-                                <td>Jueves</td>
-                            @elseif($intervaloHorarioGeneral->dia == 5)
-                                <td>Viernes</td>
-                            @elseif($intervaloHorarioGeneral->dia == 6)
-                                <td>Sabado</td>
-                            @elseif($intervaloHorarioGeneral->dia == 7)
-                                <td>Domingo</td>
-                            @endif
+                            <td>{{$intervaloHorarioGeneralAgrupado->desde}}</td>
+                            <td>{{$intervaloHorarioGeneralAgrupado->hasta}}</td>
+                            <td>
+                                @foreach($intervaloHorarioGeneralAgrupado->dias as $dia)
+                                    @if($dia->dia == 1)
+                                        Lunes
+                                    @elseif($dia->dia == 2)
+                                        Martes
+                                    @elseif($dia->dia == 3)
+                                        Miercoles
+                                    @elseif($dia->dia == 4)
+                                        Jueves
+                                    @elseif($dia->dia == 5)
+                                        Viernes
+                                    @elseif($dia->dia == 6)
+                                        Sabado
+                                    @elseif($dia->dia == 7)
+                                        Domingo
+                                    @endif
+
+                                @endforeach
+                            </td>
                             <th>
-                                {!!Form::open(['route'=>['horariogeneral.destroy',$intervaloHorarioGeneral], 'method'=>'DELETE'])!!}
+                                {!!Form::open(['route'=>['horariogeneral.destroy',$intervaloHorarioGeneralAgrupado->dias[0]->id], 'method'=>'DELETE'])!!}
                                 {!!Form::submit('Eliminar',['class'=>'btn btn-danger'])!!}
                                 {!!Form::close()!!}
                             </th>

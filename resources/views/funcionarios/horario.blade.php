@@ -38,7 +38,7 @@
                     <h3 class="panel-title">Funcionario con horario de la empresa</h3>
                     <div class="actions pull-right">
                         <i class="fa fa-chevron-down"></i>
-                        <i class="fa fa-times"></i>
+
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                     <h3 class="panel-title">Funcionario con horario Propio</h3>
                     <div class="actions pull-right">
                         <i class="fa fa-chevron-down"></i>
-                        <i class="fa fa-times"></i>
+
                     </div>
                 </div>
             </div>
@@ -68,17 +68,30 @@
                     <h3 class="panel-title">Funcionario con horario de acuerdo al cargo </h3>
                     <div class="actions pull-right">
                         <i class="fa fa-chevron-down"></i>
-                        <i class="fa fa-times"></i>
+
                     </div>
                 </div>
             </div>
         </div>
-        @foreach($funcionario->cargo->secciones as $seccion)
+        @if($funcionario->cargo->estatus == 1 )
+            @foreach($funcionario->cargo->secciones as $seccion)
+                <div class="col-md-12">
+                    @include('secciones.show')
+                </div>
+            @endforeach
+        @else
             <div class="col-md-12">
-                @include('secciones.show')
+                <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 1em;">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3> El cargo "{{$funcionario->cargo->nombre }}" fue dado de baja.
+                        Por favor realice una de estas acciones.</h3>
+                    <h4>->Reactive el cargo "{{$funcionario->cargo->nombre }}".</h4>
+                    <h4>->Asigne un cargo activo al funcionario.</h4>
+                    <h4>->Asigne un horario especial, propio del funcionario.</h4>
+                    <h4>->Asigne el horario general de la empresa  al funcionario.</h4>
+                </div>
             </div>
-        @endforeach
-
+            @endif
     @endif
 
 @endsection

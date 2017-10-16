@@ -10,6 +10,7 @@
             {!!link_to_route('IntervalosInvitados.create', 'Agregar nuevo intervalo', $invitado->id,['class'=>'btn btn-info btn-block btn-3d'])!!}
         </div>
     </div>
+
     <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
 
         <thead>

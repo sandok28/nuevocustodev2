@@ -14,7 +14,7 @@
                 <h3 class="panel-title">Editar usuario</h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
-                    <i class="fa fa-times"></i>
+
                 </div>
             </div>
             <div class="panel-body">
@@ -40,7 +40,7 @@
                             <div class="col-xs-12">
                                 @if($usuario->puertas->where('estatus','1')->count('id')==0)
                                     <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 1em;">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
                                         NO HAY PUERTAS ACTIVAS.
                                     </div>
                                 @endif

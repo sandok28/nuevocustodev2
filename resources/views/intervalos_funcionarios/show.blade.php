@@ -15,7 +15,7 @@
                 <h3 class="panel-title">Vista detallada del intervalo</h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
-                    <i class="fa fa-times"></i>
+
                 </div>
             </div>
             <div class="panel-body">
@@ -35,22 +35,25 @@
                     {!!Form::label('dia','Dia:')!!}
                 </div>
                 <div class="form-group">
-                    @if($intervaloEspecial->dia == 1)
-                        {!!Form::label('Lunes',null,['class'=>'form-control'])!!}
-                    @elseif($intervaloEspecial->dia == 2)
-                        {!!Form::label('Martes',null,['class'=>'form-control'])!!}
-                    @elseif($intervaloEspecial->dia == 3)
-                        {!!Form::label('Miercoles',null,['class'=>'form-control'])!!}
-                    @elseif($intervaloEspecial->dia == 4)
-                        {!!Form::label('Jueves',null,['class'=>'form-control'])!!}
-                    @elseif($intervaloEspecial->dia == 5)
-                        {!!Form::label('Viernes',null,['class'=>'form-control'])!!}
-                    @elseif($intervaloEspecial->dia == 6)
-                        {!!Form::label('Sabado',null,['class'=>'form-control'])!!}
-                    @elseif($intervaloEspecial->dia == 7)
-                        {!!Form::label('Domingo',null,['class'=>'form-control'])!!}
-                    @endif
-
+                    <label for="Lunes" class="form-control">
+                        @foreach($intervaloEspecial->dias as $dia)
+                            @if($dia->dia == 1)
+                                Lunes
+                            @elseif($dia->dia == 2)
+                                Martes
+                            @elseif($dia->dia == 3)
+                                Miercoles
+                            @elseif($dia->dia == 4)
+                                Jueves
+                            @elseif($dia->dia == 5)
+                                Viernes
+                            @elseif($dia->dia == 6)
+                                Sabado
+                            @elseif($dia->dia == 7)
+                                Domingo
+                            @endif
+                        @endforeach
+                    </label>
                 </div>
                 <div class="row form-group">
                     <div class="col-xs-12 row">

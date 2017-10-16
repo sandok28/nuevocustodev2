@@ -90,8 +90,10 @@ class IntervalosFuncionariosController extends Controller
                         //obtengo todos los intervalos del funcionario
                         $intervalos_generales_del_dia = DB::table('IntervalosFuncionarios')
                                                             ->select('desde','hasta')
-                                                            ->where('dia',$request->$i)
-                                                            ->get();
+                                                            ->where([
+                                                                ['dia','=',$request->$i],
+                                                                ['funcionario_id','=',$funcionario_id],
+                                                                ])->get();
 
                         //itero todos los inertvalos y valido que el nuevo no se cruce con alguno de ellos
                         foreach ($intervalos_generales_del_dia as $intervalo_general_del_dia){
@@ -176,7 +178,12 @@ class IntervalosFuncionariosController extends Controller
     public function show($id)
     {
         $intervaloEspecial = Intervalofuncionario::find($id);
-
+        $intervaloEspecial->dias = DB::table('IntervalosFuncionarios')
+            ->select('dia')
+            ->where([
+            ['desde','=',$intervaloEspecial->desde],
+            ['funcionario_id','=',$intervaloEspecial->funcionario_id],
+            ])->get();
         $puertasNormales = Intervalofuncionario::find($id)
                                                     ->puertas()
                                                     ->where('puerta_especial',0)
@@ -200,15 +207,35 @@ class IntervalosFuncionariosController extends Controller
      */
     public function destroy($id)
     {
-        $Intervalos_funcionarios_puertas = IntervalofuncionarioPuerta::all()->where('intervalo_funcionario_id',$id);
 
-        foreach($Intervalos_funcionarios_puertas as $Intervalo_funcionario_puerta){
-            $Intervalo_funcionario_puerta->delete();
+
+        try{
+            DB::beginTransaction();
+
+            $intervaloActual = Intervalofuncionario::find($id);
+            $funcionario_id = $intervaloActual->funcionario_id;
+            $intervalos = DB::table('IntervalosFuncionarios')
+                ->where([
+                    ['desde','=',$intervaloActual->desde],
+                    ['funcionario_id','=',$intervaloActual->funcionario_id],
+                ])->get();
+
+            foreach ($intervalos as $intervalo){
+                $Intervalos_funcionarios_puertas = IntervalofuncionarioPuerta::all()->where('intervalo_funcionario_id',$intervalo->id);
+
+                foreach($Intervalos_funcionarios_puertas as $Intervalo_funcionario_puerta){
+                    $Intervalo_funcionario_puerta->delete();
+
+                }
+                Intervalofuncionario::destroy($intervalo->id);
+            }
 
         }
-        $funcionario_id = Intervalofuncionario::find($id)->funcionario_id;
-        Intervalofuncionario::destroy($id);
-
+        catch (\Exception $ex){
+            DB::rollback();
+            return redirect('/funcionarios/horario/'.$funcionario_id)->with(['message'=>'Error al eliminar los intervalos','tipo'=>'error']);
+        }
+        DB::commit();
         return redirect('/funcionarios/horario/'.$funcionario_id)->with(['message'=>'El intervalo se ha eliminado correctamente','tipo'=>'message']);
     }
 

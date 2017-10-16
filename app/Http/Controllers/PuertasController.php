@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PuertasActualizarRequest;
 use App\Http\Requests\PuertasCrearRequest;
 use App\Puerta;
+use App\Seccion;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -97,10 +98,21 @@ class PuertasController extends Controller
                     'estatus_permiso' => 0,
                 ]);
             }
+
+        $secciones= Seccion::all();
+        foreach ($secciones as $seccion) {
+            DB::table('Puertas_Secciones')->insert([
+                'seccion_id' => $seccion->id,
+                'puerta_id' => $puerta->id,
+                'estatus_permiso' => 0,
+            ]);
+        }
+
         DB::commit();
     }catch (\Exception $ex){
         DB::rollback();
-        return redirect('/GestionAreas')->with(['message' => 'La Puerta  ha tenido un error al crear', 'tipo' => 'message']);
+        dd($ex);
+        return redirect('/GestionAreas')->with(['message' => 'La Puerta  ha tenido un error al crear', 'tipo' => 'error']);
     }
         return redirect('/GestionAreas')->with(['message' => 'La Puerta  se ha creado correctamente', 'tipo' => 'message']);
     }

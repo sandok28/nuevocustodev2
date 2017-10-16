@@ -141,9 +141,25 @@ class SeccionesController extends Controller
      */
     public function edit($id)
     {
-
         //obtengo la seccion relacionada al id que llego
         $seccion = Seccion::find($id);
+
+
+        $intervalosSeccionesAgrupados = DB::table('IntervalosSecciones')
+            ->select('desde','hasta',DB::raw('count(*) as total'))
+            ->where('seccion_id',$id)
+            ->groupBy('desde','hasta')
+            ->get();
+        foreach ($intervalosSeccionesAgrupados as $intervaloSeccionAgrupado){
+            $intervaloSeccionAgrupado->dias = DB::table('IntervalosSecciones')
+                ->select('id','dia')
+                ->where([
+                    ['desde',$intervaloSeccionAgrupado->desde],
+                    ['seccion_id','=',$id],
+                ])
+                ->get();
+        }
+
 
         //creo una coleccion con todas las puertas especiales relacionas a la seccion
         $puertasEspecialesActivas = Seccion::find($id)->puertas()->where('puerta_especial',1)->get();
@@ -183,7 +199,8 @@ class SeccionesController extends Controller
                                                 'puertasNormales'=>$puertasNormales,
                                                 'puertasEspecialesActivas'=>$puertasEspecialesActivas,
                                                 'puertasNormalesActivas'=>$puertasNormalesActivas,
-                                                'cargos'=>$cargos
+                                                'cargos'=>$cargos,
+                                                'intervalosSeccionesAgrupados'=>$intervalosSeccionesAgrupados,
                                             ]);
     }
 

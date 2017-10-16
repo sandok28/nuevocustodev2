@@ -14,16 +14,16 @@ class UsersTableSeeder extends Seeder
 
         $carbon = new \Carbon\Carbon();
 
-        for ($i = 1; $i<11; $i++){
+
             DB::table('users')->insert([
-                'name' => 's'.$i,
-                'email' => 's'.$i,
-                'password' => bcrypt('s'.$i),
+                'name' => 'admin',
+                'email' => 'admin',
+                'password' => bcrypt('admin'),
                 'estatus' => 1,
                 'created_at' => $carbon->now(),
                 'updated_at' => $carbon->now(),
             ]);
-        }
+
 
     }
 }

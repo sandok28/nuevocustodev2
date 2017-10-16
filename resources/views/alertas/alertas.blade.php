@@ -5,6 +5,7 @@
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             {{Session::get('message')}}
         </div>
+        <br>
     @endif
 
     @if(Session::get('tipo') == 'message')
@@ -12,23 +13,28 @@
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             {{Session::get('message')}}
         </div>
+        <br>
     @endif
 
     @if(count($errors)>0)
         <div class="alert alert-danger alert-dismissible" role="alert" style="margin-bottom: 0.1em;">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             @if(count($errors) == 1)
                 <h2>Un campo del formulario presenta problemas </h2>
             @else
                 <h2>{{count($errors)}} campos del formulario presentan problemas </h2>
             @endif
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
             <ul>
                 @foreach($errors->all() as $error)
                     <li>{!! $error !!}</li>
                 @endforeach
             </ul>
-        </div>'
+        </div>
+        <br>
+
     @endif
 </div>
+
 
 
