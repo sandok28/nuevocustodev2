@@ -151,7 +151,7 @@
                         <div class="col-md-12">
                             <div class="panel panel-success">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">3. ASIGNAR HORAIO GENERAL</h3>
+                                    <h3 class="panel-title">3. ASIGNAR HORARIO GENERAL</h3>
                                     <div class="actions pull-right">
                                         <i class="fa fa-chevron-down"></i>
                                     </div>
