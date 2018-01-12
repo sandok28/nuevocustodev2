@@ -48,7 +48,7 @@ class PermisosTableSeeder extends Seeder
             'estatus' => 1,
         ]);
         DB::table('permisos')->insert([
-            'nombre' => 'Gestionar auditorias',
+            'nombre' => 'Gestionar auditoria',
             'estatus' => 1,
         ]);
         DB::table('permisos')->insert([
