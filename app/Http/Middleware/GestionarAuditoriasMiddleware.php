@@ -26,7 +26,7 @@ class GestionarAuditoriasMiddleware
 
         $permiso_permitido = false;
         foreach ($ususario->permisos as $permiso){
-            if($permiso->pivot->estatus_permiso == 1 && $permiso->nombre == 'Gestionar auditorias'){
+            if($permiso->pivot->estatus_permiso == 1 && $permiso->nombre == 'Gestionar auditoria'){
                 $permiso_permitido = true;
             }
         }

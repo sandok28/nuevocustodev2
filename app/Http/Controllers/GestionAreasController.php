@@ -18,7 +18,7 @@ class GestionAreasController extends Controller
         //Para control de puertas
         //$this->middleware('ControlPuertasMiddleware');
 
-        //Para el de auditorias
+        //Para el de auditoria
         //$this->middleware('GestionarAuditoriasMiddleware');
     }
 
@@ -128,5 +128,4 @@ class GestionAreasController extends Controller
         return view('ControlAreas.index',['puertasEspeciales'=>$puertasEspeciales,'puertasNormales'=>$puertasNormales]);
 
     }
-
 }

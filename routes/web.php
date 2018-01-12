@@ -17,6 +17,7 @@ Route::get('/','HomeController@iniciosession');
 Route::post('/login','HomeController@login')->name('home.login');
 Route::get('/logout','HomeController@logout')->name('home.logout');
 Route::get('/inicial','HomeController@inicial')->name('home.inicial');
+Route::get('/Auditorias','AuditoriasController@index');
 
 
 Route::resource('usuarios','UsuariosController',['except' => ['show','destroy']]);
@@ -72,6 +73,7 @@ Route::get('/cargos_lista','CargosController@listar_cargos');
 Route::get('/invitados-lista','InvitadosController@lista_invitados');
 Route::get('/user-lista','UsuariosController@lista_usuarios');
 Route::get('funcionariosinactivos','FuncionariosController@inactivos');
+Route::get('/Listar_Auditorias','AuditoriasController@Listar_Auditorias')->name('listarAuditorias');
 
 Route::get('horariogeneral/show','HorariosGeneralesController@show')->name('horariogeneral.show');
 Route::post('horariogeneral/actualizar_puertas','HorariosGeneralesController@actualizarPuertas')->name('horariogeneral.actualizar_puertas');
@@ -83,3 +85,5 @@ Route::post('IntervalosSecciones/{seccion_id}', 'IntervalosSeccionesController@s
 
 Route::get('/cliente','WebServiceSOAPController@cliente');
 Route::get('/servicio','WebServiceSOAPController@servicio');
+
+

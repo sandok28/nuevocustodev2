@@ -175,9 +175,6 @@
         <div id="leftside-navigation" class="nano">
             <ul class="nano-content">
                 <li class="active">
-                    <a href="/inicial" style="padding-bottom: 0em !important;"><i class="fa fa-gears"></i><span>CONFIGUARION INICIAL</span></a>
-                </li>
-                <li class="active">
                     <a href="/home" style="padding-bottom: 0em !important;"><i class="glyphicon glyphicon-home"></i><span>HOME</span></a>
                 </li>
                 <li class="active">
@@ -211,7 +208,10 @@
                     <a href="/Estadisticas" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>ESTADISTICAS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/home" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>AUDITORIAS</span></a>
+                    <a href="/Auditorias" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>AUDITORIAS</span></a>
+                </li>
+                <li class="active">
+                    <a href="/inicial" style="padding-bottom: 0em !important;"><i class="fa fa-gears"></i><span>CONFIGUARION INICIAL</span></a>
                 </li>
             </ul>
         </div>

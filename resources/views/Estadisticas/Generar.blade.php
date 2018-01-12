@@ -40,10 +40,35 @@
                     function dibujar() {
                         var ctx = document.getElementById('myChart').getContext('2d');
                         var titulo = String(document.getElementById('tipo').value);
-
-
                         var chart = new Chart(ctx, {
-                            type: 'radar',
+                            type: 'bar',
+
+                            data: {
+                                labels: [
+                                    @forEach($funcionarios as $funcionario)
+                                        '{{$funcionario->nombre}}',
+                                    @endforeach
+                                ],
+                                datasets: [{
+                                    label: titulo,
+                                    backgroundColor: 'rgb(0, 0, 0)',
+                                    borderColor: 'rgb(255, 255, 255)',
+                                    data: [
+                                        @forEach($licencias as $licencia)
+                                         '{{$licencia->status}}',
+                                        @endforeach
+                                    ],
+                                }]
+                            },
+
+                            options: {}
+                        });
+                    }
+                    function dibujar1() {
+                        var ctx = document.getElementById('myChart').getContext('2d');
+                        var titulo = String(document.getElementById('tipo').value);
+                        var chart = new Chart(ctx, {
+                            type: 'bar',
 
                             data: {
                                 labels: [
