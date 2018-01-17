@@ -74,18 +74,15 @@ class PuertasController extends Controller
     try {
 
         DB::beginTransaction();
-        DB::table('puertas')
-            ->insert(
-                [
+        Puerta::create([
                     'puerta_especial' => $request->puerta_especial,
                     'nombre' => $request->nombre,
                     'llave_rfid' => $request->llave_rfid,
                     'estatus' => '1',
                     'estatus_en_horario_general' => '0',
                     'ip' => $request->ip,
-                    'created_at'=>Carbon::now()->toDateTimeString(),
-                ]
-            );
+
+                ]);
         $puerta = DB::table('Puertas')
             ->select('id')
             ->orderBy('created_at', 'desc')
@@ -157,8 +154,7 @@ class PuertasController extends Controller
             {
                 DB::beginTransaction();
                 if($request->estatus!=null) {
-                    DB::table('puertas')
-                        ->where('id',$id)
+                    Puerta::find($id)
                         ->update(
                             [
                                 'nombre'=>$request->nombre,
@@ -170,8 +166,7 @@ class PuertasController extends Controller
                         );
                 }
                 else{
-                    DB::table('puertas')
-                        ->where('id',$id)
+                    Puerta::find($id)
                         ->update(
                             [
                                 'nombre'=>$request->nombre,

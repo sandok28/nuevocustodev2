@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CargoSeccion;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Cargo;
@@ -84,12 +85,11 @@ class CargosController extends Controller
 
         try{
             DB::beginTransaction();
-                DB::table('Cargos')->insert([
+
+                Cargo::create([
                     'nombre'=> $request->nombre,
                     'estatus'=> '1',
-                    'created_at'=>Carbon::now()->toDateTimeString()
                 ]);
-
 
                 $cargo = DB::table('cargos')
                     ->select('id')
@@ -103,25 +103,25 @@ class CargosController extends Controller
                     //Si la seccion fue seclecionada en el check, se guarda en la relacion cargo-seciones con un 1
                     // indicando que esta seccion tiene permiso sobre el
                     if($request[$seccion->id]!=null) {
-                        DB::table('Cargos_Secciones')
-                            ->insert([
-                                'cargo_id'=> $cargo->id,
-                                'seccion_id'=> $seccion->id,
-                                'estatus_permiso'=>'1'
-                            ]);
+                        CargoSeccion::create([
+                            'cargo_id'=> $cargo->id,
+                            'seccion_id'=> $seccion->id,
+                            'estatus_permiso'=>'1',
+                        ]);
+
                     }
                     else{
-                        DB::table('Cargos_Secciones')
-                            ->insert([
-                                'cargo_id'=> $cargo->id,
-                                'seccion_id'=> $seccion->id,
-                                'estatus_permiso'=>'0'
-                            ]);
+                        CargoSeccion::create([
+                            'cargo_id'=> $cargo->id,
+                            'seccion_id'=> $seccion->id,
+                            'estatus_permiso'=>'0',
+                        ]);
                     }
                 }
             DB::commit();
         } catch (\Exception $ex){
             DB::rollback();
+            dd($ex);
             return redirect('/cargos/create')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
         }
         return redirect('/cargos')->with(['message'=>'El Cargo se ha registrado correctamente','tipo'=>'message']);
@@ -176,17 +176,13 @@ class CargosController extends Controller
             DB::beginTransaction();
 
                 if($request->estatus!=null) {
-                    DB::table('Cargos')
-                        ->where('id',$id)
-                        ->update([
-                            'nombre'=> $request->nombre,
-                            'estatus'=> $request->estatus,
-                        ]);
+                    Cargo::find($id)->update([
+                        'nombre'=> $request->nombre,
+                        'estatus'=> $request->estatus,
+                    ]);
                 }
                 else{
-                    DB::table('Cargos')
-                        ->where('id',$id)
-                        ->update(['nombre'=> $request->nombre]);
+                    Cargo::find($id)->update(['nombre'=> $request->nombre]);
                 }
 
 
@@ -194,15 +190,13 @@ class CargosController extends Controller
                     ->select('id')
                     ->get();
 
-                DB::table('Cargos_Secciones')->where('cargo_id',$id)->update(['estatus_permiso' => 0]);
+                CargoSeccion::where('cargo_id',$id)->update(['estatus_permiso' => 0]);
 
                 foreach($secciones as $secciom){
                     //Si la puerta fue seclecionada en el check se guarda en la relacion secionn-puerta con un 1
                     // indicando que esta seccion tiene permiso sobre ella
                     if($request[$secciom->id]!=null) {
-                        DB::table('Cargos_Secciones')
-                            ->where(['cargo_id'=>$id,'seccion_id'=>$request[$secciom->id]])
-                            ->update(['estatus_permiso'=> 1]);
+                        CargoSeccion::where(['cargo_id'=>$id,'seccion_id'=>$request[$secciom->id]])->update(['estatus_permiso'=> 1]);
                     }
                 }
             DB::commit();

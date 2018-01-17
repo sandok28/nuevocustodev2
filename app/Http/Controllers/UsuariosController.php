@@ -92,7 +92,8 @@ class UsuariosController extends Controller
         try {
             DB::beginTransaction();
 
-                DB::table('Users')->insert([
+
+                User::create([
                     'name'=> $request['name'],
                     'email'=> $request['name'],
                     'password' => bcrypt($request['password']),
@@ -186,9 +187,8 @@ class UsuariosController extends Controller
             DB::beginTransaction();
 
                 //obtengo le usuario relacionado al id que llego
-                $usuario = DB::table('Users')
-                                ->where('id',$id)
-                                ->first();
+
+                $usuario = User::find($id);
 
                 //creo una coleccion con todas las puertas
                 $todasPuertas = Puerta::all();
@@ -217,10 +217,6 @@ class UsuariosController extends Controller
                 //creo una coleccion con todos los permisos
                 $todosPermiso = Permiso::all();
 
-                //Hago que todas los permisos tengan estatus_permiso en 0
-                DB::table('Permisos_Users')
-                    ->where('usuario_id', $usuario->id)
-                    ->update(['estatus_permiso' => 0]);
 
                 //los itero para obtener cada permiso registrado y marco los seleccionados con estatus_permiso en 1
                 foreach($todosPermiso as $permiso){
@@ -229,12 +225,22 @@ class UsuariosController extends Controller
 
                         //Si el permiso fue seclecionada en el check se guarda en la relacion usuario-permiso con un 1
                         // indicando que este usuario tiene ese permiso.
-                        DB::table('Permisos_Users')
-                            ->where([
+                        $permisoUser = PermisoUser::where([
                                 ['usuario_id','=', $usuario->id],
-                                ['permiso_id','=', $request[$permiso->id+10000]],
-                                ])
-                            ->update(['estatus_permiso' => 1]);
+                                ['permiso_id','=', $permiso->id],
+                                ])->get();
+
+                        $permisoUser[0]->update(['estatus_permiso' => 1]);
+                    }else{
+                        //Si el permiso fue seclecionada en el check se guarda en la relacion usuario-permiso con un 1
+                        // indicando que este usuario tiene ese permiso.
+                        $permisoUser = PermisoUser::where([
+                            ['usuario_id','=', $usuario->id],
+                            ['permiso_id','=', $permiso->id],
+                        ])->get();
+
+                        $permisoUser[0]->update(['estatus_permiso' => 0]);
+
                     }
                 }
                 // si el check estatus es nulo le asigno el valor que tiene el usuario actualmente
@@ -242,24 +248,22 @@ class UsuariosController extends Controller
                 if($request->password == null) $request->password=$usuario->password;
 
                 if($request['password']!=null) {
-                    DB::table('Users')
-                        ->where('id', $id)
+                    User::find($id)
                         ->update([
                             'name' => $request->name,
                             'email'=> $request->name,
                             'password'=> bcrypt($request['password']),
                             'estatus'=> $request->estatus,
-                            'updated_at'=>Carbon::now()->toDateTimeString(),
+
                         ]);
                 }
                 else{
-                    DB::table('Users')
-                        ->where('id', $id)
+                    User::find($id)
                         ->update([
                             'name' => $request->name,
                             'email'=> $request->name,
                             'estatus'=> $request->estatus,
-                            'updated_at'=>Carbon::now()->toDateTimeString(),
+
                         ]);
                 }
 
@@ -267,6 +271,7 @@ class UsuariosController extends Controller
         } catch (\Exception $ex){
             DB::rollback();
 
+            dd($ex);
             return redirect('/usuarios/'.$id.'/edit')->with(['message'=>'Algo salio mal','tipo'=>'error']);
         }
         return redirect('/usuarios')->with(['message'=>'Usuario Actualizado corectamente','tipo'=>'message']);
@@ -292,15 +297,12 @@ class UsuariosController extends Controller
             DB::beginTransaction();
 
             //obtengo le usuario relacionado al id que llego
-            $usuario = DB::table('Users')
-                            ->where('id',Auth::User()->id)
-                            ->first();
+            $usuario = User::find($id);
 
             if($request->password == null) $request->password=$usuario->password;
 
             if($request['password']!=null) {
-                DB::table('Users')
-                    ->where('id', Auth::User()->id)
+                User::find(Auth::User()->id)
                     ->update([
                         'name' => $request->name,
                         'email'=> $request->name,
@@ -309,8 +311,7 @@ class UsuariosController extends Controller
                     ]);
             }
             else{
-                DB::table('Users')
-                    ->where('id', Auth::User()->id)
+                User::find(Auth::User()->id)
                     ->update([
                         'name' => $request->name,
                         'email'=> $request->name,

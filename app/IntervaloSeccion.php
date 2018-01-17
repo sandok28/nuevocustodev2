@@ -13,6 +13,14 @@ class IntervaloSeccion extends Model implements AuditableContract
     protected $table = 'IntervalosSecciones';
 
     use Auditable;
+    //indico los atributos de la tabla que se pueden modificar desde la vista
+    protected $fillable = [
+        'desde',
+        'hasta',
+        'dia',
+        'seccion_id'
+    ];
+
 
 
 

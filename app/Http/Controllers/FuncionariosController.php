@@ -9,6 +9,7 @@ use App\Cargo;
 use App\Horariogeneral;
 use App\Funcionario;
 use App\Http\Requests\FuncionariosActualizarRequest;
+use App\Llave;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -80,24 +81,22 @@ class FuncionariosController extends Controller
         if($request->fotocreada!=null){
             try{
                 DB::beginTransaction();
+                Funcionario::create([
+                    'nombre'=>$request->nombre,
+                    'apellido'=>$request->apellido,
+                    'cedula'=>$request->cedula,
+                    'correo'=>$request->correo,
+                    'tarjeta_rfid'=>$request->tarjeta_rfid,
+                    'fecha_nacimiento'=>$request->fecha_nacimiento,
+                    'cargo_id'=>$request->cargo_id,
+                    'estatus_licencia'=>'0',
+                    'foto'=>$request->fotocreada,
+                    'celular'=>$request->celular,
+                    'horario_normal'=>$request->horario_normal,
+                    'licencia'=>'0',
+                    'estatus'=>'1',//ojo con esto, ese campo es dado de baja donde 0 es inactivo
+                ]);
 
-                DB::table('funcionarios')
-                    ->insert([
-                        'nombre'=>$request->nombre,
-                        'apellido'=>$request->apellido,
-                        'cedula'=>$request->cedula,
-                        'correo'=>$request->correo,
-                        'tarjeta_rfid'=>$request->tarjeta_rfid,
-                        'fecha_nacimiento'=>$request->fecha_nacimiento,
-                        'cargo_id'=>$request->cargo_id,
-                        'estatus_licencia'=>'0',
-                        'foto'=>$request->fotocreada,
-                        'celular'=>$request->celular,
-                        'horario_normal'=>$request->horario_normal,
-                        'licencia'=>'0',
-                        'estatus'=>'1',//ojo con esto, ese campo es dado de baja donde 0 es inactivo
-                        'created_at'=>Carbon::now(),
-                    ]);
                 $funcionario = DB::table('funcionarios')
                     ->select('id')
                     ->orderBy('created_at', 'desc')
@@ -116,8 +115,7 @@ class FuncionariosController extends Controller
                     }
                 }
 
-                DB::table('llaves')
-                    ->insert([
+                Llave::create([
                         'tipo'=> '0',//tipo 0 es el indicativo de funcionario
                         'llave_rfid' => $request->tarjeta_rfid,
                         'id_asociado' => $funcionario->id,
@@ -135,8 +133,7 @@ class FuncionariosController extends Controller
         try{
             DB::beginTransaction();
 
-                DB::table('funcionarios')
-                    ->insert([
+            Funcionario::create([
                             'nombre'=>$request->nombre,
                             'apellido'=>$request->apellido,
                             'cedula'=>$request->cedula,
@@ -150,7 +147,6 @@ class FuncionariosController extends Controller
                             'horario_normal'=>$request->horario_normal,
                             'licencia'=>'0',
                             'estatus'=>'1',//ojo con esto, ese campo es dado de baja donde 0 es inactivo
-                            'created_at'=>Carbon::now(),
                     ]);
                 $funcionario = DB::table('funcionarios')
                                     ->select('id')
@@ -170,8 +166,7 @@ class FuncionariosController extends Controller
                     }
                 }
 
-                DB::table('llaves')
-                        ->insert([
+            Llave::create([
                             'tipo'=> '0',//tipo 0 es el indicativo de funcionario
                             'llave_rfid' => $request->tarjeta_rfid,
                             'id_asociado' => $funcionario->id,
@@ -247,8 +242,7 @@ class FuncionariosController extends Controller
             }
 
             if($request->estatus!=null) {
-                DB::table('funcionarios')
-                    ->where('id',$id)
+                Funcionario::find($id)
                     ->update(
                         [
                             'nombre'=>$request->nombre,
@@ -268,8 +262,7 @@ class FuncionariosController extends Controller
                     );
             }
             else{
-                DB::table('funcionarios')
-                    ->where('id',$id)
+                Funcionario::find($id)
                     ->update(
                         [
                             'nombre'=>$request->nombre,
@@ -288,8 +281,6 @@ class FuncionariosController extends Controller
                     );
             }
 
-
-
             DB::table('llaves')
                     ->where([
                         ['id_asociado','=', $id]
@@ -297,8 +288,7 @@ class FuncionariosController extends Controller
                     ->delete();
             $funcionario = DB::table('funcionarios')->select('estatus')->where('id',$id)->get()->first();
             if($funcionario->estatus == 1){
-                DB::table('llaves')
-                    ->insert([
+                Llave::create([
                         'tipo'=> '0',//tipo 0 es el indicativo de funcionario
                         'llave_rfid' => $request->tarjeta_rfid,
                         'id_asociado' => $id,
@@ -354,8 +344,6 @@ class FuncionariosController extends Controller
     {
 
        $funcionario = Funcionario::find($funcionario_id);
-
-
 
        if($funcionario->horario_normal == 0 ){
 
@@ -416,8 +404,6 @@ class FuncionariosController extends Controller
      *
      * @author Edwin Sandoval
      */
-
-
 
     private function actualizar_estado_licencias(){
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Horariogeneral;
+use App\Puerta;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Invitado;
@@ -166,13 +167,11 @@ class HorariosGeneralesController extends Controller
                         }
                     }
 
-                    DB::table('HorariosGenerales')->insert(
-                        [
+                   Horariogeneral::create([
                             'desde'=> $request->desde_hora.":".$request->desde_minuto.":0",
                             'hasta'=> $request->hasta_hora.":".$request->hasta_minuto.":0",
                             'dia'=> $request->$i,
-                        ]
-                    );
+                        ]);
                 }
             }
 
@@ -200,10 +199,7 @@ class HorariosGeneralesController extends Controller
     {
         try{
             DB::beginTransaction();
-            $intervalo = Horariogeneral::find($id);
-            DB::table('HorariosGenerales')
-                ->where('desde',$intervalo->desde)
-                ->delete();
+            Horariogeneral::find($id)->delete();
 
         }
         catch (\Exception $ex){
@@ -233,15 +229,15 @@ class HorariosGeneralesController extends Controller
         try{
             DB::beginTransaction();
                 $puertas = DB::table('Puertas')->select('id')->get();
-                DB::table('Puertas')->update(['estatus_en_horario_general'=>'0']);
-
                 foreach ($puertas as $puerta){
                     if($request[$puerta->id]!= null){
-                        DB::table('Puertas')
-                            ->where('id',$puerta->id)
+                        Puerta::find($puerta->id)
                             ->update(['estatus_en_horario_general' => 1]);
                     }
-
+                    else{
+                        Puerta::find($puerta->id)
+                            ->update(['estatus_en_horario_general' => 0]);
+                    }
                 }
             DB::commit();
         }

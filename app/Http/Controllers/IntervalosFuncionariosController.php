@@ -98,8 +98,6 @@ class IntervalosFuncionariosController extends Controller
                         //itero todos los inertvalos y valido que el nuevo no se cruce con alguno de ellos
                         foreach ($intervalos_generales_del_dia as $intervalo_general_del_dia){
 
-
-
                             $nuevo_intervalo_desde = Carbon::createFromFormat('H:i:s', $request->desde_hora.':'.$request->desde_minuto.':00');
                             $actual_intervalo_hasta = Carbon::createFromFormat('H:i:s', $intervalo_general_del_dia->hasta);
 
@@ -116,18 +114,15 @@ class IntervalosFuncionariosController extends Controller
                         }
 
                         //guardo en el intervalo de tiempo desde, hasta y dia
-                        DB::table('IntervalosFuncionarios')->insert(
-                                                                [
-                                                                    'desde'=> $request->desde_hora.":".$request->desde_minuto.":0",
-                                                                    'hasta'=> $request->hasta_hora.":".$request->hasta_minuto.":0",
-                                                                    'dia'=> $request->$i,
-                                                                    'funcionario_id'=> $funcionario_id,
-                                                                    'created_at'=>Carbon::now()->toDateTimeString()
-                                                                ]
-                                                            );
+                        Intervalofuncionario::create([
+                                            'desde'=> $request->desde_hora.":".$request->desde_minuto.":0",
+                                            'hasta'=> $request->hasta_hora.":".$request->hasta_minuto.":0",
+                                            'dia'=> $request->$i,
+                                            'funcionario_id'=> $funcionario_id,
+                                        ]);
 
                         //obtengo el intervalo que se acabo de crear para asignarle las puertas y le resto un minuto a created_at para evitar
-                        //conflictor con los siguiente intervalos que se van a crear
+                        //conflictos con los siguientes intervalos que se van a crear
                         $intervalo_funcionario = DB::table('IntervalosFuncionarios')->orderBy('created_at', 'desc')->first();
                         DB::table('IntervalosFuncionarios')
                             ->where('id', $intervalo_funcionario->id)
@@ -140,12 +135,10 @@ class IntervalosFuncionariosController extends Controller
                             // indicando que esta seccion tiene permiso sobre ella
 
                             if($request[$puerta->id]!=null) {
-                                DB::table('IntervalosFuncionarios_Puertas')->insert(
-                                                                                [
-                                                                                    'intervalo_funcionario_id' => $intervalo_funcionario->id,
-                                                                                    'puerta_id' => $puerta->id,
-                                                                                ]
-                                                                            );
+                                IntervalofuncionarioPuerta::create([
+                                                                'intervalo_funcionario_id' => $intervalo_funcionario->id,
+                                                                'puerta_id' => $puerta->id,
+                                                            ]);
                             }
                         }
 
@@ -207,8 +200,6 @@ class IntervalosFuncionariosController extends Controller
      */
     public function destroy($id)
     {
-
-
         try{
             DB::beginTransaction();
 
@@ -225,11 +216,9 @@ class IntervalosFuncionariosController extends Controller
 
                 foreach($Intervalos_funcionarios_puertas as $Intervalo_funcionario_puerta){
                     $Intervalo_funcionario_puerta->delete();
-
                 }
                 Intervalofuncionario::destroy($intervalo->id);
             }
-
         }
         catch (\Exception $ex){
             DB::rollback();
@@ -238,6 +227,4 @@ class IntervalosFuncionariosController extends Controller
         DB::commit();
         return redirect('/funcionarios/horario/'.$funcionario_id)->with(['message'=>'El intervalo se ha eliminado correctamente','tipo'=>'message']);
     }
-
-
 }
