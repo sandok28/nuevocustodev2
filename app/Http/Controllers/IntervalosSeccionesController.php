@@ -96,14 +96,12 @@ class IntervalosSeccionesController extends Controller
                         }
                     }
 
-                    DB::table('IntervalosSecciones')->insert(
-                        [
+                    IntervaloSeccion::create([
                             'desde'=> $request->desde_hora.":".$request->desde_minuto.":0",
                             'hasta'=> $request->hasta_hora.":".$request->hasta_minuto.":0",
                             'dia'=> $request->$i,
                             'seccion_id' => $seccion_id,
-                        ]
-                    );
+                        ]);
                 }
             }
 
@@ -135,11 +133,15 @@ class IntervalosSeccionesController extends Controller
 
 
             $intervalo = IntervaloSeccion::find($id);
-            DB::table('IntervalosSecciones')
-                ->where([
+
+            $intervalosSecciones = IntervaloSeccion::where([
                     ['desde','=',$intervalo->desde],
                     ['seccion_id','=',$seccion_id]
-                ])->delete();
+                ])->get();
+
+            foreach ($intervalosSecciones as $intervalosSeccion){
+                $intervalosSeccion->delete();
+            }
 
             DB::commit();
         }

@@ -16,7 +16,7 @@ class CargoSeccion extends Model implements AuditableContract
 
     //indico los atributos de la tabla que se pueden modificar desde la vista
     protected $fillable = [
-        'nombre', 'estatus','secciones_id',
+        'cargo_id', 'estatus_permiso','seccion_id',
     ];
 
     //

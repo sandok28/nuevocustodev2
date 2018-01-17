@@ -77,11 +77,11 @@ class SeccionesController extends Controller
         ]);
         try{
             DB::beginTransaction();
-                DB::table('Secciones')->insert([
-                                                'nombre'=>$request->nombre,
-                                                'estatus'=> '1',
-                                                'created_at'=>Carbon::now()->toDateTimeString()
-                                            ]);
+            Seccion::create([
+                        'nombre'=>$request->nombre,
+                        'estatus'=> '1',
+                        'created_at'=>Carbon::now()->toDateTimeString()
+                    ]);
 
                 //obtengo la ultima seccion que se creo es decir la que acabamos de crear
                 $seccion = DB::table('Secciones')
@@ -239,16 +239,19 @@ class SeccionesController extends Controller
             //Si la puerta fue seclecionada en el check se guarda en la relacion secionn-puerta con un 1
             // indicando que esta seccion tiene permiso sobre ella
             if($request[$puerta->id]!=null){
-                PuertaSeccion::where('seccion_id', $seccion->id)
+                $seccionPuerta = PuertaSeccion::where('seccion_id', $seccion->id)
                     ->where('puerta_id', $request[$puerta->id])
-                    ->update(['estatus_permiso' => 1]);
+                    ->get();
+
+                $seccionPuerta[0]->update(['estatus_permiso' => 1]);
             }
             else{
                 //Si la puerta no fue seclecionada en el check se guarda en la relacion secionn-puerta con un 0
                 // indicando que esta seccion no tiene permiso sobre ella
-                PuertaSeccion::where('seccion_id', $seccion->id)
-                    ->where('puerta_id', $puerta->id)
-                    ->update(['estatus_permiso' => 0]);
+                $seccionPuerta = PuertaSeccion::where('seccion_id', $seccion->id)
+                    ->where('puerta_id', $puerta->id)->get();
+
+                $seccionPuerta[0]->update(['estatus_permiso' => 0]);
             }
         }
         //actualizo la informacion como tal

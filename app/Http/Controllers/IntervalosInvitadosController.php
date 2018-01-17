@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Intervaloinvitado;
+use App\Llave;
 use App\Puerta;
 use App\IntervaloInvitadoPuerta;
 use App\User;
@@ -76,8 +77,7 @@ class IntervalosInvitadosController extends Controller
 
             if ($request->hasta_hora > $request->desde_hora) {
                 $this->crearIntevaloInvitado($request,$invitado_id);
-                DB::table('llaves')
-                    ->insert([
+                Llave::create([
                         'tipo'=> '1',//tipo 0 es el indicativo de funcionario
                         'llave_rfid' => $request->targeta_rfid,
                         'id_asociado' => $invitado_id+100000,
@@ -86,8 +86,7 @@ class IntervalosInvitadosController extends Controller
             }
             else if($request->hasta_hora == $request->desde_hora && $request->hasta_minuto > $request->desde_minuto){
                 $this->crearIntevaloInvitado($request,$invitado_id);
-                DB::table('llaves')
-                    ->insert([
+                Llave::create([
                         'tipo'=> '1',//tipo 0 es el indicativo de funcionario
                         'llave_rfid' => $request->targeta_rfid,
                         'id_asociado' => $invitado_id+100000,
@@ -133,11 +132,9 @@ class IntervalosInvitadosController extends Controller
     {
         try{
             DB::beginTransaction();
-                DB::table('IntervalosInvitados_Puertas')
-                    ->where('intervalo_invitado_id',$id)
+
+            IntervaloInvitadoPuerta::where('intervalo_invitado_id',$id)
                     ->delete();
-
-
                 $intervalo_invitado = DB::table('IntervalosInvitados')->select('invitado_id','fecha','hasta')->where('id',$id)->first();
 
                 DB::table('llaves')
@@ -146,8 +143,7 @@ class IntervalosInvitadosController extends Controller
                         ['fecha_expiracion','=', Carbon::createFromFormat('Y-m-d H:i:s', $intervalo_invitado->fecha.' '.$intervalo_invitado->hasta)]
                     ])->delete();
 
-                DB::table('IntervalosInvitados')
-                    ->where('id',$id)
+                Intervaloinvitado::find($id)
                     ->delete();
             DB::commit();
         }
@@ -177,13 +173,12 @@ class IntervalosInvitadosController extends Controller
             DB::beginTransaction();
 
                 $carbon = new \Carbon\Carbon();
-                DB::table('IntervalosInvitados')->insert([
+                Intervaloinvitado::create([
                     'desde'=> $request->desde_hora.":".$request->desde_minuto.":0",
                     'hasta'=> $request->hasta_hora.":".$request->hasta_minuto.":0",
                     'targeta_rfid' => $request->targeta_rfid,
                     'invitado_id'=> $invitado_id,
                     'fecha' => $carbon->now(),
-                    'created_at'=>Carbon::now()->toDateTimeString(),
                 ]);
 
                 //obtengo el ultimo intervalo que se creo es decir la que acabamos de crear
@@ -196,7 +191,7 @@ class IntervalosInvitadosController extends Controller
                     //Si la puerta fue seclecionada en el check se guarda en la relacion secionn-puerta con un 1
                     // indicando que esta seccion tiene permiso sobre ella
                     if($request[$puerta->id]!=null) {
-                        DB::table('IntervalosInvitados_Puertas')->insert([
+                        IntervaloInvitadoPuerta::create([
                             'intervalo_invitado_id' => $intervalo->id,
                             'puerta_id' => $puerta->id,
                         ]);
