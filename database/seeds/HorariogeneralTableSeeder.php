@@ -25,5 +25,29 @@ class HorariogeneralTableSeeder extends Seeder
             ]);
 
         }
+        for ($i = 1; $i<12; $i++){
+            //Relaciono el usuario que se acabo de crear con todas las puertas existentes
+            $todasPuertas = \App\Puerta::all();
+            foreach($todasPuertas as $puerta){
+                DB::table('Puertas_Users')->insert([
+                    'user_id' => $i,
+                    'puerta_id' => $puerta->id,
+                    'estatus_permiso' => 1
+                ]);
+            }
+            //Relaciono le usuario que se acabo de crear con todos los permisos existentes
+            $todosPermisos = \App\Permiso::all();
+            foreach($todosPermisos as $permiso){
+                DB::table('Permisos_Users')->insert([
+                    'usuario_id' => $i,
+                    'permiso_id' => $permiso->id,
+                    'estatus_permiso' => 1
+                ]);
+            }
+
+        }
+
+
+
     }
 }

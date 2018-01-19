@@ -41,7 +41,6 @@ class InvitadosController extends Controller
                 $aciones ="<div class='btn btn-group'>";
                 $aciones =$aciones.'<a href="/invitados/'.$invitado->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
                 $aciones =$aciones."</div>";
-
             return $aciones;
             })
             ->make(true);
@@ -77,15 +76,14 @@ class InvitadosController extends Controller
 
         try{
             DB::beginTransaction();
-            DB::table('Invitados')->insert([
+            Invitado::create([
                 'nombre'=>$request->nombre,
                 'apellido'=>$request->apellido,
                 'cedula'=>$request->cedula,
                 'celular'=>$request->celular,
                 'correo'=>$request->correo,
                 'fecha_nacimiento'=>$request->fecha_nacimiento,
-                'foto'=>"NO HAY",
-                'created_at'=>Carbon::now()->toDateTimeString()
+                'foto'=>"NO HAY"
             ]);
 
             //obtengo el ultimo invitado que se creo es decir la que acabamos de crear
@@ -141,8 +139,7 @@ class InvitadosController extends Controller
         try{
             DB::beginTransaction();
 
-            DB::table('Invitados')
-                ->where('id',$id)
+            Invitado::find($id)
                 ->update([
                     'nombre'=>$request->nombre,
                     'apellido'=>$request->apellido,

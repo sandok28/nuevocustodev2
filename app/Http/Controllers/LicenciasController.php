@@ -107,8 +107,6 @@ class LicenciasController extends Controller
      */
     public function store(Request $request, $funcionario_id)
     {
-
-
         $nueva_licencia_hasta = Carbon::createFromFormat('Y-m-d', $request->hasta);
         $nueva_licencia_desde = Carbon::createFromFormat('Y-m-d', $request->desde);
         $hoy = Carbon::createFromFormat('Y-m-d', Carbon::now()->toDateString());
@@ -145,12 +143,13 @@ class LicenciasController extends Controller
                         DB::table('Licencias')->where('id', $licenciaActiva->id)->update(['estatus' =>'0']);
                     }
                 }
-                DB::table('Licencias')->insert([
+                Licencia::create([
                     'desde'=> $request->desde,
                     'hasta'=> $request->hasta,
                     'estatus' => 1,
                     'funcionario_id'=> $funcionario_id,
                 ]);
+
             DB::commit();
         } catch (\Exception $ex){
             DB::rollback();
@@ -228,8 +227,7 @@ class LicenciasController extends Controller
 
                 }
 
-                DB::table('Licencias')
-                    ->where('id',$id)
+                Licencia::find($id)
                     ->update([
                         'desde'=> $request->desde,
                         'hasta'=> $request->hasta,
@@ -341,8 +339,7 @@ class LicenciasController extends Controller
     {
         try{
             DB::beginTransaction();
-                DB::table('Licencias')
-                    ->where('id',$id)
+                Licencia::find($id)
                     ->delete();
             DB::commit();
         }
@@ -358,8 +355,7 @@ class LicenciasController extends Controller
     {
         try{
             DB::beginTransaction();
-                DB::table('Licencias')
-                    ->where('id',$id)
+            Licencia::find($id)
                     ->update([
                         'estatus'=>0,
                         'hasta'=> Carbon::now()->toDateString()

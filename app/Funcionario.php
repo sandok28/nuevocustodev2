@@ -28,9 +28,11 @@ class Funcionario extends Model implements AuditableContract
         'celular',
         'horario_normal',
         'licencia',
+        'estatus_licencia',
         'estatus',
         'dado_de_baja',
     ];
+
 
     /**
      * Obtiene las licecias relacionadas al funcionario
