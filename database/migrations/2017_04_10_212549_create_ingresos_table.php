@@ -20,11 +20,14 @@ class CreateIngresosTable extends Migration
             $table->timestamps();
 
 
-            $table->integer('funcionario_id')->unsigned();
+            $table->integer('funcionario_id')->unsigned()->nullable($value=true);
             $table->foreign('funcionario_id')->references('id')->on('funcionarios');
 
             $table->integer('puertas_id')->unsigned();
             $table->foreign('puertas_id')->references('id')->on('Puertas');
+
+            $table->integer('invitados_id')->unsigned()->nullable($value=true);
+            $table->foreign('invitados_id')->references('id')->on('invitados');
         });
     }
 

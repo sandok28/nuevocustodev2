@@ -121,7 +121,7 @@ class CargosController extends Controller
             DB::commit();
         } catch (\Exception $ex){
             DB::rollback();
-            dd($ex);
+            //dd($ex);
             return redirect('/cargos/create')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
         }
         return redirect('/cargos')->with(['message'=>'El Cargo se ha registrado correctamente','tipo'=>'message']);

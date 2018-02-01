@@ -32,11 +32,8 @@
                                     <i class="fa fa-lock"></i>
                                 </div>
                             </div>
-
-
                             <div class="form-group" style="margin: 0px;">
                                 <div class="col-md-12">
-
                                     {!!Form::submit('Ingresar',['class'=>'btn btn-primary btn-block '])!!}
                                 </div>
                                 <div class="col-md12">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Funcionario;
 use App\Horariogeneral;
+use App\Ingreso;
 use App\Intervalofuncionario;
 use App\Intervaloinvitado;
 use App\IntervaloSeccion;
@@ -11,6 +12,7 @@ use App\Invitado;
 use App\Llave;
 use App\Puerta;
 use App\PuertaSeccion;
+use Dompdf\Exception;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\DB;
@@ -119,6 +121,8 @@ class HomeController extends Controller
    * holamundo recibe parametros por las variables $dispoip,$uid llegan limpias y directas
    * holamundo2 recibe parametros por la request
    **/
+
+
     function holamundo($dispoip,$uid)
     {
         return "".$dispoip.$uid;
@@ -133,25 +137,37 @@ class HomeController extends Controller
         $dia = $carbon::now()->dayOfWeek;
         $hora = $carbon::now()->hour;
         $minutos = $carbon::now()->minute;
-        //echo 'dia'.$dia,'hora:'.$hora,'minuto'.$minutos;
-        $horadellegada = $carbon::createFromFormat('H:i:s', $hora . ':' . $minutos . ':' . '00');
-        //$horadellegada = $carbon::createFromFormat('H:i:s', '08' . ':' . '32' . ':' . '00');
-        $TipoUsuario = Llave::select('tipo')->where('llave_rfid', $uid)->get()[0]->tipo;//tipo de usuario segun la llave 0 para funcionario 1 para invitado
-        //dd($TipoUsuario);
-        $IdUsuario = Llave::select('id_asociado')->where('llave_rfid', $uid)->get()[0]->id_asociado;//obtengo el ide_asociado a la llave rfid
-        //1)verificar si la llave existe en la tabla llaves.
-        $llaveentrada = Llave::where('llave_rfid', $uid)->count();//comparo si la llave existe
-        if ($llaveentrada==0) {
-            return 'LA LLAVE NO EXISTE';
-        } else {
+        if($minutos < 9)
+        {
+            $minutos= '0'.$minutos;
+        }else{ $minutos=$minutos;}
+        echo 'dia'.$dia,'hora:'.$hora,'minuto'.$minutos;
+        //$horadellegada = $carbon::createFromFormat('H:i:s', $hora . ':' . $minutos . ':' . '00');
+        $horadellegada = $carbon::createFromFormat('H:i:s', '1' . ':' . '00' . ':' . '00');
+        $TipoUsuario = Llave::select('tipo')->where('llave_rfid', $uid)->get()->first();
+        //dd($TipoUsuario->tipo);
+        if(isset($TipoUsuario)){
+            //tipo de usuario segun la llave 0 para funcionario 1 para invitado
+            //dd($TipoUsuario);
+            $IdUsuario = Llave::select('id_asociado')->where('llave_rfid', $uid)->get()->first()->id_asociado;//obtengo el ide_asociado a la llave rfid
+            //dd($IdUsuario);
+            $idPuerta = Puerta::select('id')->where('ip',$dispoip)->get()->first()->id;
+            //dd($IdUsuario,$idPuerta);
+            //1)verificar si la llave existe en la tabla llaves.
+            $llaveentrada = Llave::where('llave_rfid', $uid)->count();//comparo si la llave existe
+            //dd($llaveentrada); si es 1 existe la llave de entrada
+            if ($llaveentrada==0) {
+                echo $llaveentrada;
+                return 'LA LLAVE NO EXISTE';
+            } else {
                 //return 'PUEDE ENTRAR LICENCIA ACTIVA ESTATUS 1 ';
                 //2)verificar si llave asociada a un funcionario o un usuario.
-                //dd($TipoUsuario,$IdUsuario);
-                if ($TipoUsuario == 0)
+                //dd($TipoUsuario->tipo,$IdUsuario);
+                if ($TipoUsuario->tipo == 0)
                 {
                     //return 'FUNCIONARIO';
                     //3.1)si es un funcionario->verificar horario(general,propio,secciones(cargo))
-                    $horariofuncionario = Funcionario::select('horario_normal')->where('id', $IdUsuario)->get()[0]->horario_normal;
+                    $horariofuncionario = Funcionario::select('horario_normal')->where('id', $IdUsuario)->get()->first()->horario_normal;
                     //dd($horariofuncionario);
                     if ($horariofuncionario == 0)//horario general de la empresa
                     {
@@ -159,20 +175,40 @@ class HomeController extends Controller
                         $estatus_general = Puerta::select('estatus_en_horario_general')->where('ip', $dispoip)->where('estatus', 1)->count();
                         //dd($estatus_general);
                         if ($estatus_general == 1) {
-                            $horariogeneralempresa = Horariogeneral::select('desde', 'hasta')->where('dia', $dia)->get();
-                            foreach ($horariogeneralempresa as $horarioindividualempresa) {
+                            $horariogeneralempresa = Horariogeneral::select('desde', 'hasta')->where('dia', $dia)->get();//Muestra el horario por dia actual
+                            //dd($horariogeneralempresa);
+                            foreach ($horariogeneralempresa as $horarioindividualempresa) {//recorrido de los horarios individualmente para hacer validacion.
                                 $desdebdvalido = $carbon::createFromFormat('H:i:s', $horarioindividualempresa->desde);
                                 $hastabdvalido = $carbon::createFromFormat('H:i:s', $horarioindividualempresa->hasta);
                                 $estaensuhora = $horadellegada->diffInMinutes($desdebdvalido, false) * $horadellegada->diffInMinutes($hastabdvalido, false);
-                                echo $horadellegada.'hora llegada;'.$desdebdvalido.'desde valida;'.$hastabdvalido.'hasta valido;'.$horadellegada->diffInMinutes($desdebdvalido,false).'desde diff min'.$horadellegada->diffInMinutes($hastabdvalido,false).'hasta diff min';
+                                echo $desdebdvalido.'desde valido; '.$hastabdvalido.' Hasta vadlido. '. $estaensuhora.' si es negativo esta en su hora si no no';
+                                //dd($estaensuhora);//si es negativa esta en su rango
                                 if ($estaensuhora < 0) {
+                                    try
+                                    {
+                                        DB::beginTransaction();
+                                        Ingreso::create([
+                                            'fecha_hora'=> $horadellegada,
+                                            'autorizado'=> 1,
+                                            'created_at'=>$carbon::now(),
+                                            'updated_at'=>$carbon::now(),
+                                            'funcionario_id'=>$IdUsuario,
+                                            'puertas_id'=>$idPuerta,
+                                            'invitados_id'=>''
+                                        ]);
+                                        DB::commit();
+                                    }
+                                    catch (\Exception $ex){
+                                        DB::rollback();
+                                    }
                                     return 'PASO HORARIO CORRECTO';
                                 }
                             }
+                            $this->ingreso_nulo_funcionario($horadellegada,$IdUsuario,$idPuerta);
                             return 'NO PASO POR HORARIOS';
                         }
+                        $this->ingreso_nulo_funcionario($horadellegada,$IdUsuario,$idPuerta);
                         return 'NO PASO';
-
                     }
                     if ($horariofuncionario == 1)//horario propio del funcionario
                     {
@@ -187,7 +223,7 @@ class HomeController extends Controller
                                 $desdebdvalido = $carbon::createFromFormat('H:i:s', $intervalofuncionariopropio[0]->desde);
                                 $hastabdvalido = $carbon::createFromFormat('H:i:s', $intervalofuncionariopropio[0]->hasta);
                                 $estaensuhora = $horadellegada->diffInMinutes($desdebdvalido, false) * $horadellegada->diffInMinutes($hastabdvalido, false);
-                                echo $desdebdvalido,$hastabdvalido,$estaensuhora;
+                                echo $estaensuhora;
                                 if($estaensuhora<0)
                                 {
                                     $funcionarios = Funcionario::find($IdUsuario)->horariosEspeciales;
@@ -196,17 +232,41 @@ class HomeController extends Controller
                                         foreach ($funcionario->puertas as $buscaip){
                                             if($buscaip->ip  == $dispoip)
                                             {
-                                                return 'ESTA EN LA PUERTA CON LA IP ASIGNADA';
+                                                //dd('pasa');
+                                                try
+                                                {
+                                                    DB::beginTransaction();
+                                                    Ingreso::create([
+                                                        'fecha_hora'=> $horadellegada,
+                                                        'autorizado'=> 1,
+                                                        'created_at'=>$carbon::now(),
+                                                        'updated_at'=>$carbon::now(),
+                                                        'funcionario_id'=>$IdUsuario,
+                                                        'puertas_id'=>$idPuerta,
+                                                        'invitados_id'=>''
+                                                    ]);
+                                                    DB::commit();
+                                                    return 'ESTA EN LA PUERTA CON LA IP ASIGNADA';
+                                                }
+                                                catch (\Exception $ex){
+                                                    DB::rollback();
+                                                }
                                             }
-                                            else{return 'NO TIENE ACCESO A ESTA PUERTA POR IP';}
+                                            else{$this->ingreso_nulo_funcionario($horadellegada,$IdUsuario,$idPuerta);
+                                                return 'NO TIENE ACCESO A ESTA PUERTA POR IP';}
                                         }
                                     }
                                 }
-                                else {return 'NO PASA ESTA EN SU HORA ENTRADA Y SU DIA';}
+                                else {
+                                    $this->ingreso_nulo_funcionario($horadellegada,$IdUsuario,$idPuerta);
+                                    return 'NO PASA, NO ESTA EN SU HORA ENTRADA Y SU DIA';}
                             }
+                            $this->ingreso_nulo_funcionario($horadellegada,$IdUsuario,$idPuerta);
                             return 'NO PASA ESTA EN SU HORA ENTRADA Y SU DIA';
 
-                        }else{return 'EL FUNCIONARIO ESTA DE LICENCIA';}
+                        }else{
+                            $this->ingreso_nulo_funcionario($horadellegada,$IdUsuario,$idPuerta);
+                            return 'EL FUNCIONARIO ESTA DE LICENCIA';}
 
                     }
                     if ($horariofuncionario == 2)//horario asignado al cargo
@@ -224,49 +284,141 @@ class HomeController extends Controller
                                     $estaensuhora = $horadellegada->diffInMinutes($desdebdvalido, false) * $horadellegada->diffInMinutes($hastabdvalido, false);
                                     if ($estaensuhora < 0)
                                     {
-                                        return 'ESTA EN SU HORA ENTRADA Y SU DIA';
-                                    }
-                                    else {
-                                        return 'NO ESTA EN SU HORA DE ENTRADA Y SU DIA';
+                                        try
+                                        {
+                                            DB::beginTransaction();
+                                            Ingreso::create([
+                                                'fecha_hora'=> $horadellegada,
+                                                'autorizado'=> 1,
+                                                'created_at'=>$carbon::now(),
+                                                'updated_at'=>$carbon::now(),
+                                                'funcionario_id'=>$IdUsuario,
+                                                'puertas_id'=>$idPuerta,
+                                                'invitados_id'=>''
+                                            ]);
+                                            DB::commit();
+                                            return 'ESTA EN SU HORA ENTRADA Y SU DIA';
                                         }
-                                }return 'NO HAY INTERVALOS EN SU DIA';
-                            } else {
+                                        catch (\Exception $ex){
+                                            DB::rollback();
+                                        }
+                                    }
+                                    else {$this->ingreso_nulo_funcionario($horadellegada,$IdUsuario,$idPuerta);
+                                        return 'NO ESTA EN SU HORA DE ENTRADA Y SU DIA';
+                                    }
+                                }$this->ingreso_nulo_funcionario($horadellegada,$IdUsuario,$idPuerta);
+                                return 'NO HAY INTERVALOS EN SU DIA';
+                            } else {$this->ingreso_nulo_funcionario($horadellegada,$IdUsuario,$idPuerta);
                                 return 'PUERTA SIN PERMISO';
-                                }
-                        }return 'SECCION NO ENCONTRADA ACTIVA AL FUNCIONARIO';
-                        } else {
+                            }
+                        }$this->ingreso_nulo_funcionario($horadellegada,$IdUsuario,$idPuerta);
+                        return 'SECCION NO ENCONTRADA ACTIVA AL FUNCIONARIO';
+                    } else {$this->ingreso_nulo_funcionario($horadellegada,$IdUsuario,$idPuerta);
                         return 'NO COINCIDE EL HORARIO ASIGNADO AL CARGO DEL FUNCIONARIO';
                     }
                 }
-                if($TipoUsuario == 1)
+                if($TipoUsuario->tipo == 1)
                 {
-                    $intervalosinvitados = Intervaloinvitado::select('desde','hasta','invitado_id')->where('targeta_rfid',$uid)->where('fecha','>=',$carbon::now()->toDateString())->get();
+                    $intervalosinvitados = Intervaloinvitado::select('id','desde','hasta','invitado_id')->where('targeta_rfid',$uid)->where('fecha','>=',$carbon::now()->toDateString())->get();
                     //$intervalosinvitados1 = Intervaloinvitado::find($intervalosinvitados[0]->invitado_id)->get();
+                    $idinvitado=$IdUsuario-100000;//restamos para saber el id del invitado con el id asociado de la llave
                     foreach ($intervalosinvitados as $intervalosinvitado)
+                    {
+                        $desdebdvalido = $carbon::createFromFormat('H:i:s', $intervalosinvitado->desde);
+                        $hastabdvalido = $carbon::createFromFormat('H:i:s', $intervalosinvitado->hasta);
+                        $estaensuhora = $horadellegada->diffInMinutes($desdebdvalido, false) * $horadellegada->diffInMinutes($hastabdvalido, false);
+                        echo $desdebdvalido,$horadellegada->diffInMinutes($desdebdvalido, false),$hastabdvalido,$horadellegada->diffInMinutes($hastabdvalido, false), $estaensuhora;
+                        if ($estaensuhora < 0)
                         {
-                            $desdebdvalido = $carbon::createFromFormat('H:i:s', $intervalosinvitado->desde);
-                            $hastabdvalido = $carbon::createFromFormat('H:i:s', $intervalosinvitado->hasta);
-                            $estaensuhora = $horadellegada->diffInMinutes($desdebdvalido, false) * $horadellegada->diffInMinutes($hastabdvalido, false);
-                            //echo 'OPERACION: '.$estaensuhora.';';
-                            if ($estaensuhora < 0)
+                            echo 'OPERACION: '.$estaensuhora.';';
+                            //dd($intervalosinvitado->puertas);
+                            //dd($idinvitado);
+                            foreach ($intervalosinvitado->puertas as $puerta)
                             {
-                                foreach ($intervalosinvitado->puertas as $puerta)
+                                if($puerta->ip == $dispoip)
                                 {
-
-                                    if($puerta->ip == $dispoip)
+                                    //dd('paso');
+                                    try
                                     {
+                                        DB::beginTransaction();
+                                        Ingreso::create([
+                                            'fecha_hora'=> $horadellegada,
+                                            'autorizado'=> 1,
+                                            'created_at'=>$carbon::now(),
+                                            'updated_at'=>$carbon::now(),
+                                            'funcionario_id'=>null,
+                                            'puertas_id'=>$idPuerta,
+                                            'invitados_id'=>$idinvitado
+                                        ]);
+                                        DB::commit();
                                         return 'ACCESO A PUERTA';
-                                    }else{return 'NO HAY PUERTA';
                                     }
+                                    catch (\Exception $ex){
+                                        dd($ex);
+                                        DB::rollback();
+                                    }
+                                }else{
+                                    $this->ingreso_nulo_invitado($horadellegada,$idPuerta,$idinvitado);
+                                    return 'ESTA EN SU HORA DE ENTRADA  PERO NO EN SU PUERTA';
                                 }
-                            }return 'ESTA EN SU HORA DE ENTRADA ENTRADA PERO NO EN SU PUERTA';
+                            }
                         }
-                        return 'ESTE INVITADO NO TIENE ASIGNADO UNA HORA DE ENTRADA';
+                    }
+                    $this->ingreso_nulo_invitado($horadellegada,$idPuerta,$idinvitado);
+                    return 'ESTE INVITADO NO TIENE ASIGNADO UNA HORA DE ENTRADA';
 
 
 
                 }
-        }
+            }
+        }else{return 'NO ENCONTRO EL TIPO DE USUARIO';}
 
+
+
+    }
+
+    private  function  ingreso_nulo_funcionario($horadellegada,$IdUsuario,$idPuerta)
+    {
+        $carbon = new \Carbon\Carbon();
+        try
+        {
+            DB::beginTransaction();
+            Ingreso::create([
+                'fecha_hora'=> $horadellegada,
+                'autorizado'=> 0,
+                'created_at'=>$carbon::now(),
+                'updated_at'=>$carbon::now(),
+                'funcionario_id'=>$IdUsuario,
+                'puertas_id'=>$idPuerta,
+                'invitados_id'=>null
+            ]);
+            DB::commit();
+        }
+        catch (\Exception $ex){
+            DB::rollback();
+        }
+    }
+    private function ingreso_nulo_invitado($horadellegada,$idPuerta,$idinvitado)
+    {
+        $carbon = new \Carbon\Carbon();
+        try
+        {
+            DB::beginTransaction();
+            Ingreso::create([
+                'fecha_hora'=> $horadellegada,
+                'autorizado'=> 0,
+                'created_at'=>$carbon::now(),
+                'updated_at'=>$carbon::now(),
+                'funcionario_id'=>null,
+                'puertas_id'=>$idPuerta,
+                'invitados_id'=>$idinvitado
+            ]);
+            DB::commit();
+            return 'ACCESO A PUERTA';
+        }
+        catch (\Exception $ex){
+            dd($ex);
+            DB::rollback();
+        }
     }
 }
