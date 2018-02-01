@@ -18,8 +18,6 @@ Route::post('/login','HomeController@login')->name('home.login');
 Route::get('/logout','HomeController@logout')->name('home.logout');
 Route::get('/inicial','HomeController@inicial')->name('home.inicial');
 Route::get('/Auditorias','AuditoriasController@index');
-
-
 Route::resource('usuarios','UsuariosController',['except' => ['show','destroy']]);
 Route::get('usuario_actual/edit','UsuariosController@editUsuarioActual')->name('usuarios.edit_usuario_actual');
 Route::put('usuario_actual/','UsuariosController@updateUsuarioActual')->name('usuarios.update_usuario_actual');
@@ -85,5 +83,9 @@ Route::post('IntervalosSecciones/{seccion_id}', 'IntervalosSeccionesController@s
 
 Route::get('/cliente','WebServiceSOAPController@cliente');
 Route::get('/servicio','WebServiceSOAPController@servicio');
+
+Route::get('/buscarusuariouid/{dispoip},{uid}','HomeController@holamundo');
+Route::get('/buscarusuariouid','HomeController@holamundo2');
+
 
 

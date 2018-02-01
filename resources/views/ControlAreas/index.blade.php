@@ -31,7 +31,7 @@
                                                 <div class="col-md-2"  style="text-align: center;">
                                                     {{$puertaNormal->nombre}}
                                                     <img src="{{url('assets/img/puerta.png')}}" alt class="img-responsive  form-inline" style="width: 100%;">
-                                                    {!! Form::submit('Abrir Puerta',['class'=>'btn btn-primary btn-block','onclick'=>'abrirpuerta()']) !!}<br>
+                                                    {!! Form::submit('Abrir Puerta',['class'=>'btn btn-primary btn-block','onclick'=>"abrirpuerta(".$puertaNormal->ip.")"]) !!}<br>
                                                 </div>
                                             @endif
                                         @endforeach
@@ -60,5 +60,10 @@
             </div>
         </div>
     </div>
+    <script>
+        function abrirpuerta(ip) {
+            alert(ip);
+        }
+    </script>
 
 @endsection

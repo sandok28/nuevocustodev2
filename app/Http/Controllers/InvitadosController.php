@@ -71,7 +71,7 @@ class InvitadosController extends Controller
             'cedula'=>'required|min:10000000|max:9999999999|numeric|unique:Invitados',
             'celular'=>'required|min:1000000000|max:9999999999|numeric',
             'fecha_nacimiento'=>'required|date_format:"Y-m-d"',
-            'correo'=>'required|max:30|email',
+            'correo'=>'required|max:40|email',
         ]);
 
         try{
