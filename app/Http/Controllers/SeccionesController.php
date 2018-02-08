@@ -44,7 +44,7 @@ class SeccionesController extends Controller
         {
             $aciones ="";
             $aciones ="<div class='btn btn-group'>";
-            $aciones =$aciones.'<a href="/secciones/'.$seccion->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+            $aciones =$aciones.'<a href="'.route('secciones.edit',$seccion->id).'" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
             $aciones =$aciones."</div>";
             return $aciones;
 

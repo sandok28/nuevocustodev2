@@ -48,7 +48,7 @@ class UsuariosController extends Controller
             ->addColumn('action', function ($usuario) {
                 $aciones ="";
                 $aciones ="<div class='btn btn-group'>";
-                $aciones =$aciones.'<a href="usuarios/'.$usuario->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+                $aciones =$aciones.'<a href="'.route('usuarios.edit',$usuario->id).'" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
                 $aciones =$aciones."</div>";
 
                 return $aciones;

@@ -81,7 +81,7 @@
             $('#example').DataTable( {
                 "processing": true,
                 "serverSide": true,
-                "ajax": "/invitados-lista",
+                "ajax": "{{route('lista-invitados')}}",
 
                 "columns":[
                     {data: 'nombre'},

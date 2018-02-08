@@ -47,7 +47,7 @@ class GestionAreasController extends Controller
             {
                 $aciones = "";
                 $aciones = "<div class='btn btn-group'>";
-                $aciones = $aciones . '<a href="puertas/' . $puerta->id . '/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+                $aciones = $aciones . '<a href="'.route('puertas.edit',$puerta->id).'" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
                 $aciones =$aciones."</div>";
                 return $aciones;
             })
@@ -120,7 +120,7 @@ class GestionAreasController extends Controller
      * @param boolean  $puertasEspeciales Filtra y almacena la informacion tipo de puerta del usuario logeado.
      * @return \Illuminate\Http\Response devuelve la vista edit de los intervalos.
      */
-    public function controlareas($id)
+    public function controlareas()
     {
         $puertasNormales = Auth::User()->puertas->where('puerta_especial',0);
         $puertasEspeciales = Auth::User()->puertas->where('puerta_especial',1);

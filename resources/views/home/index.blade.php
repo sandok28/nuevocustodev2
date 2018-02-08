@@ -14,7 +14,7 @@
                             <div class="col-md-4" >
                                 <img src="{{url('assets/img/horario.png')}}" width="200" height="200"
                                      alt class="img-responsive img-circle img-thumbnail  form-inline">
-                                <a href="/horariogeneral/show" class="btn btn-info btn-block btn-3d" style=" width:200px;">
+                                <a href="{{route('horariogeneral.show')}}" class="btn btn-info btn-block btn-3d" style=" width:200px;">
                                     <i class="glyphicon glyphicon-arrow-right "></i>
                                     Ir a Horarios
                                 </a>
@@ -24,7 +24,7 @@
                                      alt class="img-responsive img-circle img-thumbnail form-inline">
                                 <div class="row">
                                     <div class="col-md-9">
-                                        <a href="/usuarios" class="btn btn-info btn-block btn-3d" style=" width:200px;">
+                                        <a href="{{route('usuarios.index')}}" class="btn btn-info btn-block btn-3d" style=" width:200px;">
                                             <i class="glyphicon glyphicon-arrow-right "></i> Ir a Usuarios</a>
                                     </div>
                                 </div>
@@ -34,7 +34,7 @@
                                      alt class="img-responsive img-circle img-thumbnail form-inline">
                                 <div class="row">
                                     <div class="col-md-9">
-                                        <a href="/invitados" class="btn btn-info btn-block btn-3d" style=" width:200px;">
+                                        <a href="{{route('invitados.index')}}" class="btn btn-info btn-block btn-3d" style=" width:200px;">
                                             <i class="glyphicon glyphicon-arrow-right "></i> Ir a Invitado</a>
                                     </div>
                                 </div>
@@ -47,7 +47,7 @@
                                      alt class="img-responsive img-circle img-thumbnail form-inline"><br>
                                 <div class="row">
                                     <div class="col-md-9">
-                                        <a href="/secciones" class="btn btn-info btn-block btn-3d" style=" width:200px;">
+                                        <a href="{{route('secciones.index')}}" class="btn btn-info btn-block btn-3d" style=" width:200px;">
                                             <i class="glyphicon glyphicon-arrow-right "></i> Ir a Secciones</a>
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@
                                      alt class="img-responsive img-circle img-thumbnail form-inline">
                                 <div class="row">
                                     <div class="col-md-8">
-                                        <a href="/GestionAreas" class="btn btn-info btn-block btn-3d" style=" width:200px;">
+                                        <a href="{{route('GestionAreas.index')}}" class="btn btn-info btn-block btn-3d" style=" width:200px;">
                                             <i class="glyphicon glyphicon-arrow-right "></i>Ir a Gestion Areas</a>
                                     </div>
                                 </div>
@@ -68,7 +68,7 @@
                                 <div class="row">
 
                                     <div class="col-md-7">
-                                        <a href="/funcionarios" class="btn btn-info btn-block btn-3d" style=" width:200px;">
+                                        <a href="{{route('funcionarios.index')}}" class="btn btn-info btn-block btn-3d" style=" width:200px;">
                                             <i class="glyphicon glyphicon-arrow-right "></i> Ir a Funcionarios</a>
                                     </div>
 

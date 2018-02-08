@@ -12,12 +12,12 @@
 */
 
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home.home');
 Route::get('/','HomeController@iniciosession');
 Route::post('/login','HomeController@login')->name('home.login');
 Route::get('/logout','HomeController@logout')->name('home.logout');
 Route::get('/inicial','HomeController@inicial')->name('home.inicial');
-Route::get('/Auditorias','AuditoriasController@index');
+Route::get('/Auditorias','AuditoriasController@index')->name('auditorias');
 Route::resource('usuarios','UsuariosController',['except' => ['show','destroy']]);
 Route::get('usuario_actual/edit','UsuariosController@editUsuarioActual')->name('usuarios.edit_usuario_actual');
 Route::put('usuario_actual/','UsuariosController@updateUsuarioActual')->name('usuarios.update_usuario_actual');
@@ -26,7 +26,7 @@ Route::resource('funcionarios','FuncionariosController');
 Route::get('funcionarios/horario/{funcionario_id}','FuncionariosController@horario')->name('funcionarios.horario');
 Route::resource('puertas','PuertasController');
 Route::get('puertas/{puerta_id}/edit','PuertasController@edit');
-Route::get('/puertas-listar','GestionAreasController@create');
+Route::get('/puertas-listar','GestionAreasController@create')->name('listar-puertas');
 
 
 Route::resource('secciones','SeccionesController',['except' => ['show','destroy']]);
@@ -57,20 +57,20 @@ Route::post('IntervalosFuncionarios/{funcionario_id}', 'IntervalosFuncionariosCo
 Route::get('errores','ErroresController@error404')->name('errores.error404');
 
 Route::resource('GestionAreas','GestionAreasController');
-Route::get('area/{user_id}','GestionAreasController@controlareas');
+Route::get('area','GestionAreasController@controlareas')->name('area');
 
-Route::get('Estadisticas','EstadisticasController@index');
+Route::get('Estadisticas','EstadisticasController@index')->name('estadisticas');
 
 Route::get('Reportes','ReportesController@index');
 
 Route::resource('horariogeneral','HorariosGeneralesController',['only' => ['index','create','store','destroy']]);
 
 Route::get('funcionarios/lista/griddata','FuncionariosController@listar')->name('gridfuncioarios');
-Route::get('/secciones-lista','SeccionesController@listar_secciones');
-Route::get('/cargos_lista','CargosController@listar_cargos');
-Route::get('/invitados-lista','InvitadosController@lista_invitados');
-Route::get('/user-lista','UsuariosController@lista_usuarios');
-Route::get('funcionariosinactivos','FuncionariosController@inactivos');
+Route::get('/secciones-lista','SeccionesController@listar_secciones')->name('gridsecciones');
+Route::get('/cargos_lista','CargosController@listar_cargos')->name('lista-cargos');
+Route::get('/invitados-lista','InvitadosController@lista_invitados')->name('lista-invitados');
+Route::get('/user-lista','UsuariosController@lista_usuarios')->name('lista-usuarios');
+Route::get('funcionariosinactivos','FuncionariosController@inactivos')->name('listar_funcionarios_inactivos');
 Route::get('/Listar_Auditorias','AuditoriasController@Listar_Auditorias')->name('listarAuditorias');
 
 Route::get('horariogeneral/show','HorariosGeneralesController@show')->name('horariogeneral.show');

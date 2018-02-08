@@ -152,7 +152,6 @@ class HomeController extends Controller
             $IdUsuario = Llave::select('id_asociado')->where('llave_rfid', $uid)->get()->first()->id_asociado;//obtengo el ide_asociado a la llave rfid
             //dd($IdUsuario);
             $idPuerta = Puerta::select('id')->where('ip',$dispoip)->get()->first()->id;
-            //dd($IdUsuario,$idPuerta);
             //1)verificar si la llave existe en la tabla llaves.
             $llaveentrada = Llave::where('llave_rfid', $uid)->count();//comparo si la llave existe
             //dd($llaveentrada); si es 1 existe la llave de entrada
