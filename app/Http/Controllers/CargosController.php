@@ -43,7 +43,7 @@ class CargosController extends Controller
                 {
                     $aciones ="";
                     $aciones ="<div class='btn btn-group'>";
-                    $aciones =$aciones.'<a href="/cargos/'.$cargo->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+                    $aciones =$aciones.'<a href="'.route('cargos.edit',$cargo->id).'" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
                     $aciones =$aciones."</div>";
                     return $aciones;
 

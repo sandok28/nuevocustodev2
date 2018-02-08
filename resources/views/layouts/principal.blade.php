@@ -175,43 +175,43 @@
         <div id="leftside-navigation" class="nano">
             <ul class="nano-content">
                 <li class="active">
-                    <a href="/home" style="padding-bottom: 0em !important;"><i class="glyphicon glyphicon-home"></i><span>HOME</span></a>
+                    <a href="{{route('home.home')}}" style="padding-bottom: 0em !important;"><i class="glyphicon glyphicon-home"></i><span>HOME</span></a>
                 </li>
                 <li class="active">
-                    <a href="/funcionarios" style="padding-bottom: 0.3em !important;"><i class="fa fa-users"></i><span>FUNCIONARIOS</span></a>
+                    <a href="{{route('funcionarios.index')}}" style="padding-bottom: 0.3em !important;"><i class="fa fa-users"></i><span>FUNCIONARIOS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/secciones" style="padding-bottom: 0.3em !important;"><i class="fa  fa-list"></i><span>SECCIONES</span></a>
+                    <a href="{{route('secciones.index')}}" style="padding-bottom: 0.3em !important;"><i class="fa  fa-list"></i><span>SECCIONES</span></a>
                 </li>
                 <li class="active">
-                    <a href="/cargos" style="padding-bottom: 0.3em !important;"><i class="fa  fa-list"></i><span>CARGOS</span></a>
+                    <a href="{{route('cargos.index')}}" style="padding-bottom: 0.3em !important;"><i class="fa  fa-list"></i><span>CARGOS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/invitados" style="padding-bottom: 0.3em !important;" ><i class="fa fa-users"></i><span>INVITADOS</span></a>
+                    <a href="{{route('invitados.index')}}" style="padding-bottom: 0.3em !important;" ><i class="fa fa-users"></i><span>INVITADOS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/usuarios" style="padding-bottom: 0.3em !important;"><i class="fa fa-users"></i><span>USUARIOS</span></a>
+                    <a href="{{route('usuarios.index')}}" style="padding-bottom: 0.3em !important;"><i class="fa fa-users"></i><span>USUARIOS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/horariogeneral/show" style="padding-bottom: 0.3em !important;"><i class="fa fa-clock-o"></i><span>HORARIOS</span></a>
+                    <a href="{{route('horariogeneral.show')}}" style="padding-bottom: 0.3em !important;"><i class="fa fa-clock-o"></i><span>HORARIOS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/licencias" style="padding-bottom: 0.3em !important;"><i class="fa  fa-files-o"></i><span>LICENCIAS</span></a>
+                    <a href="{{route('licencias.index')}}" style="padding-bottom: 0.3em !important;"><i class="fa  fa-files-o"></i><span>LICENCIAS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/GestionAreas" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>GESTION DE PUERTAS</span></a>
+                    <a href="{{route('GestionAreas.index')}}" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>GESTION DE PUERTAS</span></a>
                 </li>
                  <li class="active">
-                    <a href="/area/1" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>CONTROL DE PUERTAS</span></a>
+                    <a href="{{route('area')}}" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>CONTROL DE PUERTAS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/Estadisticas" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>ESTADISTICAS</span></a>
+                    <a href="{{route('estadisticas')}}" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>ESTADISTICAS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/Auditorias" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>AUDITORIAS</span></a>
+                    <a href="{{route('auditorias')}}" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>AUDITORIAS</span></a>
                 </li>
                 <li class="active">
-                    <a href="/inicial" style="padding-bottom: 0em !important;"><i class="fa fa-gears"></i><span>CONFIGUARION INICIAL</span></a>
+                    <a href="{{route('home.inicial')}}" style="padding-bottom: 0em !important;"><i class="fa fa-gears"></i><span>CONFIGUARION INICIAL</span></a>
                 </li>
             </ul>
         </div>

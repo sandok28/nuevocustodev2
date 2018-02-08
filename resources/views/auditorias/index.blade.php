@@ -51,7 +51,7 @@
             $('#example').DataTable( {
                 "processing": true,
                 "serverSide": true,
-                "ajax": "/Listar_Auditorias",
+                "ajax": "{{route('listarAuditorias')}}",
 
                 "columns":[
                     {data: 'user_id'},

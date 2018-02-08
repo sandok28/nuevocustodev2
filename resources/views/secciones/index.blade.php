@@ -65,7 +65,7 @@
             $('#example').DataTable( {
                 "processing": true,
                 "serverSide": true,
-                "ajax": "/secciones-lista",
+                "ajax": "{{route('gridsecciones')}}",
 
                 "columns":[
                     {data: 'nombre'},

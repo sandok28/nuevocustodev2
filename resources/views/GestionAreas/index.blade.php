@@ -73,7 +73,7 @@
             $('#example').DataTable( {
                 "processing": true,
                 "serverSide": true,
-                "ajax": "/puertas-listar",
+                "ajax": "{{route('listar-puertas')}}",
 
                 "columns":[
                     {data: 'nombre'},

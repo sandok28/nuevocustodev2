@@ -18,7 +18,7 @@
 
                         <div class="row">
                             <div class="col-md-8">
-                                {!! Form::select('TIPO DE REPORTES', ['cant_dias_fun' => 'Cantidad de dias de Licencias por Funcionario', 'cant_ingresos_area' => 'Cantidad de ingresos por Area'],null,['class'=>'form-control','id'=>'tipo']) !!}
+                                {!! Form::select('TIPO DE REPORTES', ['cant_puert_ingr' => 'Cantidad de ingresos por puerta'],null,['class'=>'form-control','id'=>'tipo']) !!}
                             </div>
                         </div><br><br>
                         <div class="row">
