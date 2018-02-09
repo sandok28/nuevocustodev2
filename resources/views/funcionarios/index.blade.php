@@ -126,7 +126,7 @@
             $('#example1').DataTable( {
                 "processing": true,
                 "serverSide": true,
-                "ajax": "funcionariosinactivos",
+                "ajax": "{{route('listar_funcionarios_inactivos')}}",
 
                 "columns":[
                     {data: 'nombre'},

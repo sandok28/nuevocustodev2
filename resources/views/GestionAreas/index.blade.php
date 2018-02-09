@@ -73,7 +73,7 @@
             $('#example').DataTable( {
                 "processing": true,
                 "serverSide": true,
-                "ajax": "/puertas-listar",
+                "ajax": "{{route('listar-puertas')}}",
 
                 "columns":[
                     {data: 'nombre'},
@@ -86,7 +86,7 @@
                     }},
                     {data: 'puerta_especial',
                      render:function(data){
-                        if(data==1){return "PUERTA ESPECILA"}
+                        if(data==1){return "PUERTA ESPECIAL"}
                         else{return "PUERTA NORMAL"}
                      }},
                     {data: 'action', name: 'action', orderable: false, searchable: false}

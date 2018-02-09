@@ -26,7 +26,6 @@
             {!! Form::open() !!}
             @include('Estadisticas.forms.formulario')
             {!! Form::button('Generar Estadistica',['class'=>'btn btn-primary','onclick'=>'dibujar()']) !!}
-            {!! Form::submit('Guardar Estadistica',['class'=>'btn btn-primary']) !!}
             {!! Form::close() !!}
 
 
@@ -36,62 +35,64 @@
                 <canvas id = "myChart"  > </canvas>
                 <script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
-                <script>
-                    function dibujar() {
-                        var ctx = document.getElementById('myChart').getContext('2d');
-                        var titulo = String(document.getElementById('tipo').value);
-                        var chart = new Chart(ctx, {
-                            type: 'bar',
+                @if($puertas==null){}
+                    @else
+                    {
+                    <script>
+                        function dibujar() {
+                            var ctx = document.getElementById('myChart').getContext('2d');
+                            var titulo = String(document.getElementById('tipo').value);
+                            var chart = new Chart(ctx, {
+                                type: 'bar',
 
-                            data: {
-                                labels: [
-                                    @forEach($funcionarios as $funcionario)
-                                        '{{$funcionario->nombre}}',
-                                    @endforeach
-                                ],
-                                datasets: [{
-                                    label: titulo,
-                                    backgroundColor: 'rgb(0, 0, 0)',
-                                    borderColor: 'rgb(255, 255, 255)',
-                                    data: [
-                                        @forEach($licencias as $licencia)
-                                         '{{$licencia->status}}',
-                                        @endforeach
+                                data: {
+                                    labels: [
+                                       //nombre funcionarios
                                     ],
-                                }]
-                            },
+                                    datasets: [{
+                                        label: titulo,
+                                        backgroundColor: 'rgb(0, 0, 0)',
+                                        borderColor: 'rgb(255, 255, 255)',
+                                        data: [
+                                            //ingresos exitosos de puertas
+                                        ],
+                                    }]
+                                },
 
-                            options: {}
-                        });
-                    }
-                    function dibujar1() {
-                        var ctx = document.getElementById('myChart').getContext('2d');
-                        var titulo = String(document.getElementById('tipo').value);
-                        var chart = new Chart(ctx, {
-                            type: 'bar',
+                                options: {}
+                            });
+                        }
+                        function dibujar1() {
+                            var ctx = document.getElementById('myChart').getContext('2d');
+                            var titulo = String(document.getElementById('tipo').value);
+                            var chart = new Chart(ctx, {
+                                type: 'bar',
 
-                            data: {
-                                labels: [
-                                    @forEach($funcionarios as $funcionario)
-                                        '{{$funcionario->nombre}}',
-                                    @endforeach
-                                ],
-                                datasets: [{
-                                    label: titulo,
-                                    backgroundColor: 'rgb(0, 0, 0)',
-                                    borderColor: 'rgb(255, 255, 255)',
-                                    data: [
+                                data: {
+                                    labels: [
                                         @forEach($funcionarios as $funcionario)
-                                        {{$funcionario->hoario_normal}},
+                                            '{{$funcionario->nombre}}',
                                         @endforeach
                                     ],
-                                }]
-                            },
+                                    datasets: [{
+                                        label: titulo,
+                                        backgroundColor: 'rgb(0, 0, 0)',
+                                        borderColor: 'rgb(255, 255, 255)',
+                                        data: [
+                                            @forEach($funcionarios as $funcionario)
+                                            {{$funcionario->hoario_normal}},
+                                            @endforeach
+                                        ],
+                                    }]
+                                },
 
-                            options: {}
-                        });
+                                options: {}
+                            });
+                        }
+                    </script>
                     }
-                </script>
+                @endif
+
 
                 <!--fin de  charts.js-->
             </div>

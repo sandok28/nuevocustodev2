@@ -43,7 +43,7 @@ class CargosController extends Controller
                 {
                     $aciones ="";
                     $aciones ="<div class='btn btn-group'>";
-                    $aciones =$aciones.'<a href="/cargos/'.$cargo->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+                    $aciones =$aciones.'<a href="'.route('cargos.edit',$cargo->id).'" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
                     $aciones =$aciones."</div>";
                     return $aciones;
 
@@ -121,7 +121,7 @@ class CargosController extends Controller
             DB::commit();
         } catch (\Exception $ex){
             DB::rollback();
-            dd($ex);
+            //dd($ex);
             return redirect('/cargos/create')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
         }
         return redirect('/cargos')->with(['message'=>'El Cargo se ha registrado correctamente','tipo'=>'message']);

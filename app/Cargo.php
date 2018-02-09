@@ -28,8 +28,11 @@ class Cargo extends Model implements AuditableContract
      */
     public function secciones()
     {
-
         return $this->belongsToMany('App\Seccion','Cargos_Secciones','cargo_id','seccion_id')->where('estatus_permiso',1);
 
+    }
+    public function seccionesActivas()
+    {
+        return $this->belongsToMany('App\Seccion','Cargos_Secciones','cargo_id','seccion_id')->wherePivot('estatus_permiso',1);
     }
 }

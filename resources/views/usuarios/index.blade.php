@@ -68,7 +68,7 @@
             $('#example').DataTable( {
                 "processing": true,
                 "serverSide": true,
-                "ajax": "/user-lista",
+                "ajax": "{{route('lista-usuarios')}}",
 
                 "columns":[
                     {data: 'name'},

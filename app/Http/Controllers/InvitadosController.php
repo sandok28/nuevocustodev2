@@ -39,7 +39,7 @@ class InvitadosController extends Controller
             ->addColumn('action', function ($invitado) {
                 $aciones ="";
                 $aciones ="<div class='btn btn-group'>";
-                $aciones =$aciones.'<a href="/invitados/'.$invitado->id.'/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+                $aciones =$aciones.'<a href="'.route('invitados.edit',$invitado->id).'" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
                 $aciones =$aciones."</div>";
             return $aciones;
             })
@@ -71,7 +71,7 @@ class InvitadosController extends Controller
             'cedula'=>'required|min:10000000|max:9999999999|numeric|unique:Invitados',
             'celular'=>'required|min:1000000000|max:9999999999|numeric',
             'fecha_nacimiento'=>'required|date_format:"Y-m-d"',
-            'correo'=>'required|max:30|email',
+            'correo'=>'required|max:40|email',
         ]);
 
         try{

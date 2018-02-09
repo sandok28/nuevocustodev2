@@ -47,7 +47,7 @@ class GestionAreasController extends Controller
             {
                 $aciones = "";
                 $aciones = "<div class='btn btn-group'>";
-                $aciones = $aciones . '<a href="puertas/' . $puerta->id . '/edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
+                $aciones = $aciones . '<a href="'.route('puertas.edit',$puerta->id).'" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i> Editar</a>';
                 $aciones =$aciones."</div>";
                 return $aciones;
             })
