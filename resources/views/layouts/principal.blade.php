@@ -44,7 +44,7 @@
     <header id="header">
         <!--logo start-->
         <div class="brand">
-            <a href="{{route('home')}}">
+            <a href="{{route('home.home')}}">
                 <!--logo custode-->
                 <!DOCTYPE  PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -175,11 +175,7 @@
         <div id="leftside-navigation" class="nano">
             <ul class="nano-content">
                 <li class="active">
-<<<<<<< HEAD
-                    <a href="{{route('home')}}" style="padding-bottom: 0em !important;"><i class="glyphicon glyphicon-home"></i><span>HOME</span></a>
-=======
                     <a href="{{route('home.home')}}" style="padding-bottom: 0em !important;"><i class="glyphicon glyphicon-home"></i><span>HOME</span></a>
->>>>>>> nuevocustode_dv_local
                 </li>
                 <li class="active">
                     <a href="{{route('funcionarios.index')}}" style="padding-bottom: 0.3em !important;"><i class="fa fa-users"></i><span>FUNCIONARIOS</span></a>
@@ -197,11 +193,7 @@
                     <a href="{{route('usuarios.index')}}" style="padding-bottom: 0.3em !important;"><i class="fa fa-users"></i><span>USUARIOS</span></a>
                 </li>
                 <li class="active">
-<<<<<<< HEAD
-                    <a href="{{route('horariogeneral.show')}}" style="padding-bottom: 0.3em !important;"><i class="fa fa-clock-o"></i><span>HORARIO GENERAL</span></a>
-=======
                     <a href="{{route('horariogeneral.show')}}" style="padding-bottom: 0.3em !important;"><i class="fa fa-clock-o"></i><span>HORARIOS</span></a>
->>>>>>> nuevocustode_dv_local
                 </li>
                 <li class="active">
                     <a href="{{route('licencias.index')}}" style="padding-bottom: 0.3em !important;"><i class="fa  fa-files-o"></i><span>LICENCIAS</span></a>

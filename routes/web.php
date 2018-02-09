@@ -12,21 +12,15 @@
 */
 
 
-<<<<<<< HEAD
-Route::get('/home', 'HomeController@index')->name('home');
-=======
+
 Route::get('/home', 'HomeController@index')->name('home.home');
->>>>>>> nuevocustode_dv_local
+
 Route::get('/','HomeController@iniciosession');
 Route::post('/login','HomeController@login')->name('home.login');
 Route::get('/logout','HomeController@logout')->name('home.logout');
 Route::get('/inicial','HomeController@inicial')->name('home.inicial');
 Route::get('/Auditorias','AuditoriasController@index')->name('auditorias');
-<<<<<<< HEAD
 
-
-=======
->>>>>>> nuevocustode_dv_local
 Route::resource('usuarios','UsuariosController',['except' => ['show','destroy']]);
 Route::get('usuario_actual/edit','UsuariosController@editUsuarioActual')->name('usuarios.edit_usuario_actual');
 Route::put('usuario_actual/','UsuariosController@updateUsuarioActual')->name('usuarios.update_usuario_actual');
@@ -58,6 +52,8 @@ Route::DELETE('licencias/edit_en_curso/{funcionario_id}','LicenciasController@de
 Route::resource('IntervalosInvitados','IntervalosInvitadosController',['only' => ['show','destroy']]);
 Route::get('IntervalosInvitados/create/{invitado_id}', 'IntervalosInvitadosController@create')->name('IntervalosInvitados.create');
 Route::post('IntervalosInvitados/{invitado_id}', 'IntervalosInvitadosController@store')->name('IntervalosInvitados.store');
+Route::get('IntervalosInvitados/concluir/{id}','IntervalosInvitadosController@concluirIntevaloInvitado')->name('IntervalosInvitados.concluir');
+
 
 Route::resource('IntervalosFuncionarios','IntervalosFuncionariosController',['only' => ['show','destroy']]);
 Route::get('IntervalosFuncionarios/create/{funcionario_id}', 'IntervalosFuncionariosController@create')->name('IntervalosFuncionarios.create');
@@ -66,11 +62,9 @@ Route::post('IntervalosFuncionarios/{funcionario_id}', 'IntervalosFuncionariosCo
 Route::get('errores','ErroresController@error404')->name('errores.error404');
 
 Route::resource('GestionAreas','GestionAreasController');
-<<<<<<< HEAD
-Route::get('area/','GestionAreasController@controlareas')->name('area');
-=======
+
 Route::get('area','GestionAreasController@controlareas')->name('area');
->>>>>>> nuevocustode_dv_local
+
 
 Route::get('Estadisticas','EstadisticasController@index')->name('estadisticas');
 
