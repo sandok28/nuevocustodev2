@@ -12,12 +12,12 @@
 */
 
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/','HomeController@iniciosession');
 Route::post('/login','HomeController@login')->name('home.login');
 Route::get('/logout','HomeController@logout')->name('home.logout');
 Route::get('/inicial','HomeController@inicial')->name('home.inicial');
-Route::get('/Auditorias','AuditoriasController@index');
+Route::get('/Auditorias','AuditoriasController@index')->name('auditorias');
 
 
 Route::resource('usuarios','UsuariosController',['except' => ['show','destroy']]);
@@ -59,9 +59,9 @@ Route::post('IntervalosFuncionarios/{funcionario_id}', 'IntervalosFuncionariosCo
 Route::get('errores','ErroresController@error404')->name('errores.error404');
 
 Route::resource('GestionAreas','GestionAreasController');
-Route::get('area/{user_id}','GestionAreasController@controlareas');
+Route::get('area/','GestionAreasController@controlareas')->name('area');
 
-Route::get('Estadisticas','EstadisticasController@index');
+Route::get('Estadisticas','EstadisticasController@index')->name('estadisticas');
 
 Route::get('Reportes','ReportesController@index');
 

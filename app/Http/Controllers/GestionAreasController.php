@@ -120,7 +120,7 @@ class GestionAreasController extends Controller
      * @param boolean  $puertasEspeciales Filtra y almacena la informacion tipo de puerta del usuario logeado.
      * @return \Illuminate\Http\Response devuelve la vista edit de los intervalos.
      */
-    public function controlareas($id)
+    public function controlareas()
     {
         $puertasNormales = Auth::User()->puertas->where('puerta_especial',0);
         $puertasEspeciales = Auth::User()->puertas->where('puerta_especial',1);

@@ -70,8 +70,6 @@ class FuncionariosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-
     public function store(\App\Http\Requests\FuncionariosCrearRequest $request)
     {
         if($request->cargo_id==null)
@@ -425,8 +423,6 @@ class FuncionariosController extends Controller
                             DB::table('Funcionarios')->where('id', $funcionario->id)->update(['licencia' =>'1']);
                         }
                     }
-
-
                 }
             DB::commit();
         } catch (\Exception $ex){
