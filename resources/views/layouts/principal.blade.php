@@ -19,6 +19,10 @@
     {!! Html::style('assets/plugins/bootstrap/css/bootstrap.min.css') !!}
     {{-- Fonts from Font Awsome --}}
     {!! Html::style('assets/css/font-awesome.min.css') !!}
+    {{-- Fonts from Font Awsome 5-0 --}}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    {{-- CSS Custode --}}
+    {!! Html::style('assets/css/custode_style.css') !!}
     {{-- CSS Animate --}}
     {!! Html::style('assets/css/animate.css') !!}
     {{-- Custom styles for this theme --}}
@@ -28,6 +32,7 @@
     {!! Html::style('assets/css/googleapisOpenSans.css') !!}
     {{-- Feature detection --}}
     {!! Html::script('assets/js/modernizr-2.6.2.min.js') !!}
+
     {{-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries --}}
     {{--[if lt IE 9]>
     {!! Html::script('assets/js/html5shiv.js') !!}
@@ -150,9 +155,6 @@
         </div>
         <div class="user-nav">
             <ul>
-                <li class="profile-photo">
-                    <img src="assets/img/avatar.png" alt="" class="img-circle">
-                </li>
                 <li class="dropdown settings">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         {!! Auth::User()->name !!}
@@ -174,44 +176,44 @@
     <aside class="sidebar">
         <div id="leftside-navigation" class="nano">
             <ul class="nano-content">
-                <li class="active">
-                    <a href="{{route('home.home')}}" style="padding-bottom: 0em !important;"><i class="glyphicon glyphicon-home"></i><span>HOME</span></a>
+                <li class="active paddin_menu average_font_size">
+                    <a href="{{route('home.home')}}" ><i class="glyphicon glyphicon-home"></i><span>Inicio</span></a>
                 </li>
-                <li class="active">
-                    <a href="{{route('funcionarios.index')}}" style="padding-bottom: 0.3em !important;"><i class="fa fa-users"></i><span>FUNCIONARIOS</span></a>
+                <li class="active paddin_menu average_font_size">
+                    <a href="{{route('funcionarios.index')}}" ><i class="fas fa-address-card"></i><span>Gestión de funcionarios</span></a>
                 </li>
-                <li class="active">
-                    <a href="{{route('secciones.index')}}" style="padding-bottom: 0.3em !important;"><i class="fa  fa-list"></i><span>SECCIONES</span></a>
+                <li class="active paddin_menu average_font_size">
+                    <a href="{{route('secciones.index')}}" ><i class="fas fa-puzzle-piece"></i><span>Gestión de secciones</span></a>
                 </li>
-                <li class="active">
-                    <a href="{{route('cargos.index')}}" style="padding-bottom: 0.3em !important;"><i class="fa  fa-list"></i><span>CARGOS</span></a>
+                <li class="active paddin_menu average_font_size">
+                    <a href="{{route('cargos.index')}}" ><i class="fas fa-street-view"></i><span>Gestión de cargos</span></a>
                 </li>
-                <li class="active">
-                    <a href="{{route('invitados.index')}}" style="padding-bottom: 0.3em !important;" ><i class="fa fa-users"></i><span>INVITADOS</span></a>
+                <li class="active paddin_menu average_font_size">
+                    <a href="{{route('invitados.index')}}"  ><i class="fas fa-user-friends"></i><span>Gestión de invitados </span></a>
                 </li>
-                <li class="active">
-                    <a href="{{route('usuarios.index')}}" style="padding-bottom: 0.3em !important;"><i class="fa fa-users"></i><span>USUARIOS</span></a>
+                <li class="active paddin_menu average_font_size">
+                    <a href="{{route('usuarios.index')}}" ><i class="fa fa-users"></i><span>Gestión de usuarios</span></a>
                 </li>
-                <li class="active">
-                    <a href="{{route('horariogeneral.show')}}" style="padding-bottom: 0.3em !important;"><i class="fa fa-clock-o"></i><span>HORARIOS</span></a>
+                <li class="active paddin_menu average_font_size">
+                    <a href="{{route('horariogeneral.show')}}" ><i class="fa fa-clock-o"></i><span>Gestión de horarios</span></a>
                 </li>
-                <li class="active">
-                    <a href="{{route('licencias.index')}}" style="padding-bottom: 0.3em !important;"><i class="fa  fa-files-o"></i><span>LICENCIAS</span></a>
+                <li class="active paddin_menu average_font_size">
+                    <a href="{{route('licencias.index')}}" ><i class="far fa-calendar-alt"></i><span>Gestión de licencias</span></a>
                 </li>
-                <li class="active">
-                    <a href="{{route('GestionAreas.index')}}" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>GESTION DE PUERTAS</span></a>
+                <li class="active paddin_menu average_font_size">
+                    <a href="{{route('GestionAreas.index')}}" ><i class="fas fa-door-closed"></i><span>Gestión de puertas</span></a>
                 </li>
-                 <li class="active">
-                    <a href="{{route('area')}}" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>CONTROL DE PUERTAS</span></a>
+                <li class="active paddin_menu average_font_size">
+                    <a href="{{route('area')}}" ><i class="fas fa-door-open"></i><span>Control de puertas</span></a>
                 </li>
-                <li class="active">
-                    <a href="{{route('estadisticas')}}" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>ESTADISTICAS</span></a>
+                <li class="active paddin_menu average_font_size">
+                    <a href="{{route('estadisticas')}}" ><i class="fas fa-chart-bar"></i><span>Estadísticas</span></a>
                 </li>
-                <li class="active">
-                    <a href="{{route('auditorias')}}" style="padding-bottom: 0.3em !important;"><i class="fa fa-list"></i><span>AUDITORIAS</span></a>
+                <li class="active paddin_menu average_font_size">
+                    <a href="{{route('auditorias')}}" ><i class="fas fa-search"></i><span>Auditoria</span></a>
                 </li>
-                <li class="active">
-                    <a href="{{route('home.inicial')}}" style="padding-bottom: 0em !important;"><i class="fa fa-gears"></i><span>CONFIGUARION INICIAL</span></a>
+                <li class="active paddin_menu average_font_size">
+                    <a href="{{route('home.inicial')}}" ><i class="fa fa-gears"></i><span>Configuración inicial</span></a>
                 </li>
             </ul>
         </div>

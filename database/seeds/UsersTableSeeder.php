@@ -14,7 +14,6 @@ class UsersTableSeeder extends Seeder
 
         $carbon = new \Carbon\Carbon();
 
-
         DB::table('users')->insert([
             'name' => 'admin',
             'email' => 'admin',
@@ -23,6 +22,7 @@ class UsersTableSeeder extends Seeder
             'created_at' => $carbon->now(),
             'updated_at' => $carbon->now(),
         ]);
+        /*
         for ($i = 1; $i<11; $i++) {
             DB::table('users')->insert([
                 'name' => 's'.$i,
@@ -33,7 +33,7 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => $carbon->now(),
            ]);
         }
-
+        */
 
     }
 }

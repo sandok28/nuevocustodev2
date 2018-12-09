@@ -1,7 +1,7 @@
 @extends('layouts.principal')
 
 @section('titel')
-    modulo inicial
+    Configuración inicial
 @endsection
 
 @section('cargarcss')
@@ -14,7 +14,7 @@
     <div class="col-md-12">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h3 class="panel-title">Modulo Inicial</h3>
+                <h3 class="panel-title">Configuración inicial</h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
                 </div>
@@ -23,7 +23,7 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">PRIMERO PASOS</h3>
+                            <h3 class="panel-title">Progreso</h3>
                             <div class="actions pull-right">
                                 <i class="fa fa-chevron-down"></i>
                                 <i class="fa fa-times"></i>
@@ -67,291 +67,196 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-md-12">
                     @if($num_puertas > 0)
-                        <div class="col-md-12">
-                            <div class="panel panel-success">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">1. CREACION DE PUERTAS</h3>
-                                    <div class="actions pull-right">
-                                        <i class="fa fa-chevron-down"></i>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="col-md-8">
-                                        <p>Debes registrar las areas (puertas) que tengas en la organizacion</p>
-                                    </div>
-                                    <div class="col-md-4">
-                                        {!!link_to_route('GestionAreas.index', 'Agregar Areas', null,['class'=>'btn btn-default btn-block btn-3d'])!!}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="panel panel-success">
                     @else
-                        <div class="col-md-12">
-                            <div class="panel panel-danger">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">1. CREACION DE PUERTAS</h3>
-                                    <div class="actions pull-right">
-                                        <i class="fa fa-chevron-down"></i>
-                                    </div>
+                        <div class="panel panel-danger">
+                    @endif
+                            <div class="panel-heading">
+                                <h3 class="panel-title">1. Crear puertas</h3>
+                                <div class="actions pull-right">
+                                    <i class="fa fa-chevron-down"></i>
                                 </div>
-                                <div class="panel-body">
-                                    <div class="col-md-8">
-                                        <p>Debes registrar las areas (puertas) que tengas en la organizacion</p>
-                                    </div>
-                                    <div class="col-md-4">
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-8">
+                                    <p>Se deben configurar las puertas de la organización que seran controladas por el sistema.</p>
+                                </div>
+                                <div class="col-md-4">
+                                    @if($num_puertas > 0)
+                                        {!!link_to_route('GestionAreas.index', 'Gestión de puertas', null,['class'=>'btn btn-default btn-block btn-3d'])!!}
+                                    @else
+                                        {!!link_to_route('GestionAreas.index', 'Gestión de puertas', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
+                                    @endif
 
-                                        {!!link_to_route('GestionAreas.index', 'Agregar Areas', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                    @endif
+                    </div>
+
+                    <div class="col-md-12">
                     @if($num_control_puertas > 0)
-                        <div class="col-md-12">
-                            <div class="panel panel-success">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">2. ASIGNAR CONTROL DE LAS PUERTAS</h3>
-                                    <div class="actions pull-right">
-                                        <i class="fa fa-chevron-down"></i>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="col-md-8">
-                                        <p>Debes Actualizar el control que tiene tu usuario sobre las nuevas areas(puertas) que agregaste</p>                                    </div>
-                                    <div class="col-md-4">
-
-                                        {!!link_to_route('usuarios.edit', 'Asignar Control Puertas', Auth::User()->id,['class'=>'btn btn-default btn-block btn-3d'])!!}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="panel panel-success">
                     @else
-                        <div class="col-md-12">
-                            <div class="panel panel-danger">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">2. ASIGNAR CONTROL DE LAS PUERTAS</h3>
-                                    <div class="actions pull-right">
-                                        <i class="fa fa-chevron-down"></i>
-                                    </div>
+                        <div class="panel panel-danger">
+                    @endif
+                            <div class="panel-heading">
+                                <h3 class="panel-title">2. ASIGNAR CONTROL DE LAS PUERTAS</h3>
+                                <div class="actions pull-right">
+                                    <i class="fa fa-chevron-down"></i>
                                 </div>
-                                <div class="panel-body">
-                                    <div class="col-md-8">
-                                        <p>Debes Actualizar el control que tiene tu usuario sobre las nuevas areas(puertas) que agregaste</p>
-                                    </div>
-                                    <div class="col-md-4">
-
-                                        {!!link_to_route('usuarios.edit', 'Asignar Control Puertas', Auth::User()->id,['class'=>'btn btn-info btn-block btn-3d'])!!}
-                                    </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-8">
+                                    <p>Se debe especificar el control que tiene tu usuario sobre las puertas creadas.</p>
+                                    <p>Solo las puertas especificadas se podran gestionar desde el sistema por el usurio en sesion.</p>
+                                </div>
+                                <div class="col-md-4">
+                                    @if($num_control_puertas > 0)
+                                        {!!link_to_route('usuarios.edit', 'Gestión de usuarios', Auth::User()->id,['class'=>'btn btn-default btn-block btn-3d'])!!}
+                                    @else
+                                        {!!link_to_route('usuarios.edit', 'Gestión de usuarios', Auth::User()->id,['class'=>'btn btn-info btn-block btn-3d'])!!}
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                    @endif
+                    </div>
+
+                    <div class="col-md-12">
                     @if($num_horario_general > 0)
-                        <div class="col-md-12">
-                            <div class="panel panel-success">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">3. ASIGNAR HORARIO GENERAL</h3>
-                                    <div class="actions pull-right">
-                                        <i class="fa fa-chevron-down"></i>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="col-md-8">
-                                        <p>Debes configurar el horario general de la empresa</p>
-                                    </div>
-                                    <div class="col-md-4">
-
-                                        {!!link_to_route('horariogeneral.show', 'Asignar Horario General', Auth::User()->id,['class'=>'btn btn-default btn-block btn-3d'])!!}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="panel panel-success">
                     @else
-                        <div class="col-md-12">
-                            <div class="panel panel-danger">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">3. ASIGNAR HORARIO GENERAL</h3>
-                                    <div class="actions pull-right">
-                                        <i class="fa fa-chevron-down"></i>
-                                    </div>
+                        <div class="panel panel-danger">
+                    @endif
+                            <div class="panel-heading">
+                                <h3 class="panel-title">3. Crear horario general</h3>
+                                <div class="actions pull-right">
+                                    <i class="fa fa-chevron-down"></i>
                                 </div>
-                                <div class="panel-body">
-                                    <div class="col-md-8">
-                                        <p>Debes configurar el horario general de la empresa</p>
-                                    </div>
-                                    <div class="col-md-4">
-
-                                        {!!link_to_route('horariogeneral.show', 'Asignar Horario General', Auth::User()->id,['class'=>'btn btn-info btn-block btn-3d'])!!}
-                                    </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-8">
+                                    <p>Se debe configurar el horario general de la empresa.</p>
+                                </div>
+                                <div class="col-md-4">
+                                    @if($num_horario_general > 0)
+                                        {!!link_to_route('horariogeneral.show', 'Gestión de horarios', Auth::User()->id,['class'=>'btn btn-default btn-block btn-3d'])!!}
+                                    @else
+                                        {!!link_to_route('horariogeneral.show', 'Gestión de horarios', Auth::User()->id,['class'=>'btn btn-info btn-block btn-3d'])!!}
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                    @endif
+                    </div>
+
+                    <div class="col-md-12">
                     @if($num_secciones > 0)
-                        <div class="col-md-12">
-                            <div class="panel panel-success">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">4. CREACION DE SECCIONES</h3>
-                                    <div class="actions pull-right">
-                                        <i class="fa fa-chevron-down"></i>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="col-md-8">
-                                        <p>Debes registrar las secciones que tengas en la organizacion</p>
-                                    </div>
-                                    <div class="col-md-4">
-
-                                        {!!link_to_route('secciones.index', 'Agregar Secciones', null,['class'=>'btn btn-default btn-block btn-3d'])!!}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="panel panel-success">
                     @else
-                        <div class="col-md-12">
-                            <div class="panel panel-danger">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">4. CREACION DE SECCIONES</h3>
-                                    <div class="actions pull-right">
-                                        <i class="fa fa-chevron-down"></i>
-                                    </div>
+                        <div class="panel panel-danger">
+                    @endif
+                            <div class="panel-heading">
+                                <h3 class="panel-title">4. Crear secciones</h3>
+                                <div class="actions pull-right">
+                                    <i class="fa fa-chevron-down"></i>
                                 </div>
-                                <div class="panel-body">
-                                    <div class="col-md-8">
-                                        <p>Debes registrar las secciones que tengas en la organizacion</p>
-                                    </div>
-                                    <div class="col-md-4">
-
-                                        {!!link_to_route('secciones.index', 'Agregar Secciones', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
-                                    </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-8">
+                                    <p>Se debe configurar las secciones que agrupan distintias puertas en la empresa.</p>
+                                </div>
+                                <div class="col-md-4">
+                                    @if($num_secciones > 0)
+                                        {!!link_to_route('secciones.index', 'Gestión de secciones', null,['class'=>'btn btn-default btn-block btn-3d'])!!}
+                                    @else
+                                        {!!link_to_route('secciones.index', 'Gestión de secciones', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                    @endif
+                    </div>
+
+                    <div class="col-md-12">
                     @if($num_cargos > 0)
-                        <div class="col-md-12">
-                            <div class="panel panel-success">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">5. CREACION DE CARGOS</h3>
-                                    <div class="actions pull-right">
-                                        <i class="fa fa-chevron-down"></i>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="col-md-8">
-                                        <p>Debes registrar los cargos que tengas en la organizacion no olvides asociarlos a las secciones correspondientes</p>
-                                    </div>
-                                    <div class="col-md-4">
-
-                                        {!!link_to_route('cargos.index', 'Agregar Cargos', null,['class'=>'btn btn-default btn-block btn-3d'])!!}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="panel panel-success">
                     @else
-                        <div class="col-md-12">
-                            <div class="panel panel-danger">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">5. CREACION DE CARGOS</h3>
-                                    <div class="actions pull-right">
-                                        <i class="fa fa-chevron-down"></i>
-                                    </div>
+                        <div class="panel panel-danger">
+                    @endif
+                            <div class="panel-heading">
+                                <h3 class="panel-title">5. Crear cargos</h3>
+                                <div class="actions pull-right">
+                                    <i class="fa fa-chevron-down"></i>
                                 </div>
-                                <div class="panel-body">
-                                    <div class="col-md-8">
-                                        <p>Debes registrar los cargos que tengas en la organizacion no olvides asociarlos a las secciones correspondientes</p>
-                                    </div>
-                                    <div class="col-md-4">
-
-                                        {!!link_to_route('cargos.index', 'Agregar Cargos', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
-                                    </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-8">
+                                    <p>Se debe configurar los cargos en la empresa y asociarlos a las secciones a las que corresponden.</p>
+                                </div>
+                                <div class="col-md-4">
+                                    @if($num_cargos > 0)
+                                        {!!link_to_route('cargos.index', 'Gestión de cargos', null,['class'=>'btn btn-default btn-block btn-3d'])!!}
+                                    @else
+                                        {!!link_to_route('cargos.index', 'Gestión de cargos', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                    @endif
+                    </div>
+
+                    <div class="col-md-12">
                     @if($num_funcionarios > 0)
-                        <div class="col-md-12">
-                            <div class="panel panel-success">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">6. CREACION DE FUNCIONARIOS</h3>
-                                    <div class="actions pull-right">
-                                        <i class="fa fa-chevron-down"></i>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="col-md-8">
-                                        <p>Debes registrar los funcionarios que tengas en la organizacion no olvides asociarlos a los cargos correspondientes</p>
-                                    </div>
-                                    <div class="col-md-4">
-
-                                        {!!link_to_route('funcionarios.index', 'Agregar Funcionarios', null,['class'=>'btn btn-default btn-block btn-3d'])!!}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="panel panel-success">
                     @else
-                        <div class="col-md-12">
-                            <div class="panel panel-danger">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">6. CREACION DE FUNCIONARIOS</h3>
-                                    <div class="actions pull-right">
-                                        <i class="fa fa-chevron-down"></i>
-                                    </div>
+                        <div class="panel panel-danger">
+                    @endif
+                            <div class="panel-heading">
+                                <h3 class="panel-title">6. Crear funcionarios</h3>
+                                <div class="actions pull-right">
+                                    <i class="fa fa-chevron-down"></i>
                                 </div>
-                                <div class="panel-body">
-                                    <div class="col-md-8">
-                                        <p>Debes registrar los funcionarios que tengas en la organizacion no olvides asociarlos a los cargos correspondientes</p>
-                                    </div>
-                                    <div class="col-md-4">
-                                        {!!link_to_route('funcionarios.index', 'Agregar Funcionarios', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
-                                    </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-8">
+                                    <p>Se debe registrar los funcionarios en la empresa</p>
+                                </div>
+                                <div class="col-md-4">
+                                    @if($num_funcionarios > 0)
+                                        {!!link_to_route('funcionarios.index', 'Gestión de funcionarios', null,['class'=>'btn btn-default btn-block btn-3d'])!!}
+                                    @else
+                                        {!!link_to_route('funcionarios.index', 'Gestión de funcionarios', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                    @endif
+                    </div>
+
+                    <div class="col-md-12">
                     @if($num_usuarios > 1)
-                        <div class="col-md-12">
-                            <div class="panel panel-success">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">7. CREACION DE USUARIO AUXILIAR</h3>
-                                    <div class="actions pull-right">
-                                        <i class="fa fa-chevron-down"></i>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="col-md-8">
-                                        <p>Se recomienda crear un usuario auxiliar el cual pueda realizar algunas fucniones especificas</p>
-                                    </div>
-                                    <div class="col-md-4">
-
-                                        {!!link_to_route('usuarios.index', 'Agregar Usuarios', null,['class'=>'btn btn-default btn-block btn-3d'])!!}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="panel panel-success">
                     @else
-                        <div class="col-md-12">
-                            <div class="panel panel-danger">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">7. CREACION DE USUARIO AUXILIAR</h3>
-                                    <div class="actions pull-right">
-                                        <i class="fa fa-chevron-down"></i>
-                                    </div>
+                        <div class="panel panel-danger">
+                    @endif
+                            <div class="panel-heading">
+                                <h3 class="panel-title">7. Crear usuario auxiliar</h3>
+                                <div class="actions pull-right">
+                                    <i class="fa fa-chevron-down"></i>
                                 </div>
-                                <div class="panel-body">
-                                    <div class="col-md-8">
-                                        <p>Se recomienda crear un usuario auxiliar el cual pueda realizar algunas fucniones especificas</p>
-                                    </div>
-                                    <div class="col-md-4">
-
-                                        {!!link_to_route('usuarios.index', 'Agregar Usuarios', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
-                                    </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-8">
+                                    <p>Se recomienda crear un usuario auxiliar, el cual pueda realizar algunas fucniones especificas segun sus roles</p>
+                                </div>
+                                <div class="col-md-4">
+                                    @if($num_usuarios > 1)
+                                        {!!link_to_route('usuarios.index', 'Gestión de usuarios', null,['class'=>'btn btn-default btn-block btn-3d'])!!}
+                                    @else
+                                        {!!link_to_route('usuarios.index', 'Gestión de usuarios', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                    @endif
-
+                    </div>
                 </div>
             </div>
         </div>
