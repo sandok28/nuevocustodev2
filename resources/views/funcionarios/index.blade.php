@@ -15,7 +15,7 @@
     <div class="col-md-12">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h3 class="panel-title">Lista Funcionarios</h3>
+                <h3 class="panel-title">Gestión de funcionarios</h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
 
@@ -26,7 +26,7 @@
                     <div class="col-md-12">
                         <div class="panel-heading row">
                             <div class="col-md-6">
-                                {!!link_to_route('funcionarios.create', 'Agregar funcionarios', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
+                                {!!link_to_route('funcionarios.create', 'Agregar funcionario', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
                             </div>
                             <div class="col-md-6">
                                 <button class="btn btn-primary btn-block btn-3d" onclick="history.back();">Volver</button>
@@ -41,11 +41,11 @@
 
                                         <thead>
                                         <tr>
-                                            <th>Nombre</th>
-                                            <th>Apellido</th>
+                                            <th>Nombres</th>
+                                            <th>Apellidos</th>
                                             <th>Cedula</th>
                                             <th>Correo</th>
-                                            <th>Estatus</th>
+                                            <th>Estado</th>
                                             <th>Editar</th>
                                         </tr>
                                         </thead>
@@ -61,7 +61,7 @@
     <div class="col-md-12">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h3 class="panel-title">Lista Funcionarios Inactivos</h3>
+                <h3 class="panel-title">Funcionarios inactivos</h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
                 </div>

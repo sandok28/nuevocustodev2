@@ -1,7 +1,7 @@
 <div class="col-md-12">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Lista De Puertas Asignadas</h3>
+            <h3 class="panel-title">Puertas activas</h3>
             <div class="actions pull-right">
                 <i class="fa fa-chevron-down"></i>
 
@@ -13,7 +13,7 @@
                 <div class="col-xs-12 " >
                     <div class="col-xs-6">
                         <div class="col-xs-12">
-                            <h1>Puertas normales</h1>
+                            <h1>Normales</h1>
                         </div>
                         @foreach($puertasNormales as $puertaNormal)
 
@@ -25,7 +25,7 @@
                     </div>
                     <div class="col-xs-6">
                         <div class="col-xs-12">
-                            <h1>Puertas especiales</h1>
+                            <h1>Especiales</h1>
                         </div>
 
                         @foreach($puertasEspeciales as $puertaEspecial)
@@ -43,7 +43,7 @@
 <div class="col-md-12">
     <div class="panel panel-info">
         <div class="panel-heading">
-            <h3 class="panel-title">Lista de intervalos</h3>
+            <h3 class="panel-title">Intervalos de tiempo</h3>
             <div class="actions pull-right">
                 <i class="fa fa-chevron-down"></i>
 

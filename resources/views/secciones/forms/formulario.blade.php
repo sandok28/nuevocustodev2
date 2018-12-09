@@ -3,7 +3,7 @@
         {!!Form::label('nombre','Nombre:')!!}
     </div>
     <div class="col-md-10">
-        {!!Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Ingresa el Nombre de la Seccion'])!!}
+        {!!Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Nombre de la Seccion'])!!}
     </div>
 </div>
 

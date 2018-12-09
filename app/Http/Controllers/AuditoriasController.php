@@ -17,7 +17,7 @@ class AuditoriasController extends Controller
 
     public function Listar_Auditorias()
     {
-        $auditarusuarios= auditoria::select('user_id','event','old_values','new_values','ip_address');
+        $auditarusuarios = auditoria::select('user_id','event','old_values','new_values','ip_address');
         return \Datatables::of($auditarusuarios)->make(true);
     }
 

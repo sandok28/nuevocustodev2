@@ -13,7 +13,7 @@
     <div class="col-md-12">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h3 class="panel-title">GESTION DE PUERTAS</h3>
+                <h3 class="panel-title">Gestión de puertas</h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
                 </div>
@@ -21,15 +21,10 @@
             <div class="panel-body">
                 {!! Html::style('assets/plugins/dataTables/css/dataTables.css') !!}
                 <section id="main-content">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="h1">GESTION DE AREAS</h1>
-                        </div>
-                    </div>
                     <div class="col-md-12">
                         <div class="panel-heading row">
                             <div class="col-md-6">
-                                {!!link_to_route('puertas.create', 'Agregar Puertas', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
+                                {!!link_to_route('puertas.create', 'Agregar puerta', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
                             </div>
                             <div class="col-md-6">
                                 <button class="btn btn-primary btn-block btn-3d" onclick="history.back();">Volver</button>
@@ -44,11 +39,11 @@
 
                                         <thead>
                                         <tr>
-                                            <th>Modulo</th>
+                                            <th>Puerta</th>
                                             <th>Llave</th>
                                             <th>Ip</th>
-                                            <th>Dado de Baja</th>
-                                            <th>Puerta Especial</th>
+                                            <th>Estado</th>
+                                            <th>Tipo</th>
                                             <th>Editar</th>
                                         </tr>
                                         </thead>
@@ -81,13 +76,13 @@
                     {data: 'ip'},
                     {data: 'estatus',
                     render: function(data){
-                        if (data==1){return "Activo";}
-                        else{return "Inactivo"}
+                        if (data==1){return "Activa";}
+                        else{return "Inactiva"}
                     }},
                     {data: 'puerta_especial',
                      render:function(data){
-                        if(data==1){return "PUERTA ESPECIAL"}
-                        else{return "PUERTA NORMAL"}
+                        if(data==1){return "Especial"}
+                        else{return "Normal"}
                      }},
                     {data: 'action', name: 'action', orderable: false, searchable: false}
 

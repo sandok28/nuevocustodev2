@@ -16,7 +16,7 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Horario General Del Sistema</h3>
+                <h3 class="panel-title">Horario general de la empresa</h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
 
@@ -26,7 +26,7 @@
                 <div class="col-md-12">
                     <div class="panel-heading row">
                         <div class="col-md-6">
-                            {!!link_to_route('horariogeneral.index', 'Editar Horario General', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
+                            {!!link_to_route('horariogeneral.index', 'Editar horario heneral', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
 
                         </div>
                         <div class="col-md-6">

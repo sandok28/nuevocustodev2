@@ -8,9 +8,9 @@
 <table id="example2" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
     <tr>
-        <th>desde</th>
-        <th>hasta</th>
-        <th>dia</th>
+        <th>Desde</th>
+        <th>Hasta</th>
+        <th>Dia</th>
         <th>Eliminar</th>
     </tr>
     </thead>

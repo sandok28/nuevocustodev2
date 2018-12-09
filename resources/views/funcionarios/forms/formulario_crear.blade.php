@@ -18,42 +18,42 @@
                             <br><br>
                             <div class="form-group">
                                 <div class="col-sm-3">
-                                {!!Form::label('nombre','NOMBRE:')!!}
+                                {!!Form::label('nombre','Nombre:')!!}
                                 </div>
                                 <div class="col-sm-9">
-                                {!!Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Ingresa el Nombre del usuario'])!!}
+                                {!!Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Nombre'])!!}
                                 </div>
                             </div>
                             <br><br>
                             <div class="form-group">
                                 <div class="col-sm-3">
-                                   {!!Form::label('apellido','APELLIDO:')!!}
+                                   {!!Form::label('apellido','Apellido:')!!}
                                 </div>
                                 <div class="col-sm-9">
-                                    {!!Form::text('apellido',null,['class'=>'form-control','placeholder'=>'Ingresa el Apellido del usuario'])!!}
+                                    {!!Form::text('apellido',null,['class'=>'form-control','placeholder'=>'Apellido'])!!}
                                 </div>
                             </div>
                             <br><br>
                             <div class="form-group">
                                <div class="col-sm-3">
-                                   {!!Form::label('cedula','CEDULA:')!!}
+                                   {!!Form::label('cedula','Cedule:')!!}
                                </div>
                                <div class="col-sm-9">
-                                   {!!Form::number('cedula',null,['class'=>'form-control','placeholder'=>'Ingresa el Cedula del usuario'])!!}
+                                   {!!Form::number('cedula',null,['class'=>'form-control','placeholder'=>'Numero de cedula'])!!}
                                </div>
                             </div>
                         <br><br>
                             <div class="form-group">
                                 <div class="col-sm-3">
-                                    {!!Form::label('celular','CELULAR:')!!}
+                                    {!!Form::label('celular','Celular:')!!}
                                 </div>
                                 <div class="col-sm-9">
-                                    {!!Form::number('celular',null,['class'=>'form-control','placeholder'=>'Ingresa el Numero de Celular del usuario'])!!}
+                                    {!!Form::number('celular',null,['class'=>'form-control','placeholder'=>'Numero de celular'])!!}
                                 </div>
                                 </div>
                         <br><br>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">FECHA DE NACIMIENTO:</label>
+                                    <label class="col-sm-3 control-label">Fecha de nacimiento:</label>
                                         <div class="col-sm-4">
                                             <input class="datepicker input-group date form-control" id="fecha_nacimiento" name="fecha_nacimiento">
                                         </div>
@@ -61,10 +61,10 @@
                                         <br><br>
                                         <div class="form-group">
                                         <div class="col-sm-3">
-                                            {!!Form::label('email','E-MAIL:')!!}
+                                            {!!Form::label('email','Correo electronico:')!!}
                                         </div>
                                         <div class="col-sm-9">
-                                        {!!Form::text('correo',null,['class'=>'form-control','placeholder'=>'Ingresa el E-mail del usuario'])!!}
+                                        {!!Form::text('correo',null,['class'=>'form-control','placeholder'=>'E-mail'])!!}
                                         </div>
                                 </div>
                         <br><br>
@@ -73,14 +73,14 @@
                                 {!!Form::label('rfid','RFID:')!!}
                             </div>
                             <div class="col-sm-4">
-                                {!!Form::text('tarjeta_rfid',null,['class'=>'form-control','placeholder'=>'Ingresa el Numero de RFID del usuario'])!!}
+                                {!!Form::text('tarjeta_rfid',null,['class'=>'form-control','placeholder'=>'Numero de la targeta RFID del funcionario'])!!}
                             </div>
 
                         </div>
                         <br><br>
                         <div class="form-group">
                             <div class="col-sm-3">
-                                {!!Form::label('cargo','CARGO:')!!}
+                                {!!Form::label('cargo','Cargo:')!!}
                             </div>
                             <div class="col-sm-9">
                                 {!! Form::select('cargo_id',$cargos_array,null,['class'=>'form-control'])!!}
@@ -91,12 +91,12 @@
                         <br><br>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">
-                                    {!!Form::label('horario_normal','HORARIO:')!!}
+                                    {!!Form::label('horario_normal','Horario:')!!}
                                 </label>
                                 <div class="col-sm-6">
                                     <div class="radio">
-                                        {{ Form::radio('horario_normal', 0, true, ['class'=>'iradio_flat-grey checked','style'=>'position: relative'])}}<label>  Asignar horario estandar de la empresa</label><br>
-                                        {{ Form::radio('horario_normal', 1, false, ['class'=>'iradio_flat-grey checked','style'=>'position: relative'])}}<label>   Asignar horario especial deacuerdo al empleado</label><br>
+                                        {{ Form::radio('horario_normal', 0, true,  ['class'=>'iradio_flat-grey checked','style'=>'position: relative'])}}<label>  Asignar horario general de la empresa</label><br>
+                                        {{ Form::radio('horario_normal', 1, false, ['class'=>'iradio_flat-grey checked','style'=>'position: relative'])}}<label>   Asignar horario deacuerdo al empleado</label><br>
                                         {{ Form::radio('horario_normal', 2, false, ['class'=>'iradio_flat-grey checked','style'=>'position: relative'])}}<label>   Asignar horario deacuerdo al cargo</label>
 
                                     </div>
@@ -113,7 +113,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">CAPTURAR FOTO</h4>
+                    <h4 class="modal-title" id="myModalLabel">Capturar foto</h4>
                 </div>
                 <div class="modal-body">
                     <div id="webcam">

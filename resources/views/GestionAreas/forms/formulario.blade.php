@@ -6,40 +6,42 @@
                     <div class="panel-body">
                         <div class="form-group">
                             <div class="col-sm-3">
-                                {!!Form::label('nombre','NOMBRE DE LA PUERTA:')!!}
+                                {!!Form::label('nombre','Nombre de la puerta:')!!}
                             </div>
                             <div class="col-sm-9">
-                                {!!Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Ingresa el Nombre del Area'])!!}
+                                {!!Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Nombre'])!!}
                             </div>
                         </div>
                         <br><br>
                         <div class="form-group">
                             <div class="col-sm-3">
-                                {!!Form::label('Llave','LLAVE:')!!}
+                                {!!Form::label('Llave','Llave de encriptado:')!!}
                             </div>
                             <div class="col-sm-6">
-                                {!!Form::number('llave_rfid',null,['class'=>'form-control','placeholder'=>'Genere Llave de Area','id'=>'llave_rfid'])!!}
+                                {!!Form::number('llave_rfid',null,['class'=>'form-control','placeholder'=>'Llave','id'=>'llave_rfid','readonly'])!!}
                             </div>
                             <div class="col-sm-3">
-                                {!!Form::button('GENERAR',['class'=>'btn btn-primary','onclick'=>'generarllaveencriptda()'])!!}
+                                {!!Form::button('Generar llave',['class'=>'btn btn-primary','onclick'=>'generarllaveencriptda()'])!!}
                             </div>
                         </div>
                         <br><br>
                         <div class="form-group">
                             <div class="col-sm-3">
-                                {!!Form::label('ip','IP:')!!}
+                                {!!Form::label('ip','Direccion IP:')!!}
                             </div>
                             <div class="col-sm-9">
-                                {!!Form::text('ip',null,['class'=>'form-control','placeholder'=>'Ingresa IP de Puerta'])!!}
+                                {!!Form::text('ip',null,['class'=>'form-control','placeholder'=>'0.0.0.0'])!!}
                             </div>
                         </div>
                         <br><br>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"></label>
+                            <label class="col-sm-3 control-label">
+                                {!!Form::label('type','Tipo de puerta:')!!}
+                            </label>
                             <div class="col-sm-6">
                                 <div class="checkbox">
-                                    {{ Form::radio('puerta_especial', 1, false,['class'=>'iradio_flat-grey checked','style'=>'position: relative'])}}<label> Puerta Especial</label><br><br>
-                                    {{ Form::radio('puerta_especial', 0,false,['class'=>'iradio_flat-grey checked','style'=>'position: relative'])}}<label>  Puerta Normal</label>
+                                    {{ Form::radio('puerta_especial', 1, false,['class'=>'iradio_flat-grey checked','style'=>'position: relative'])}}<label>   Especial</label><br><br>
+                                    {{ Form::radio('puerta_especial', 0,false,['class'=>'iradio_flat-grey checked','style'=>'position: relative'])}}<label>   Normal</label>
                                 </div>
                             </div>
                         </div>

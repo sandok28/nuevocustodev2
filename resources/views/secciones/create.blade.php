@@ -23,10 +23,10 @@
                             </div>
                             <div class="row col-md-6 top-space" style="margin-top: 1.4em;" >
                                 <div class="col-md-6">
-                                    {!!Form::submit('Registrar Seccion',['class'=>'btn btn-info btn-block btn-3d'])!!}
+                                    {!!Form::submit('Registrar seccion',['class'=>'btn btn-info btn-block btn-3d'])!!}
                                 </div>
                                 <div class="col-md-6">
-                                    {!!link_to_route('secciones.index', 'Cancelar', null,['class'=>'btn btn-primary btn-block btn-3d'])!!}
+                                    {!!link_to_route('secciones.index', 'Volver', null,['class'=>'btn btn-primary btn-block btn-3d'])!!}
                                 </div>
                             </div>
                             {!!Form::close()!!}

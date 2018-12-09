@@ -84,7 +84,7 @@
     <div class="col-md-12">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h3 class="panel-title">CARGOS QUE SE DESEMPEÑAN EN ESTA AREA</h3>
+                <h3 class="panel-title">Cargos asociados esta seccion</h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
 
@@ -100,7 +100,7 @@
     <div class="col-md-12">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h3 class="panel-title">Intervalos de tiempo del area</h3>
+                <h3 class="panel-title">Puertas e intervalos de tiempo de la seccion</h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
 
@@ -111,7 +111,7 @@
                 <div class="col-md-12">
                     <div class="panel panel-solid-danger">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Puertas activas actualmente para esta seccion</h3>
+                            <h3 class="panel-title">Puertas activas para esta seccion</h3>
                             <div class="actions pull-right">
                                 <i class="fa fa-chevron-down"></i>
 

@@ -7,7 +7,7 @@
     <div class="col-md-12 row center-xs panel-heading ">
         <div class="col-xs-12">
 
-            {!!link_to_route('IntervalosInvitados.create', 'Agregar nuevo intervalo', $invitado->id,['class'=>'btn btn-info btn-block btn-3d'])!!}
+            {!!link_to_route('IntervalosInvitados.create', 'Agregar intervalo', $invitado->id,['class'=>'btn btn-info btn-block btn-3d'])!!}
         </div>
     </div>
 

@@ -80,7 +80,7 @@
             <div class="panel-body">
                 <div class="col-md-12 row center-xs panel-heading ">
                     <div class="col-xs-12">
-                        {!!link_to_route('horariogeneral.create', 'Agregar nuevo intervalo', null, ['class'=>'btn btn-info btn-block btn-3d'])!!}
+                        {!!link_to_route('horariogeneral.create', 'Agregar intervalo', null, ['class'=>'btn btn-info btn-block btn-3d'])!!}
                     </div>
                 </div>
                 <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -115,7 +115,6 @@
                                     @elseif($dia->dia == 7)
                                         Domingo
                                     @endif
-
                                 @endforeach
                             </td>
                             <th>

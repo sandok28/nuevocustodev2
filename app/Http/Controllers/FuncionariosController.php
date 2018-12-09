@@ -120,7 +120,7 @@ class FuncionariosController extends Controller
                         'fecha_expiracion' => Carbon::now()->addYears(10)->toDateString(),
                     ]);
                 DB::commit();
-                return redirect('/funcionarios')->with(['message'=>'El Funcionario se ha registrado correctamente','tipo'=>'message']);
+                return redirect('/funcionarios')->with(['message'=>'El funcionario se ha registrado correctamente','tipo'=>'message']);
             }
             catch (\Exception $ex){
                 DB::rollback();
@@ -171,7 +171,7 @@ class FuncionariosController extends Controller
                             'fecha_expiracion' => Carbon::now()->addYears(10)->toDateString(),
                         ]);
             DB::commit();
-            return redirect('/funcionarios')->with(['message'=>'El Funcionario se ha registrado correctamente','tipo'=>'message']);
+            return redirect('/funcionarios')->with(['message'=>'El funcionario se ha registrado correctamente','tipo'=>'message']);
         }
         catch (\Exception $ex){
             DB::rollback();
@@ -318,7 +318,7 @@ class FuncionariosController extends Controller
             DB::rollback();
             return redirect('/funcionarios/'+$id+'/edit')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
         }
-        return redirect('/funcionarios')->with(['message'=>'El funcionario se ha Actualizado correctamente','tipo'=>'message']);
+        return redirect('/funcionarios')->with(['message'=>'El funcionario se ha actualizado correctamente','tipo'=>'message']);
     }
 
 

@@ -14,7 +14,7 @@
     <div class="col-md-12">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h3 class="panel-title">Lista secciones</h3>
+                <h3 class="panel-title">Gestión de secciones</h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
 
@@ -26,7 +26,7 @@
                         <div class="col-md-12">
                             <div class="panel-heading row">
                                 <div class="col-md-6">
-                                    {!!link_to_route('secciones.create', 'Agregar Seccion', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
+                                    {!!link_to_route('secciones.create', 'Agregar seccion', null,['class'=>'btn btn-info btn-block btn-3d'])!!}
                                 </div>
                                 <div class="col-md-6">
                                     <button class="btn btn-primary btn-block btn-3d" onclick="history.back();">Volver</button>
@@ -39,9 +39,8 @@
                             <thead>
                             <tr>
                                 <th>Nombre</th>
-
-                                <th>estatus</th>
-                                <th>editar</th>
+                                <th>Estado</th>
+                                <th>Editar</th>
 
                             </tr>
                             </thead>

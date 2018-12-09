@@ -199,8 +199,12 @@ class HorariosGeneralesController extends Controller
     {
         try{
             DB::beginTransaction();
-            Horariogeneral::find($id)->delete();
+            $Intervalos = Horariogeneral::find($id);
 
+            DB::table('HorariosGenerales')->where([
+                                                    ['desde', '=', $Intervalos->desde],
+                                                    ['hasta', '=', $Intervalos->hasta],
+                                                  ])->delete();
         }
         catch (\Exception $ex){
             DB::rollback();
