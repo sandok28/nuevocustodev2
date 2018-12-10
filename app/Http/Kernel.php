@@ -56,5 +56,16 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'GestionarUsuariosMiddleware' => 'App\Http\Middleware\GestionarUsuariosMiddleware',
+        'GestionarLicenciasMiddleware' => 'App\Http\Middleware\GestionarLicenciasMiddleware',
+        'GestionarFuncionariosMiddleware' => 'App\Http\Middleware\GestionarFuncionariosMiddleware',
+        'GestionarCargosMiddleware' => 'App\Http\Middleware\GestionarCargosMiddleware',
+        'GestionarSeccionesMiddleware' => 'App\Http\Middleware\GestionarSeccionesMiddleware',
+        'GestionarHorarioGeneralMiddleware' => 'App\Http\Middleware\GestionarHorarioGeneralMiddleware',
+        'GestionarInvitadosMiddleware' => 'App\Http\Middleware\GestionarInvitadosMiddleware',
+        'GestionarEstadisticasMiddleware' => 'App\Http\Middleware\GestionarEstadisticasMiddleware',
+        'GestionarAuditoriasMiddleware' => 'App\Http\Middleware\GestionarAuditoriasMiddleware',
+        'GestionarPuertasMiddleware' => 'App\Http\Middleware\GestionarPuertasMiddleware',
+        'ControlPuertasMiddleware' => 'App\Http\Middleware\ControlPuertasMiddleware',
     ];
 }
