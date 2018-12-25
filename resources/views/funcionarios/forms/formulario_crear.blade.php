@@ -36,7 +36,7 @@
                             <br><br>
                             <div class="form-group">
                                <div class="col-sm-3">
-                                   {!!Form::label('cedula','Cedule:')!!}
+                                   {!!Form::label('cedula','Cedula:')!!}
                                </div>
                                <div class="col-sm-9">
                                    {!!Form::number('cedula',null,['class'=>'form-control','placeholder'=>'Numero de cedula'])!!}

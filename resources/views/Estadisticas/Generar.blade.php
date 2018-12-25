@@ -35,9 +35,9 @@
                 <canvas id = "myChart"  > </canvas>
                 <script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
-                @if($puertas==null){}
+                @if($puertas==null)
                     @else
-                    {
+
                     <script>
                         function dibujar() {
                             var ctx = document.getElementById('myChart').getContext('2d');
@@ -80,7 +80,7 @@
                                         borderColor: 'rgb(255, 255, 255)',
                                         data: [
                                             @forEach($funcionarios as $funcionario)
-                                            {{$funcionario->hoario_normal}},
+                                            '{{$funcionario->estatus}}',
                                             @endforeach
                                         ],
                                     }]
@@ -90,7 +90,7 @@
                             });
                         }
                     </script>
-                    }
+
                 @endif
 
 

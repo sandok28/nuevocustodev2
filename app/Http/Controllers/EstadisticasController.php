@@ -26,7 +26,12 @@ class EstadisticasController extends Controller
         $licencias = Licencia::all();
         $ingresos = Ingreso::all();
         $funcionarios= Funcionario::all();
-
+        $puertas_usadas = DB::table('ingresos')
+                        ->select('puertas_id','id')
+                        ->where([
+                            ['fecha_hora', '>=', '2018-06-28'],
+                            ['fecha_hora', '<=', '2019-06-28']
+                        ])->get();
         $fecha_limite='2018-02-07 00:00:00';
         $fecha_inicial='2018-02-04 00:00:00';
         /*
@@ -44,7 +49,7 @@ class EstadisticasController extends Controller
         $puertas= DB::table("select count(*), `puertas`.`nombre`, `ingresos`.`fecha_hora` from `ingresos` inner join `puertas` on `puertas`.`id` = `ingresos`.`puertas_id` where (`autorizado` = 1 and `fecha_hora` <= '2018-02-07 00:00:00' and `fecha_hora` >= '2018-02-04 00:00:00') and `puertas`.`estatus` = 1 group by `puertas`.`nombre`");
         //dd($puertas);
         $secciones = Seccion::all();
-        return view('Estadisticas.Generar',['funcionarios'=>$funcionarios,'licencias'=> $licencias,'ingresos'=>$ingresos,'puertas'=>$puertas,'secciones'=>$secciones]);
+        return view('Estadisticas.Generar',['funcionarios'=>$funcionarios,'licencias'=> $licencias,'ingresos'=>$ingresos,'puertas'=>$puertas,'secciones'=>$secciones, 'puertas_usadas'=>$puertas_usadas]);
     }
 
 
