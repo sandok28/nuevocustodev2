@@ -2,7 +2,7 @@
 
 <div class="col-md-12 row center-xs panel-heading ">
     <div class="col-xs-12">
-        {!!link_to_route('IntervalosSecciones.create', 'Agregar intervalo en el horario de la seccion', $seccion->id,['class'=>'btn btn-info btn-block btn-3d'])!!}
+        {!!link_to_route('IntervalosSecciones.create', 'Agregar intervalo en el horario de la sección', $seccion->id,['class'=>'btn btn-info btn-block btn-3d'])!!}
     </div>
 </div>
 <table id="example2" class="table table-striped table-bordered" cellspacing="0" width="100%">

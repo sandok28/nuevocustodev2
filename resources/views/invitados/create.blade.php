@@ -3,6 +3,15 @@
     agregar invitado
 @endsection
 
+@section('cargarcss')
+    <!-- iCheck-->
+    {!! Html::style("assets/plugins/icheck/css/_all.css") !!}
+    {!! Html::style("bootstrap-datepicker/css/bootstrap-datepicker.min.css") !!}
+
+
+@endsection
+
+
 @section('content')
     <div class="col-md-12">
         <div class="panel panel-primary">
@@ -35,6 +44,8 @@
 
 
 @endsection
+
+
 @section('cargarjs')
     {!! Html::script("bootstrap-datepicker/js/bootstrap-datepicker.min.js") !!}
     {!! Html::script("bootstrap-datepicker/js/datepicker-es.js") !!}

@@ -1,7 +1,7 @@
 <div class="col-md-12">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Lista De intervalos y Puertas Asignadas a la seccion {{$seccion->nombre}}</h3>
+            <h3 class="panel-title">Lista De intervalos y Puertas Asignadas a la sección {{$seccion->nombre}}</h3>
             <div class="actions pull-right">
                 <i class="fa fa-chevron-down"></i>
 

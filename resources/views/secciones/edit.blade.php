@@ -1,7 +1,7 @@
 @extends('layouts.principal')
 
 @section('titel')
-    editar seccion
+    editar sección
 @endsection
 
 @section('cargarcss')
@@ -16,7 +16,7 @@
     <div class="col-md-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">Editar Seccion</h3>
+                <h3 class="panel-title">Editar sección</h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
 
@@ -84,7 +84,7 @@
     <div class="col-md-12">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h3 class="panel-title">Cargos asociados esta seccion</h3>
+                <h3 class="panel-title">Cargos asociados a esta sección</h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
 
@@ -100,7 +100,7 @@
     <div class="col-md-12">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h3 class="panel-title">Puertas e intervalos de tiempo de la seccion</h3>
+                <h3 class="panel-title">Puertas e intervalos de tiempo de la sección</h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
 
@@ -111,7 +111,7 @@
                 <div class="col-md-12">
                     <div class="panel panel-solid-danger">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Puertas activas para esta seccion</h3>
+                            <h3 class="panel-title">Puertas activas para esta sección</h3>
                             <div class="actions pull-right">
                                 <i class="fa fa-chevron-down"></i>
 

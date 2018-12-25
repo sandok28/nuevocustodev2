@@ -7,7 +7,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-3">
-                                @if($funcionario->foto!=0)
+                                @if($funcionario->foto!=null)
 
                                 <img id="imgFotoOficial_Perfil" name="imgFotoOficial_Perfil" src="{{$funcionario->foto}}" alt="User Avatar">
                                 <canvas id="foto" class="col-md-12" style="display: none"></canvas>
@@ -22,6 +22,13 @@
                         <div class="form-group">
                             {!!Form::button('TOMAR FOTO',['class'=>'btn btn-primary btn-lg','data-toggle'=>'modal','data-target'=>'#basicModal'])!!}
                         </div>
+
+                        <br><br>
+
+
+                            <img src="{{$funcionario->foto}}"/>
+
+
                         <br><br>
                         <div class="form-group">
                             <div class="col-sm-3">

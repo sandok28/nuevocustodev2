@@ -245,7 +245,7 @@
                             </div>
                             <div class="panel-body">
                                 <div class="col-md-8">
-                                    <p>Se recomienda crear un usuario auxiliar, el cual pueda realizar algunas fucniones especificas segun sus roles</p>
+                                    <p>Se recomienda crear un usuario auxiliar, el cual pueda realizar algunas fucniones especificas segun sus necesidades</p>
                                 </div>
                                 <div class="col-md-4">
                                     @if($num_usuarios > 1)

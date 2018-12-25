@@ -123,7 +123,7 @@ class SeccionesController extends Controller
             return redirect('/secciones/create')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
         }
 
-        return redirect('/secciones/'.$seccion->id.'/edit')->with(['message'=>'La seccion se ha registrado correctamente','tipo'=>'message']);
+        return redirect('/secciones/'.$seccion->id.'/edit')->with(['message'=>'La sección se ha registrado correctamente','tipo'=>'message']);
 
     }
 
@@ -259,6 +259,6 @@ class SeccionesController extends Controller
         $seccion->save();
         Session::flash('message','Seccion Actualizada Correctamente');
 
-        return redirect('/secciones')->with(['message'=>'La seccion se ha actualizado correctamente','tipo'=>'message']);
+        return redirect('/secciones')->with(['message'=>'La sección se ha actualizado correctamente','tipo'=>'message']);
     }
 }

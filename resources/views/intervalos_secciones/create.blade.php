@@ -12,7 +12,7 @@
     <div class="col-md-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"> Horario Especial de seccion Agregar intervalo </h3>
+                <h3 class="panel-title"> Horario especial de la sección, agregar intervalo </h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
 

@@ -162,10 +162,10 @@
                     </a>
                     <ul class="dropdown-menu animated fadeInDown">
                         <li>
-                            <i class="fa fa-pencil-square-o" aria-hidden="true"> {!!link_to_route('usuarios.edit_usuario_actual', 'Editar Perfil')!!}</i>
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"> {!!link_to_route('usuarios.edit_usuario_actual', 'Editar usuario')!!}</i>
                         </li>
                         <li>
-                            <i class="fa fa-power-off"> {!!link_to_route('home.logout', ' Cerrar session')!!}</i>
+                            <i class="fa fa-power-off"> {!!link_to_route('home.logout', 'Cerrar sesión.')!!}</i>
                         </li>
                     </ul>
                 </li>

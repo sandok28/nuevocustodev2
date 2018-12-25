@@ -19,12 +19,8 @@
     {!!Form::email('correo',null,['class'=>'form-control','placeholder'=>'Ingresa el E-mail del usuario'])!!}
 </div>
 <div class="form-group col-xs-6">
-    <div class="form-group">
-        <label class="control-label">FECHA DE NACIMIENTO:</label><br>
-        <div class="col-sm-14">
-            <input class="datepicker input-group date form-control" id="fecha_nacimiento" name="fecha_nacimiento">
-        </div>
-    </div>
+    <label class="control-label">Fecha de nacimiento:</label><br>
+    <input class="datepicker input-group date form-control" id="fecha_nacimiento" name="fecha_nacimiento">
 </div>
 
 

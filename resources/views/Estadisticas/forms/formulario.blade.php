@@ -14,8 +14,6 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                    <div  class="panel-title">  GENERAR ESTADISTICAS <br><br></div>
-
                         <div class="row">
                             <div class="col-md-8">
                                 {!! Form::select('TIPO DE REPORTES', ['cant_puert_ingr' => 'Cantidad de ingresos por puerta'],null,['class'=>'form-control','id'=>'tipo']) !!}
@@ -41,34 +39,7 @@
                                  </div>
                              </div>
                          </div><br><br>
-                        <div id="hora">
-                        <div class="row">
-                            <div class="col-md-3">
-                                {!! Form::label('Hora Inicio', null, ['class' => 'control-label']) !!}
-                            </div>
-                            <div class="form-group col-md-3">
-                                <div class='input-group date' id='datetimepicker3'>
-                                    <input type='text' class="form-control" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-time"></span>
-                                    </span>
-                                </div>
-                            </div>
-                         </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                {!! Form::label('Hora de Fin', null, ['class' => 'control-label']) !!}
-                            </div>
-                            <div class="form-group col-md-3">
-                                <div class='input-group date' id='datetimepicker4'>
-                                    <input type='text' class="form-control" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-time"></span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
+
                     </div>
                     </div>
                 </div>

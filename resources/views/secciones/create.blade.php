@@ -1,13 +1,13 @@
 @extends('layouts.principal')
 @section('titel')
-    agregar seccion
+    agregar sección
 @endsection
 
 @section('content')
     <div class="col-md-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">Crear seccion</h3>
+                <h3 class="panel-title">Crear sección</h3>
                 <div class="actions pull-right">
                     <i class="fa fa-chevron-down"></i>
 
