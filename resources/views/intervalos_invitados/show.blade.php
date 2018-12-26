@@ -44,7 +44,7 @@
                                 <h1>Puertas normales</h1>
                             </div>
                             @foreach($puertasNormales as $puertaNormal)
-                                <div class="col-xs-4">
+                                <div class="col-xs-6">
                                     {!! Form::checkbox($puertaNormal->id, $puertaNormal->id,1,['disabled'=> true]) !!}
                                     {!! Form::label($puertaNormal->nombre) !!}
                                 </div>
@@ -55,7 +55,7 @@
                                 <h1>Puertas especiales</h1>
                             </div>
                             @foreach($puertasEspeciales as $puertaEspecial)
-                                <div class="col-xs-4">
+                                <div class="col-xs-6">
                                     {!! Form::checkbox($puertaEspecial->id, $puertaEspecial->id, 1,['disabled'=> true]) !!}
                                     {!! Form::label($puertaEspecial->nombre) !!}
                                 </div>

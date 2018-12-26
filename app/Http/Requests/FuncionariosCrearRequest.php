@@ -24,12 +24,12 @@ class FuncionariosCrearRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre'=>'required|min:4|max:15|regex:/^[a-zA-Z]+(\s*[a-zA-Z])[a-zA-Z]+$/',
-            'apellido'=>'required|min:4|max:15|regex:/^[a-zA-Z]+(\s*[a-zA-Z])[a-zA-Z]+$/',
-            'cedula'=>'required|min:100000|max:9999999999|numeric|unique:funcionarios',
+            'nombre'=>'required|min:3',
+            'apellido'=>'required|min:4',
+            'cedula'=>'required',
             'celular'=>'required|numeric',
             'fecha_nacimiento'=>'required|date_format:"Y-m-d',
-            'correo'=>'required|max:30|email',
+            'correo'=>'required|email',
             'tarjeta_rfid'=>'required|max:8|alpha_num|regex:/^[0-9a-fA-F]+$/',
             'horario_normal'=>'required',
 

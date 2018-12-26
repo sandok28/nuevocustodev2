@@ -46,7 +46,7 @@
                                 <h1>Puertas normales</h1>
                             </div>
                             @foreach($puertasNormales as $puertaNormal)
-                                <div class="col-xs-4">
+                                <div class="col-xs-6">
                                     {!! Form::checkbox($puertaNormal->id, $puertaNormal->id,$puertaNormal->estatus_permiso) !!}
                                     {!! Form::label($puertaNormal->nombre) !!}
                                 </div>
@@ -58,7 +58,7 @@
                             </div>
 
                             @foreach($puertasEspeciales as $puertaEspecial)
-                                <div class="col-xs-4">
+                                <div class="col-xs-6">
                                     {!! Form::checkbox($puertaEspecial->id, $puertaEspecial->id, $puertaEspecial->estatus_permiso) !!}
                                     {!! Form::label($puertaEspecial->nombre) !!}
                                 </div>
@@ -126,7 +126,7 @@
                                         </div>
                                         @foreach($puertasNormalesActivas as $puertaNormalActiva)
                                             @if($puertaNormalActiva->pivot->estatus_permiso == 1  )
-                                                <div class="col-xs-4">
+                                                <div class="col-xs-6">
                                                     {!! Form::checkbox('asd', 'asd',1, ['disabled'=>'true']) !!}
                                                     {!! Form::label($puertaNormalActiva->nombre) !!}
                                                 </div>
@@ -139,7 +139,7 @@
                                         </div>
                                         @foreach($puertasEspecialesActivas as $puertaEspecialActiva)
                                             @if($puertaEspecialActiva->pivot->estatus_permiso == 1  )
-                                                <div class="col-xs-4">
+                                                <div class="col-xs-6">
                                                     {!! Form::checkbox('asd', 'asd',1,['disabled'=>'true']) !!}
                                                     {!! Form::label($puertaEspecialActiva->nombre) !!}
                                                 </div>

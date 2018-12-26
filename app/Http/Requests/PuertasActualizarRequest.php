@@ -26,7 +26,7 @@ class PuertasActualizarRequest extends FormRequest
         return [
             'puerta_especial' => 'required',
             'nombre' =>'required|min:4|max:100',
-            'llave_rfid' => 'required|max:9|alpha_num|regex:/^[0-9a-fA-F]+$/',
+            'llave_rfid' => 'required|max:8|alpha_num|regex:/^[0-9a-fA-F]+$/',
             'ip' => 'required|ip',
         ];
     }

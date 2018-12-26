@@ -310,7 +310,7 @@ class FuncionariosController extends Controller
 
         }
         catch (\Exception $ex){
-            dd($ex);
+            //dd($ex);
             DB::rollback();
             return redirect('/funcionarios/'+$id+'/edit')->with(['message'=>'A ocurrido un error','tipo'=>'error']);
         }

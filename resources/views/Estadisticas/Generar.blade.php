@@ -12,6 +12,13 @@
         Generar Estadisticas
 @endsection
 
+
+@section('cargarcss')
+    <!-- iCheck-->
+    {!! Html::style("assets/plugins/icheck/css/_all.css") !!}
+    {!! Html::style("bootstrap-datepicker/css/bootstrap-datepicker.min.css") !!}
+@endsection
+
 @section('content')
     <div class="col-md-12">
         <div class="panel panel-info">

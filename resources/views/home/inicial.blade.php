@@ -112,7 +112,7 @@
                                     <p>Se debe especificar el control que tiene tu usuario sobre las puertas creadas.</p>
                                     <p>Solo las puertas especificadas se podran gestionar desde el sistema por el usurio en sesion.</p>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     @if($num_control_puertas > 0)
                                         {!!link_to_route('usuarios.edit', 'Gestión de usuarios', Auth::User()->id,['class'=>'btn btn-default btn-block btn-3d'])!!}
                                     @else

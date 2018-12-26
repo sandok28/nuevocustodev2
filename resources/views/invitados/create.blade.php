@@ -7,8 +7,6 @@
     <!-- iCheck-->
     {!! Html::style("assets/plugins/icheck/css/_all.css") !!}
     {!! Html::style("bootstrap-datepicker/css/bootstrap-datepicker.min.css") !!}
-
-
 @endsection
 
 

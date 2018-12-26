@@ -9,9 +9,9 @@
                             <div class="col-md-3">
                                 @if($funcionario->foto!=null)
 
-                                <img id="imgFotoOficial_Perfil" name="imgFotoOficial_Perfil" src="{{$funcionario->foto}}" alt="User Avatar">
-                                <canvas id="foto" class="col-md-12" style="display: none"></canvas>
-                                <input type="hidden" value="" id="fotocreada" name="fotocreada" src="{{$funcionario->foto}}">
+                                    <img id="imgFotoOficial_Perfil" name="imgFotoOficial_Perfil" src="{{$funcionario->foto}}" alt="User Avatar">
+                                    <canvas id="foto" class="col-md-12" style="display: none"></canvas>
+                                    <input type="hidden" value="{{$funcionario->foto}}" id="fotocreada" name="fotocreada" src="{{$funcionario->foto}}">
                                 @else
                                     <img id="imgFotoOficial_Perfil" name="imgFotoOficial_Perfil" src="{{url('assets/img/avatarfuncionario.png')}}" alt="User Avatar">
                                     <canvas id="foto" class="col-md-12" style="display: none"></canvas>
@@ -22,11 +22,6 @@
                         <div class="form-group">
                             {!!Form::button('TOMAR FOTO',['class'=>'btn btn-primary btn-lg','data-toggle'=>'modal','data-target'=>'#basicModal'])!!}
                         </div>
-
-                        <br><br>
-
-
-                            <img src="{{$funcionario->foto}}"/>
 
 
                         <br><br>

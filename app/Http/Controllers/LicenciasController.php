@@ -370,13 +370,13 @@ class LicenciasController extends Controller
     }
 
     /**
-     * Actualiza el estado de todas las licencias poniendo en estatus 0 si la fecha de la licencia caduci, este metodo esta diseñado
+     * Actualiza el estado de todas las licencias poniendo en estatus 0 si la fecha de la licencia caduca, este metodo esta diseñado
      * para que sea activado una vez cada noche en el servidor actualmente se ejecuta cada vez
      * que se ingresa a la vista index de licencias
      *
      * @author Edwin Sandoval
      */
-    private function actualizarEstatusLicencias(){
+    public function actualizarEstatusLicencias(){
 
         //obtengo una coleccion con todas las licencias activas
         $licenciasActivas=Licencia::all()->where('estatus',1);

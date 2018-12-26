@@ -32,7 +32,7 @@
                                 </div>
                                 @foreach($puertasNormales as $puertaNormal)
 
-                                    <div class="col-xs-4">
+                                    <div class="col-xs-6">
                                         {!! Form::checkbox($puertaNormal->id, $puertaNormal->id,$puertaNormal->estatus_en_horario_general) !!}
                                         {!! Form::label($puertaNormal->nombre) !!}
                                     </div>
@@ -44,7 +44,7 @@
                                 </div>
 
                                 @foreach($puertasEspeciales as $puertaEspecial)
-                                    <div class="col-xs-4">
+                                    <div class="col-xs-6">
                                         {!! Form::checkbox($puertaEspecial->id, $puertaEspecial->id,$puertaEspecial->estatus_en_horario_general) !!}
                                         {!! Form::label($puertaEspecial->nombre) !!}
                                     </div>

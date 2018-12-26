@@ -178,7 +178,6 @@ class UsuariosController extends Controller
             'name' => 'min:4|required|unique:Users,name,'.$id,
         ]);
 
-
         if ($request->password!= $request->password_confirmacion){
             return redirect('/usuarios/'.$id.'/edit')->with(['message'=>'Las contraseñas no coinciden','tipo'=>'error']);
         }
@@ -270,8 +269,6 @@ class UsuariosController extends Controller
             DB::commit();
         } catch (\Exception $ex){
             DB::rollback();
-
-            dd($ex);
             return redirect('/usuarios/'.$id.'/edit')->with(['message'=>'Algo salio mal','tipo'=>'error']);
         }
         return redirect('/usuarios')->with(['message'=>'Usuario Actualizado corectamente','tipo'=>'message']);
@@ -297,7 +294,7 @@ class UsuariosController extends Controller
             DB::beginTransaction();
 
             //obtengo le usuario relacionado al id que llego
-            $usuario = User::find($id);
+            $usuario = User::find(Auth::User()->id);
 
             if($request->password == null) $request->password=$usuario->password;
 
@@ -321,6 +318,7 @@ class UsuariosController extends Controller
 
             DB::commit();
         } catch (\Exception $ex){
+
             DB::rollback();
             return redirect('/usuario_actual/edit')->with(['message'=>'Algo salio mal','tipo'=>'error']);
         }

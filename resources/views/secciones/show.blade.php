@@ -17,7 +17,7 @@
                         </div>
                         @foreach($seccion->puertas->where('puerta_especial','0') as $puertaNormal)
 
-                            <div class="col-xs-4">
+                            <div class="col-xs-6">
                                 {!! Form::checkbox($puertaNormal->id, $puertaNormal->id,$puertaNormal->pivot->estatus_permiso,['disabled'=>'true']) !!}
                                 {!! Form::label($puertaNormal->nombre) !!}
                             </div>
@@ -28,7 +28,7 @@
                             <h1>Puertas especiales</h1>
                         </div>
                         @foreach($seccion->puertas->where('puerta_especial','1')  as $puertaEspecial)
-                            <div class="col-xs-4">
+                            <div class="col-xs-6">
                                 {!! Form::checkbox($puertaEspecial->id, $puertaEspecial->id,$puertaEspecial->pivot->estatus_permiso,['disabled'=>'true']) !!}
                                 {!! Form::label($puertaEspecial->nombre) !!}
                             </div>
