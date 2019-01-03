@@ -23,38 +23,55 @@ class EstadisticasController extends Controller
     **/
     public function index()
     {
-        $licencias = Licencia::all();
-        $ingresos = Ingreso::all();
-        $funcionarios= Funcionario::all();
+
+
         $puertas_usadas = DB::table('ingresos')
-                        ->select('puertas_id','id')
-                        ->where([
-                            ['fecha_hora', '>=', '2018-06-28'],
-                            ['fecha_hora', '<=', '2019-06-28']
-                        ])->get();
-        $fecha_limite='2018-02-07 00:00:00';
-        $fecha_inicial='2018-02-04 00:00:00';
-        /*
-        $puertas = DB::table('ingresos')
+            ->select('puertas_id',DB::raw('count(1) as total'))
             ->where([
-                ['autorizado','=',1],
-                ['fecha_hora','<=',$fecha_limite],
-                ['fecha_hora','>=',$fecha_inicial]
+                ['fecha_hora', '>=', '01-12-2018'],
+                ['fecha_hora', '<=', '01-12-2018']
             ])
-            ->join('puertas', 'puertas.id', '=', 'ingresos.puertas_id')
-            ->where('puertas.estatus',1)
-            ->select('count(*) as total','puertas.nombre', 'ingresos.fecha_hora')
-            ->groupBy('puertas.nombre')
-            ->get();*/
-        $puertas= DB::table("select count(*), `puertas`.`nombre`, `ingresos`.`fecha_hora` from `ingresos` inner join `puertas` on `puertas`.`id` = `ingresos`.`puertas_id` where (`autorizado` = 1 and `fecha_hora` <= '2018-02-07 00:00:00' and `fecha_hora` >= '2018-02-04 00:00:00') and `puertas`.`estatus` = 1 group by `puertas`.`nombre`");
-        //dd($puertas);
-        $secciones = Seccion::all();
-        return view('Estadisticas.Generar',['funcionarios'=>$funcionarios,'licencias'=> $licencias,'ingresos'=>$ingresos,'puertas'=>$puertas,'secciones'=>$secciones, 'puertas_usadas'=>$puertas_usadas]);
+            ->groupBy('puertas_id')
+            ->get();
+        $fecha_inicio = null;
+        $fecha_fin    = null;
+        return view('Estadisticas.Generar',[  'puertas_usadas'=>$puertas_usadas,
+            'fecha_inicio'=>$fecha_inicio,
+            'fecha_fin'=>$fecha_fin
+        ]);
+
+
     }
 
 
-    public  function fechas(Request $request)
+    public  function graficas(Request $request)
     {
+
+
+
+        //dd($request->fecha_inicio, $request->fecha_fin);
+
+
+
+        DB::table('HorariosGenerales')->select('desde','hasta',DB::raw('count(*) as total'))->groupBy('desde','hasta')->get();
+
+        $puertas_usadas = DB::table('ingresos')
+            ->select('puertas_id',DB::raw('count(1) as total'))
+            ->where([
+                ['fecha_hora', '>=', $request->fecha_inicio],
+                ['fecha_hora', '<=', $request->fecha_fin]
+            ])
+            ->groupBy('puertas_id')
+            ->get();
+        //dd($puertas_usadas);
+
+        $fecha_inicio = $request->fecha_inicio;
+        $fecha_fin = $request->fecha_fin;
+        return view('Estadisticas.Generar',[  'puertas_usadas'=>$puertas_usadas,
+                                                    'fecha_inicio'=>$fecha_inicio,
+                                                    'fecha_fin'=>$fecha_fin
+                                                 ]);
+
 
     }
 }

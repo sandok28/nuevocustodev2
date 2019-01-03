@@ -67,6 +67,7 @@ Route::get('area','GestionAreasController@controlareas')->name('area');
 
 
 Route::get('Estadisticas','EstadisticasController@index')->name('estadisticas');
+Route::post('Estadisticas','EstadisticasController@graficas')->name('estadisticas.graficas');
 
 Route::get('Reportes','ReportesController@index');
 
